@@ -73,7 +73,7 @@ namespace DataLayer.Script.Procedures
 	                    --set @allprofit = (select ISNULL(@sumsells,0) - ISNULL(@sumpurches ,0))
 						--المصاريف
 	                    select 11 as Id ,'المصاريف' as Account, Sum(Credit) as Credit, Sum(Debit) as Debit, Sum(Debit - Credit) as Total INTO #tempExpense from dbo.EntryDetail 
-				                     Where AccountId IN (Select Id from Account where AccountGeneralId = 8 OR Id = 8) and Id Not in (20)
+				                     Where AccountId IN (Select Id from Account where AccountGeneralId = 8 OR Id = 8) and AccountId Not in (20)
 				                     AND CreationDate >= @FromDate AND CreationDate <=@ToDate
  
 						--بضاعة منتهية الصلاحية

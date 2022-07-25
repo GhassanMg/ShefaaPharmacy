@@ -207,7 +207,7 @@ namespace ShefaaPharmacy.Accounting
             FullTotal.AccountId = 18;
             foreach (DataGridViewRow myrow in PickGridView.Rows)
             {
-                if(myrow.Cells["AccountIdDescr"].Value.ToString()=="مخزن الأدوية")
+                if(myrow.Cells["AccountIdDescr"].Value.ToString()!=" ")
                 {
                     FullTotal.Debit += Convert.ToDouble(myrow.Cells["Debit"].Value);
                     FullTotal.Credit += Convert.ToDouble(myrow.Cells["Credit"].Value);

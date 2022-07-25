@@ -35,6 +35,7 @@ namespace ShefaaPharmacy.Articles
         {
             pHelperButton.Location = new Point(this.Size.Width - pHelperButton.Width, 7);
             GetExpiredArticle();
+            
         }
         void ChangeStyleOfGrid(DataGridView dataGridView)
         {
