@@ -67,7 +67,12 @@ namespace ShefaaPharmacy.Articles
 
         protected override void btCancel_Click(object sender, EventArgs e)
         {
-            if(dgMaster.Rows.Count == 0)
+            if (tbArticleName.Text == "")
+            {
+                base.btCancel_Click(sender, e);
+                return;
+            }
+            else if (dgMaster.Rows.Count == 0)
             {
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 ArticleUnits articleUnits = new ArticleUnits
@@ -82,7 +87,7 @@ namespace ShefaaPharmacy.Articles
                 context.ArticleUnits.Add(articleUnits);
                 context.SaveChanges();
             }
-            base.btCancel_Click(sender, e);
+                base.btCancel_Click(sender, e);
         }
         private void validate()
         {
@@ -128,14 +133,15 @@ namespace ShefaaPharmacy.Articles
         
         private void LbArticleName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Article result = ArticlePicker.PickArticale("", 0, FormOperation.Pick);
-            if (result != null)
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            Article choosed = ArticlePicker.PickArticale("", 0, FormOperation.Pick);
+            if (choosed != null)
             {
-                newArticleUnit = new ArticleUnits() { ArticleId = result.Id };
-                tbArticleName.Text = result.Name;
-                List<ArticleUnits> articleUnits = ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.Where(x => x.ArticleId == result.Id).ToList();
+                newArticleUnit = new ArticleUnits() { ArticleId = choosed.Id };
+                tbArticleName.Text = choosed.Name;
+                List<ArticleUnits> articleUnits = ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.Where(x => x.ArticleId == choosed.Id).ToList();
                 bsMaster.DataSource = articleUnits;
-                if (articleUnits.Count!=0&&articleUnits.FirstOrDefault().IsPrimary)
+                if (articleUnits.Count != 0 && articleUnits.FirstOrDefault().IsPrimary) 
                 {
                     Editted = true;
                 }
@@ -145,6 +151,16 @@ namespace ShefaaPharmacy.Articles
                 btnAdd.Enabled = true;
                 lbArticleName.Enabled = false;
                 lbArticleName.ForeColor = Color.Gray;
+                if (context.PriceTagMasters.Where(x => x.ArticleId == choosed.Id && x.CountAllItem != 0).Count() > 0) 
+                {
+                    _MessageBoxDialog.Show("لا يمكن تعديل الواحدات...يوجد عمليات قائمة على هذه المادة", MessageBoxState.Warning);
+                    cbUnitTypeId.Enabled = btnAdd.Enabled = tbQuantityFromBaseUnit.Enabled = false;
+                    
+                }
+                else
+                {
+                    cbUnitTypeId.Enabled = btnAdd.Enabled = tbQuantityFromBaseUnit.Enabled = true;
+                }
             }
         }
 
