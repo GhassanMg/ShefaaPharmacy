@@ -220,6 +220,7 @@ namespace ShefaaPharmacy.Articles
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(57, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -333,7 +334,7 @@ namespace ShefaaPharmacy.Articles
             this.tsddlSearch.DropDownWidth = 130;
             this.tsddlSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.tsddlSearch.Name = "tsddlSearch";
-            this.tsddlSearch.Size = new System.Drawing.Size(140, 34);
+            this.tsddlSearch.Size = new System.Drawing.Size(140, 26);
             // 
             // panel2
             // 

@@ -68,39 +68,83 @@ namespace ShefaaPharmacy.Articles
             {
                 if (TextFilter.Trim() != "")
                 {
-                    Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
-                    .Where(x => x.Name.Contains(TextFilter) || x.EnglishName.Contains(TextFilter))
-                    .Select(x =>
-                        new Article()
-                        {
-                            Id = x.Id,
-                            Name = x.Name,
-                            EnglishName = x.EnglishName,
-                            ArticleCategoryId = x.ArticleCategoryId,
-                            ArticleIdGeneral = x.ArticleIdGeneral,
-                            FormatId = x.FormatId,
-                            CompanyId = x.CompanyId,
-                            Barcode = x.Barcode
-                        })
-                    .ToList();
+                    if(tsddlSearch2.Text == "جميع المستودعات")
+                    {
+                        Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
+                        .Where(x => x.Name.Contains(TextFilter) || x.EnglishName.Contains(TextFilter))
+                        .Select(x =>
+                            new Article()
+                            {
+                                Id = x.Id,
+                                Name = x.Name,
+                                EnglishName = x.EnglishName,
+                                ArticleCategoryId = x.ArticleCategoryId,
+                                ArticleIdGeneral = x.ArticleIdGeneral,
+                                FormatId = x.FormatId,
+                                CompanyId = x.CompanyId,
+                                Barcode = x.Barcode
+                            })
+                        .ToList();
+                    }
+                    else
+                    {
+                        Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
+                        .Where(x => x.Name.Contains(TextFilter) || x.EnglishName.Contains(TextFilter))
+                        .Where(x => x.Company == tsddlSearch2.SelectedItem)
+                        .Select(x =>
+                            new Article()
+                            {
+                                Id = x.Id,
+                                Name = x.Name,
+                                EnglishName = x.EnglishName,
+                                ArticleCategoryId = x.ArticleCategoryId,
+                                ArticleIdGeneral = x.ArticleIdGeneral,
+                                FormatId = x.FormatId,
+                                CompanyId = x.CompanyId,
+                                Barcode = x.Barcode
+                            })
+                        .ToList();
+                    }
                 }
                 else
                 {
-                    Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
-                    .Where(x => !x.ItsGeneral)
-                    .Select(x =>
-                        new Article()
-                        {
-                            Id = x.Id,
-                            Name = x.Name,
-                            EnglishName = x.EnglishName,
-                            ArticleCategoryId = x.ArticleCategoryId,
-                            ArticleIdGeneral = x.ArticleIdGeneral,
-                            FormatId = x.FormatId,
-                            CompanyId = x.CompanyId,
-                            Barcode = x.Barcode
-                        })
-                    .ToList();
+                    if (tsddlSearch2.Text == "جميع المستودعات")
+                    {
+                        Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
+                        .Where(x => !x.ItsGeneral)
+                        .Select(x =>
+                            new Article()
+                            {
+                                Id = x.Id,
+                                Name = x.Name,
+                                EnglishName = x.EnglishName,
+                                ArticleCategoryId = x.ArticleCategoryId,
+                                ArticleIdGeneral = x.ArticleIdGeneral,
+                                FormatId = x.FormatId,
+                                CompanyId = x.CompanyId,
+                                Barcode = x.Barcode
+                            })
+                        .ToList();
+                    }
+                    else
+                    {
+                        Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
+                        .Where(x => !x.ItsGeneral)
+                        .Where(x => x.Company == tsddlSearch2.SelectedItem)
+                        .Select(x =>
+                            new Article()
+                            {
+                                Id = x.Id,
+                                Name = x.Name,
+                                EnglishName = x.EnglishName,
+                                ArticleCategoryId = x.ArticleCategoryId,
+                                ArticleIdGeneral = x.ArticleIdGeneral,
+                                FormatId = x.FormatId,
+                                CompanyId = x.CompanyId,
+                                Barcode = x.Barcode
+                            })
+                        .ToList();
+                    }
                 }
                 bsGridView.DataSource = Articles.ToList();
                 dtArticlesTable.DataSource = bsGridView;
