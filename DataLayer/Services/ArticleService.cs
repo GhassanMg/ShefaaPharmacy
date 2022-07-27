@@ -256,7 +256,8 @@ namespace DataLayer.Services
                         {
                             priceTagDetail.UnitId = item.UnitTypeId;
                             priceTagDetail.BuyPrice = purchasePrice / item.QuantityForPrimary;
-                            priceTagDetail.SellPrice = 0;
+                            var masterId = context.PriceTagMasters.Where(x => x.ArticleId == item.ArticleId).FirstOrDefault().Id;
+                            priceTagDetail.SellPrice = context.PriceTagDetails.FirstOrDefault(x => x.PriceTagId == masterId).SellPrice / item.QuantityForPrimary;
                         }
                         else
                         {

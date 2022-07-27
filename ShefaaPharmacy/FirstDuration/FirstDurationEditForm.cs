@@ -454,6 +454,10 @@ namespace ShefaaPharmacy
                     }
                     foreach (DataGridViewRow item in dgvArticles.Rows)
                     {
+                        if (item.Cells["ArticleIdDescr"].Value == null)
+                        {
+                            continue;
+                        }
                         var x = item.Cells["ArticleIdDescr"].Value.ToString();
                         if (item.Cells["ArticleIdDescr"].Value.ToString() != "")
                         {
@@ -664,7 +668,7 @@ namespace ShefaaPharmacy
                 int validArt = 0;
                 foreach (DataGridViewRow row in dgvArticles.Rows)
                 {
-                    if (row.Cells["ArticleIdDescr"].Value.ToString()!= "")
+                    if (row.Cells["ArticleIdDescr"].Value != null || row.Cells["ArticleIdDescr"].Value.ToString()!= "")
                     {
                        validArt++;
                     }
