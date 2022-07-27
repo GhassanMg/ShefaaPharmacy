@@ -388,6 +388,9 @@ namespace ShefaaPharmacy.Articles
                         //row.Selected = false;
                         if (row.Cells[0].Value.ToString().ToUpper().Contains(tbSearch.Text.ToUpper()))
                         {
+                            row.Selected = true;
+                            dataGridView2.FirstDisplayedScrollingRowIndex = dataGridView2.SelectedRows[0].Index;
+
                             //bs.Add(row);
 
                             //(dataGridView2.DataSource as DataTable).DefaultView.RowFilter = string.Format("name = '{0}'", tbSearch.Text);
@@ -409,12 +412,9 @@ namespace ShefaaPharmacy.Articles
 
                             //(dataGridView2.DataSource as DataTable).DefaultView.RowFilter = string.Format("Field = '{0}'", tbSearch.Text);
 
-                            row.Selected = true;
-                            dataGridView2.FirstDisplayedScrollingRowIndex = dataGridView2.SelectedRows[0].Index;
                             //break;
                         }
                     }
-                    //dataGridView2.DataSource = bs;
                 }
                 catch (Exception ex)
                 {
