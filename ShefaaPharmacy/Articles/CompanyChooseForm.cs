@@ -263,12 +263,12 @@ namespace ShefaaPharmacy.Articles
             }
             if (GetStatus == "online")
             {
-                datagridcompane.ClearSelection();
                 foreach (DataGridViewRow row in datagridcompane.Rows)
                 {
                     row.Selected = false;
                     if (row.Cells[0].Value.ToString().ToUpper().Contains(tbSearch.Text.ToUpper()))
                     {
+                        datagridcompane.ClearSelection();
                         row.Selected = true;
                         datagridcompane.FirstDisplayedScrollingRowIndex = row.Index;
                     }
