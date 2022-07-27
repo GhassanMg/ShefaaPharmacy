@@ -334,7 +334,7 @@ namespace ShefaaPharmacy.Articles
             this.tsddlSearch.DropDownWidth = 130;
             this.tsddlSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.tsddlSearch.Name = "tsddlSearch";
-            this.tsddlSearch.Size = new System.Drawing.Size(140, 26);
+            this.tsddlSearch.Size = new System.Drawing.Size(140, 34);
             // 
             // panel2
             // 

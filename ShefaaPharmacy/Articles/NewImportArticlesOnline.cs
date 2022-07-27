@@ -50,7 +50,7 @@ namespace ShefaaPharmacy.Articles
             dataGridView2.Columns["precautions"].Visible = false;
             dataGridView2.Columns["side_effects"].Visible = false;
             dataGridView2.Columns["scientific_name"].Visible = false;
-            
+
 
             dataGridView2.Columns["name"].ReadOnly = true;
             dataGridView2.Columns["size"].ReadOnly = true;
@@ -197,6 +197,9 @@ namespace ShefaaPharmacy.Articles
                     }
                 }
                 _MessageBoxDialog.Show("تمت اضافة " + addcheck + " مادة" + "\n" + "المواد الموجودة سابقاً من المواد المحددة " + isconsist + " مادة", MessageBoxState.Done);
+                _MessageBoxDialog.Show("تم تعريف الواحدة الاساسية لجميع المواد المستوردة على أنها علبة \n يمكنك اضافة واحدات أخرى للمادة من واجهة واحدات المادة من الواجهة الرئيسية في قائمة المواد ", MessageBoxState.Alert);
+
+
                 lblWait.Visible = false;
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;
             }
@@ -211,8 +214,8 @@ namespace ShefaaPharmacy.Articles
         {
             try
             {
-                var articale = ShefaaPharmacyDbContext.GetCurrentContext().Articles.Where(item => item.Name == art.Name && item.ScientificName == art.ScientificName &&item.CompanyId==art.CompanyId&& item.Caliber == art.Caliber && item.Size == art.Size).FirstOrDefault();
-                if(articale!=null)
+                var articale = ShefaaPharmacyDbContext.GetCurrentContext().Articles.Where(item => item.Name == art.Name && item.ScientificName == art.ScientificName && item.CompanyId == art.CompanyId && item.Caliber == art.Caliber && item.Size == art.Size).FirstOrDefault();
+                if (articale != null)
                 {
                     return true;
                 }
@@ -233,7 +236,7 @@ namespace ShefaaPharmacy.Articles
                 AddToDatabase();
             });
         }
-        private void Thread3Job(Article article,int BuyPrice,int SellPrice)
+        private void Thread3Job(Article article, int BuyPrice, int SellPrice)
         {
             try
             {
@@ -264,13 +267,13 @@ namespace ShefaaPharmacy.Articles
                     PriceTagMaster PriceTagMasters = new PriceTagMaster()
                     {
                         ArticleId = article.Id,
-                            UnitId = InventoryService.GetSmallestArticleUnit(article.Id),
-                            CountGiftItem = 0,
-                            CountSoldItem = 0,
-                            CountAllItem = 0,
-                            BranchId = UserLoggedIn.User.BranchId,
-                            ExpiryDate = DateTime.Now.AddYears(2),
-                            PriceTagDetails = ArticleService
+                        UnitId = InventoryService.GetSmallestArticleUnit(article.Id),
+                        CountGiftItem = 0,
+                        CountSoldItem = 0,
+                        CountAllItem = 0,
+                        BranchId = UserLoggedIn.User.BranchId,
+                        ExpiryDate = DateTime.Now.AddYears(2),
+                        PriceTagDetails = ArticleService
                                             .MakeNewPriceTagDetailForArticle(
                                                     article.Id,
                                                     InventoryService.GetBaseArticleUnit(article.Id),
@@ -378,16 +381,40 @@ namespace ShefaaPharmacy.Articles
             {
                 try
                 {
+                    //BindingSource bs = new BindingSource();
+                        dataGridView2.ClearSelection();
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
-                        row.Selected = false;
-                        if (row.Cells[0].Value.ToString().ToUpper().Equals(tbSearch.Text.ToUpper()))
+                        //row.Selected = false;
+                        if (row.Cells[0].Value.ToString().ToUpper().Contains(tbSearch.Text.ToUpper()))
                         {
+                            //bs.Add(row);
+
+                            //(dataGridView2.DataSource as DataTable).DefaultView.RowFilter = string.Format("name = '{0}'", tbSearch.Text);
+
+                            //BindingSource bs = new BindingSource();
+                            //bs.DataSource = dataGridView2.DataSource;
+                            //bs.Filter = "[name] Like '%" + tbSearch.Text.ToUpper() + "%'";
+                            //dataGridView2.DataSource = bs;
+
+                            //var bd = (BindingSource)dataGridView2.DataSource;
+                            //var dt = (DataTable)bd.DataSource;
+                            //dt.DefaultView.RowFilter = string.Format("اسم الصنف like '%{0}%'", tbSearch.Text.Trim().Replace("'", "''"));
+                            //dataGridView2.DataSource = dt;
+                            //dataGridView2.Refresh();
+
+                            //dataTable1.DefaultView.RowFilter = $"[{name}] LIKE '%{textBoxFilter.Text}%'";
+
+                            //((DataTable)dataGridView2.DataSource).DefaultView.RowFilter = $"name LIKE %{tbSearch.Text.ToUpper()}%";
+
+                            //(dataGridView2.DataSource as DataTable).DefaultView.RowFilter = string.Format("Field = '{0}'", tbSearch.Text);
+
                             row.Selected = true;
                             dataGridView2.FirstDisplayedScrollingRowIndex = dataGridView2.SelectedRows[0].Index;
-                            break;
+                            //break;
                         }
                     }
+                    //dataGridView2.DataSource = bs;
                 }
                 catch (Exception ex)
                 {
