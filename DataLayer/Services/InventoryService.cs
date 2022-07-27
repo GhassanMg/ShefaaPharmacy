@@ -911,7 +911,6 @@ namespace DataLayer.Services
             else if (GeneralUnitId == unitId)
             {
                 return ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.FirstOrDefault(x => x.ArticleId == artId && x.UnitTypeId == smallestUnitId).QuantityForPrimary * quantity;
-                var context = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagDetails.FirstOrDefault(x => x.PriceTagId == artId).BuyPrice.ToString();
             }
             else
             {

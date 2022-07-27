@@ -4,24 +4,15 @@ using DataLayer.Services;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
-using ShefaaPharmacy.Public;
-using Spire.Xls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Text;
-using System.Threading;
+//using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -104,10 +95,16 @@ namespace ShefaaPharmacy.Articles
             {
                 try
                 {
+                    //Stopwatch stopwatch = new Stopwatch();
+
+                    //stopwatch.Start();
                     lblWait.Visible = true;
                     btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = false;
                     await Task.Delay(2000);
                     await Task.Run(() => Thread1Job());
+                    //stopwatch.Stop();
+                    //_MessageBoxDialog.Show("الوقت المستغرق في معالجة العملية \n "+stopwatch.ElapsedMilliseconds, MessageBoxState.Error);
+
                 }
                 catch
                 {
@@ -382,7 +379,7 @@ namespace ShefaaPharmacy.Articles
                 try
                 {
                     //BindingSource bs = new BindingSource();
-                        dataGridView2.ClearSelection();
+                    dataGridView2.ClearSelection();
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
                         //row.Selected = false;
