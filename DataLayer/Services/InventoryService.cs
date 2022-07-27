@@ -498,7 +498,7 @@ namespace DataLayer.Services
                 }
                 else
                 {
-                    PriceTagMaster lastpricetagexpiry=context.PriceTagMasters.Where(x => x.ArticleId == artId && ((x.CountGiftItem + x.CountAllItem) > x.CountSoldItem)).OrderBy(x => x.ExpiryDate).ToList().FirstOrDefault();
+                    PriceTagMaster lastpricetagexpiry = context.PriceTagMasters.Where(x => x.ArticleId == artId && ((x.CountGiftItem + x.CountAllItem) > x.CountSoldItem)).OrderBy(x => x.ExpiryDate).ToList().FirstOrDefault();
                     lastpricetagexpiry.CountSoldItem += ConvertQuantityToUnit(artId, unitId, priceTag.UnitId, quantity);
                     context.PriceTagMasters.Update(priceTag);
                     context.SaveChanges();
@@ -516,7 +516,7 @@ namespace DataLayer.Services
                 context.PriceTagMasters.Update(priceTag);
                 context.SaveChanges();
             }
-            else if ( invoiceKind == InvoiceKind.ReturnBuy )
+            else if (invoiceKind == InvoiceKind.ReturnBuy)
             {
                 priceTag.CountAllItem = 0;
                 priceTag.CountGiftItem = 0;
@@ -524,7 +524,7 @@ namespace DataLayer.Services
                 context.PriceTagMasters.Update(priceTag);
                 context.SaveChanges();
             }
-            else if ( invoiceKind == InvoiceKind.EditBuy )
+            else if (invoiceKind == InvoiceKind.EditBuy)
             {
                 var qu = ConvertQuantityToUnit(artId, unitId, priceTag.UnitId, quantity);
                 try
@@ -936,7 +936,7 @@ namespace DataLayer.Services
         public static void ConvertAllPriceTagToSmallest(int artId)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            var allPriceTagForThisUnit = context.PriceTagMasters.Where(x => x.ArticleId == artId ).ToList();
+            var allPriceTagForThisUnit = context.PriceTagMasters.Where(x => x.ArticleId == artId).ToList();
             foreach (var item in allPriceTagForThisUnit)
             {
                 item.CountGiftItem = ConvertArticleUnitToSmallestUnit(item.ArticleId, item.UnitId, item.CountGiftItem);
