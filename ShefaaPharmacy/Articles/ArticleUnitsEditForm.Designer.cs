@@ -76,13 +76,13 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(4362, 0);
+            this.btnCancel.Location = new System.Drawing.Point(5094, 0);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3);
             this.btnCancel.Size = new System.Drawing.Size(126, 42);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(4494, -2);
+            this.btnOk.Location = new System.Drawing.Point(5226, -2);
             this.btnOk.Margin = new System.Windows.Forms.Padding(3);
             this.btnOk.Size = new System.Drawing.Size(126, 42);
             // 
@@ -302,6 +302,7 @@
             this.dgMaster.Size = new System.Drawing.Size(765, 197);
             this.dgMaster.TabIndex = 0;
             this.dgMaster.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMaster_CellMouseClick);
+            this.dgMaster.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMaster_CellMouseDown);
             this.dgMaster.BindingContextChanged += new System.EventHandler(this.DgMaster_BindingContextChanged);
             this.dgMaster.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgMaster_MouseDown);
             // 
@@ -311,18 +312,16 @@
             // 
             // contextMenuStrip1
             // 
-            this.contextMenuStrip1.Enabled = false;
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 26);
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
             this.toolStripMenuItem1.Text = "حذف واحدة";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 

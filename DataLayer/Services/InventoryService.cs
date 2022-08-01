@@ -733,6 +733,22 @@ namespace DataLayer.Services
             }
             else
             {
+                //foreach (var item in priceTags)
+                //{
+                //    if (item.UnitId == smallestUnit.UnitTypeId)
+                //    {
+                //        smallUnitQuantity += (item.CountAllItem + item.CountGiftItem) - (item.CountSoldItem);
+                //    }
+                //    else if (item.UnitId == primaryUnit.UnitTypeId)
+                //    {
+                //        smallUnitQuantity += ((item.CountAllItem + item.CountGiftItem) - (item.CountSoldItem)) * smallestUnit.QuantityForPrimary;
+                //    }
+                //    else
+                //    {
+                //        var quantity = smallestUnit.QuantityForPrimary / unitDestionation.QuantityForPrimary;
+                //        smallUnitQuantity += ((item.CountAllItem + item.CountGiftItem) - (item.CountSoldItem)) * quantity;
+                //    }
+                //}
                 priceTags.ForEach(x => smallUnitQuantity += (x.CountAllItem + x.CountGiftItem) - (x.CountSoldItem));
 
                 if (smallestUnit.UnitTypeId == unitDestionation.UnitTypeId)

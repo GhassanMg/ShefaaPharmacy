@@ -25,7 +25,7 @@ namespace ShefaaPharmacy.Articles
         {
             InitializeComponent();
             FormOperation = FormOperation.New;
-            
+
         }
         public ArticleUnitsEditForm(ArticleUnits articleUnit)
         {
@@ -42,12 +42,12 @@ namespace ShefaaPharmacy.Articles
             }
             startUp();
             tbArticleName.Text = DescriptionFK.GetArticaleName(newArticleUnit.ArticleId);
-           
+
             List<ArticleUnits> articleUnits = ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.Where(x => x.ArticleId == articleUnit.ArticleId).ToList();
             EditBindingSource.DataSource = newArticleUnit;
             bsMaster.DataSource = articleUnits;
             BindingControls();
-            if(FormOperation==FormOperation.New) metroLabel11.Text = "اختر الواحدة الرئيسية";
+            if (FormOperation == FormOperation.New) metroLabel11.Text = "اختر الواحدة الرئيسية";
             btnAdd.Enabled = true;
         }
         int addcount = 0;
@@ -57,7 +57,7 @@ namespace ShefaaPharmacy.Articles
             {
                 _MessageBoxDialog.Show("لم يتم اضافة اية واحدات!! ", MessageBoxState.Error);
             }
-            else if(_MessageBoxDialog.Show("هل انتهيت من الإضافة ؟ ", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
+            else if (_MessageBoxDialog.Show("هل انتهيت من الإضافة ؟ ", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
             {
                 Close();
             }
@@ -87,7 +87,7 @@ namespace ShefaaPharmacy.Articles
                 context.ArticleUnits.Add(articleUnits);
                 context.SaveChanges();
             }
-                base.btCancel_Click(sender, e);
+            base.btCancel_Click(sender, e);
         }
         private void validate()
         {
@@ -130,7 +130,7 @@ namespace ShefaaPharmacy.Articles
         {
             validate();
         }
-        
+
         private void LbArticleName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -141,7 +141,7 @@ namespace ShefaaPharmacy.Articles
                 tbArticleName.Text = choosed.Name;
                 List<ArticleUnits> articleUnits = ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.Where(x => x.ArticleId == choosed.Id).ToList();
                 bsMaster.DataSource = articleUnits;
-                if (articleUnits.Count != 0 && articleUnits.FirstOrDefault().IsPrimary) 
+                if (articleUnits.Count != 0 && articleUnits.FirstOrDefault().IsPrimary)
                 {
                     Editted = true;
                 }
@@ -151,16 +151,16 @@ namespace ShefaaPharmacy.Articles
                 btnAdd.Enabled = true;
                 lbArticleName.Enabled = false;
                 lbArticleName.ForeColor = Color.Gray;
-                if (context.PriceTagMasters.Where(x => x.ArticleId == choosed.Id && x.CountAllItem != 0).Count() > 0) 
-                {
-                    _MessageBoxDialog.Show("لا يمكن تعديل الواحدات...يوجد عمليات قائمة على هذه المادة", MessageBoxState.Warning);
-                    cbUnitTypeId.Enabled = btnAdd.Enabled = tbQuantityFromBaseUnit.Enabled = false;
-                    
-                }
-                else
-                {
-                    cbUnitTypeId.Enabled = btnAdd.Enabled = tbQuantityFromBaseUnit.Enabled = true;
-                }
+                //if (context.PriceTagMasters.Where(x => x.ArticleId == choosed.Id && x.CountAllItem != 0).Count() > 0) 
+                //{
+                //    _MessageBoxDialog.Show("لا يمكن تعديل الواحدات...يوجد عمليات قائمة على هذه المادة", MessageBoxState.Warning);
+                //    cbUnitTypeId.Enabled = btnAdd.Enabled = tbQuantityFromBaseUnit.Enabled = false;
+
+                //}
+                //else
+                //{
+                //    cbUnitTypeId.Enabled = btnAdd.Enabled = tbQuantityFromBaseUnit.Enabled = true;
+                //}
             }
         }
 
@@ -215,11 +215,11 @@ namespace ShefaaPharmacy.Articles
                 return;
             }
             var articlesunits = ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.Where(x => x.ArticleId == newArticleUnit.ArticleId && x.UnitTypeId == selectedValue).ToList();
-            
+
             if (articlesunits.Count > 0)
             {
                 _MessageBoxDialog.Show("لا يمكن تكرار واحدتين لنفس الصنف ", MessageBoxState.Error);
-                
+
             }
             if (dgMaster.Rows.Count > 0)
             {
@@ -230,7 +230,7 @@ namespace ShefaaPharmacy.Articles
                     return;
                 }
             }
-            
+
         }
 
         private void CbPrimary_CheckedChanged(object sender, EventArgs e)
@@ -257,42 +257,81 @@ namespace ShefaaPharmacy.Articles
 
         private void dgMaster_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right && dgMaster.Rows.Count != 0)
             {
-                //contextMenuStrip1.Show(MousePosition);
+                //var hti = dgMaster.HitTest(e.X, e.Y);
+                //dgMaster.ClearSelection();
+                //dgMaster.Rows[hti.RowIndex].Selected = true;
+
+                //int rowIndex = e.RowIndex;
+
+                //dgMaster.CurrentRow.Selected = true;
+                contextMenuStrip1.Show(MousePosition);
             }
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
-            ShefaaPharmacyDbContext context = new ShefaaPharmacyDbContext();
-            //string selectedValue = dgMaster.CurrentCell.Value.ToString();
-            //var articlesunits = ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.Where(x => x.ArticleId == newArticleUnit.ArticleId && x.UnitTypeIdDescr == selectedValue).ToList();
-
+            ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
+            string selectedValue = dgMaster.CurrentCell.Value.ToString();
+            var articlesunits = context.ArticleUnits.Where(x => x.ArticleId == newArticleUnit.ArticleId).ToList();
+            var newartunit = articlesunits.FirstOrDefault(x => x.UnitTypeIdDescr == selectedValue);
             //EditBindingSource
 
             ((ArticleUnits)EditBindingSource.Current).UnitTypeId = (int)cbUnitTypeId.SelectedValue;
             ((ArticleUnits)EditBindingSource.Current).ArticleId = newArticleUnit.ArticleId;
-            //if (articlesunits[0].IsPrimary)
-            //{
+            if (newartunit.IsPrimary)
+            {
                 _MessageBoxDialog.Show("لايمكن حذف الواحدة الرئيسية للمادة", MessageBoxState.Error);
-                
-            //}
-            //else
-            //{
-                context.ArticleUnits.Remove(((ArticleUnits)EditBindingSource.Current));
-                context.SaveChanges();
-                InventoryService.ConvertAllPriceTagToSmallest(((ArticleUnits)EditBindingSource.Current).ArticleId);
-                _MessageBoxDialog.Show("تم حذف الواحدة", MessageBoxState.Done);
-                dgMaster.Rows.Remove(dgMaster.CurrentRow);
-            //}
+                return;
+            }
+            else
+            {
+                try
+                {
+                    if (context.PriceTagMasters.Where(x => x.ArticleId == newartunit.ArticleId).FirstOrDefault() != null)
+                    {
+                        if (context.PriceTagMasters.Where(x => x.ArticleId == newartunit.ArticleId && x.CountAllItem != 0).Count() > 0)
+                        {
+                            _MessageBoxDialog.Show("لا يمكن حذف هذه الواحدة...يوجد عمليات قائمة على هذه المادة", MessageBoxState.Warning);
+                            //cbUnitTypeId.Enabled = btnAdd.Enabled = tbQuantityFromBaseUnit.Enabled = false;
+                            return;
+                        }
+
+                        context.ArticleUnits.Remove(newartunit);
+                        var details = context.PriceTagMasters.FirstOrDefault(x => x.ArticleId == newartunit.ArticleId).Id;
+                        var choosedDetail = context.PriceTagDetails.Where(x => x.PriceTagId == details).FirstOrDefault(x => x.UnitId == newartunit.UnitTypeId);
+                        context.PriceTagDetails.Remove(choosedDetail);
+                        context.SaveChanges();
+                        InventoryService.ConvertAllPriceTagToSmallest(((ArticleUnits)EditBindingSource.Current).ArticleId);
+
+                        _MessageBoxDialog.Show("تم حذف الواحدة", MessageBoxState.Done);
+                        dgMaster.Rows.Remove(dgMaster.CurrentRow);
+                        dgMaster.Refresh();
+                    }
+                    else
+                    {
+                        context.ArticleUnits.Remove(newartunit);
+                        context.SaveChanges();
+
+                        _MessageBoxDialog.Show("تم حذف الواحدة", MessageBoxState.Done);
+                        dgMaster.Rows.Remove(dgMaster.CurrentRow);
+                        dgMaster.Refresh();
+                    }
+                }
+                catch
+                {
+                    _MessageBoxDialog.Show("حدث خطأ اثناء الحذف يرجى اعادة المحاولة", MessageBoxState.Error);
+                    return;
+                }
+            }
 
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -363,7 +402,7 @@ namespace ShefaaPharmacy.Articles
                     ((ArticleUnits)EditBindingSource.Current).ArticleId = newArticleUnit.ArticleId;
                     context.ArticleUnits.Add(((ArticleUnits)EditBindingSource.Current));
                     context.SaveChanges();
-                    if(Editted)
+                    if (Editted)
                     {
                         ArticleService.MakeNewPriceTagForNewUnit(((ArticleUnits)EditBindingSource.Current).ArticleId, ((ArticleUnits)EditBindingSource.Current).UnitTypeId);
                     }
@@ -371,9 +410,21 @@ namespace ShefaaPharmacy.Articles
                     {
                         InventoryService.ConvertAllPriceTagToSmallest(((ArticleUnits)EditBindingSource.Current).ArticleId);
                     }
-                    
+
 
                     _MessageBoxDialog.Show("تمت إضافة واحدة جديدة", MessageBoxState.Done);
+                    var primunitId = ShefaaPharmacyDbContext.GetCurrentContext().ArticleUnits.Where(x => x.ArticleId == newArticleUnit.ArticleId && x.IsPrimary == true).ToList().FirstOrDefault().UnitTypeId;
+                    if (Editted)
+                    {
+                        if (((ArticleUnits)EditBindingSource.Current).UnitTypeId > primunitId)
+                        {
+                            if (context.PriceTagMasters.Where(x => x.ArticleId == ((ArticleUnits)EditBindingSource.Current).ArticleId && x.CountAllItem != 0).Count() > 0)
+                            {
+                                InventoryService.ConvertAllPriceTagToSmallest(((ArticleUnits)EditBindingSource.Current).ArticleId);
+
+                            }
+                        }
+                    }
                     if (FormOperation == FormOperation.NewFromPicker)
                     {
                         Close();
@@ -407,6 +458,29 @@ namespace ShefaaPharmacy.Articles
             //    int rowIndex = e.RowIndex;
 
             //    dgMaster.Rows[rowIndex].Selected = true;
+            //}
+        }
+
+        private void dgMaster_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var dataGrid = (DataGridView)sender;
+            if (e.Button == MouseButtons.Right && e.RowIndex != -1)
+            {
+                var row = dataGrid.Rows[e.RowIndex];
+                dataGrid.CurrentCell = row.Cells[e.ColumnIndex == -1 ? 1 : e.ColumnIndex];
+                row.Selected = true;
+                dataGrid.Focus();
+            }
+
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    int rowSelected = e.RowIndex;
+            //    if (e.RowIndex != -1)
+            //    {
+            //        this.dgMaster.ClearSelection();
+            //        this.dgMaster.Rows[rowSelected].Selected = true;
+            //    }
+            //    // you now have the selected row with the context menu showing for the user to delete etc.
             //}
         }
     }
