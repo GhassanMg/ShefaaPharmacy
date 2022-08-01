@@ -680,9 +680,16 @@ namespace ShefaaPharmacy
                 var reader = new StreamReader(webResponse.GetResponseStream());
                 string s = reader.ReadToEnd();
                 Root x = JsonConvert.DeserializeObject<Root>(s);
-                int Version = Convert.ToInt32(x.data.version_number);
-                DownloadPath = x.data.file;
-                return Version;
+                if (x.data != null)
+                {
+                    int Version = Convert.ToInt32(x.data.version_number);
+                    DownloadPath = x.data.file;
+                    return Version;
+                }
+                else
+                {
+                    return 0;
+                }
             }
             catch
             {

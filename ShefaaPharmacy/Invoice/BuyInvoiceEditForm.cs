@@ -693,32 +693,40 @@ namespace ShefaaPharmacy.Invoice
 
             double buy2 = 0;
             double sell2 = 0;
-            if (priceTag != null)
+            try
             {
-                int unitId = DescriptionFK.GetUnitId(value);
-                var currentRow = (DetailBindingSource.Current as PurchesBillViewModel);
-                currentRow.UnitId = unitId;
-                currentRow.UnitIdDescr = value;
-                buy2 = priceTag.PriceTagDetails.FirstOrDefault(x => x.UnitId == unitId).BuyPrice;
-                sell2 = priceTag.PriceTagDetails.FirstOrDefault(x => x.UnitId == unitId).SellPrice;
-                currentRow.PurchasePrice = Convert.ToInt32(buy2);
-                currentRow.SellPrice = Convert.ToInt32(sell2);
-                buy = Convert.ToInt32(buy2);
-                sell = Convert.ToInt32(sell2);
-                CheckEditPrice = true;
 
+                if (priceTag != null)
+                {
+                    int unitId = DescriptionFK.GetUnitId(value);
+                    var currentRow = (DetailBindingSource.Current as PurchesBillViewModel);
+                    currentRow.UnitId = unitId;
+                    currentRow.UnitIdDescr = value;
+                    buy2 = priceTag.PriceTagDetails.FirstOrDefault(x => x.UnitId == unitId).BuyPrice;
+                    sell2 = priceTag.PriceTagDetails.FirstOrDefault(x => x.UnitId == unitId).SellPrice;
+                    currentRow.PurchasePrice = Convert.ToInt32(buy2);
+                    currentRow.SellPrice = Convert.ToInt32(sell2);
+                    buy = Convert.ToInt32(buy2);
+                    sell = Convert.ToInt32(sell2);
+                    CheckEditPrice = true;
+
+                }
+                else
+                {
+                    int unitId = DescriptionFK.GetUnitId(value);
+                    (DetailBindingSource.Current as PurchesBillViewModel).UnitId = unitId;
+                    (DetailBindingSource.Current as PurchesBillViewModel).UnitIdDescr = value;
+                    (DetailBindingSource.Current as PurchesBillViewModel).PurchasePrice = Convert.ToInt32(buy2);
+                    (DetailBindingSource.Current as PurchesBillViewModel).SellPrice = Convert.ToInt32(sell2);
+                    buy = Convert.ToInt32(buy2);
+                    sell = Convert.ToInt32(sell2);
+                    CheckEditPrice = true;
+
+                }
             }
-            else
+            catch
             {
-                int unitId = DescriptionFK.GetUnitId(value);
-                (DetailBindingSource.Current as PurchesBillViewModel).UnitId = unitId;
-                (DetailBindingSource.Current as PurchesBillViewModel).UnitIdDescr = value;
-                (DetailBindingSource.Current as PurchesBillViewModel).PurchasePrice = Convert.ToInt32(buy2);
-                (DetailBindingSource.Current as PurchesBillViewModel).SellPrice = Convert.ToInt32(sell2);
-                buy = Convert.ToInt32(buy2);
-                sell = Convert.ToInt32(sell2);
-                CheckEditPrice = true;
-
+                _MessageBoxDialog.Show("اختيار واحدة غير معرفة لهذه المادة", MessageBoxState.Error);
             }
         }
 
