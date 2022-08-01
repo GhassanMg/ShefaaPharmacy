@@ -29,6 +29,7 @@ namespace ShefaaPharmacy.Articles
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompanyChooseForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -84,7 +85,7 @@ namespace ShefaaPharmacy.Articles
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("El Messiri SemiBold", 9.25F);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.button1.Location = new System.Drawing.Point(397, 24);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 46);
@@ -97,11 +98,11 @@ namespace ShefaaPharmacy.Articles
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("El Messiri SemiBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(307, 35);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(43, 22);
+            this.label1.Size = new System.Drawing.Size(37, 17);
             this.label1.TabIndex = 63;
             this.label1.Text = "بحث :";
             // 
@@ -109,12 +110,12 @@ namespace ShefaaPharmacy.Articles
             // 
             this.CheckCompanies.AutoSize = true;
             this.CheckCompanies.Enabled = false;
-            this.CheckCompanies.Font = new System.Drawing.Font("El Messiri SemiBold", 9.25F);
+            this.CheckCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.CheckCompanies.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CheckCompanies.Location = new System.Drawing.Point(759, 67);
             this.CheckCompanies.Name = "CheckCompanies";
             this.CheckCompanies.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.CheckCompanies.Size = new System.Drawing.Size(128, 24);
+            this.CheckCompanies.Size = new System.Drawing.Size(117, 20);
             this.CheckCompanies.TabIndex = 64;
             this.CheckCompanies.Text = "تحديد كل الشركات";
             this.CheckCompanies.UseVisualStyleBackColor = true;
@@ -123,11 +124,11 @@ namespace ShefaaPharmacy.Articles
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("El Messiri SemiBold", 9.25F);
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.radioButton2.Location = new System.Drawing.Point(505, 48);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton2.Size = new System.Drawing.Size(79, 24);
+            this.radioButton2.Size = new System.Drawing.Size(73, 20);
             this.radioButton2.TabIndex = 62;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "من الجهاز";
@@ -137,7 +138,7 @@ namespace ShefaaPharmacy.Articles
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("El Messiri SemiBold", 9.25F);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.button2.Location = new System.Drawing.Point(7, 60);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(85, 28);
@@ -149,11 +150,11 @@ namespace ShefaaPharmacy.Articles
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("El Messiri SemiBold", 9.25F);
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.radioButton1.Location = new System.Drawing.Point(497, 22);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(87, 24);
+            this.radioButton1.Size = new System.Drawing.Size(79, 20);
             this.radioButton1.TabIndex = 61;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "من الانترنت";
@@ -187,10 +188,10 @@ namespace ShefaaPharmacy.Articles
             // lblLoading
             // 
             this.lblLoading.AutoSize = true;
-            this.lblLoading.Font = new System.Drawing.Font("El Messiri SemiBold", 9.25F);
-            this.lblLoading.Location = new System.Drawing.Point(365, 179);
+            this.lblLoading.Font = new System.Drawing.Font("Gabriola", 9.25F);
+            this.lblLoading.Location = new System.Drawing.Point(357, 172);
             this.lblLoading.Name = "lblLoading";
-            this.lblLoading.Size = new System.Drawing.Size(172, 20);
+            this.lblLoading.Size = new System.Drawing.Size(168, 23);
             this.lblLoading.TabIndex = 57;
             this.lblLoading.Text = "يتم التحميل الان, يرجى الانتظار";
             this.lblLoading.Visible = false;
@@ -198,11 +199,11 @@ namespace ShefaaPharmacy.Articles
             // pcloader
             // 
             this.pcloader.BackColor = System.Drawing.Color.Transparent;
-            this.pcloader.Image = global::ShefaaPharmacy.Properties.Resources.loader_32px;
-            this.pcloader.Location = new System.Drawing.Point(438, 202);
+            this.pcloader.Image = ((System.Drawing.Image)(resources.GetObject("pcloader.Image")));
+            this.pcloader.Location = new System.Drawing.Point(399, 198);
             this.pcloader.Name = "pcloader";
-            this.pcloader.Size = new System.Drawing.Size(32, 32);
-            this.pcloader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pcloader.Size = new System.Drawing.Size(79, 73);
+            this.pcloader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcloader.TabIndex = 56;
             this.pcloader.TabStop = false;
             this.pcloader.Visible = false;

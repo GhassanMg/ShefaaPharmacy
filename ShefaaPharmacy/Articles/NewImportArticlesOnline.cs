@@ -12,6 +12,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 //using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,6 +25,8 @@ namespace ShefaaPharmacy.Articles
         {
             InitializeComponent();
             tbSearch.Enabled = false;
+            //picLoader.Left = (this.dataGridView2.Width - picLoader.Width) / 2;
+            //picLoader.Top = (this.dataGridView2.Height - picLoader.Height) / 2;
         }
         string status;
         public NewImportArticlesOnline(List<ArticleApiViewModel> x)
@@ -89,8 +92,24 @@ namespace ShefaaPharmacy.Articles
             CheckArticles.Enabled = true;
             tbSearch.Enabled = true;
         }
-        private async void btnImport_Click(object sender, EventArgs e)
+        private void btnImport_Click(object sender, EventArgs e)
         {
+            try
+            {
+                 DisplayData();
+                //Thread threadInput = new Thread(DisplayData);
+                //threadInput.Start();
+            }
+            catch (Exception ex)
+            {
+                _MessageBoxDialog.Show("حدث خطأ يرجى المحاولة مجدداً", MessageBoxState.Error);
+            }
+        }
+        private async void DisplayData()
+        {
+            SetLoading(true);
+
+            // Do other operations...
             if (dataGridView2.DataSource != null)
             {
                 try
@@ -106,12 +125,13 @@ namespace ShefaaPharmacy.Articles
                     //_MessageBoxDialog.Show("الوقت المستغرق في معالجة العملية \n "+stopwatch.ElapsedMilliseconds, MessageBoxState.Error);
 
                 }
-                catch
+                catch (Exception e)
                 {
                     _MessageBoxDialog.Show("حدث خطأ يرجى المحاولة مجدداً", MessageBoxState.Error);
                 }
             }
             else _MessageBoxDialog.Show("لم يتم تحديد مواد", MessageBoxState.Warning);
+
         }
         int addcheck = 0, isconsist = 0;
         private async void AddToDatabase()
@@ -193,11 +213,20 @@ namespace ShefaaPharmacy.Articles
                         }
                     }
                 }
-                _MessageBoxDialog.Show("تمت اضافة " + addcheck + " مادة" + "\n" + "المواد الموجودة سابقاً من المواد المحددة " + isconsist + " مادة", MessageBoxState.Done);
-                _MessageBoxDialog.Show("تم تعريف الواحدة الاساسية لجميع المواد المستوردة على أنها علبة \n يمكنك اضافة واحدات أخرى للمادة من واجهة واحدات المادة من الواجهة الرئيسية في قائمة المواد ", MessageBoxState.Alert);
+                    lblWait.Visible = false;
+                    SetLoading(false);
+                if (addcheck > 0)
+                {
+                    _MessageBoxDialog.Show("تمت اضافة " + addcheck + " مادة" + "\n" + "المواد الموجودة سابقاً من المواد المحددة " + isconsist + " مادة", MessageBoxState.Done);
+                    _MessageBoxDialog.Show("تم تعريف الواحدة الاساسية لجميع المواد المستوردة على أنها علبة \n يمكنك اضافة واحدات أخرى للمادة من واجهة واحدات المادة من الواجهة الرئيسية في قائمة المواد ", MessageBoxState.Alert);
+                }
+                else
+                {
+                    _MessageBoxDialog.Show("تمت اضافة " + addcheck + " مادة" + "\n" + "المواد الموجودة سابقاً من المواد المحددة " + isconsist + " مادة", MessageBoxState.Alert);
+                }
 
 
-                lblWait.Visible = false;
+
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;
             }
             catch
@@ -230,7 +259,9 @@ namespace ShefaaPharmacy.Articles
         {
             this.Invoke((MethodInvoker)delegate
             {
+
                 AddToDatabase();
+
             });
         }
         private void Thread3Job(Article article, int BuyPrice, int SellPrice)
@@ -357,6 +388,25 @@ namespace ShefaaPharmacy.Articles
         public void ChangeFontForAll()
         {
             button3.Font = btnImport.Font = lblWait.Font = label5.Font = CheckArticles.Font = new Font("El Messiri SemiBold", 10);
+        }
+        private void SetLoading(bool displayLoader)
+        {
+            if (displayLoader)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    picLoader.Visible = true;
+                    this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+                });
+            }
+            else
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    picLoader.Visible = false;
+                    this.Cursor = System.Windows.Forms.Cursors.Default;
+                });
+            }
         }
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {

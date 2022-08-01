@@ -39,10 +39,10 @@ namespace ShefaaPharmacy
                     Insert(datagrid.DataSource as List<Medicine>);
                     _MessageBoxDialog.Show("تم الاستيراد بنجاح", MessageBoxState.Done);
                     button1.Visible = false;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message);
                 }
             }

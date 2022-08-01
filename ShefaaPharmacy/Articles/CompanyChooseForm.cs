@@ -63,14 +63,20 @@ namespace ShefaaPharmacy.Articles
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Thread t = new Thread(new ThreadStart(ThreadJob));
-            t.IsBackground = true;
-            t.Start();
-            
             if (GetStatus == "offline" || GetStatus == "online")
             {
                 pcloader.Visible = true;
                 lblLoading.Visible = true;
+                Thread t = new Thread(new ThreadStart(ThreadJob));
+                t.IsBackground = true;
+                t.Start();
+            }
+            else
+            {
+                pcloader.Visible = false;
+                lblLoading.Visible = false;
+                _MessageBoxDialog.Show("يجب تحديد نوع العملية", MessageBoxState.Error);
+                return;
             }
         }
         private void GetCompanies()
@@ -115,12 +121,13 @@ namespace ShefaaPharmacy.Articles
 
                 if (res == 0)
                 {
+                     pcloader.Visible = false;
+                     lblLoading.Visible = false;
                     if (_MessageBoxDialog.Show("لايوجد مواد جاهزة للاستيراد..يرجى تحديد مسار ملف الاكسيل", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
                     {
                         SetExcelPath frm = new SetExcelPath();
-                        frm.Show();
-                        pcloader.Visible = false;
-                        lblLoading.Visible = false;
+                        frm.ShowDialog();
+                        GetCompanies();
                     }
                     else
                     {
@@ -149,11 +156,7 @@ namespace ShefaaPharmacy.Articles
                     CheckCompanies.Enabled = true;
                 }
             }
-            else
-            {
-                _MessageBoxDialog.Show("يجب تحديد نوع العملية", MessageBoxState.Error);
-                return;
-            }
+            
         }
         private ApiResponseViewModel<CompanyApiViewModel> GetRESTData(string uri)
         {

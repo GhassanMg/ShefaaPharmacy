@@ -40,6 +40,7 @@ namespace ShefaaPharmacy.Articles
             this.lblWait = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.pMaster = new System.Windows.Forms.Panel();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizing)).BeginInit();
@@ -48,6 +49,7 @@ namespace ShefaaPharmacy.Articles
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.pMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
             // pHelperButton
@@ -98,7 +100,6 @@ namespace ShefaaPharmacy.Articles
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lblWait);
             this.panel1.Controls.Add(this.btnImport);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.pbAccountPick);
@@ -111,7 +112,7 @@ namespace ShefaaPharmacy.Articles
             // lblWait
             // 
             resources.ApplyResources(this.lblWait, "lblWait");
-            this.lblWait.ForeColor = System.Drawing.Color.Maroon;
+            this.lblWait.ForeColor = System.Drawing.Color.Black;
             this.lblWait.Name = "lblWait";
             // 
             // dataGridView2
@@ -128,9 +129,17 @@ namespace ShefaaPharmacy.Articles
             // 
             // pMaster
             // 
+            this.pMaster.Controls.Add(this.lblWait);
+            this.pMaster.Controls.Add(this.picLoader);
             this.pMaster.Controls.Add(this.dataGridView2);
             resources.ApplyResources(this.pMaster, "pMaster");
             this.pMaster.Name = "pMaster";
+            // 
+            // picLoader
+            // 
+            resources.ApplyResources(this.picLoader, "picLoader");
+            this.picLoader.Name = "picLoader";
+            this.picLoader.TabStop = false;
             // 
             // NewImportArticlesOnline
             // 
@@ -153,6 +162,8 @@ namespace ShefaaPharmacy.Articles
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.pMaster.ResumeLayout(false);
+            this.pMaster.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -168,5 +179,6 @@ namespace ShefaaPharmacy.Articles
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Panel pMaster;
         private System.Windows.Forms.Label lblWait;
+        private System.Windows.Forms.PictureBox picLoader;
     }
 }
