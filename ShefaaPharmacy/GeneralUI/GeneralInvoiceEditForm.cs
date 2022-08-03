@@ -1010,10 +1010,15 @@ namespace ShefaaPharmacy.GeneralUI
         {
             var currentRow = (DetailBindingSource.Current as BillDetail);
             var Selectedunit = DescriptionFK.GetPrimaryUnit(articale.Id);
-            var CheckRemainingAmount = InventoryService.GetAllArticleAmountRemaningInAllPrices(articale.Id, (int)Selectedunit);
+            var CheckRemainingAmount = InventoryService.GetQuantityOfArticleAllPriceTag(articale.Id);
             //if (articale.PriceTagMasters.Count <= 0)
-            if (CheckRemainingAmount <= 0)
+            if (Convert.ToDouble(CheckRemainingAmount) <= 0)
             {
+                //if (double.Parse(InventoryService.GetQuantityOfArticleAllPriceTag(articale.Id)) > 0) 
+                //{
+                //    _MessageBoxDialog.Show("لا يوجد كمية من هذه الواحدة ولكن يوجد من الواحدة الأصغر منها", MessageBoxState.Warning);
+                //    return true;
+                //}
                 if (FormOperation == FormOperation.ReturnEmpty)
                 {
                     _MessageBoxDialog.Show("لا يوجد أي قطعة من هذا الصنف", MessageBoxState.Warning);
@@ -1115,7 +1120,7 @@ namespace ShefaaPharmacy.GeneralUI
                 currentRow.BarcodeDescr = articale.Barcode;
                 currentRow.PriceTagId = articale.PriceTagMasters.OrderBy(x => x.ExpiryDate).LastOrDefault().Id;
                 //string sliced = currentRow.CountLeft;
-                currentRow.CountLeft = currentRow.CountLeft;
+                currentRow.CountLeft = CheckRemainingAmount;
                 if (articale.PriceTagMasters.LastOrDefault().PharmacyOperator1 != null && articale.PriceTagMasters.LastOrDefault().PharmacyOperator1 != "")
                 {
                     _MessageBoxDialog.Show(" يوجد تصنيف صيدلية أول :" + articale.PriceTagMasters.LastOrDefault().PharmacyOperator1, MessageBoxState.Alert);

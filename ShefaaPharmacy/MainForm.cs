@@ -803,7 +803,7 @@ namespace ShefaaPharmacy
             DisableEnableMenuItem();
             //FillPanelMaster(accountingDesktop);
             //accountingDesktop.Show();
-            //accountingDesktop.Dock = DockStyle.Fill;
+            //accountingDesktop.Dock = DockStyle.Fill;  
             //accountingDesktop.BringToFront();
 
             //warningDesktop.Hide();

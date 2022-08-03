@@ -107,8 +107,8 @@ namespace DataLayer.Tables
                         //return InventoryService.GetQuantityOfArticleAllPriceTag(artId: ArticaleId, unitId: UnitTypeId);
                         string x = context != null ? InventoryService.GetQuantityOfArticleAllPriceTagMobile(context, artId: ArticaleId, unitId: UnitTypeId) : InventoryService.GetQuantityOfArticleAllPriceTag(artId: ArticaleId, unitId: UnitTypeId);
                         double dres =double.Parse(x);
-                        int ires = Convert.ToInt32(dres);
-                        return ires.ToString();
+                        //int ires = Convert.ToInt32(dres);
+                        return dres.ToString();
                     }
                     else
                         return "";
