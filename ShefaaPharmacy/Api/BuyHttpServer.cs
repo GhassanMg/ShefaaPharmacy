@@ -356,7 +356,9 @@ namespace ShefaaPharmacy.Api
                                 .Include(x => x.PriceTagDetails)
                                 .OrderBy(x => x.ExpiryDate)
                                 .ToList(); /*DescriptionFK.GetOldestExpiryDate(articleBarcode.Id);*/
-                        articleBarcode.ArticleUnits = context.ArticleUnits.Where(x => x.ArticleId == articleBarcode.Id).ToList(); 
+                        //var countleft = Int32.Parse(articleBarcode.CountLeft);
+                        //articleBarcode.CountLeft = countleft.ToString();
+                        articleBarcode.ArticleUnits = context.ArticleUnits.Where(x => x.ArticleId == articleBarcode.Id).ToList();
                         var sample = new InvoiceModelToMobile()
                         {
                             articale = articleBarcode,

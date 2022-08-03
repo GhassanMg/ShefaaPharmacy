@@ -158,7 +158,22 @@ namespace DataLayer.Services
             }
             return priceTagDetails;
         }
-
+        public static void MakeNewPriceTagDetailForNewUnit(int articleId, int unitId,int masterId)
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            int QuantityForPrimary = context.ArticleUnits.Where(x => x.ArticleId == articleId && x.UnitTypeId == unitId).FirstOrDefault().QuantityForPrimary;
+            var pricemaster = context.PriceTagDetails.FirstOrDefault(x => x.PriceTagId == masterId);
+            PriceTagDetail priceTagDetail = new PriceTagDetail
+            {
+                UnitId = unitId,
+                BuyPrice = pricemaster.BuyPrice / QuantityForPrimary,
+                SellPrice = pricemaster.SellPrice / QuantityForPrimary
+            };
+            var currentmaster = context.PriceTagMasters.FirstOrDefault(x => x.Id == masterId);
+            currentmaster.PriceTagDetails.Add(priceTagDetail);
+            context.PriceTagMasters.Update(currentmaster);
+            context.SaveChanges();
+        }
         public static List<PriceTagDetail> MakeNewPriceTagDetailForArticle(int articleId, int unitId, double purchasePrice, double sellPrice, int quantity)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -216,6 +231,17 @@ namespace DataLayer.Services
                 }
             }
         }
+        //public static void MakeNewPriceTagDetailForArticle(int articleId, int unitId, double purchasePrice)
+        //{
+        //    var context = ShefaaPharmacyDbContext.GetCurrentContext();
+        //    PriceTagDetail priceTagDetail = new PriceTagDetail
+        //    {
+        //        UnitId = unitId,
+        //        BuyPrice = priceTagDetailPrimary.BuyPrice / item.QuantityForPrimary,
+        //        SellPrice = priceTagDetailPrimary.SellPrice / item.QuantityForPrimary
+        //    };
+        //    priceTagDetails.Add(priceTagDetail);
+        //}
         public static List<PriceTagDetail> MakeNewPriceTagDetailForArticle(int articleId, int unitId, double purchasePrice)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();

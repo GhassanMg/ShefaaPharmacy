@@ -13,6 +13,7 @@ using DataLayer.Services;
 using ShefaaPharmacy.Helper;
 using ShefaaPharmacy.GeneralUI;
 using DataLayer.Helper;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShefaaPharmacy.Articles
 {
@@ -421,7 +422,21 @@ namespace ShefaaPharmacy.Articles
                             if (context.PriceTagMasters.Where(x => x.ArticleId == ((ArticleUnits)EditBindingSource.Current).ArticleId && x.CountAllItem != 0).Count() > 0)
                             {
                                 InventoryService.ConvertAllPriceTagToSmallest(((ArticleUnits)EditBindingSource.Current).ArticleId);
-
+                                foreach (var pricetag in context.PriceTagMasters.Where(x => x.ArticleId == ((ArticleUnits)EditBindingSource.Current).ArticleId).Include(x => x.PriceTagDetails).ToList())
+                                {
+                                    if(pricetag.PriceTagDetails.LastOrDefault().UnitId != ((ArticleUnits)EditBindingSource.Current).UnitTypeId)
+                                    {
+                                        try
+                                        {
+                                            ArticleService.MakeNewPriceTagDetailForNewUnit(((ArticleUnits)EditBindingSource.Current).ArticleId,((ArticleUnits)EditBindingSource.Current).UnitTypeId,pricetag.Id);
+                                            return;
+                                        }
+                                        catch (Exception r)
+                                        {
+                                            return;
+                                        }
+                                    }
+                                } 
                             }
                         }
                     }
