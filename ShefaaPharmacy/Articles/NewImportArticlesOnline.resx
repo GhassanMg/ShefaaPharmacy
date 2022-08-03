@@ -405,6 +405,9 @@
   <data name="lblWait.Text" xml:space="preserve">
     <value>يتم التحميل الآن... يرجى الانتظار</value>
   </data>
+  <data name="lblWait.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;lblWait.Name" xml:space="preserve">
     <value>lblWait</value>
   </data>
@@ -415,7 +418,7 @@
     <value>pMaster</value>
   </data>
   <data name="&gt;&gt;lblWait.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="dataGridView2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1914,6 +1917,9 @@
   <data name="picLoader.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
   </data>
+  <data name="picLoader.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;picLoader.Name" xml:space="preserve">
     <value>picLoader</value>
   </data>
@@ -1924,7 +1930,7 @@
     <value>pMaster</value>
   </data>
   <data name="&gt;&gt;picLoader.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="pMaster.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

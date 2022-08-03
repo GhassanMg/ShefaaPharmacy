@@ -112,6 +112,7 @@ namespace ShefaaPharmacy.Articles
             // lblWait
             // 
             resources.ApplyResources(this.lblWait, "lblWait");
+            this.lblWait.BackColor = System.Drawing.Color.Transparent;
             this.lblWait.ForeColor = System.Drawing.Color.Black;
             this.lblWait.Name = "lblWait";
             // 
@@ -129,14 +130,15 @@ namespace ShefaaPharmacy.Articles
             // 
             // pMaster
             // 
-            this.pMaster.Controls.Add(this.lblWait);
             this.pMaster.Controls.Add(this.picLoader);
+            this.pMaster.Controls.Add(this.lblWait);
             this.pMaster.Controls.Add(this.dataGridView2);
             resources.ApplyResources(this.pMaster, "pMaster");
             this.pMaster.Name = "pMaster";
             // 
             // picLoader
             // 
+            this.picLoader.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.picLoader, "picLoader");
             this.picLoader.Name = "picLoader";
             this.picLoader.TabStop = false;

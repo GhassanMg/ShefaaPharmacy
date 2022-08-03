@@ -218,7 +218,7 @@ namespace ShefaaPharmacy.Articles
                 if (addcheck > 0)
                 {
                     _MessageBoxDialog.Show("تمت اضافة " + addcheck + " مادة" + "\n" + "المواد الموجودة سابقاً من المواد المحددة " + isconsist + " مادة", MessageBoxState.Done);
-                    _MessageBoxDialog.Show("تم تعريف الواحدة الاساسية لجميع المواد المستوردة على أنها علبة \n يمكنك اضافة واحدات أخرى للمادة من واجهة واحدات المادة من الواجهة الرئيسية في قائمة المواد ", MessageBoxState.Alert);
+                    _MessageBoxDialog.Show("تم تعريف الواحدة الاساسية لجميع المواد المستوردة على أنها علبة \n يمكنك اضافة واحدات أخرى للمادة من قائمة المواد في الواجهة الرئيسية ", MessageBoxState.Alert);
                 }
                 else
                 {
@@ -383,7 +383,6 @@ namespace ShefaaPharmacy.Articles
             ChangeStyleOfGrid(dataGridView2);
             ChangeFontForAll();
             WindowState = FormWindowState.Maximized;
-
         }
         public void ChangeFontForAll()
         {
@@ -396,6 +395,7 @@ namespace ShefaaPharmacy.Articles
                 this.Invoke((MethodInvoker)delegate
                 {
                     picLoader.Visible = true;
+                    dataGridView2.ReadOnly = true;
                     this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
                 });
             }
@@ -404,10 +404,12 @@ namespace ShefaaPharmacy.Articles
                 this.Invoke((MethodInvoker)delegate
                 {
                     picLoader.Visible = false;
+                    dataGridView2.ReadOnly = false;
                     this.Cursor = System.Windows.Forms.Cursors.Default;
                 });
             }
         }
+
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
             if (status == "offline")
