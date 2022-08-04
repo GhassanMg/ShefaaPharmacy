@@ -352,7 +352,7 @@ namespace ShefaaPharmacy.Api
                             Formatting = Formatting.Indented
                         };//context.PriceTagMasters.Where(x => x.ArticleId == articleBarcode.Id && x.CountAllItem==0 && x.CountSoldItem==0).ToList();
                         articleBarcode.PriceTagMasters = context.PriceTagMasters
-                                .Where(x => x.ArticleId == articleBarcode.Id && (((x.CountAllItem + x.CountGiftItem) - x.CountSoldItem) > 0) || ((x.CountAllItem + x.CountGiftItem) - x.CountSoldItem) < 0)
+                                .Where(x => x.ArticleId == articleBarcode.Id && ((x.CountAllItem + x.CountGiftItem) - x.CountSoldItem) != 0)
                                 .Include(x => x.PriceTagDetails)
                                 .OrderBy(x => x.ExpiryDate)
                                 .ToList(); /*DescriptionFK.GetOldestExpiryDate(articleBarcode.Id);*/
