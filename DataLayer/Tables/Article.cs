@@ -74,7 +74,7 @@ namespace DataLayer.Tables
             {
                 try
                 {
-                    return InventoryService.GetQuantityOfArticleAllPriceTag(artId: Id);
+                    return String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTag(artId: Id)));
                 }
                 catch (Exception ex)
                 {

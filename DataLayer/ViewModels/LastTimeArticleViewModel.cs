@@ -31,7 +31,7 @@ namespace DataLayer.ViewModels
             set {; }
         }
         [DisplayName("الكمية المتبقية")]
-        public int QuantityLeft { get; set; }
+        public double QuantityLeft { get; set; }
         [DisplayName("إجمالي السعر")]
         public int TotalPrice { get; set; }
         [Browsable(false)]

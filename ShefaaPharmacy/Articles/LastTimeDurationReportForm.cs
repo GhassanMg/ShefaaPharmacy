@@ -82,7 +82,9 @@ namespace ShefaaPharmacy.Articles
                     LastTimeArticleViewModel mynew = new LastTimeArticleViewModel();
                     mynew.ArticleId = item.Id;
                     mynew.Name = item.Name;
-                    mynew.QuantityLeft = InventoryService.GetAllArticleAmountRemaningInAllPrices(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == mynew.ArticleId && x.IsPrimary).UnitTypeId);
+                    var Fullquantity = InventoryService.GetAllArticleAmountRemaningInAllPricesDouble(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == mynew.ArticleId && x.IsPrimary).UnitTypeId);
+                    mynew.QuantityLeft = Math.Round(Fullquantity, 2);
+
                     if (mynew.QuantityLeft == 0) mynew.TotalPrice = 0;
                     else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * mynew.QuantityLeft);
                     mynew.UnitId = context.ArticleUnits.FirstOrDefault(x => x.IsPrimary && x.ArticleId == mynew.ArticleId).UnitTypeId;
