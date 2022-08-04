@@ -429,11 +429,11 @@ namespace ShefaaPharmacy.Articles
                                         try
                                         {
                                             ArticleService.MakeNewPriceTagDetailForNewUnit(((ArticleUnits)EditBindingSource.Current).ArticleId,((ArticleUnits)EditBindingSource.Current).UnitTypeId,pricetag.Id);
-                                            return;
+                                            
                                         }
                                         catch (Exception r)
                                         {
-                                            return;
+                                            _MessageBoxDialog.Show("حصل خطأ أثناء تعديل الواحدات", MessageBoxState.Error);
                                         }
                                     }
                                 } 
