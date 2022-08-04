@@ -984,6 +984,35 @@ namespace DataLayer.Services
             }
             return articleRemaningAmounts;
         }
+        public static double GetAllArticleAmountRemaningInAllPricesDouble(int articleId, int unitId)
+        {
+            var data = ShefaaPharmacyDbContext.GetCurrentContext()
+                .PriceTagMasters
+                .Where(x => x.ArticleId == articleId && (x.CountAllItem + x.CountGiftItem) - (x.CountSoldItem) != 0)
+                .ToList();
+            double res = 0;
+            if (data.Count == 0)
+            {
+                data = ShefaaPharmacyDbContext.GetCurrentContext()
+                .PriceTagMasters
+                .Where(x => x.ArticleId == articleId && (x.CountAllItem + x.CountGiftItem) < (x.CountSoldItem))
+                .ToList();
+                if (data.Count > 0)
+                {
+                    data.ForEach(x => res += (x.CountSoldItem) - (x.CountAllItem + x.CountGiftItem));
+                    res = res * (-1);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                data.ForEach(x => res += (x.CountAllItem + x.CountGiftItem) - (x.CountSoldItem));
+            }
+            return ConvertQuantityToUnitDouble(articleId, data.FirstOrDefault().UnitId, unitId, res);
+        }
         public static int GetAllArticleAmountRemaningInAllPrices(int articleId, int unitId)
         {
             var data = ShefaaPharmacyDbContext.GetCurrentContext()
@@ -1035,6 +1064,41 @@ namespace DataLayer.Services
             return articleRemaningAmounts;
         }
         public static int ConvertQuantityToUnit(int artId, int unitIdSource, int unitIdDestination, int quantity)
+        {
+            if (unitIdSource == unitIdDestination)
+            {
+                return quantity;
+            }
+            else
+            {
+                var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                var quantityOfPrimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == artId && x.UnitTypeId == unitIdSource).QuantityForPrimary;
+                var quantityOfPrimaryDestination = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == artId && x.UnitTypeId == unitIdDestination).QuantityForPrimary;
+                if (unitIdDestination == DescriptionFK.GetPrimaryUnit(articleId: artId))
+                {
+                    return quantity / quantityOfPrimary;
+                }
+                else
+                {
+                    if (unitIdSource == DescriptionFK.GetPrimaryUnit(articleId: artId))
+                    {
+                        return quantity * quantityOfPrimaryDestination;
+                    }
+                    else
+                    {
+                        if (quantityOfPrimary < quantityOfPrimaryDestination)
+                        {
+                            return quantity * (quantityOfPrimaryDestination / quantityOfPrimary);
+                        }
+                        else
+                        {
+                            return quantity / (quantityOfPrimary / quantityOfPrimaryDestination);
+                        }
+                    }
+                }
+            }
+        }
+        public static double ConvertQuantityToUnitDouble(int artId, int unitIdSource, int unitIdDestination, double quantity)
         {
             if (unitIdSource == unitIdDestination)
             {
