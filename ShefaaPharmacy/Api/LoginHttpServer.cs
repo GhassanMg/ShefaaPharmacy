@@ -252,13 +252,14 @@ namespace ShefaaPharmacy.Api
             catch
             {
                 //_MessageBoxDialog.Show("Just test", MessageBoxState.Error);
-                //_MessageBoxDialog.Show("البرنامج قيد العمل بالفعل", MessageBoxState.Error);
-                //Process proc = new Process();
-                //Process []array =Process.GetProcesses();
-                //for (int i = 0; i < array.Length; i++)
-                //{
-                //    Process.GetProcessById(array[i].Id).Kill();
-                //}
+                _MessageBoxDialog.Show("البرنامج قيد العمل بالفعل", MessageBoxState.Error);
+                //Application.Exit();
+                 Process.GetCurrentProcess().Kill();
+                ////Process[] array = Process.GetProcesses();
+                ////for (int i = 0; i < array.Length; i++)
+                ////{
+                ////    Process.GetProcessById(array[i].Id).Kill();
+                ////}
                 return;
             }
         }
