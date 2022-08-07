@@ -109,7 +109,7 @@ namespace DataLayer.Tables
                         string x = context != null ? String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTagMobile(context, artId: ArticaleId, unitId: UnitTypeId))) : String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTag(artId: ArticaleId, unitId: UnitTypeId)));
                         double dres =double.Parse(x);
                         //int ires = Convert.ToInt32(dres);
-                        return dres.ToString();
+                        return x;
                     }
                     else
                         return "";
