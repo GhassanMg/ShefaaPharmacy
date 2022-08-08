@@ -96,6 +96,7 @@ namespace ShefaaPharmacy.Articles
                 }
             }
             bindingSourceMaster.DataSource = allarticles;
+            Insert(allarticles);
         }
         public void Insert(List<LastTimeArticleViewModel> list)
         {
@@ -156,10 +157,11 @@ namespace ShefaaPharmacy.Articles
 
             foreach (LastTimeArticleViewModel myrow in bindingSourceMaster)
             {
-                FullPrice.FullPrice += Convert.ToInt32(myrow.TotalPrice);
+                FullPrice.FullPrice += myrow.TotalPrice * myrow.QuantityLeft;
             }
             bindingSourceDetail.DataSource = FullPrice;
             dgDetail.Refresh();
+            
         }
         private void dgMaster_BindingContextChanged(object sender, EventArgs e)
         {
@@ -180,6 +182,11 @@ namespace ShefaaPharmacy.Articles
             dgDetail.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dgDetail.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgDetail.Refresh();
+        }
+
+        private void LastTimeDurationReportForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

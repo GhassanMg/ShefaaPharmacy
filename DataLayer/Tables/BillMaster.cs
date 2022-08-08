@@ -203,14 +203,14 @@ namespace DataLayer.Tables
             //Payment = discount;
             if (PaymentMethod == PaymentMethod.Cash)
             {
-                if(Payment<=TotalPrice)
-                Payment = TotalPrice-Discount;
+                if (Payment <= TotalPrice)
+                    Payment = TotalPrice - Discount;
             }
             else
             {
                 if (Payment != 0)
                 {
-                    RemainingAmount = TotalPrice - Payment-Discount;
+                    RemainingAmount = TotalPrice - Payment - Discount;
                 }
                 else
                 {
@@ -218,8 +218,8 @@ namespace DataLayer.Tables
                 }
             }
             if (Discount > 0)
-                if(PaymentMethod == PaymentMethod.Cash) Payment = TotalPrice - Discount;
-                //else Payment = payment - Discount;
+                if (PaymentMethod == PaymentMethod.Cash) Payment = TotalPrice - Discount;
+            //else Payment = payment - Discount;
 
             onUpdateForm?.Invoke();
         }
@@ -238,7 +238,7 @@ namespace DataLayer.Tables
             //TotalPrice = total - (total * discount) ;
             if (PaymentMethod == PaymentMethod.Cash)
             {
-                Payment = TotalPrice-discount;
+                Payment = TotalPrice - discount;
             }
             else
             {
@@ -253,8 +253,8 @@ namespace DataLayer.Tables
 
             }
         }
-            public void CalcTotalForPurches(List<PurchesBillViewModel> purchesBillViewModel)
-            {
+        public void CalcTotalForPurches(List<PurchesBillViewModel> purchesBillViewModel)
+        {
             if (purchesBillViewModel == null || purchesBillViewModel.Count < 1)
             {
                 return;
@@ -277,7 +277,7 @@ namespace DataLayer.Tables
             {
                 if (Payment != 0)
                 {
-                    RemainingAmount = TotalPrice - Payment-Discount;
+                    RemainingAmount = TotalPrice - Payment - Discount;
                 }
                 else
                 {
@@ -285,8 +285,8 @@ namespace DataLayer.Tables
                 }
             }
             if (Discount > 0)
-                if(PaymentMethod == PaymentMethod.Cash) Payment = TotalPrice - Discount;
-            
+                if (PaymentMethod == PaymentMethod.Cash) Payment = TotalPrice - Discount;
+
             onUpdateForm?.Invoke();
         }
         public void CalcTotalForPurchesWhenUpdatePrice(List<PurchesBillViewModel> purchesBillViewModel)
@@ -303,7 +303,7 @@ namespace DataLayer.Tables
             TotalItem = totalItem;
             if (PaymentMethod == PaymentMethod.Cash)
             {
-                 Payment = TotalPrice - Discount;
+                Payment = TotalPrice - Discount;
             }
             else
             {
@@ -324,7 +324,7 @@ namespace DataLayer.Tables
                 //tbPayment.Text = billMaster.Payment.ToString();
             }
             onUpdateForm?.Invoke();
-            
+
 
         }
         #endregion

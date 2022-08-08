@@ -302,6 +302,7 @@ namespace ShefaaPharmacy.Articles
             this.Name = "LastTimeDurationReportForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "تقرير بضاعة آخر المدة";
+            this.Load += new System.EventHandler(this.LastTimeDurationReportForm_Load);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.bindingNavigator1, 0);
             this.Controls.SetChildIndex(this.dgMaster, 0);

@@ -8,7 +8,7 @@ namespace DataLayer.ViewModels
     public class FullPriceViewModel
     {
         [DisplayName("القيمة الكلية")]
-        public int FullPrice
+        public double FullPrice
         {
             get; 
             set ; 
