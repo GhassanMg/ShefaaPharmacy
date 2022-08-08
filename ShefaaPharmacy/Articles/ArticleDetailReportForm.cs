@@ -446,6 +446,15 @@ namespace ShefaaPharmacy.Articale
 
         private void dgDetail_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            try
+            {
+                dgDetail.Columns["Discount"].Visible = false;
+                //dgMaster.Columns["Description"].Visible = false;
+                dgDetail.Columns["CreationByDescr"].Visible = false;
+                //dgMaster.Columns["AccountIdDescr"].HeaderText = "حساب العملية";
+
+            }
+            catch {; }
             foreach (DataGridViewRow item in dgDetail.Rows)
             {
                 if (dgDetail.Rows[item.Index].Cells["InvoiceKind"].Value.ToString() == "Sell")

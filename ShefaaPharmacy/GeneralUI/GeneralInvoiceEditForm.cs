@@ -927,7 +927,7 @@ namespace ShefaaPharmacy.GeneralUI
                         if ((!int.TryParse(e.FormattedValue.ToString(), out int i) || Convert.ToInt32(e.FormattedValue.ToString()) <= 0))
                         {
                             e.Cancel = true;
-                            _MessageBoxDialog.Show("يجب إدخال رقم وأكبر من الصفر", MessageBoxState.Error);
+                            _MessageBoxDialog.Show("يجب إدخال رقم أكبر من الصفر", MessageBoxState.Error);
                             return;
                         }
                         else if (Convert.ToInt32(e.FormattedValue.ToString()) > qu && (FormOperation != FormOperation.ReturnEmpty && FormOperation != FormOperation.Return))
