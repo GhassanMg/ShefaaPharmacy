@@ -31,6 +31,9 @@ namespace ShefaaPharmacy.Accounting
             }
             else
             {
+                var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                var account = context.Accounts.Where(x => x.Id == userParameters.Acc_AccountId).FirstOrDefault();
+                lbGeneralAccount.Text = account.General ? account.Name : account.AccountGeneralIdDescr;
                 LoadMaster();
                 LoadDetail();
                 dgMaster.AutoGenerateColumns = true;
@@ -39,6 +42,8 @@ namespace ShefaaPharmacy.Accounting
                 dgDetail.AllowUserToAddRows = false;
                 dgMaster.ReadOnly = true;
                 dgDetail.ReadOnly = true;
+                //dgMaster.Columns[4].Visible = false;
+
             }
         }
         public AccountFainancialReportForm(UserParameters userParameters)
@@ -52,6 +57,9 @@ namespace ShefaaPharmacy.Accounting
             }
             else
             {
+                var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                var account = context.Accounts.Where(x => x.Id == userParameters.Acc_AccountId).FirstOrDefault();
+                lbGeneralAccount.Text = account.General ? account.Name : account.AccountGeneralIdDescr;
                 LoadMaster();
                 LoadDetail();
                 dgMaster.AutoGenerateColumns = true;
@@ -60,6 +68,8 @@ namespace ShefaaPharmacy.Accounting
                 dgDetail.AllowUserToAddRows = false;
                 dgMaster.ReadOnly = true;
                 dgDetail.ReadOnly = true;
+                //dgMaster.Columns[4].Visible = false;
+
             }
         }
         int count = 0;
@@ -97,7 +107,7 @@ namespace ShefaaPharmacy.Accounting
             }
             bindingSourceMaster.DataSource = finalresult;
             bindingNavigator1.BindingSource = bindingSourceMaster;
-
+            
         }
         private void LoadDetail()
         {
@@ -122,7 +132,13 @@ namespace ShefaaPharmacy.Accounting
 
             dgMaster.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dgMaster.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            try { dgMaster.Columns["Id"].Visible = false; }
+            try { 
+                dgMaster.Columns["Id"].Visible = false;
+                dgMaster.Columns["Description"].Visible = false;
+                dgMaster.Columns["CreationByDescr"].Visible = false;
+                dgMaster.Columns["AccountIdDescr"].HeaderText = "حساب العملية";
+
+            }
             catch {; }
             dgMaster.Refresh();
         }
@@ -161,6 +177,16 @@ namespace ShefaaPharmacy.Accounting
         private void AccountFainancialReportForm_Load(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
+        }
+
+        private void dgMaster_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
