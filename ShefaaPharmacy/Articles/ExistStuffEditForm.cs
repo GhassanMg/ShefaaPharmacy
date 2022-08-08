@@ -29,7 +29,7 @@ namespace ShefaaPharmacy.Articles
         {
             InitializeComponent();
         }
-        public ExistStuffEditForm(ExistStuffViewModel myrow,EntryDetail detail)
+        public ExistStuffEditForm(ExistStuffViewModel myrow, EntryDetail detail)
         {
             InitializeComponent();
             LoadGrid();
@@ -126,7 +126,7 @@ namespace ShefaaPharmacy.Articles
             context.EntryMasters.FirstOrDefault(x => x.Id == Mydetail.EntryMasterId).TotalCredit = Convert.ToDouble(dgvEditStuff.CurrentRow.Cells[2].Value);
             context.EntryMasters.FirstOrDefault(x => x.Id == Mydetail.EntryMasterId).TotalDebit = Convert.ToDouble(dgvEditStuff.CurrentRow.Cells[2].Value);
             context.EntryDetails.Where(x => x.Id == Mydetail.Id).FirstOrDefault(x => x.Debit != 0).Debit = Convert.ToDouble(dgvEditStuff.CurrentRow.Cells[2].Value);
-            context.EntryDetails.Where(x => x.Id == Mydetail.Id-1).FirstOrDefault(x => x.Credit != 0).Credit = Convert.ToDouble(dgvEditStuff.CurrentRow.Cells[2].Value);
+            context.EntryDetails.Where(x => x.Id == Mydetail.Id - 1).FirstOrDefault(x => x.Credit != 0).Credit = Convert.ToDouble(dgvEditStuff.CurrentRow.Cells[2].Value);
             context.SaveChanges();
         }
     }

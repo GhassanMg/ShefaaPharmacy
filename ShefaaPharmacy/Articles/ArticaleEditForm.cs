@@ -114,7 +114,7 @@ namespace ShefaaPharmacy.Articale
                     TypeValidateBox.Visible = true;
                     return;
                 }
-                
+
                 ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                 if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
                 {
@@ -278,7 +278,7 @@ namespace ShefaaPharmacy.Articale
             if (tbBarcode.Text.Trim() != "")
             {
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
-                var bar = context.Articles.Where(x => x.Barcode == tbBarcode.Text.Trim() && x.Id!= (EditBindingSource.Current as Article).Id).FirstOrDefault();
+                var bar = context.Articles.Where(x => x.Barcode == tbBarcode.Text.Trim() && x.Id != (EditBindingSource.Current as Article).Id).FirstOrDefault();
                 if (bar != null)
                 {
                     _MessageBoxDialog.Show("لا يمكن تكرار الباركود لصنفين", MessageBoxState.Error);

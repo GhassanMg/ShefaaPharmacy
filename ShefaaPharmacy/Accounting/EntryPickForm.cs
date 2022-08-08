@@ -36,7 +36,7 @@ namespace ShefaaPharmacy.Accounting
                 fmPick.FormOperation = formOperation;
                 fmPick.Text = "إستعراض سندات القيد";
                 fmPick.ShowDialog();
-                
+
                 return entry;
             }
             finally
@@ -84,9 +84,9 @@ namespace ShefaaPharmacy.Accounting
         protected override void Rebinding()
         {
             //if (entry == null || entry.Id == 0)
-                PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().EntryMasters.ToList();
+            PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().EntryMasters.ToList();
             //else
-                //PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().EntryMasters.Where(x => x.KindOperation == KindOperation.GoodFirstTime).ToList();
+            //PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().EntryMasters.Where(x => x.KindOperation == KindOperation.GoodFirstTime).ToList();
 
             HiddenColumn = new string[] { "Balance" };
             base.Rebinding();
@@ -143,6 +143,11 @@ namespace ShefaaPharmacy.Accounting
             {
                 Close();
             }
+        }
+
+        private void EntryPickForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

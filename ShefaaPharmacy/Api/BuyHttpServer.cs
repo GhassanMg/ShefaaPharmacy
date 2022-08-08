@@ -117,7 +117,7 @@ namespace ShefaaPharmacy.Api
             if (temp.Contains("&%"))
             {
                 temp1 = temp.Split('&');
-                temp1[1] += "&"; temp1[1]+= temp1[2];
+                temp1[1] += "&"; temp1[1] += temp1[2];
                 temp1[2] = temp1[3];
                 temp1[3] = temp1[4];
                 temp1[4] = null;
@@ -126,7 +126,7 @@ namespace ShefaaPharmacy.Api
             {
                 temp1 = temp.Split('&');
             }
-            
+
             database = temp1[0].Split('=')[1];
             operation = Convert.ToInt32(temp1[2].Split('=')[1]);
             if (operation != 1)
@@ -273,7 +273,7 @@ namespace ShefaaPharmacy.Api
             {
 
             }
-            
+
         }
 
         public abstract void handleGETRequest(HttpProcessor1 p);

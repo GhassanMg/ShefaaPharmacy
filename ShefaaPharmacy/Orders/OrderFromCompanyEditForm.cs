@@ -83,7 +83,7 @@ namespace ShefaaPharmacy.Orders
         {
             try
             {
-                HiddenColumn = new string[] { "Articale", "ArticleId", "OrderMasterId", "OrderMaster", "CreationByDescr", "CreationDate", "Id" , "Quantity" };
+                HiddenColumn = new string[] { "Articale", "ArticleId", "OrderMasterId", "OrderMaster", "CreationByDescr", "CreationDate", "Id", "Quantity" };
                 ShowColumn(dgvOrderDetail.Columns);
                 dgvOrderDetail.Columns["ArticleIdDescr"].ReadOnly = true;
                 dgvOrderDetail.Columns["QuantityLeft"].ReadOnly = true;
@@ -178,13 +178,13 @@ namespace ShefaaPharmacy.Orders
             }
             try
             {
-                
+
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
                 {
                     OrderMaster.OrderState = OrderState.Running;
                     OrderMaster.CompanyId = Convert.ToInt32(ddlCompany.SelectedValue);
-                    OrderMaster.Id = 0; 
+                    OrderMaster.Id = 0;
                     OrderMaster.Details = (bsFinalOrder.DataSource as List<OrderDetail>).Where(x => x.Quantity > 0).ToList();
                     context.OrderMasters.Add(OrderMaster);
                     context.SaveChanges();
@@ -287,7 +287,7 @@ namespace ShefaaPharmacy.Orders
 
         private void DgvOrderDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvOrderDetail.DataSource == null || dgvOrderDetail.CurrentRow == null ||  (dgvOrderDetail.Rows.Count < 1))
+            if (dgvOrderDetail.DataSource == null || dgvOrderDetail.CurrentRow == null || (dgvOrderDetail.Rows.Count < 1))
             {
                 return;
             }

@@ -35,7 +35,7 @@ namespace ShefaaPharmacy.Articles
         {
             pHelperButton.Location = new Point(this.Size.Width - pHelperButton.Width, 7);
             GetExpiredArticle();
-            
+
         }
         void ChangeStyleOfGrid(DataGridView dataGridView)
         {
@@ -250,11 +250,11 @@ namespace ShefaaPharmacy.Articles
                 {
                     Mylist.Add(new ExpiryTransfeerDetail()
                     {
-                    ArticleIdDescr = Row.Cells["ArticleIdDescr"].Value.ToString(),
-                    UnitIdDescr = Row.Cells["UnitIdDescr"].Value.ToString(),
-                    LeftQuantity = Convert.ToInt32(Row.Cells["CountAllItem"].Value),
-                    ExpiryDate = Convert.ToDateTime(Row.Cells["ExpiryDate"].Value),
-                    TransQuantity = Convert.ToInt32(Row.Cells["TransfeerQuantity"].Value)
+                        ArticleIdDescr = Row.Cells["ArticleIdDescr"].Value.ToString(),
+                        UnitIdDescr = Row.Cells["UnitIdDescr"].Value.ToString(),
+                        LeftQuantity = Convert.ToInt32(Row.Cells["CountAllItem"].Value),
+                        ExpiryDate = Convert.ToDateTime(Row.Cells["ExpiryDate"].Value),
+                        TransQuantity = Convert.ToInt32(Row.Cells["TransfeerQuantity"].Value)
                     });
                 }
             }

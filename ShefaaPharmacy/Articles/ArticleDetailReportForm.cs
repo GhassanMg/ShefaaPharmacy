@@ -78,7 +78,7 @@ namespace ShefaaPharmacy.Articale
         }
         private void LoadMaster()
         {
-            HiddenColumn = new string[] { "CreationByDescr","Id", "CreationDate", "Description", "Description2", "Note", "Note2", "SideEffects", "Interactions", "Precautions", "Dosage", "ActiveIngredients" };
+            HiddenColumn = new string[] { "CreationByDescr", "Id", "CreationDate", "Description", "Description2", "Note", "Note2", "SideEffects", "Interactions", "Precautions", "Dosage", "ActiveIngredients" };
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             List<Article> resultReport;
             if (userParameters.ArticleId != 0)
@@ -134,7 +134,7 @@ namespace ShefaaPharmacy.Articale
                     .Include(x => x.PriceTagDetails)
                     .OrderByDescending(x => x.CreationDate)
                     .LastOrDefault();
-            
+
 
             SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
             con.Open();
@@ -159,13 +159,13 @@ namespace ShefaaPharmacy.Articale
 
                 BillDetail NewRow = new BillDetail()
                 {
-                    ArticaleId= ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Name == FirstTimeDetailRow.Name).Id,
+                    ArticaleId = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Name == FirstTimeDetailRow.Name).Id,
                     Barcode = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Name == FirstTimeDetailRow.Name).Barcode,
                     InvoiceKind = InvoiceKind.GoodFirstTime,
                     UnitTypeId = FirstTimeDetailRow.UnitId,
                     Price = FirstTimeDetailRow.Price,
                     Quantity = FirstTimeDetailRow.Quantity,
-                    
+
                 };
                 resultReport.Add(NewRow);
                 //resultReport.OrderByDescending(x=>x.InvoiceKind);
@@ -191,7 +191,7 @@ namespace ShefaaPharmacy.Articale
                     InvoiceKind = InvoiceKind.ExpiryArticles,
                     UnitTypeId = context.ArticleUnits.ToList().FirstOrDefault(x => x.UnitTypeIdDescr == ExpiryTransfeerDetailRow.UnitIdDescr).UnitTypeId,
                     Quantity = ExpiryTransfeerDetailRow.TransQuantity,
-                    
+
                 };
                 resultReport.Add(NewRow);
             }
@@ -201,7 +201,7 @@ namespace ShefaaPharmacy.Articale
                 resultReport[item].CreationDate = resultReport[item].CreationDate.Date;
 
             }
-            bindingSourceDetail.DataSource = resultReport.OrderByDescending(x=>x.InvoiceKind);
+            bindingSourceDetail.DataSource = resultReport.OrderByDescending(x => x.InvoiceKind);
             dgDetail.Refresh();
             articleDetail.CountLeft = String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTag(article.Id)));
             articleDetail.LastBuyPrimary = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(article.Id)).BuyPrice;/*UnitTypeService.GetLastBuyPrice(article.Id, UnitTypeService.GetBrimaryPriceId(article.Id));*/

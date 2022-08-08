@@ -26,7 +26,7 @@ namespace ShefaaPharmacy.Articles
         public CompanyChooseForm()
         {
             InitializeComponent();
-            
+
         }
         string GetStatus;
         public bool isloading = false;
@@ -121,8 +121,8 @@ namespace ShefaaPharmacy.Articles
 
                 if (res == 0)
                 {
-                     pcloader.Visible = false;
-                     lblLoading.Visible = false;
+                    pcloader.Visible = false;
+                    lblLoading.Visible = false;
                     if (_MessageBoxDialog.Show("لايوجد مواد جاهزة للاستيراد..يرجى تحديد مسار ملف الاكسيل", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
                     {
                         SetExcelPath frm = new SetExcelPath();
@@ -156,7 +156,7 @@ namespace ShefaaPharmacy.Articles
                     CheckCompanies.Enabled = true;
                 }
             }
-            
+
         }
         private ApiResponseViewModel<CompanyApiViewModel> GetRESTData(string uri)
         {

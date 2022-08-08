@@ -119,7 +119,7 @@ namespace ShefaaPharmacy.Invoice
                 {
                     dgDetail.Rows.RemoveAt(dgDetail.CurrentRow.Index);
                     dgDetail.Refresh();
-                    
+
                 }
             }
             catch (Exception ex)
@@ -178,7 +178,7 @@ namespace ShefaaPharmacy.Invoice
                 double total = 0;
                 List<PurchesBillViewModel> purchesBillViewModel = DetailBindingSource.DataSource as List<PurchesBillViewModel>;
                 purchesBillViewModel.ForEach(x => total += (x.PurchasePrice * x.Quantity));
-                billMaster.TotalPrice = total ;
+                billMaster.TotalPrice = total;
                 tbTotalPrice.Text = billMaster.TotalPrice.ToString();
                 tbPayment.Text = billMaster.Payment.ToString();
             }
@@ -286,7 +286,7 @@ namespace ShefaaPharmacy.Invoice
             }
             billMaster.BillDetails = _billDetails;
             billMaster.CalcTotal();
-            if (Convert.ToInt32(tbPayment.Text) > Convert.ToInt32(tbTotalPrice.Text) && FormOperation!=FormOperation.Edit)
+            if (Convert.ToInt32(tbPayment.Text) > Convert.ToInt32(tbTotalPrice.Text) && FormOperation != FormOperation.Edit)
             {
                 billMaster.payment = Convert.ToInt32(tbPayment.Text);
                 billMaster.discount = -1 * (billMaster.payment - billMaster.TotalPrice);
@@ -522,9 +522,9 @@ namespace ShefaaPharmacy.Invoice
             {
                 return;
             }
-            if (Convert.ToDouble(dgDetail.Rows[dgDetail.Rows.Count - 1].Cells["PurchasePrice"].Value) == 0 && 
-                Convert.ToDouble(dgDetail.Rows[dgDetail.Rows.Count - 1].Cells["SellPrice"].Value) == 0 && 
-                Convert.ToInt32(dgDetail.Rows[dgDetail.Rows.Count - 1].Cells["Quantity"].Value) == 0 && 
+            if (Convert.ToDouble(dgDetail.Rows[dgDetail.Rows.Count - 1].Cells["PurchasePrice"].Value) == 0 &&
+                Convert.ToDouble(dgDetail.Rows[dgDetail.Rows.Count - 1].Cells["SellPrice"].Value) == 0 &&
+                Convert.ToInt32(dgDetail.Rows[dgDetail.Rows.Count - 1].Cells["Quantity"].Value) == 0 &&
                 !dgDetail.Rows[dgDetail.Rows.Count - 1].IsNewRow)
             {
                 dgDetail.Rows.RemoveAt(dgDetail.Rows.Count - 1);
@@ -760,20 +760,20 @@ namespace ShefaaPharmacy.Invoice
                         buy = FirstPriceTagToGetPricesOnley.PriceTagDetails.FirstOrDefault(x => x.UnitId == dataRow.UnitId).BuyPrice;
                         sell = FirstPriceTagToGetPricesOnley.PriceTagDetails.FirstOrDefault(x => x.UnitId == dataRow.UnitId).SellPrice;
 
-                            if (dataRow.UnitId != baseunit)
+                        if (dataRow.UnitId != baseunit)
+                        {
+                            int quantityOfPrimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == articale.Id && x.UnitTypeId == dataRow.UnitId).QuantityForPrimary;
+                            if (dataRow.UnitId < baseunit)
                             {
-                                int quantityOfPrimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == articale.Id && x.UnitTypeId == dataRow.UnitId).QuantityForPrimary;
-                                if (dataRow.UnitId < baseunit)
-                                {
-                                    buy = buy * quantityOfPrimary;
-                                    sell = sell * quantityOfPrimary;
-                                }
-                                else if (dataRow.UnitId > baseunit)
-                                {
-                                    buy = Convert.ToInt32(buy / quantityOfPrimary);
-                                    sell = Convert.ToInt32(sell / quantityOfPrimary);
-                                }
+                                buy = buy * quantityOfPrimary;
+                                sell = sell * quantityOfPrimary;
                             }
+                            else if (dataRow.UnitId > baseunit)
+                            {
+                                buy = Convert.ToInt32(buy / quantityOfPrimary);
+                                sell = Convert.ToInt32(sell / quantityOfPrimary);
+                            }
+                        }
                     }
                     catch { buy = 0; sell = 0; }
                     dataRow.PurchasePrice = buy;
@@ -1084,7 +1084,7 @@ namespace ShefaaPharmacy.Invoice
             tbPayment.Text = billMaster.Payment + "";
             tbDiscount.Text = billMaster.Discount + "";
             tbRemainingAmount.Text = billMaster.RemainingAmount + "";
-            if(FormOperation == FormOperation.EditFromPicker && billMaster.PaymentMethod == PaymentMethod.Cash)
+            if (FormOperation == FormOperation.EditFromPicker && billMaster.PaymentMethod == PaymentMethod.Cash)
             {
                 billMaster.Payment = billMaster.TotalPrice;
                 tbPayment.Text = billMaster.Payment.ToString();
@@ -1198,7 +1198,7 @@ namespace ShefaaPharmacy.Invoice
                 double total = 0;
                 List<PurchesBillViewModel> purchesBillViewModel = DetailBindingSource.DataSource as List<PurchesBillViewModel>;
                 purchesBillViewModel.ForEach(x => total += (x.PurchasePrice * x.Quantity));
-                if(FormOperation == FormOperation.EditFromPicker)
+                if (FormOperation == FormOperation.EditFromPicker)
                 {
                     billMaster.Payment = billMaster.TotalPrice;
                     tbPayment.Text = billMaster.Payment.ToString();

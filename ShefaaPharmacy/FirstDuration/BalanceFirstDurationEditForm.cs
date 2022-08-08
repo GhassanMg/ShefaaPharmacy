@@ -333,7 +333,7 @@ namespace ShefaaPharmacy
             if (dgvArticles.CurrentRow.DataBoundItem == null)
                 return;
             try
-            {                       
+            {
                 var cell = dgvArticles[e.ColumnIndex, e.RowIndex];
                 string cellName = cell.OwningColumn.Name;
                 if (cellName == "ArticleIdDescr" && (e.FormattedValue.ToString() != "") && (EditBindingSource.Current as BalanceFirstDurationViewModel).ArticleIdDescr != e.FormattedValue.ToString())

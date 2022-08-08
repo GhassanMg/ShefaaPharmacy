@@ -65,7 +65,7 @@ namespace ShefaaPharmacy.Helper
                         {
                             ;
                         }
-                        
+
                     else
                         continue;
                 }

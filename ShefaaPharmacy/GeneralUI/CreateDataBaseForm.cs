@@ -136,7 +136,7 @@ namespace ShefaaPharmacy.GeneralUI
 
         private void tbName_Validating(object sender, CancelEventArgs e)
         {
-            
+
         }
 
         public static bool CheckDatabaseExists(string dataBase)

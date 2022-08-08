@@ -717,12 +717,12 @@ namespace ShefaaPharmacy.GeneralUI
                                             {
                                                 item.Cells["quantity"].Value = Convert.ToInt32(item.Cells["quantity"].Value) + 1;
                                             }
-                                            
+
                                             e.Cancel = true;
                                             dgDetail.Rows[item.Index].Selected = true;
                                             dgDetail.CurrentRow.Cells[0].Value = "";
                                             dgDetail.CurrentRow.Selected = false;
-                                            
+
                                             return;
                                         }
                                     }
@@ -756,7 +756,7 @@ namespace ShefaaPharmacy.GeneralUI
                     {
                         ;
                     }
-                    
+
                 }
                 else if (cellName == "Price" && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as BillDetail).Price != Convert.ToDouble(e.FormattedValue))
                 {
@@ -807,7 +807,7 @@ namespace ShefaaPharmacy.GeneralUI
                         {
                             try
                             {
-                                if (dgDetail.Rows.Count > 2 && item.Index!=dgDetail.Rows.Count-1 && item.Cells[2].Value.ToString() == result.Name)
+                                if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[2].Value.ToString() == result.Name)
                                 {
                                     //(DetailBindingSource.DataSource as BillDetail).BarcodeDescr = "";
                                     if (Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
@@ -968,7 +968,7 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 var dbConfig = context.DataBaseConfigurations.FirstOrDefault();
-                List<PriceTagMaster> PriceTagsForArticleInStore = context.PriceTagMasters.Include(x => x.Article.Id==articale.Id).ToList();
+                List<PriceTagMaster> PriceTagsForArticleInStore = context.PriceTagMasters.Include(x => x.Article.Id == articale.Id).ToList();
                 List<PriceTagMaster> expired = PriceTagsForArticleInStore.Where(x => (DateTime.Now/*.AddDays(dbConfig.DayForExpiry)*/ >= x.ExpiryDate)).ToList();
                 List<PriceTagMaster> mylist = new List<PriceTagMaster>();
                 List<PriceTagMaster> NewList = new List<PriceTagMaster>();
@@ -1257,9 +1257,9 @@ namespace ShefaaPharmacy.GeneralUI
                 dgDetail.Rows.Remove(dgDetail.CurrentRow);
                 return;
             }
-            if (dgDetail.Rows[dgDetail.Rows.Count-2].Cells[0].Value == null|| dgDetail.Rows[dgDetail.Rows.Count-2].Cells[1].Value ==null)
+            if (dgDetail.Rows[dgDetail.Rows.Count - 2].Cells[0].Value == null || dgDetail.Rows[dgDetail.Rows.Count - 2].Cells[1].Value == null)
             {
-                dgDetail.Rows.Remove(dgDetail.Rows[dgDetail.Rows.Count-2]);
+                dgDetail.Rows.Remove(dgDetail.Rows[dgDetail.Rows.Count - 2]);
                 dgDetail.Rows[0].Selected = true;
 
                 //return;
@@ -1274,12 +1274,12 @@ namespace ShefaaPharmacy.GeneralUI
                 _MessageBoxDialog.Show("يجب وضع حساب لإتمام العملية", MessageBoxState.Error);
                 return;
             }
-            if (this.cbPaymentMethod.SelectedIndex == 0 )
-                if(tbPayment.Text == "0" || tbPayment.Text == "0.00")
-            {
-                _MessageBoxDialog.Show("لايمكن أن تكون قيمة الفاتورة صفر", MessageBoxState.Error);
-                return;
-            }
+            if (this.cbPaymentMethod.SelectedIndex == 0)
+                if (tbPayment.Text == "0" || tbPayment.Text == "0.00")
+                {
+                    _MessageBoxDialog.Show("لايمكن أن تكون قيمة الفاتورة صفر", MessageBoxState.Error);
+                    return;
+                }
             bool res;
             if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
             {
@@ -1851,7 +1851,7 @@ namespace ShefaaPharmacy.GeneralUI
             //{  
             if (billMaster.paymentMethod == PaymentMethod.Debit)
             {
-                billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.Payment - (tbDiscount.Text=="" ? 0 : double.Parse(tbDiscount.Text));
+                billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.Payment - (tbDiscount.Text == "" ? 0 : double.Parse(tbDiscount.Text));
                 //tbRemainingAmount.Text = billMaster.RemainingAmount.ToString();
 
             }

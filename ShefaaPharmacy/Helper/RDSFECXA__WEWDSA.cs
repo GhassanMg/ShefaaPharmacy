@@ -57,7 +57,7 @@ namespace ShefaaPharmacy.Helper
         }
 
 
-        private static void Wr(string vifisdf, string sre, string nkey,string regDate,string expDate)
+        private static void Wr(string vifisdf, string sre, string nkey, string regDate, string expDate)
         {
             RegistryKey SoftWarekey = Registry.CurrentUser.OpenSubKey("Software", true);
             RegistryKey MTAppkey = SoftWarekey.CreateSubKey(ConnectionManager.ApplicationName);
@@ -70,7 +70,7 @@ namespace ShefaaPharmacy.Helper
             MTAppkey.SetValue("UserKey", vifisdf);
             MTAppkey.SetValue("UserNKey", nkey);
             MTAppkey.SetValue("CorKey", sre);
-            MTAppkey.SetValue("sDate",regDate);
+            MTAppkey.SetValue("sDate", regDate);
             MTAppkey.SetValue("eDate", expDate);
 
         }
@@ -86,7 +86,7 @@ namespace ShefaaPharmacy.Helper
             MTAppkey.SetValue("UserNKey", nkey);
             MTAppkey.SetValue("CorKey", sre);
         }
-        public static void SetIpAddressForApiBarcode(string ipAddress,string port)
+        public static void SetIpAddressForApiBarcode(string ipAddress, string port)
         {
             RegistryKey SoftWarekey = Registry.CurrentUser.OpenSubKey("Software", true);
             RegistryKey MTAppkey = SoftWarekey.CreateSubKey(ConnectionManager.ApplicationName);
@@ -100,7 +100,7 @@ namespace ShefaaPharmacy.Helper
             return nkey;
         }
 
-        private static void Wr2(string regDate,string expDate)
+        private static void Wr2(string regDate, string expDate)
         {
 
             RegistryKey SoftWarekey = Registry.CurrentUser.OpenSubKey("Software", true);
@@ -116,10 +116,10 @@ namespace ShefaaPharmacy.Helper
 
                 RegistryKey MTAppkey = Registry.CurrentUser.OpenSubKey(@"Software\" + ConnectionManager.ApplicationName);
                 string nkey = MTAppkey.GetValue("UserNKey").ToString();
-                
+
                 nkey = DecodeForRegistry(nkey);
 
-                
+
                 return nkey;
 
             }
@@ -143,7 +143,7 @@ namespace ShefaaPharmacy.Helper
             {
                 return false;
             }
-            if (String.IsNullOrEmpty(startdate)|| String.IsNullOrEmpty(enddate))
+            if (String.IsNullOrEmpty(startdate) || String.IsNullOrEmpty(enddate))
             {
                 return false;
             }
@@ -167,9 +167,9 @@ namespace ShefaaPharmacy.Helper
                     {
                         MyRegKey.SetValue("sDate", T);
                     }
-                    catch(Exception y)
+                    catch (Exception y)
                     {
-                         _MessageBoxDialog.Show(y.ToString(), MessageBoxState.Error);
+                        _MessageBoxDialog.Show(y.ToString(), MessageBoxState.Error);
 
                     }
                     return true;
@@ -197,7 +197,7 @@ namespace ShefaaPharmacy.Helper
                 }
                 else
                 {
-                    if (DecodeForRegistry(nkey)=="Demo")
+                    if (DecodeForRegistry(nkey) == "Demo")
                     {
                         if (checktrial(sre))
                         {
@@ -319,11 +319,11 @@ namespace ShefaaPharmacy.Helper
             string result = part1 + part2 + part3;
             return result;
         }
-        private static string CSprat(string val1, string val2,bool ftime)
+        private static string CSprat(string val1, string val2, bool ftime)
         {
-            if(!ftime)
-            val1 = DecodeForRegistry(val1);
-            
+            if (!ftime)
+                val1 = DecodeForRegistry(val1);
+
             BigInteger bigInteger1 = new BigInteger(Encoding.UTF8.GetBytes(val1));
             BigInteger bigInteger2 = new BigInteger(Encoding.UTF8.GetBytes(val2));
             string newResult = (bigInteger1 ^ bigInteger2).ToString();
@@ -333,14 +333,14 @@ namespace ShefaaPharmacy.Helper
             string result = part1 + part2 + part3;
             return result;
         }
-        
-        public static string EncryptString( string plainText)
+
+        public static string EncryptString(string plainText)
         {
             byte[] iv = new byte[16];
             byte[] array;
 
             plainText = EncodeForRegistry(plainText);
-            
+
             return plainText;
 
             //key = b.ToString();
@@ -376,7 +376,7 @@ namespace ShefaaPharmacy.Helper
         public static string DecryptString(string cipherText)
         {
             byte[] iv = new byte[16];
-           // byte[] buffer = Convert.FromBase64String(cipherText);
+            // byte[] buffer = Convert.FromBase64String(cipherText);
 
             cipherText = DecodeForRegistry(cipherText);
             return cipherText;
@@ -402,9 +402,9 @@ namespace ShefaaPharmacy.Helper
         public static bool CheckNumber(string val1, string val2, string val3, bool fTime)
         {
             string ss = Fpart(val1);
-            ss = CSprat(val2, ss,fTime);
-            if(!fTime)
-            val3 = DecodeForRegistry(val3);
+            ss = CSprat(val2, ss, fTime);
+            if (!fTime)
+                val3 = DecodeForRegistry(val3);
             if (ss == val3)
             {
                 if (fTime)
@@ -424,7 +424,7 @@ namespace ShefaaPharmacy.Helper
                 {
                     Wr(valSerial, ss, "Demo");
                     //"b14ca5898aJeO13ybboe2boa23bo5a1box"
-                    Wr2(EncryptString(DateTime.Now.ToString()),EncryptString(DateTime.Now.AddMonths(1).ToString()));
+                    Wr2(EncryptString(DateTime.Now.ToString()), EncryptString(DateTime.Now.AddMonths(1).ToString()));
                 }
                 return true;
             }
@@ -438,7 +438,7 @@ namespace ShefaaPharmacy.Helper
             {
                 bitLength++;
                 bigN /= 2;
-                  
+
             } while (bigN != 0);
             return bitLength;
         }

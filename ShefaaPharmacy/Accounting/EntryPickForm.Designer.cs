@@ -52,6 +52,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EntryPickForm";
             this.Padding = new System.Windows.Forms.Padding(12, 63, 12, 8);
+            this.Load += new System.EventHandler(this.EntryPickForm_Load);
             this.Controls.SetChildIndex(this.metroPanel2, 0);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.PickBindingSource)).EndInit();

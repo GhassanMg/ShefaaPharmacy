@@ -24,7 +24,7 @@ namespace ShefaaPharmacy.Articles
         {
 
         }
-        public PriceTagDetailEditForm(int articleId,PriceTagDetail priceTagDetail)
+        public PriceTagDetailEditForm(int articleId, PriceTagDetail priceTagDetail)
         {
             InitializeComponent();
             ArticleId = articleId;
@@ -73,7 +73,7 @@ namespace ShefaaPharmacy.Articles
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
                 Close();
             }
-            
+
         }
     }
 }

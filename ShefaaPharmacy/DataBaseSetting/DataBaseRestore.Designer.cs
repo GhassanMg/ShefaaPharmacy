@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataBaseRestore));
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tbPath = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -112,21 +113,22 @@
             // lblLoading
             // 
             this.lblLoading.AutoSize = true;
-            this.lblLoading.Font = new System.Drawing.Font("El Messiri SemiBold", 9.25F);
-            this.lblLoading.Location = new System.Drawing.Point(260, 23);
+            this.lblLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.lblLoading.Location = new System.Drawing.Point(248, 43);
             this.lblLoading.Name = "lblLoading";
-            this.lblLoading.Size = new System.Drawing.Size(172, 20);
+            this.lblLoading.Size = new System.Drawing.Size(152, 16);
             this.lblLoading.TabIndex = 60;
             this.lblLoading.Text = "يتم التحميل الان, يرجى الانتظار";
             this.lblLoading.Visible = false;
+            this.lblLoading.Click += new System.EventHandler(this.lblLoading_Click);
             // 
             // pcloader
             // 
-            this.pcloader.Image = global::ShefaaPharmacy.Properties.Resources.loader_32px;
-            this.pcloader.Location = new System.Drawing.Point(332, 46);
+            this.pcloader.Image = ((System.Drawing.Image)(resources.GetObject("pcloader.Image")));
+            this.pcloader.Location = new System.Drawing.Point(406, 35);
             this.pcloader.Name = "pcloader";
             this.pcloader.Size = new System.Drawing.Size(32, 32);
-            this.pcloader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pcloader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcloader.TabIndex = 61;
             this.pcloader.TabStop = false;
             this.pcloader.Visible = false;

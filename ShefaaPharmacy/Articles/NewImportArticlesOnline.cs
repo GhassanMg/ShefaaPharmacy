@@ -96,7 +96,7 @@ namespace ShefaaPharmacy.Articles
         {
             try
             {
-                 DisplayData();
+                DisplayData();
                 //Thread threadInput = new Thread(DisplayData);
                 //threadInput.Start();
             }
@@ -213,8 +213,8 @@ namespace ShefaaPharmacy.Articles
                         }
                     }
                 }
-                    lblWait.Visible = false;
-                    SetLoading(false);
+                lblWait.Visible = false;
+                SetLoading(false);
                 if (addcheck > 0)
                 {
                     _MessageBoxDialog.Show("تمت اضافة " + addcheck + " مادة" + "\n" + "المواد الموجودة سابقاً من المواد المحددة " + isconsist + " مادة", MessageBoxState.Done);

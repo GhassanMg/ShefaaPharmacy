@@ -68,7 +68,7 @@ namespace ShefaaPharmacy.Articale
             ArticleCategory articaleCategory = article == null ? null : ShefaaPharmacyDbContext.GetCurrentContext().ArticleCategorys.FirstOrDefault(x => x.Id == article.ArticleCategoryId);
             HelperUI.ConfigrationComboBox<ArticleCategory>(cbArticaleCategory, ShefaaPharmacyDbContext.GetCurrentContext().ArticleCategorys.ToList(),
                 articaleCategory, "Name", "Id", FormOperation);
-            
+
         }
         protected override void btOk_Click(object sender, EventArgs e)
         {

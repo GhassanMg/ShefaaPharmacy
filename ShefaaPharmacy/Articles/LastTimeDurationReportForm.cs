@@ -161,7 +161,7 @@ namespace ShefaaPharmacy.Articles
             }
             bindingSourceDetail.DataSource = FullPrice;
             dgDetail.Refresh();
-            
+
         }
         private void dgMaster_BindingContextChanged(object sender, EventArgs e)
         {

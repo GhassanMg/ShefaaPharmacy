@@ -245,7 +245,7 @@ namespace ShefaaPharmacy.Api
                     HttpProcessor processor = new HttpProcessor(s, this);
                     Thread thread = new Thread(new ThreadStart(processor.process));
                     thread.Start();
-                    
+
 
                 }
             }
@@ -254,7 +254,7 @@ namespace ShefaaPharmacy.Api
                 //_MessageBoxDialog.Show("Just test", MessageBoxState.Error);
                 _MessageBoxDialog.Show("البرنامج قيد العمل بالفعل", MessageBoxState.Error);
                 //Application.Exit();
-                 Process.GetCurrentProcess().Kill();
+                Process.GetCurrentProcess().Kill();
                 ////Process[] array = Process.GetProcesses();
                 ////for (int i = 0; i < array.Length; i++)
                 ////{

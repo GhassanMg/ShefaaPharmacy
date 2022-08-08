@@ -68,7 +68,7 @@ namespace ShefaaPharmacy.Articles
             {
                 if (TextFilter.Trim() != "")
                 {
-                    if(tsddlSearch2.Text == "جميع المستودعات")
+                    if (tsddlSearch2.Text == "جميع المستودعات")
                     {
                         Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
                         .Where(x => x.Name.Contains(TextFilter) || x.EnglishName.Contains(TextFilter))

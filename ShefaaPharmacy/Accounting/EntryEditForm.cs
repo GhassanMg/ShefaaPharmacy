@@ -256,7 +256,7 @@ namespace ShefaaPharmacy.Accounting
             //    }
             //}
 
-            if (dgDetail.Columns[e.ColumnIndex].Name == "Credit"|| dgDetail.Columns[e.ColumnIndex].Name == "Debit")
+            if (dgDetail.Columns[e.ColumnIndex].Name == "Credit" || dgDetail.Columns[e.ColumnIndex].Name == "Debit")
             {
                 if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {

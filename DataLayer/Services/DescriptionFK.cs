@@ -415,7 +415,7 @@ namespace DataLayer.Services
             else
                 return null;
         }
-        public static bool IsRightAccount(string name,int AccountGeneralId)
+        public static bool IsRightAccount(string name, int AccountGeneralId)
         {
             Account account = ShefaaPharmacyDbContext.GetCurrentContext().Accounts.FirstOrDefault(x => x.Name == name);
             if (account.AccountGeneralId == AccountGeneralId || account.Id == AccountGeneralId)

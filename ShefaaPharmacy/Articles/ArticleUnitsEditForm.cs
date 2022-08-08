@@ -424,19 +424,19 @@ namespace ShefaaPharmacy.Articles
                                 InventoryService.ConvertAllPriceTagToSmallest(((ArticleUnits)EditBindingSource.Current).ArticleId);
                                 foreach (var pricetag in context.PriceTagMasters.Where(x => x.ArticleId == ((ArticleUnits)EditBindingSource.Current).ArticleId).Include(x => x.PriceTagDetails).ToList())
                                 {
-                                    if(pricetag.PriceTagDetails.LastOrDefault().UnitId != ((ArticleUnits)EditBindingSource.Current).UnitTypeId)
+                                    if (pricetag.PriceTagDetails.LastOrDefault().UnitId != ((ArticleUnits)EditBindingSource.Current).UnitTypeId)
                                     {
                                         try
                                         {
-                                            ArticleService.MakeNewPriceTagDetailForNewUnit(((ArticleUnits)EditBindingSource.Current).ArticleId,((ArticleUnits)EditBindingSource.Current).UnitTypeId,pricetag.Id);
-                                            
+                                            ArticleService.MakeNewPriceTagDetailForNewUnit(((ArticleUnits)EditBindingSource.Current).ArticleId, ((ArticleUnits)EditBindingSource.Current).UnitTypeId, pricetag.Id);
+
                                         }
                                         catch (Exception r)
                                         {
                                             _MessageBoxDialog.Show("حصل خطأ أثناء تعديل الواحدات", MessageBoxState.Error);
                                         }
                                     }
-                                } 
+                                }
                             }
                         }
                     }

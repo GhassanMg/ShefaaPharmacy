@@ -22,7 +22,7 @@ namespace ShefaaPharmacy.Articles
         public int ArticleId { get; set; }
         public NewPriceTag()
         {
-            
+
         }
         public NewPriceTag(int articleId)
         {
@@ -34,20 +34,20 @@ namespace ShefaaPharmacy.Articles
             HelperUI.ConfigrationComboBox<UnitType>(cbUnitTypeId, UnitArticleService.GetArticleUnits(ArticleId), null, "Name", "Id");
             cbUnitTypeId.SelectedValue = DescriptionFK.GetPrimaryUnit(articleId);
         }
-        public NewPriceTag(int articleId,int pricetagId,int NewPrice)
+        public NewPriceTag(int articleId, int pricetagId, int NewPrice)
         {
             InitializeComponent();
             status = "Edit"; mynewprice = NewPrice;
             ArticleId = articleId;
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            priceTagMaster = context.PriceTagMasters.FirstOrDefault(x=>x.Id==pricetagId);
+            priceTagMaster = context.PriceTagMasters.FirstOrDefault(x => x.Id == pricetagId);
             priceTagMaster.PriceTagDetails = context.PriceTagDetails.Where(x => x.PriceTagId == priceTagMaster.Id).ToList();
             tbArticleName.Text = DescriptionFK.GetArticaleName(articaleId: articleId);
             HelperUI.ConfigrationComboBox<UnitType>(cbUnitTypeId, UnitArticleService.GetArticleUnits(ArticleId), null, "Name", "Id");
             cbUnitTypeId.SelectedValue = DescriptionFK.GetPrimaryUnit(articleId);
             tbBuyPrice.Text = priceTagMaster.PriceTagDetails.FirstOrDefault().BuyPrice.ToString();
             tbSellPrice.Text = priceTagMaster.PriceTagDetails.FirstOrDefault().SellPrice.ToString();
-            cbUnitTypeId.Enabled=false;
+            cbUnitTypeId.Enabled = false;
 
         }
         public void UpdateCurrentPrice()
@@ -57,9 +57,9 @@ namespace ShefaaPharmacy.Articles
             PriceTagMaster editprice = context.PriceTagMasters.FirstOrDefault(x => x.Id == priceTagMaster.Id);
             editprice.PriceTagDetails = priceTagMaster.PriceTagDetails;
             List<PriceTagDetail> mylist = new List<PriceTagDetail>();
-            foreach(PriceTagDetail item in editprice.PriceTagDetails)
+            foreach (PriceTagDetail item in editprice.PriceTagDetails)
             {
-                int UnitId=DescriptionFK.GetUnitId(cbUnitTypeId.Text);
+                int UnitId = DescriptionFK.GetUnitId(cbUnitTypeId.Text);
                 if (item.UnitId == UnitId)
                 {
                     item.BuyPrice = Convert.ToDouble(tbBuyPrice.Text);
@@ -123,7 +123,7 @@ namespace ShefaaPharmacy.Articles
         public static PriceTagMaster CreateNewPrice(int articleId)
         {
             NewPriceTag newPriceTag = new NewPriceTag(articleId);
-            
+
             newPriceTag.ShowDialog();
             return newPriceTag.priceTagMaster;
 

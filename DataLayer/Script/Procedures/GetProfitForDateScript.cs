@@ -14,7 +14,7 @@ namespace DataLayer.Script.Procedures
         }
         public static string Create()
         {
-			return @"Create Procedure GetProfitFromDateToDate 
+            return @"Create Procedure GetProfitFromDateToDate 
                     @FromDate Date,
                     @ToDate Date 
                     As
@@ -115,8 +115,6 @@ namespace DataLayer.Script.Procedures
 						select * from #TempNetProfit
 						Union 
 						select * from #tempLastArticles";
-			//--WHERE id=(select ArticleId from dbo.pricetagmaster WHERE ExpiryDate>=0)
-			//Union select* from #tempLastArticles
-		}
-	}
+        }
+    }
 }

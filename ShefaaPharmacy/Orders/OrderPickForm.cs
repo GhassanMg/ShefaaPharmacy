@@ -130,7 +130,7 @@ namespace ShefaaPharmacy.Orders
                 }
                 else
                 {
-                    PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().OrderMasters.Where(x=>x.OrderState== (OrderState)tsddlSearch.ComboBox.SelectedValue).ToList();
+                    PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().OrderMasters.Where(x => x.OrderState == (OrderState)tsddlSearch.ComboBox.SelectedValue).ToList();
                 }
             }
             catch (Exception ex)

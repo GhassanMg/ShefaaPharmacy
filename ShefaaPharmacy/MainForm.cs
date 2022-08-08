@@ -415,7 +415,7 @@ namespace ShefaaPharmacy
             {
                 if (Auth.IsReportReader())
                 {
-                    AccountPickForm accountPickForm = new AccountPickForm(new Account( ));
+                    AccountPickForm accountPickForm = new AccountPickForm(new Account());
                     accountPickForm.ShowDialog();
                 }
                 else
@@ -643,7 +643,7 @@ namespace ShefaaPharmacy
                     await Task.Delay(5000);
                     await Task.Run(() => notifytimer_Tick(sender, e));
                     Task.Run(() => DeleteFoldeUpdate());
-                    
+
                 }
                 catch
                 {
@@ -719,9 +719,9 @@ namespace ShefaaPharmacy
                     string zipFilePath = @"C:\ShefaaPharmacyVersions\NewVersion.Zip";
                     string extractionPath = @"C:\ShefaaPharmacyVersions\";
                     DirectoryInfo di = new DirectoryInfo(extractionPath + "NewVersion");
-                    if (Directory.Exists(extractionPath+"NewVersion"))
+                    if (Directory.Exists(extractionPath + "NewVersion"))
                     {
-                        Directory.Delete(extractionPath + "NewVersion",true);
+                        Directory.Delete(extractionPath + "NewVersion", true);
                     }
                     ZipFile.ExtractToDirectory(zipFilePath, extractionPath);
                     //MessageBox.Show("Extracted Successfully");
@@ -829,11 +829,11 @@ namespace ShefaaPharmacy
                 {
                     //ArticleImportForm articleImportForm = new ArticleImportForm();
                     //articleImportForm.ShowDialog();
-                    if (ShefaaPharmacyDbContext.GetCurrentContext( ).Articles.Where(x => x.ItsGeneral).ToList().Count == 0)
+                    if (ShefaaPharmacyDbContext.GetCurrentContext().Articles.Where(x => x.ItsGeneral).ToList().Count == 0)
                     {
                         Article article = new Article();
                         ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
-                        
+
                         article.ArticleCategoryId = 1;
                         article.ItsGeneral = true;
                         article.Name = "الأدوية";
@@ -887,7 +887,7 @@ namespace ShefaaPharmacy
         {
             if (Auth.IsDataEntry())
             {
-                AccountPaymentEditForm accountPaymentEditForm = new AccountPaymentEditForm(PayingCashState.InComing,"NewPayment");
+                AccountPaymentEditForm accountPaymentEditForm = new AccountPaymentEditForm(PayingCashState.InComing, "NewPayment");
                 accountPaymentEditForm.ShowDialog();
             }
             else
@@ -1339,7 +1339,7 @@ namespace ShefaaPharmacy
             {
                 pbWarning.Image = Properties.Resources.bell;
                 contextMenuStrip1.Items[0].BackColor = Color.Transparent;
-                contextMenuStrip1.Items[0].Image =null;
+                contextMenuStrip1.Items[0].Image = null;
             }
             if (Auth.IsReportReader())
             {
@@ -1402,7 +1402,7 @@ namespace ShefaaPharmacy
 
         private void MiTestingTimer_Click(object sender, EventArgs e)
         {
-            RegistryKey MTAppkey = Registry.CurrentUser.OpenSubKey(@"Software\" + ConnectionManager.ApplicationName); 
+            RegistryKey MTAppkey = Registry.CurrentUser.OpenSubKey(@"Software\" + ConnectionManager.ApplicationName);
             if (RDSFECXA__WEWDSA.DecodeForRegistry(MTAppkey.GetValue("UserNKey").ToString()) == "Demo")
             {
                 _MessageBoxDialog.Show("النسخة التجريبية", MessageBoxState.Alert);
@@ -1532,7 +1532,7 @@ namespace ShefaaPharmacy
             //{
             //    Invoke((MethodInvoker)delegate
             //    {
-                    
+
             //    });
 
             //});
@@ -1545,7 +1545,7 @@ namespace ShefaaPharmacy
             }
             finally
             {
-                
+
                 //waitingForm.Invoke((MethodInvoker)delegate
                 //{
                 //    // close the form on the forms thread
@@ -1595,7 +1595,7 @@ namespace ShefaaPharmacy
         }
         private void mExpiredArticlesReport_Click(object sender, EventArgs e)
         {
-            
+
         }
         private void تحديثالأسعارأونلاينToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1650,7 +1650,7 @@ namespace ShefaaPharmacy
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void tTracking_Tick(object sender, EventArgs e)
@@ -1697,7 +1697,7 @@ namespace ShefaaPharmacy
 
         private void طلبيةنوعجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -107,7 +107,7 @@ namespace ShefaaPharmacy.Accounting
             }
             bindingSourceMaster.DataSource = finalresult;
             bindingNavigator1.BindingSource = bindingSourceMaster;
-            
+
         }
         private void LoadDetail()
         {
@@ -132,7 +132,8 @@ namespace ShefaaPharmacy.Accounting
 
             dgMaster.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dgMaster.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            try { 
+            try
+            {
                 dgMaster.Columns["Id"].Visible = false;
                 dgMaster.Columns["Description"].Visible = false;
                 dgMaster.Columns["CreationByDescr"].Visible = false;

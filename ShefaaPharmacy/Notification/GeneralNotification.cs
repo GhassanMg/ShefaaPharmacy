@@ -100,7 +100,7 @@ namespace ShefaaPharmacy.Notification
                         {
                             ArticleId = item.ArticleId,
                             ArticleIdDescr = DescriptionFK.GetArticaleName(item.ArticleId),
-                            ArticleLeftAsString = InventoryService.QuantityForPrimaryUnit(item.ArticleId,item.UnitId,QuantOfSmallest).ToString(),
+                            ArticleLeftAsString = InventoryService.QuantityForPrimaryUnit(item.ArticleId, item.UnitId, QuantOfSmallest).ToString(),
                             ArticleMaxCount = item.Article.LimitUp,
                             ArticleMinCount = item.Article.LimitDown
                         });
@@ -159,7 +159,7 @@ namespace ShefaaPharmacy.Notification
                     ExpiryDate = g.Key.ExpiryDate,
                     ArticleId = g.Key.ArticleId, // join better than taking First()
                     CountAllItem = InventoryService.QuantityForPrimaryUnit(g.Key.ArticleId, g.Key.UnitId, g.Sum(i => i.CountAllItem - (i.CountSoldItem + i.CountGiftItem))),
-                    UnitId=DescriptionFK.GetPrimaryUnit(g.Key.ArticleId)
+                    UnitId = DescriptionFK.GetPrimaryUnit(g.Key.ArticleId)
                 }).ToList();
 
                 EditBindingSource.DataSource = mylist.Select(x => new { x.ArticleIdDescr,/* x.CreationDate,*/ x.UnitIdDescr, x.CountAllItem,/* Buy, sell,*/ x.ExpiryDate }).Where(x => x.CountAllItem != 0);

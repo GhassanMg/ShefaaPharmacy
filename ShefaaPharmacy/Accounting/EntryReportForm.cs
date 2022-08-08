@@ -41,7 +41,7 @@ namespace ShefaaPharmacy.Accounting
                 LoadMaster();
 
             }
-            WindowState =FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;
         }
         private void LoadMaster()
         {
@@ -59,8 +59,8 @@ namespace ShefaaPharmacy.Accounting
             List<EntryMaster> resultReport = DataBaseService.ConvertDataTable<EntryMaster>(result);
             bindingSourceMaster.DataSource = resultReport;
             bindingNavigator1.BindingSource = bindingSourceMaster;
-            
-            
+
+
         }
         private void LoadDetail(EntryMaster entryMaster)
         {

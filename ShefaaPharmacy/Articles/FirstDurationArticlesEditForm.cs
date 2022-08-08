@@ -37,17 +37,17 @@ namespace ShefaaPharmacy.Articles
         private void BindDataGridView()
         {
             DataTable dt = new DataTable();
-             dt.Columns.AddRange(new DataColumn[3] {
-            new DataColumn("Id", typeof(int)),
-            new DataColumn("Name", typeof(string)),
-            new DataColumn("Date",typeof(DateTime)) });
-            dt.Rows.Add(1, "John Hammond", DateTime.Now.ToShortDateString());
-            dt.Rows.Add(2, "Mudassar Khan", DateTime.Now.ToShortDateString());
-            dt.Rows.Add(3, "Suzanne Mathews", DateTime.Now.ToShortDateString());
-            dt.Rows.Add(4, "Robert Schidner", DateTime.Now.ToShortDateString());
-            this.dgvArticles.DataSource = dt;
+            dt.Columns.AddRange(new DataColumn[3] {
+    new DataColumn("Id", typeof(int)),
+    new DataColumn("Name", typeof(string)),
+    new DataColumn("Date",typeof(DateTime)) });
+            dt.Rows.Add(1, "John Hammond", DateTime.Now.ToShortDateString());
+            dt.Rows.Add(2, "Mudassar Khan", DateTime.Now.ToShortDateString());
+            dt.Rows.Add(3, "Suzanne Mathews", DateTime.Now.ToShortDateString());
+            dt.Rows.Add(4, "Robert Schidner", DateTime.Now.ToShortDateString());
+            this.dgvArticles.DataSource = dt;
         }
-        public FirstDurationArticlesEditForm(BalanceFirstDurationViewModel k, string status,EntryDetail detail)
+        public FirstDurationArticlesEditForm(BalanceFirstDurationViewModel k, string status, EntryDetail detail)
         {
             this.status = status;
             MyDetail = detail;
@@ -194,13 +194,13 @@ namespace ShefaaPharmacy.Articles
 
                 try
                 {
-                        if (dgvArticles.CurrentRow.Cells["ExpiryDate"].Value == null || Convert.ToDateTime(dgvArticles.CurrentRow.Cells["ExpiryDate"].Value).Date <= DateTime.Now.Date)
-                        {
-                            _MessageBoxDialog.Show("تاريخ الصلاحية غير صحيح", MessageBoxState.Warning);
-                            dgvArticles.CurrentCell = dgvArticles.CurrentRow.Cells["ExpiryDate"];
-                            dgvArticles.BeginEdit(true);
-                            return;
-                        }
+                    if (dgvArticles.CurrentRow.Cells["ExpiryDate"].Value == null || Convert.ToDateTime(dgvArticles.CurrentRow.Cells["ExpiryDate"].Value).Date <= DateTime.Now.Date)
+                    {
+                        _MessageBoxDialog.Show("تاريخ الصلاحية غير صحيح", MessageBoxState.Warning);
+                        dgvArticles.CurrentCell = dgvArticles.CurrentRow.Cells["ExpiryDate"];
+                        dgvArticles.BeginEdit(true);
+                        return;
+                    }
 
                     List<BalanceFirstDurationViewModel> mylist = new List<BalanceFirstDurationViewModel>();
                     mylist.Add(EditBindingSource.DataSource as BalanceFirstDurationViewModel);
@@ -268,8 +268,8 @@ namespace ShefaaPharmacy.Articles
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             context.EntryMasters.FirstOrDefault(x => x.Id == MyDetail.EntryMasterId).TotalCredit = Convert.ToInt32(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["total"].Value);
             context.EntryMasters.FirstOrDefault(x => x.Id == MyDetail.EntryMasterId).TotalDebit = Convert.ToInt32(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["total"].Value);
-            context.EntryDetails.Where(x => x.Id == MyDetail.Id).FirstOrDefault().Debit= Convert.ToInt32(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["total"].Value);
-            context.EntryDetails.Where(x => x.Id == MyDetail.Id-1).FirstOrDefault().Credit = Convert.ToInt32(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["total"].Value);
+            context.EntryDetails.Where(x => x.Id == MyDetail.Id).FirstOrDefault().Debit = Convert.ToInt32(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["total"].Value);
+            context.EntryDetails.Where(x => x.Id == MyDetail.Id - 1).FirstOrDefault().Credit = Convert.ToInt32(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["total"].Value);
             context.SaveChanges();
         }
         private void dgvArticles_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -367,7 +367,7 @@ namespace ShefaaPharmacy.Articles
             Update(newArt);
         }
         public void Update(FirstTimeArticles myart)
-        { 
+        {
             int quant = myart.Quantity;
             int myprice = Convert.ToInt32(myart.Price);
             string myolddate = expiarydate.ToString("yyyy-MM-dd HH:mm:ss.fff");

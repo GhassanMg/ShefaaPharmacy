@@ -1161,6 +1161,9 @@
     <EmbeddedResource Include="Accounting\FirstTimeReport.resx">
       <DependentUpon>FirstTimeReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\PaymentDayPickForm.resx">
+      <DependentUpon>PaymentDayPickForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Articles\ArticaleCategoryEditForm.resx">
       <DependentUpon>ArticaleCategoryEditForm.cs</DependentUpon>
     </EmbeddedResource>

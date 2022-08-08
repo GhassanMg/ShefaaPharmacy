@@ -27,7 +27,7 @@ namespace ShefaaPharmacy.Accounting
             InitializeComponent();
             btnMaximaizing.Enabled = false;
         }
-        public AccountPaymentEditForm(PayingCashState payingCashState,string status)
+        public AccountPaymentEditForm(PayingCashState payingCashState, string status)
         {
             InitializeComponent();
             this.payingCashState = payingCashState;

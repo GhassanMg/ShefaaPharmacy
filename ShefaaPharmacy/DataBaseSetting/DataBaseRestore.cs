@@ -76,7 +76,7 @@ namespace ShefaaPharmacy.DataBaseSetting
                     string tmp = tbPath.Text;
                     tmp = tmp.Substring(tmp.LastIndexOf('\\') + 1);
                     SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
-                    
+
                     tmp = tmp.Remove(tmp.ToUpper().LastIndexOf("_"));
                     if (tmp != con.Database)
                     {
@@ -108,9 +108,9 @@ namespace ShefaaPharmacy.DataBaseSetting
             }
             catch
             {
-                
+
             }
-            
+
         }
         public void RestoreDB()
         {
@@ -139,7 +139,7 @@ namespace ShefaaPharmacy.DataBaseSetting
                 sqlCon.Close();
                 //btnRestore.Enabled = true;
                 //lblLoading.Visible = pcloader.Visible = false;
-                
+
             }
             catch (Exception ex)
             {
@@ -155,48 +155,53 @@ namespace ShefaaPharmacy.DataBaseSetting
 
         private void tbDataBaseName_Validating(object sender, CancelEventArgs e)
         {
-           
+
+        }
+
+        private void lblLoading_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }            //            If My.Computer.FileSystem.FileExists(File) Then
 
-        //        Using Cmd As New SqlCommand() With {.Connection = New SqlConnection("Data Source=.\sqlexpress;Initial Catalog=JoyBoxStaff;User ID=samer-a;Password=" & pASS)}
+//        Using Cmd As New SqlCommand() With {.Connection = New SqlConnection("Data Source=.\sqlexpress;Initial Catalog=JoyBoxStaff;User ID=samer-a;Password=" & pASS)}
 
-        //            Cmd.CommandTimeout = 900
+//            Cmd.CommandTimeout = 900
 
-        //            Cmd.CommandText = "use master;"
-        //            Cmd.CommandText &= "alter database JoyBoxStaff set single_user with rollback immediate; "
-        //            Cmd.CommandText &= "restore database JoyBoxStaff from disk='" & File & "' with replace;"
-        //            Cmd.CommandText &= "alter database JoyBoxStaff set multi_user;"
+//            Cmd.CommandText = "use master;"
+//            Cmd.CommandText &= "alter database JoyBoxStaff set single_user with rollback immediate; "
+//            Cmd.CommandText &= "restore database JoyBoxStaff from disk='" & File & "' with replace;"
+//            Cmd.CommandText &= "alter database JoyBoxStaff set multi_user;"
 
-        //            Cmd.Connection.Open()
-        //            Dim r = Cmd.ExecuteNonQuery
-        //            HttpContext.Current.Session("Message1") = "تمت عملية الاستعادة: " & r.ToString
-        //            Cmd.Connection.Close()
+//            Cmd.Connection.Open()
+//            Dim r = Cmd.ExecuteNonQuery
+//            HttpContext.Current.Session("Message1") = "تمت عملية الاستعادة: " & r.ToString
+//            Cmd.Connection.Close()
 
-        //        End Using
-        //    Else
-        //        Masterlbl1.Text = "فشلت الاستعادة ملف غير موجود أو لايمكن الوصول إليه"
-        //    End If
-
-
-        //Using Cmd As New SqlCommand() With {.Connection = New SqlConnection(ConfigurationManager.ConnectionStrings("JoyBoxStaff").ConnectionString)}
-
-        //        Cmd.CommandTimeout = 900
-
-        //        Dim Fnm As String = Server.MapPath("~\backup\" & Now.ToString("yyyy-MM-dd-HH-mm-ss") & ".bak")
-
-        //        If My.Computer.FileSystem.FileExists(Fnm) Then
-        //            My.Computer.FileSystem.DeleteFile(Fnm, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.DeletePermanently)
-        //        End If
-
-        //        Cmd.CommandText = "backup database JoyBoxStaff to disk='" & Fnm & "'"
-
-        //        Cmd.Connection.Open()
-        //        Dim r = Cmd.ExecuteNonQuery
-
-        //        Cmd.Connection.Close()
+//        End Using
+//    Else
+//        Masterlbl1.Text = "فشلت الاستعادة ملف غير موجود أو لايمكن الوصول إليه"
+//    End If
 
 
-        //    End Using
+//Using Cmd As New SqlCommand() With {.Connection = New SqlConnection(ConfigurationManager.ConnectionStrings("JoyBoxStaff").ConnectionString)}
+
+//        Cmd.CommandTimeout = 900
+
+//        Dim Fnm As String = Server.MapPath("~\backup\" & Now.ToString("yyyy-MM-dd-HH-mm-ss") & ".bak")
+
+//        If My.Computer.FileSystem.FileExists(Fnm) Then
+//            My.Computer.FileSystem.DeleteFile(Fnm, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.DeletePermanently)
+//        End If
+
+//        Cmd.CommandText = "backup database JoyBoxStaff to disk='" & Fnm & "'"
+
+//        Cmd.Connection.Open()
+//        Dim r = Cmd.ExecuteNonQuery
+
+//        Cmd.Connection.Close()
+
+
+//    End Using
 

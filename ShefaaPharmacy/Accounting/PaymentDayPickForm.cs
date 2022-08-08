@@ -89,7 +89,7 @@ namespace ShefaaPharmacy.Accounting
             base.bindingNavigatorAddNewItem_Click(sender, e);
             if (Auth.IsDataEntry())
             {
-                AccountPaymentEditForm accountPaymentEditForm = new AccountPaymentEditForm(PayingCashState.InComing,"NewPayment");
+                AccountPaymentEditForm accountPaymentEditForm = new AccountPaymentEditForm(PayingCashState.InComing, "NewPayment");
                 accountPaymentEditForm.ShowDialog();
             }
             else
@@ -117,6 +117,11 @@ namespace ShefaaPharmacy.Accounting
                 entryEditForm.ShowDialog();
                 Rebinding();
             }
+        }
+
+        private void PaymentDayPickForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

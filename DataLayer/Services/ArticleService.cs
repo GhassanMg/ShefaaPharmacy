@@ -158,7 +158,7 @@ namespace DataLayer.Services
             }
             return priceTagDetails;
         }
-        public static void MakeNewPriceTagDetailForNewUnit(int articleId, int unitId,int masterId)
+        public static void MakeNewPriceTagDetailForNewUnit(int articleId, int unitId, int masterId)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             int QuantityForPrimary = context.ArticleUnits.Where(x => x.ArticleId == articleId && x.UnitTypeId == unitId).FirstOrDefault().QuantityForPrimary;
@@ -195,7 +195,7 @@ namespace DataLayer.Services
             }
             return priceTagDetails;
         }
-        public static void MakeNewPriceTagForNewUnit(int articleId,int unitId)
+        public static void MakeNewPriceTagForNewUnit(int articleId, int unitId)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             List<ArticleUnits> articleUnits = ShefaaPharmacyDbContext.GetCurrentContext()

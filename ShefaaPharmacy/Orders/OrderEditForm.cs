@@ -85,7 +85,7 @@ namespace ShefaaPharmacy.Orders
         }
         protected override void btOk_Click(object sender, EventArgs e)
         {
-            if(dgvOrderDetail.Rows.Count == 0)
+            if (dgvOrderDetail.Rows.Count == 0)
             {
                 _MessageBoxDialog.Show("لا يمكن إضافة طلبية فارغة", MessageBoxState.Warning);
                 return;
@@ -118,7 +118,7 @@ namespace ShefaaPharmacy.Orders
                     OrderMaster.OrderState = (OrderState)ddlOrderState.SelectedValue;
                     context.OrderMasters.UpdateRange(OrderMaster);
                     context.SaveChanges();
-                    context.Entry(OrderMaster).State = EntityState.Detached; 
+                    context.Entry(OrderMaster).State = EntityState.Detached;
                     var old = context.OrderDetails.Where(x => x.OrderMasterId == OrderMaster.Id).ToList();
                     if (OrderMaster.Details.Count < old.Count())
                     {

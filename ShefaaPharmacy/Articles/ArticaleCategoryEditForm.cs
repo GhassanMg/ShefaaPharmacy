@@ -29,7 +29,7 @@ namespace ShefaaPharmacy.Articale
         }
         public static ArticleCategory CreateArticaleCategory(ArticleCategory articaleCategorys, FormOperation formOperation = FormOperation.New)
         {
-            ArticaleCategoryEditForm fmEdit = new ArticaleCategoryEditForm(articaleCategorys ,formOperation);
+            ArticaleCategoryEditForm fmEdit = new ArticaleCategoryEditForm(articaleCategorys, formOperation);
             try
             {
                 fmEdit.Text = "تعريف صنف رئيسي ";
@@ -67,7 +67,7 @@ namespace ShefaaPharmacy.Articale
                     context.ArticleCategorys.Add(articaleCategory);
                     context.SaveChanges();
                     _MessageBoxDialog.Show("تم إضافة صنف رئيسي جديد", MessageBoxState.Done);
-                    if (FormOperation == FormOperation.NewFromPicker )
+                    if (FormOperation == FormOperation.NewFromPicker)
                     {
                         Close();
                     }

@@ -42,7 +42,7 @@ namespace ShefaaPharmacy.Articles
         {
             LoadGrid();
             ChangeStyleOfGrid(dgMaster);
-            if (dgMaster.Rows.Count==0)
+            if (dgMaster.Rows.Count == 0)
             {
                 lblCenter.Visible = true;
             }

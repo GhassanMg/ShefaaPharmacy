@@ -152,7 +152,7 @@ namespace ShefaaPharmacy
         {
             //if (_BalanceFirstDurationViewModels == null)
             //{
-                _BalanceFirstDurationViewModels = new List<BalanceFirstDurationViewModel>();
+            _BalanceFirstDurationViewModels = new List<BalanceFirstDurationViewModel>();
             //}
             ChangeStyleOfGrid(dgvArticles);
             dgvArticles.Columns["Total"].ReadOnly = true;
@@ -174,7 +174,7 @@ namespace ShefaaPharmacy
         {
             //if (_CustomerDepthViewModels == null)
             //{
-                _CustomerDepthViewModels = new List<CustomerDepthViewModel>();
+            _CustomerDepthViewModels = new List<CustomerDepthViewModel>();
             //}
             ChangeStyleOfGrid(dgvCustomer);
             CustomerBindingSource.DataSource = _CustomerDepthViewModels;
@@ -185,7 +185,7 @@ namespace ShefaaPharmacy
         {
             //if (_SupplierDepthViewModels == null)
             //{
-                _SupplierDepthViewModels = new List<SupplierDepthViewModel>();
+            _SupplierDepthViewModels = new List<SupplierDepthViewModel>();
             //}
             ChangeStyleOfGrid(dgvSuplier);
             SupplierBindingSource.DataSource = _SupplierDepthViewModels;
@@ -205,16 +205,16 @@ namespace ShefaaPharmacy
         }
         private void CheckLastRowForFirstTimeStuff()
         {
-            if ( ExistStuffdatagrid.Rows[ExistStuffdatagrid.Rows.Count - 1].Cells["price"].Value == null ||
+            if (ExistStuffdatagrid.Rows[ExistStuffdatagrid.Rows.Count - 1].Cells["price"].Value == null ||
                ExistStuffdatagrid.Rows[ExistStuffdatagrid.Rows.Count - 1].Cells["count"].Value == null)
             {
                 return;
             }
-           else if (Convert.ToInt32(ExistStuffdatagrid.Rows[ExistStuffdatagrid.Rows.Count - 1].Cells["price"].Value) == 0 &&
-                Convert.ToInt32(ExistStuffdatagrid.Rows[ExistStuffdatagrid.Rows.Count - 1].Cells["count"].Value) == 0)
-           {
+            else if (Convert.ToInt32(ExistStuffdatagrid.Rows[ExistStuffdatagrid.Rows.Count - 1].Cells["price"].Value) == 0 &&
+                 Convert.ToInt32(ExistStuffdatagrid.Rows[ExistStuffdatagrid.Rows.Count - 1].Cells["count"].Value) == 0)
+            {
                 _ExistStuffViewModel.RemoveAt(ExistStuffdatagrid.Rows.Count - 1);
-           }
+            }
         }
         private void CheckLastRowForBankCash()
         {
@@ -239,7 +239,7 @@ namespace ShefaaPharmacy
                 Convert.ToString(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["ArticleIdDescr"].Value) == "" &&
                 Convert.ToInt32(dgvArticles.Rows[dgvArticles.Rows.Count - 1].Cells["Quantity"].Value) == 0)
             {
-                _BalanceFirstDurationViewModels.RemoveAt(dgvArticles.Rows.Count -1);
+                _BalanceFirstDurationViewModels.RemoveAt(dgvArticles.Rows.Count - 1);
             }
         }
 
@@ -326,7 +326,7 @@ namespace ShefaaPharmacy
                     }
                 }
             }
-            
+
         }
         private void SupplierMoney()
         {
@@ -363,7 +363,7 @@ namespace ShefaaPharmacy
             {
                 foreach (var item in _CustomerDepthViewModels)
                 {
-                    if(item.AccountIdDescr == "")
+                    if (item.AccountIdDescr == "")
                     {
                         continue;
                     }
@@ -379,21 +379,21 @@ namespace ShefaaPharmacy
                         context.SaveChanges();
                     }
                 }
-                if(mydepitIds.Count == 0) { _MessageBoxDialog.Show("لم يتم اختيار حساب أو الحساب غير صالح", MessageBoxState.Warning); }
+                if (mydepitIds.Count == 0) { _MessageBoxDialog.Show("لم يتم اختيار حساب أو الحساب غير صالح", MessageBoxState.Warning); }
                 else _MessageBoxDialog.Show("تم تخزين ديون الزبائن بنجاح", MessageBoxState.Done);
             }
             catch
             {
                 _MessageBoxDialog.Show("حصل خطأ يرجى اعادة العملية", MessageBoxState.Error);
             }
-            
+
         }
         private void CashFirstTimeMoney()
         {
             AccountProfitId = 18;
             try
             {
-                if (dgvBankCash.Rows.Count < 0||BankCashBindingSource.Current == null)
+                if (dgvBankCash.Rows.Count < 0 || BankCashBindingSource.Current == null)
                 {
                     _MessageBoxDialog.Show("لا يمكن ان يكون الرصيد 0", MessageBoxState.Error);
                     BankCashBindingSource.DataSource = new List<BankDepthViewModel>();
@@ -415,8 +415,8 @@ namespace ShefaaPharmacy
 
                         _MessageBoxDialog.Show("تم تخزين رصيد الصندوق بنجاح", MessageBoxState.Done);
                         BankCashBindingSource.DataSource = new List<BankDepthViewModel>();
-                        panelAdd.Visible = pictureBox1.Visible = lblAdd.Visible  = true;
-                        
+                        panelAdd.Visible = pictureBox1.Visible = lblAdd.Visible = true;
+
                     }
                 }
             }
@@ -447,7 +447,7 @@ namespace ShefaaPharmacy
                         _MessageBoxDialog.Show("لا يوجد أسطر لإتمام العملية", MessageBoxState.Alert);
                         return;
                     }
-                    else if(EditBindingSource.Count == 1 && dgvArticles.CurrentRow.Cells["ArticleIdDescr"].Value.ToString()=="")
+                    else if (EditBindingSource.Count == 1 && dgvArticles.CurrentRow.Cells["ArticleIdDescr"].Value.ToString() == "")
                     {
                         _MessageBoxDialog.Show("لا يوجد أسطر لإتمام العملية", MessageBoxState.Alert);
                         return;
@@ -475,9 +475,9 @@ namespace ShefaaPharmacy
                         _MessageBoxDialog.Show("لم يتم تحديد مادة أو المادة غير موجودة", MessageBoxState.Alert);
                         return;
                     }
-                    if (CheckArticleExist()) 
+                    if (CheckArticleExist())
                     {
-                        return;   
+                        return;
                     }
                     CalcTotal();
                     GoodFirstTime();
@@ -495,7 +495,7 @@ namespace ShefaaPharmacy
                 }
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
-                    
+
                     if (CustomerBindingSource.Count < 1)
                     {
                         _MessageBoxDialog.Show("لا يوجد أسطر لإتمام العملية", MessageBoxState.Alert);
@@ -516,9 +516,9 @@ namespace ShefaaPharmacy
                                 return;
                             }
                         }
-                        
+
                     }
-                    
+
                     SendKeys.SendWait("{ENTER}");
                     CheckLastRowForCustomer();
                     CustomerMoney();
@@ -552,7 +552,7 @@ namespace ShefaaPharmacy
                             }
                         }
                     }
-                    
+
                     SendKeys.SendWait("{ENTER}");
                     CheckLastRowForSupplier();
                     SupplierMoney();
@@ -610,7 +610,7 @@ namespace ShefaaPharmacy
                         _MessageBoxDialog.Show("لا يوجد أسطر لإتمام العملية", MessageBoxState.Alert);
                         return;
                     }
-                    else if (ExistStuffBindingSource.Count == 1 && ExistStuffdatagrid.CurrentRow.Cells["Name"].Value==null)
+                    else if (ExistStuffBindingSource.Count == 1 && ExistStuffdatagrid.CurrentRow.Cells["Name"].Value == null)
                     {
                         _MessageBoxDialog.Show("لا يوجد أسطر لإتمام العملية", MessageBoxState.Alert);
                         return;
@@ -668,9 +668,9 @@ namespace ShefaaPharmacy
                 int validArt = 0;
                 foreach (DataGridViewRow row in dgvArticles.Rows)
                 {
-                    if (row.Cells["ArticleIdDescr"].Value != null || row.Cells["ArticleIdDescr"].Value.ToString()!= "")
+                    if (row.Cells["ArticleIdDescr"].Value != null || row.Cells["ArticleIdDescr"].Value.ToString() != "")
                     {
-                       validArt++;
+                        validArt++;
                     }
                 }
                 if (validArt == 0) return true;
@@ -718,7 +718,7 @@ namespace ShefaaPharmacy
                 {
                     foreach (DataGridViewRow row in dgvAll.Rows)
                     {
-                        if (row.Cells["الصنف"].Value.ToString().Equals(lastrow.Cells["ArticleIdDescr"].Value.ToString()) && row.Cells["تاريخ الصلاحية"].Value.ToString().Equals(lastrow.Cells["ExpiryDate"].Value.ToString())) 
+                        if (row.Cells["الصنف"].Value.ToString().Equals(lastrow.Cells["ArticleIdDescr"].Value.ToString()) && row.Cells["تاريخ الصلاحية"].Value.ToString().Equals(lastrow.Cells["ExpiryDate"].Value.ToString()))
                         {
                             _MessageBoxDialog.Show("المادة '" + lastrow.Cells["ArticleIdDescr"].Value.ToString() + "'موجودة سابقاً , يرجى التعديل عليها", MessageBoxState.Warning);
                             dgvAll.CurrentCell = dgvAll["الصنف", row.Index];
@@ -781,7 +781,7 @@ namespace ShefaaPharmacy
             List<ExistStuffViewModel> newArt = new List<ExistStuffViewModel>();
             SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
             con.Open();
-            
+
             foreach (var item in mystaff)
             {
                 if (item.Name == "0" || item.Count == 0 || item.Price == 0)
@@ -793,8 +793,8 @@ namespace ShefaaPharmacy
                 {
                     Name = item.Name,
                     Price = item.Price,
-                    Count=item.Count,
-                    Description=item.Description
+                    Count = item.Count,
+                    Description = item.Description
                 });
             }
             con.Close();
@@ -843,7 +843,7 @@ namespace ShefaaPharmacy
                 copy.WriteToServer(dt);
             }
         }
-        SqlDateTime sqltime; 
+        SqlDateTime sqltime;
         private void SaveNewFirstTimeArticale(List<BalanceFirstDurationViewModel> mybalance)
         {
             List<FirstTimeArticles> newArt = new List<FirstTimeArticles>();
@@ -856,15 +856,15 @@ namespace ShefaaPharmacy
             {
                 newArt.Add(new FirstTimeArticles
                 {
-                    id = Convert.ToInt32(myid)+1,
-                    InvoiceKind= "رصيد أول مدة",
+                    id = Convert.ToInt32(myid) + 1,
+                    InvoiceKind = "رصيد أول مدة",
                     UnitId = item.UnitId,
                     Name = item.ArticleIdDescr,
                     Price = item.Price,
                     Quantity = item.Quantity,
-                    Total=item.Total,
+                    Total = item.Total,
                     Expirydate = item.ExpiryDate,
-                }) ;
+                });
                 myid = newArt.LastOrDefault().id;
             }
             Insert(newArt);
@@ -1003,9 +1003,9 @@ namespace ShefaaPharmacy
         private void FillWithArticleName(string value)
         {
             Article result = DescriptionFK.ArticleExistsNameOrBarcode(value);
-            if(result == null)
+            if (result == null)
             {
-                if(_MessageBoxDialog.Show("هل تريد اختيار صنف أو إضافة مادة جديدة ؟", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
+                if (_MessageBoxDialog.Show("هل تريد اختيار صنف أو إضافة مادة جديدة ؟", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
                 {
                     try
                     {
@@ -1014,7 +1014,7 @@ namespace ShefaaPharmacy
 
                         if (result != null)
                         {
-                          FillRow(choosedres);
+                            FillRow(choosedres);
                         }
                     }
                     catch
@@ -1254,7 +1254,7 @@ namespace ShefaaPharmacy
                 }
             }
             e.Control.KeyPress -= new KeyPressEventHandler(CheckKey);
-            if (headerText.Equals("Price")|| headerText.Equals("Quantity") || headerText.Equals("Total") && (EditBindingSource.Current as BalanceFirstDurationViewModel).ArticleId != 0)
+            if (headerText.Equals("Price") || headerText.Equals("Quantity") || headerText.Equals("Total") && (EditBindingSource.Current as BalanceFirstDurationViewModel).ArticleId != 0)
             {
                 TextBox tb = e.Control as TextBox;
                 if (tb != null)
@@ -1294,7 +1294,7 @@ namespace ShefaaPharmacy
         bool isfirst = true;
         private void ChangeAddBtnEvent()
         {
-            if (tabControl1.SelectedTab==tabPage1)
+            if (tabControl1.SelectedTab == tabPage1)
             {
                 dgvAll.Visible = false;
                 dgvTotalPrice.Visible = false;
@@ -1331,20 +1331,21 @@ namespace ShefaaPharmacy
                 dgvBankCash.Columns["AccountIdDescr"].Visible = false;
                 dgvBankCash.Columns["KindOperation"].Visible = false;
                 dgvBankCash.Columns["Debit"].ReadOnly = false;
-                
+
                 BackPictureBox.Enabled = true;
                 if (dgvBankCash.Rows.Count >= 1)
                 {
-                   isfirst = false;
-                }else BankCashBindingSource.AddNew();
+                    isfirst = false;
+                }
+                else BankCashBindingSource.AddNew();
                 panelAdd.Visible = false;
                 lblNoBankCash.Visible = false;
                 pictureBoxDelete.Enabled = lblDelete.Enabled = true;
 
             }
-            else if(tabControl1.SelectedTab == tabPage5)
+            else if (tabControl1.SelectedTab == tabPage5)
             {
-                LoaddgvAllStuff();   
+                LoaddgvAllStuff();
                 dgvAllStuff.Visible = false;
                 ExistStuffdatagrid.Visible = true;
                 BackPictureBox.Enabled = true;
@@ -1353,8 +1354,8 @@ namespace ShefaaPharmacy
 
             }
         }
-        UserParameters userParameters= new UserParameters();
-        public void LoadAllCustomerDepits( )
+        UserParameters userParameters = new UserParameters();
+        public void LoadAllCustomerDepits()
         {
             userParameters.Acc_AccountId = 2;
             userParameters.BranchId = 1;
@@ -1397,7 +1398,7 @@ namespace ShefaaPharmacy
             dgvAllCustomers.Columns["CreationDate"].Visible = false;
             dgvAllCustomers.Columns["KindOperation"].HeaderText = "البيان";
             dgvAllCustomers.Columns["KindOperation"].DisplayIndex = 2;
-            if (dgvAllCustomers.Rows.Count==0)
+            if (dgvAllCustomers.Rows.Count == 0)
             {
                 lblNoCustomerDepits.Visible = true;
             }
@@ -1406,7 +1407,7 @@ namespace ShefaaPharmacy
                 lblNoCustomerDepits.Visible = false;
             }
         }
-        private void LoadAllSupplierDepits( )
+        private void LoadAllSupplierDepits()
         {
             userParameters.Acc_AccountId = 6;
             userParameters.BranchId = 1;
@@ -1505,11 +1506,11 @@ namespace ShefaaPharmacy
             dgvBankCash.AllowUserToAddRows = false;
             if (dgvBankCash.Rows.Count == 0)
             {
-                lblNoBankCash.Visible = true; 
+                lblNoBankCash.Visible = true;
             }
             else
             {
-                lblNoBankCash.Visible = false; 
+                lblNoBankCash.Visible = false;
             }
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1522,11 +1523,11 @@ namespace ShefaaPharmacy
                 lblAdd.Text = "إضافة مادة";
                 panelDelete.Visible = true;
             }
-            else if(tabControl1.SelectedTab==tabPage2)
+            else if (tabControl1.SelectedTab == tabPage2)
             {
                 LoadAllCustomerDepits();
                 panelAdd.Visible = true;
-                lblAdd.Text ="إضافة دين";
+                lblAdd.Text = "إضافة دين";
                 panelDelete.Visible = true;
             }
             if (tabControl1.SelectedTab == tabPage3)
@@ -1554,7 +1555,7 @@ namespace ShefaaPharmacy
 
         private void btnTotal_Click(object sender, EventArgs e)
         {
-            FirstTimeReport frm = new FirstTimeReport(new EntryMaster(),"FirstTime");
+            FirstTimeReport frm = new FirstTimeReport(new EntryMaster(), "FirstTime");
             frm.ShowDialog();
         }
 
@@ -1582,16 +1583,16 @@ namespace ShefaaPharmacy
             myrow.UnitId = ShefaaPharmacyDbContext.GetCurrentContext().UnitTypes.FirstOrDefault(x => x.Name == dgvAll.CurrentRow.Cells[1].Value.ToString()).Id;
             myrow.Price = Convert.ToInt32(dgvAll.CurrentRow.Cells["السعر"].Value);
             myrow.Quantity = Convert.ToInt32(dgvAll.CurrentRow.Cells["كمية أول المدة"].Value);
-            int quant = InventoryService.ConvertArticleUnitToSmallestUnit(myrow.ArticleId,myrow.UnitId,myrow.Quantity);
+            int quant = InventoryService.ConvertArticleUnitToSmallestUnit(myrow.ArticleId, myrow.UnitId, myrow.Quantity);
             myrow.PriceTagId = context.PriceTagMasters.FirstOrDefault(x => x.ArticleId == myrow.ArticleId && x.CountAllItem == quant).Id;
             string dt = Convert.ToDateTime(dgvAll.CurrentRow.Cells["تاريخ الصلاحية"].Value).ToString("yyyy-MM-dd HH:mm:ss.fff");
             string dateString = dgvAll.CurrentRow.Cells["تاريخ الصلاحية"].Value.ToString();
-            DateTime date = Convert.ToDateTime(dt, System.Globalization.CultureInfo.GetCultureInfo("ur-PK").DateTimeFormat);  
+            DateTime date = Convert.ToDateTime(dt, System.Globalization.CultureInfo.GetCultureInfo("ur-PK").DateTimeFormat);
             myrow.ExpiryDate = date;
 
-            detail.AccountId =19;detail.Credit =0;detail.Debit =myrow.Total;detail.Id = context.EntryDetails.FirstOrDefault(x => x.AccountId == 19 && x.Debit == myrow.Total).Id;
+            detail.AccountId = 19; detail.Credit = 0; detail.Debit = myrow.Total; detail.Id = context.EntryDetails.FirstOrDefault(x => x.AccountId == 19 && x.Debit == myrow.Total).Id;
             detail.EntryMasterId = context.EntryDetails.FirstOrDefault(x => x.AccountId == 19 && x.Debit == myrow.Total).EntryMasterId;
-            FirstDurationArticlesEditForm editForm = new FirstDurationArticlesEditForm(myrow, "Edit",detail);
+            FirstDurationArticlesEditForm editForm = new FirstDurationArticlesEditForm(myrow, "Edit", detail);
             editForm.ShowDialog();
             LoadFirstArts();
             LoadTotalPrice();
@@ -1602,7 +1603,7 @@ namespace ShefaaPharmacy
         }
 
         private void BackPictureBox_Click(object sender, EventArgs e)
-        {   
+        {
             if (tabControl1.SelectedTab == tabPage1)
             {
                 BackPictureBox.Enabled = false;
@@ -1676,7 +1677,7 @@ namespace ShefaaPharmacy
                 return;
             try
             {
-                if(dgvArticles.Rows[e.RowIndex].Cells["ArticleIdDescr"].Value.ToString() != "")
+                if (dgvArticles.Rows[e.RowIndex].Cells["ArticleIdDescr"].Value.ToString() != "")
                 {
                     if (DateTime.Parse(dgvArticles.Rows[e.RowIndex].Cells["ExpiryDate"].Value.ToString()).ToShortDateString() == "01/01/0001" || dgvArticles.Rows[e.RowIndex].Cells["ExpiryDate"].Value.ToString() == null || dgvArticles.Rows[e.RowIndex].Cells["ExpiryDate"].Value.ToString() == "")
                     {
@@ -1696,14 +1697,14 @@ namespace ShefaaPharmacy
                             _MessageBoxDialog.Show("يجب ادخال تنسيق تاريخ صحيح بالشكل \n 01/01/2000", MessageBoxState.Error);
                             e.Cancel = true; // The important part
                             SetFocus("ExpiryDate");
-                            
+
                         }
                     }
                 }
             }
             catch
             {
-              _MessageBoxDialog.Show("لم يتم تنفيذ التحقق", MessageBoxState.Error);
+                _MessageBoxDialog.Show("لم يتم تنفيذ التحقق", MessageBoxState.Error);
             }
         }
         EntryDetail mydetail1 = new EntryDetail();
@@ -1791,10 +1792,10 @@ namespace ShefaaPharmacy
             detail.EntryMasterId = context.EntryDetails.FirstOrDefault(x => x.Id == detail.Id).EntryMasterId;
             //foreach (DataGridViewRow item in dgvAllSuppliers.Rows)
             //{
-                if (dgvAllSuppliers.CurrentCell.Selected == true)
-                {
-                    //detail.EntryMasterId = (item.DataBoundItem as EntryDetail).EntryMasterId;
-                }
+            if (dgvAllSuppliers.CurrentCell.Selected == true)
+            {
+                //detail.EntryMasterId = (item.DataBoundItem as EntryDetail).EntryMasterId;
+            }
             //}
             FirstTimeSupplierEditForm editForm = new FirstTimeSupplierEditForm(detail);
             editForm.ShowDialog();
@@ -1868,7 +1869,7 @@ namespace ShefaaPharmacy
             {
                 _MessageBoxDialog.Show("هناك مشكلة في بيانات الحقل المحدد", MessageBoxState.Error);
             }
-            
+
         }
 
         private void dgvBankCash_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1885,7 +1886,7 @@ namespace ShefaaPharmacy
                     tb.KeyPress += new KeyPressEventHandler(CheckKey);
                 }
             }
-        } 
+        }
 
         private void pBottom_Paint(object sender, PaintEventArgs e)
         {
@@ -1898,7 +1899,7 @@ namespace ShefaaPharmacy
             string headerText = dgvBankCash.Columns[column].Name;
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             e.Control.KeyPress -= new KeyPressEventHandler(CheckKey);
-            if (headerText.Equals("السعر")|| headerText.Equals("العدد"))
+            if (headerText.Equals("السعر") || headerText.Equals("العدد"))
             {
                 TextBox tb = e.Control as TextBox;
                 if (tb != null)
