@@ -856,7 +856,7 @@ namespace ShefaaPharmacy
             {
                 newArt.Add(new FirstTimeArticles
                 {
-                    id = Convert.ToInt32(myid) + 1,
+                    //id = Convert.ToInt32(myid) + 1,
                     InvoiceKind = "رصيد أول مدة",
                     UnitId = item.UnitId,
                     Name = item.ArticleIdDescr,
@@ -865,7 +865,7 @@ namespace ShefaaPharmacy
                     Total = item.Total,
                     Expirydate = item.ExpiryDate,
                 });
-                myid = newArt.LastOrDefault().id;
+                //myid = newArt.LastOrDefault().id;
             }
             Insert(newArt);
         }
@@ -876,7 +876,7 @@ namespace ShefaaPharmacy
                 DataTable dt = new DataTable();
                 copy.DestinationTableName = "dbo.FirstTimeArticles";
                 // Add mappings so that the column order doesn't matter
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.id), "id");
+                //copy.ColumnMappings.Add(nameof(FirstTimeArticles.id), "id");
                 copy.ColumnMappings.Add(nameof(FirstTimeArticles.Name), "name");
                 copy.ColumnMappings.Add(nameof(FirstTimeArticles.InvoiceKind), "InvoiceKind");
                 copy.ColumnMappings.Add(nameof(FirstTimeArticles.UnitIdDescr), "UnitIdDescr");
@@ -1273,6 +1273,7 @@ namespace ShefaaPharmacy
         int count = 0;
         private void LoadFirstArts()
         {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
             if (count == 0)
                 dgvAll.Columns.Clear();
             count++;
@@ -1371,21 +1372,26 @@ namespace ShefaaPharmacy
             DataTable result = DataBaseService.ExecStoredProcedure(ShefaaPharmacyDbContext.GetCurrentContext().Database.GetDbConnection(),
                                                 "GetAccountMovmement",
                                                 parameters.ToArray());
-            List<EntryDetail> resultReport = DataBaseService.ConvertDataTable<EntryDetail>(result);
-            List<EntryDetail> finalresult = new List<EntryDetail>();
 
-            foreach (EntryDetail item in resultReport)
+            List<EntryDetail> finalresult = new List<EntryDetail>();
+            if(result != null)
             {
-                if (item.Id == item.Id - 1)
+                List<EntryDetail> resultReport = DataBaseService.ConvertDataTable<EntryDetail>(result);
+
+                foreach (EntryDetail item in resultReport)
                 {
-                    if (count == 2) continue;
-                    finalresult.Add(item);
-                    count++;
+                    if (item.Id == item.Id - 1)
+                    {
+                        if (count == 2) continue;
+                        finalresult.Add(item);
+                        count++;
+                    }
+                    if (item.KindOperation == KindOperation.GoodFirstTime && item.Debit != 0)
+                    {
+                        finalresult.Add(item);
+                    }
                 }
-                if (item.KindOperation == KindOperation.GoodFirstTime && item.Debit != 0)
-                {
-                    finalresult.Add(item);
-                }
+
             }
             AllCustomerBindingSource.DataSource = finalresult;
             dgvAllCustomers.DataSource = AllCustomerBindingSource;
@@ -1423,21 +1429,26 @@ namespace ShefaaPharmacy
             DataTable result = DataBaseService.ExecStoredProcedure(ShefaaPharmacyDbContext.GetCurrentContext().Database.GetDbConnection(),
                                                 "GetAccountMovmement",
                                                 parameters.ToArray());
-            List<EntryDetail> resultReport = DataBaseService.ConvertDataTable<EntryDetail>(result);
-            List<EntryDetail> finalresult = new List<EntryDetail>();
 
-            foreach (EntryDetail item in resultReport)
+            List<EntryDetail> finalresult = new List<EntryDetail>();
+            if (result != null)
             {
-                if (item.Id == item.Id - 1)
+                List<EntryDetail> resultReport = DataBaseService.ConvertDataTable<EntryDetail>(result);
+
+                foreach (EntryDetail item in resultReport)
                 {
-                    if (count == 2) continue;
-                    finalresult.Add(item);
-                    count++;
+                    if (item.Id == item.Id - 1)
+                    {
+                        if (count == 2) continue;
+                        finalresult.Add(item);
+                        count++;
+                    }
+                    if (item.KindOperation == KindOperation.GoodFirstTime && item.Credit != 0)
+                    {
+                        finalresult.Add(item);
+                    }
                 }
-                if (item.KindOperation == KindOperation.GoodFirstTime && item.Credit != 0)
-                {
-                    finalresult.Add(item);
-                }
+
             }
             AllSuppliersBindingSource.DataSource = finalresult;
             dgvAllSuppliers.DataSource = AllSuppliersBindingSource;
@@ -1475,22 +1486,27 @@ namespace ShefaaPharmacy
             DataTable result = DataBaseService.ExecStoredProcedure(ShefaaPharmacyDbContext.GetCurrentContext().Database.GetDbConnection(),
                                                 "GetAccountMovmement",
                                                 parameters.ToArray());
-            List<EntryDetail> resultReport = DataBaseService.ConvertDataTable<EntryDetail>(result);
-            List<EntryDetail> finalresult = new List<EntryDetail>();
 
-            foreach (EntryDetail item in resultReport)
+            List<EntryDetail> finalresult = new List<EntryDetail>();
+            if (result != null)
             {
-                if (item.Id == item.Id - 1)
+                List<EntryDetail> resultReport = DataBaseService.ConvertDataTable<EntryDetail>(result);
+
+                foreach (EntryDetail item in resultReport)
                 {
-                    if (count == 2) continue;
-                    finalresult.Add(item);
-                    count++;
-                }
-                if (item.KindOperation == KindOperation.GoodFirstTime)
-                {
-                    finalresult.Add(item);
-                    bankcashDetail = item;
-                }
+                    if (item.Id == item.Id - 1)
+                    {
+                        if (count == 2) continue;
+                        finalresult.Add(item);
+                        count++;
+                    }
+                    if (item.KindOperation == KindOperation.GoodFirstTime)
+                    {
+                        finalresult.Add(item);
+                        bankcashDetail = item;
+                    }
+
+            }
             }
             BankCashBindingSource.DataSource = finalresult;
             dgvBankCash.DataSource = BankCashBindingSource;
