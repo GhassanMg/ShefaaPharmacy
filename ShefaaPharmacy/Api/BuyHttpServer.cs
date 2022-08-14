@@ -2,7 +2,6 @@
 using DataLayer.Helper;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
-using DataLayer.Services;
 using Microsoft.EntityFrameworkCore;
 using ShefaaPharmacy.Helper;
 using System;
@@ -19,6 +18,7 @@ using DataLayer.Enums;
 using System.Web;
 using System.Text;
 using DataLayer.ViewModels;
+using DataLayer.Services;
 
 // offered to the public domain for any use with no restriction
 // and also with no warranty of any kind, please enjoy. - David Jeske. 
@@ -39,6 +39,7 @@ namespace ShefaaPharmacy.Api
         public string database;
         public int operation;
         public string invoice;
+        public string IsMinus;
         public int userid;
         public string http_method;
         public string http_url;
@@ -120,7 +121,8 @@ namespace ShefaaPharmacy.Api
                 temp1[1] += "&"; temp1[1] += temp1[2];
                 temp1[2] = temp1[3];
                 temp1[3] = temp1[4];
-                temp1[4] = null;
+                temp1[4] = temp1[5];
+                temp1[5] = null;
             }
             else
             {
@@ -135,8 +137,10 @@ namespace ShefaaPharmacy.Api
             if (operation == 1)
                 barcode = temp1[1].Split('=')[1];
             else
+            {
                 invoice = Uri.UnescapeDataString(temp1[1].Split('=')[1]);
-
+                IsMinus = temp1[4].Split('=')[1];
+            }
             //param = http_url.Split('=')[1].ToString();
             http_protocol_versionstring = tokens[2];
 
@@ -298,26 +302,16 @@ namespace ShefaaPharmacy.Api
         }
 
 
-        private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr)
+        private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr,bool IsMinus)
         {
             BillService billService = new BillService(billMaster);
             bool result = false;
             switch (invoiceKind)
             {
                 case InvoiceKind.Sell:
-                    result = billService.SellBillMobile(context, usr);
+                    if (IsMinus) result = billService.SellInMinusBill();
+                    else result = billService.SellBillMobile(context, usr);
                     //LastThreeOperation();
-                    break;
-                case InvoiceKind.Buy:
-                    result = billService.BuyBill();
-                    //LastThreeOperation();
-                    break;
-                case InvoiceKind.ReturnSell:
-                    result = billService.ReturnBill(InvoiceKind.ReturnSell);
-                    //LastThreeOperation();
-                    break;
-                case InvoiceKind.ExpiryArticles:
-                    result = billService.DestructionBill();
                     break;
                 default:
                     break;
@@ -352,7 +346,7 @@ namespace ShefaaPharmacy.Api
                             Formatting = Formatting.Indented
                         };//context.PriceTagMasters.Where(x => x.ArticleId == articleBarcode.Id && x.CountAllItem==0 && x.CountSoldItem==0).ToList();
                         articleBarcode.PriceTagMasters = context.PriceTagMasters
-                                .Where(x => x.ArticleId == articleBarcode.Id && ((x.CountAllItem + x.CountGiftItem) - x.CountSoldItem) != 0)
+                                .Where(x => x.ArticleId == articleBarcode.Id /*&& ((x.CountAllItem + x.CountGiftItem) - x.CountSoldItem) != 0*/)
                                 .Include(x => x.PriceTagDetails)
                                 .OrderBy(x => x.ExpiryDate)
                                 .ToList(); /*DescriptionFK.GetOldestExpiryDate(articleBarcode.Id);*/
@@ -375,7 +369,7 @@ namespace ShefaaPharmacy.Api
                         p.outputStream.WriteLine("fail");
                     }
                 }
-                else
+                else // it's mean that the request is to make buy invoice
                 {
                     string resp = p.invoice;
                     List<Dictionary<String, String>> list = new List<Dictionary<string, string>>();
@@ -385,8 +379,16 @@ namespace ShefaaPharmacy.Api
                     billMaster.IsReturned = false;
                     billMaster.YearId = YearService.GetAvailableYearMobile(context);
                     billMaster.AccountId = 11;
-                    //billMaster.CreatedBy
                     int userId = 0;
+                    
+                    if (p.IsMinus == "true")
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
                     foreach (var item in list)
                     {
                         BillDetail detail = new BillDetail(billMaster);
@@ -416,7 +418,6 @@ namespace ShefaaPharmacy.Api
                             billMaster.AccountId = Convert.ToInt32(item["accountId"]);
                             if (billMaster.AccountId == 0) billMaster.AccountId = 11;
                         }
-
                         mybilld.Add(detail);
                         //detail.TotalPrice = item["totalPrice"];
                         //detail.UnitTypeIdDescr
@@ -432,7 +433,7 @@ namespace ShefaaPharmacy.Api
                     bool res;
                     if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
                     {
-                        res = SaveNewBill(context, tmp);
+                        res = SaveNewBill(context, tmp, true);
                         if (res)
                         {
                             p.writeSuccess();
