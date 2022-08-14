@@ -62,23 +62,22 @@ namespace ShefaaPharmacy.GeneralUI
                         ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                         context.CreateStoredProcedure();
                         SqlConnection sqcon = new SqlConnection(ShefaaPharmacyDbContext.ConStr); sqcon.Open();
-                        string query = "CREATE TABLE [dbo].[Medicines]([id][nchar](5) NOT NULL,[name][nvarchar](600) NULL,[company][nvarchar](600) NULL,[scientific_name][nvarchar](600) NULL,[caliber][nvarchar](600) NULL,[format_id_descr][nvarchar](600) NULL,[size][nvarchar](600) NULL,[BuyPrice][nvarchar](600) NULL,[SellPrice][nvarchar](600) NULL,[barcode][nvarchar](600) NULL) ON[PRIMARY];";
-                        query += "CREATE TABLE[dbo].[FirstTimeArticles]([id][nchar](5) NOT NULL,[name][nvarchar](600) NULL,[InvoiceKind][nvarchar](600) NULL,[UnitIdDescr][nvarchar](600) NULL,[Price][nvarchar](600) NULL,[Quantity][int],[Total][nvarchar](600) NULL,[ExpiryDate][datetime2](7) NULL) ON[PRIMARY];";
-                        query += "CREATE TABLE [dbo].[ExistStuff] ([id][int] IDENTITY(1,1) NOT NULL,[name] [nvarchar](600) NULL,[count] [int] NULL,[price] [int] NULL,[description] [nvarchar](600) NULL) ON [PRIMARY];";
-                        query += "CREATE TABLE [dbo].[LastTimeArticles]([id] [int] identity(1,1) NOT NULL,[ArticleId] [int] NOT NULL,[Name] [nvarchar] (600) NOT NULL,[UnitId] [int] NOT NULL,[QuantityLeft] [int] NULL,[TotalPrice] [decimal] NULL,[CreationDate] [datetime2](7) NOT NULL)ON [PRIMARY];";
-                        query += "CREATE TABLE [dbo].[ExpiryTransfeerDetail]([Id][int] IDENTITY(1, 1) NOT NULL,[ArticleIdDescr] [nvarchar](600) NOT NULL,[UnitIdDescr] [nvarchar](600) NOT NULL,[LeftQuantity] [nvarchar](600) NOT NULL,[ExpiryDate] [datetime2](7) NOT NULL,[TransQuantity] [nchar](10) NOT NULL,[Checked] [bit] NULL) ON[PRIMARY]";
-                        query += "update Account set AccountGeneralId=8 where id=20";
-                        query += "update Account set Name = 'مخزن الأدوية' where id=19";
-                        query += "delete from Formats where id=1";
-                        query += "delete from Company where id=1";
-                        query += "delete from company where id in( 19 , 21 , 37 , 47 , 56 ) ";
+                        //string query = "CREATE TABLE [dbo].[Medicines]([id][nchar](5) NOT NULL,[name][nvarchar](600) NULL,[company][nvarchar](600) NULL,[scientific_name][nvarchar](600) NULL,[caliber][nvarchar](600) NULL,[format_id_descr][nvarchar](600) NULL,[size][nvarchar](600) NULL,[BuyPrice][nvarchar](600) NULL,[SellPrice][nvarchar](600) NULL,[barcode][nvarchar](600) NULL) ON[PRIMARY];";
+                        //query += "CREATE TABLE[dbo].[FirstTimeArticles]([id][nchar](5) NOT NULL,[name][nvarchar](600) NULL,[InvoiceKind][nvarchar](600) NULL,[UnitIdDescr][nvarchar](600) NULL,[Price][nvarchar](600) NULL,[Quantity][int],[Total][nvarchar](600) NULL,[ExpiryDate][datetime2](7) NULL) ON[PRIMARY];";
+                        //query += "CREATE TABLE [dbo].[ExistStuff] ([id][int] IDENTITY(1,1) NOT NULL,[name] [nvarchar](600) NULL,[count] [int] NULL,[price] [int] NULL,[description] [nvarchar](600) NULL) ON [PRIMARY];";
+                        string query = "CREATE TABLE [dbo].[LastTimeArticles]([id] [int] identity(1,1) NOT NULL,[ArticleId] [int] NOT NULL,[Name] [nvarchar] (600) NOT NULL,[UnitId] [int] NOT NULL,[QuantityLeft] [int] NULL,[TotalPrice] [decimal] NULL,[CreationDate] [datetime2](7) NOT NULL)ON [PRIMARY];";
+                        //query += "CREATE TABLE [dbo].[ExpiryTransfeerDetail]([Id][int] IDENTITY(1, 1) NOT NULL,[ArticleIdDescr] [nvarchar](600) NOT NULL,[UnitIdDescr] [nvarchar](600) NOT NULL,[LeftQuantity] [nvarchar](600) NOT NULL,[ExpiryDate] [datetime2](7) NOT NULL,[TransQuantity] [nchar](10) NOT NULL,[Checked] [bit] NULL) ON[PRIMARY]";
+                        //query += "update Account set AccountGeneralId=8 where id=20";
+                        //query += "update Account set Name = 'مخزن الأدوية' where id=19";
+                        //query += "delete from Formats where id=1";
+                        //query += "delete from company where id in( 1, 19 , 21 , 37 , 47 , 56 ) ";
                         SqlCommand cmd = new SqlCommand(query, sqcon);
                         cmd.ExecuteNonQuery();
-                        context.Accounts.Add(new Account() { Name = "الأصول الثابتة", CategoryId = ConstantDataBase.AC_Asset, General = false, AccountGeneralId = 10, CreationBy = 2 });
-                        context.Accounts.FirstOrDefault(x => x.Id == 20).Name = "مخزن المواد منتهية الصلاحية";
-                        context.Accounts.Add(new Account() { Name = "الحسم", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 8, CreationBy = 2 });
-                        context.Years.FirstOrDefault().Name = DateTime.Now.Year.ToString();
-                        context.Years.FirstOrDefault().CreationDate = DateTime.Now;
+                        //context.Accounts.Add(new Account() { Name = "الأصول الثابتة", CategoryId = ConstantDataBase.AC_Asset, General = false, AccountGeneralId = 10, CreationBy = 2 });
+                        //context.Accounts.FirstOrDefault(x => x.Id == 20).Name = "مخزن المواد منتهية الصلاحية";
+                        //context.Accounts.Add(new Account() { Name = "الحسم", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 8, CreationBy = 2 });
+                        //context.Years.FirstOrDefault().Name = DateTime.Now.Year.ToString();
+                        //context.Years.FirstOrDefault().CreationDate = DateTime.Now;
                         context.SaveChanges();
                         _MessageBoxDialog.Show("تم إنشاء قاعدة البيانات بنجاح", MessageBoxState.Done);
                         if (lbDots.InvokeRequired)
@@ -92,7 +91,7 @@ namespace ShefaaPharmacy.GeneralUI
                                 timer1.Enabled = false;
                             }));
                         }
-                        sqcon.Close();
+                        //sqcon.Close();
                     });
 
                     thread.Start();
