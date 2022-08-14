@@ -33,9 +33,9 @@ namespace DataLayer.MapTables
             entity.HasData(new Company { Id = 16, Name = "الفا", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 17, Name = "الفارس", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 18, Name = "القنواتي", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
-            entity.HasData(new Company { Id = 19, Name = "القنواتي ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
+            //entity.HasData(new Company { Id = 19, Name = "القنواتي ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 20, Name = "الما", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
-            entity.HasData(new Company { Id = 21, Name = "الما ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
+            //entity.HasData(new Company { Id = 21, Name = "الما ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 22, Name = "المتحدة ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 23, Name = "المتوسط", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 24, Name = "النورس", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
@@ -51,7 +51,7 @@ namespace DataLayer.MapTables
             entity.HasData(new Company { Id = 34, Name = "آسكو فارما", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 35, Name = "بحري", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 36, Name = "بركات", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
-            entity.HasData(new Company { Id = 37, Name = "بركات ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
+            //entity.HasData(new Company { Id = 37, Name = "بركات ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 38, Name = "برولاين", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 39, Name = "بيوميد", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 40, Name = "ترياق", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
@@ -61,7 +61,7 @@ namespace DataLayer.MapTables
             entity.HasData(new Company { Id = 44, Name = "دومنا", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 45, Name = "دياموند", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 46, Name = "راما فارما", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
-            entity.HasData(new Company { Id = 47, Name = "راما فارما ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
+            //entity.HasData(new Company { Id = 47, Name = "راما فارما ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 48, Name = "رشا", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 49, Name = "زين فارما", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 50, Name = "سرّاج", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
@@ -70,7 +70,7 @@ namespace DataLayer.MapTables
             entity.HasData(new Company { Id = 53, Name = "سيردا فارما", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 54, Name = "سيفارما", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 55, Name = "شرق المتوسط(ليم)", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
-            entity.HasData(new Company { Id = 56, Name = "شرق المتوسط(ليم) ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
+            //entity.HasData(new Company { Id = 56, Name = "شرق المتوسط(ليم) ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 57, Name = "شفا", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 58, Name = "عبد الوهّاب القنواتي", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Company { Id = 59, Name = "غولدن ميد فارما ( الذهبية ) ", Location = "Damascus", CreationDate = DateTime.Now, CreationBy = 2 });

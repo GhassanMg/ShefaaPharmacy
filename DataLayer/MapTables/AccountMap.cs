@@ -74,7 +74,8 @@ namespace DataLayer.MapTables
             entity.HasData(new Account() { Id = 18, Name = "رأس مال الصيدلية", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 9, CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Account() { Id = 19, Name = "مخزن الأدوية", CategoryId = ConstantDataBase.AC_Asset, General = false, AccountGeneralId = 10, CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Account() { Id = 20, Name = "مخزن المواد منتهية الصلاحية", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 8, CreationDate = DateTime.Now, CreationBy = 2 });
-            //entity.HasData(new Account() { Id = 21, Name = "الحسم", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 8, CreationDate = DateTime.Now, CreationBy = 2 });
+            entity.HasData(new Account() { Id = 21, Name = "الأصول الثابتة", CategoryId = ConstantDataBase.AC_Asset, General = false, AccountGeneralId = 10, CreationDate = DateTime.Now, CreationBy = 2 });
+            entity.HasData(new Account() { Id = 22, Name = "الحسم", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 8, CreationDate = DateTime.Now, CreationBy = 2 });
             #endregion
 
         }
