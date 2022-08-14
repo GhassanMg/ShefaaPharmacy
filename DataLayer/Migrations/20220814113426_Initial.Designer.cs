@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(ShefaaPharmacyDbContext))]
-    [Migration("20211003060251_seedDataDiff")]
-    partial class seedDataDiff
+    [Migration("20220814113426_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,7 +56,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 861, DateTimeKind.Local).AddTicks(7701));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 943, DateTimeKind.Local).AddTicks(2568));
 
                     b.Property<string>("Description")
                         .ValueGeneratedOnAdd()
@@ -105,7 +105,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "الحساب العام"
                         },
@@ -116,7 +116,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "الزبائن"
                         },
@@ -127,7 +127,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "الصناديق"
                         },
@@ -138,7 +138,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "المبيعات"
                         },
@@ -149,7 +149,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "المشتريات"
                         },
@@ -160,7 +160,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "المندوبين"
                         },
@@ -171,7 +171,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 9,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "الضرائب"
                         },
@@ -182,7 +182,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 8,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "المصاريف"
                         },
@@ -193,7 +193,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "رأس المال"
                         },
@@ -204,7 +204,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 11,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = true,
                             Name = "الموجودات"
                         },
@@ -215,7 +215,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "زبائن الصيدلية"
                         },
@@ -226,7 +226,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "صندوق الصيدلية"
                         },
@@ -237,7 +237,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "مبيعات الصيدلية"
                         },
@@ -248,7 +248,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "مشتريات الصيدلية"
                         },
@@ -259,7 +259,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 9,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "ضريبة الصيدلية"
                         },
@@ -270,7 +270,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "مندوب عام"
                         },
@@ -281,7 +281,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 8,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "مصروف الصيدلية"
                         },
@@ -292,7 +292,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
                             Name = "رأس مال الصيدلية"
                         },
@@ -303,20 +303,42 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 11,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
-                            Name = "بضاعة أول مدة"
+                            Name = "مخزن الأدوية"
                         },
                         new
                         {
                             Id = 20,
-                            AccountGeneralId = 9,
+                            AccountGeneralId = 8,
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 898, DateTimeKind.Local).AddTicks(6722),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
                             General = false,
-                            Name = "بضاعة الإهلاك"
+                            Name = "مخزن المواد منتهية الصلاحية"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            AccountGeneralId = 10,
+                            AccountState = 2,
+                            CategoryId = 11,
+                            CreationBy = 2,
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
+                            General = false,
+                            Name = "الأصول الثابتة"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            AccountGeneralId = 8,
+                            AccountState = 2,
+                            CategoryId = 10,
+                            CreationBy = 2,
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 13, DateTimeKind.Local).AddTicks(2553),
+                            General = false,
+                            Name = "الحسم"
                         });
                 });
 
@@ -408,7 +430,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 863, DateTimeKind.Local).AddTicks(7648));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 946, DateTimeKind.Local).AddTicks(2602));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -581,14 +603,14 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "أدوية"
                         },
                         new
                         {
                             Id = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "اكسسوارات"
                         });
                 });
@@ -646,7 +668,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 874, DateTimeKind.Local).AddTicks(7366));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 964, DateTimeKind.Local).AddTicks(2542));
 
                     b.HasKey("Id");
 
@@ -679,7 +701,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 867, DateTimeKind.Local).AddTicks(7547));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 951, DateTimeKind.Local).AddTicks(2545));
 
                     b.Property<double>("Discount")
                         .HasColumnType("float");
@@ -745,7 +767,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 866, DateTimeKind.Local).AddTicks(7571));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 950, DateTimeKind.Local).AddTicks(2543));
 
                     b.Property<double>("Discount")
                         .HasColumnType("float");
@@ -808,7 +830,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 871, DateTimeKind.Local).AddTicks(7456));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 961, DateTimeKind.Local).AddTicks(2560));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -847,7 +869,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 875, DateTimeKind.Local).AddTicks(7337));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 965, DateTimeKind.Local).AddTicks(2539));
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -868,151 +890,143 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
-                            Location = "Damascus",
-                            Name = "كل الشركات الدوائية"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ابن الهيثم"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ابن حيان"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ابن رشد"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ابن زهر"
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ابن سينا"
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "افاميا"
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 7,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الأفق"
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 8,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "البلسم"
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 9,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "التراميديكا"
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الدولية"
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 11,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الرازي"
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 12,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الرائد"
                         },
                         new
                         {
-                            Id = 14,
+                            Id = 13,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "السعد"
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 14,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "السلام"
                         },
                         new
                         {
-                            Id = 16,
+                            Id = 15,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الشهباء"
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 16,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الفا"
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 17,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الفارس"
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 18,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "القنواتي"
                         },
@@ -1020,15 +1034,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 20,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
-                            Location = "Damascus",
-                            Name = "القنواتي "
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الما"
                         },
@@ -1036,127 +1042,119 @@ namespace DataLayer.Migrations
                         {
                             Id = 22,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
-                            Location = "Damascus",
-                            Name = "الما "
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "المتحدة "
                         },
                         new
                         {
-                            Id = 24,
+                            Id = 23,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "المتوسط"
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 24,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "النورس"
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 25,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الهلال"
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 26,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "الوطنية"
                         },
                         new
                         {
-                            Id = 28,
+                            Id = 27,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "اليوسف"
                         },
                         new
                         {
-                            Id = 29,
+                            Id = 28,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "إميسا"
                         },
                         new
                         {
-                            Id = 30,
+                            Id = 29,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "أدامكو"
                         },
                         new
                         {
-                            Id = 31,
+                            Id = 30,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "أسيا"
                         },
                         new
                         {
-                            Id = 32,
+                            Id = 31,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "أوبري"
                         },
                         new
                         {
-                            Id = 33,
+                            Id = 32,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "أوشر"
                         },
                         new
                         {
-                            Id = 34,
+                            Id = 33,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "أوغاريت"
                         },
                         new
                         {
-                            Id = 35,
+                            Id = 34,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "آسكو فارما"
                         },
                         new
                         {
-                            Id = 36,
+                            Id = 35,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "بحري"
                         },
                         new
                         {
-                            Id = 37,
+                            Id = 36,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "بركات"
                         },
@@ -1164,79 +1162,71 @@ namespace DataLayer.Migrations
                         {
                             Id = 38,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
-                            Location = "Damascus",
-                            Name = "بركات "
-                        },
-                        new
-                        {
-                            Id = 39,
-                            CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "برولاين"
                         },
                         new
                         {
-                            Id = 40,
+                            Id = 39,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "بيوميد"
                         },
                         new
                         {
-                            Id = 41,
+                            Id = 40,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ترياق"
                         },
                         new
                         {
-                            Id = 42,
+                            Id = 41,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "حماة فارما"
                         },
                         new
                         {
-                            Id = 43,
+                            Id = 42,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "حياة فارما"
                         },
                         new
                         {
-                            Id = 44,
+                            Id = 43,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "دلتا"
                         },
                         new
                         {
-                            Id = 45,
+                            Id = 44,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "دومنا"
                         },
                         new
                         {
-                            Id = 46,
+                            Id = 45,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "دياموند"
                         },
                         new
                         {
-                            Id = 47,
+                            Id = 46,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "راما فارما"
                         },
@@ -1244,71 +1234,63 @@ namespace DataLayer.Migrations
                         {
                             Id = 48,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
-                            Location = "Damascus",
-                            Name = "راما فارما "
-                        },
-                        new
-                        {
-                            Id = 49,
-                            CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "رشا"
                         },
                         new
                         {
-                            Id = 50,
+                            Id = 49,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "زين فارما"
                         },
                         new
                         {
-                            Id = 51,
+                            Id = 50,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "سرّاج"
                         },
                         new
                         {
-                            Id = 52,
+                            Id = 51,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "سلامة كير"
                         },
                         new
                         {
-                            Id = 53,
+                            Id = 52,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "سيتي فارما"
                         },
                         new
                         {
-                            Id = 54,
+                            Id = 53,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "سيردا فارما"
                         },
                         new
                         {
-                            Id = 55,
+                            Id = 54,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "سيفارما"
                         },
                         new
                         {
-                            Id = 56,
+                            Id = 55,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "شرق المتوسط(ليم)"
                         },
@@ -1316,199 +1298,191 @@ namespace DataLayer.Migrations
                         {
                             Id = 57,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
-                            Location = "Damascus",
-                            Name = "شرق المتوسط(ليم) "
-                        },
-                        new
-                        {
-                            Id = 58,
-                            CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "شفا"
                         },
                         new
                         {
-                            Id = 59,
+                            Id = 58,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "عبد الوهّاب القنواتي"
                         },
                         new
                         {
-                            Id = 60,
+                            Id = 59,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "غولدن ميد فارما ( الذهبية ) "
                         },
                         new
                         {
-                            Id = 61,
+                            Id = 60,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "فارماسير"
                         },
                         new
                         {
-                            Id = 62,
+                            Id = 61,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "فكتوريا"
                         },
                         new
                         {
-                            Id = 63,
+                            Id = 62,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "فيتا"
                         },
                         new
                         {
-                            Id = 64,
+                            Id = 63,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "كسبار و شعباني"
                         },
                         new
                         {
-                            Id = 65,
+                            Id = 64,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "كندة فارما"
                         },
                         new
                         {
-                            Id = 66,
+                            Id = 65,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "كيمي"
                         },
                         new
                         {
-                            Id = 67,
+                            Id = 66,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "لاما فارما"
                         },
                         new
                         {
-                            Id = 68,
+                            Id = 67,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ماجيكو"
                         },
                         new
                         {
-                            Id = 69,
+                            Id = 68,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "مسعود فارما"
                         },
                         new
                         {
-                            Id = 70,
+                            Id = 69,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "مسعود للمحاليل الطبية"
                         },
                         new
                         {
-                            Id = 71,
+                            Id = 70,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "معتوق فارما"
                         },
                         new
                         {
-                            Id = 72,
+                            Id = 71,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "مياميد"
                         },
                         new
                         {
-                            Id = 73,
+                            Id = 72,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ميديفارم"
                         },
                         new
                         {
-                            Id = 74,
+                            Id = 73,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ميديكو"
                         },
                         new
                         {
-                            Id = 75,
+                            Id = 74,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ميديوتيك"
                         },
                         new
                         {
-                            Id = 76,
+                            Id = 75,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ميرسي فارما"
                         },
                         new
                         {
-                            Id = 77,
+                            Id = 76,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "ميغا فارما"
                         },
                         new
                         {
-                            Id = 78,
+                            Id = 77,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "هيومن"
                         },
                         new
                         {
-                            Id = 79,
+                            Id = 78,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "يونايتد"
                         },
                         new
                         {
-                            Id = 80,
+                            Id = 79,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "يونيشيما"
                         },
                         new
                         {
-                            Id = 81,
+                            Id = 80,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 894, DateTimeKind.Local).AddTicks(6847),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 25, 8, DateTimeKind.Local).AddTicks(2554),
                             Location = "Damascus",
                             Name = "يونيفارما"
                         });
@@ -1591,11 +1565,11 @@ namespace DataLayer.Migrations
                             DateIfNotUpdatedExternal = 10,
                             DateIfNotUpdatedLocal = 30,
                             DayForExpiry = 60,
-                            DiscountPercentage = 0.029999999999999999,
+                            DiscountPercentage = 0.0,
                             RoundToNearest = 0,
-                            TaxValue = 0.0030000000000000001,
-                            ValueSellPrice = 0.20000000000000001,
-                            VersionNumber = "B11"
+                            TaxValue = 0.0,
+                            ValueSellPrice = 0.0,
+                            VersionNumber = "B12"
                         });
                 });
 
@@ -1615,7 +1589,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 868, DateTimeKind.Local).AddTicks(7517));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 954, DateTimeKind.Local).AddTicks(2594));
 
                     b.Property<double>("Credit")
                         .HasColumnType("float");
@@ -1662,7 +1636,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 867, DateTimeKind.Local).AddTicks(7547));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 953, DateTimeKind.Local).AddTicks(2604));
 
                     b.Property<int>("KindOperation")
                         .HasColumnType("int");
@@ -1694,6 +1668,123 @@ namespace DataLayer.Migrations
                     b.ToTable("EntryMaster");
                 });
 
+            modelBuilder.Entity("DataLayer.Tables.ExistStuff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Count")
+                        .HasColumnType("float");
+
+                    b.Property<int>("CreationBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 966, DateTimeKind.Local).AddTicks(2540));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreationBy");
+
+                    b.ToTable("ExistStuff");
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.ExpiryTransfeerDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ArticleIdDescr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CreationBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 966, DateTimeKind.Local).AddTicks(2540));
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LeftQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UnitIdDescr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreationBy");
+
+                    b.ToTable("ExpiryTransfeerDetail");
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.FirstTimeArticles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreationBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 967, DateTimeKind.Local).AddTicks(2541));
+
+                    b.Property<DateTime>("Expirydate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InvoiceKind")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<int>("UnitId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UnitIdDescr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreationBy");
+
+                    b.ToTable("FirstTimeArticles");
+                });
+
             modelBuilder.Entity("DataLayer.Tables.Format", b =>
                 {
                     b.Property<int>("Id")
@@ -1712,361 +1803,356 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "كل الأشكال الدوائية"
-                        },
-                        new
-                        {
-                            Id = 2,
                             Name = "cap"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 2,
                             Name = "coated-tab"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             Name = "supp"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 4,
                             Name = "syrup"
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 5,
                             Name = "cream"
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 6,
                             Name = "tab"
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 7,
                             Name = "susp"
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 10,
                             Name = "effervi-tab"
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 11,
                             Name = "oint"
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 12,
                             Name = "gel"
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 13,
                             Name = "solu"
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 14,
                             Name = "oral-vial"
                         },
                         new
                         {
-                            Id = 14,
+                            Id = 15,
                             Name = "SR-tab"
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 16,
                             Name = "gargle"
                         },
                         new
                         {
-                            Id = 16,
+                            Id = 17,
                             Name = "nasal-spray"
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 18,
                             Name = "coated-tab plastic-bottle"
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 19,
                             Name = "nasal-gel"
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 20,
                             Name = "cap for inhal"
                         },
                         new
                         {
-                            Id = 20,
+                            Id = 21,
                             Name = "oral-drop"
                         },
                         new
                         {
-                            Id = 21,
+                            Id = 22,
                             Name = "dry-syrup"
                         },
                         new
                         {
-                            Id = 22,
+                            Id = 23,
                             Name = "MR-tab"
                         },
                         new
                         {
-                            Id = 23,
+                            Id = 24,
                             Name = "oral-gel"
                         },
                         new
                         {
-                            Id = 24,
+                            Id = 25,
                             Name = "DR-cap"
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 26,
                             Name = "sachet"
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 27,
                             Name = "dose nasal-spray"
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 28,
                             Name = "inh-cap"
                         },
                         new
                         {
-                            Id = 28,
+                            Id = 29,
                             Name = "caplet"
                         },
                         new
                         {
-                            Id = 29,
+                            Id = 30,
                             Name = "caplet in plastic-cont"
                         },
                         new
                         {
-                            Id = 30,
+                            Id = 31,
                             Name = "gum"
                         },
                         new
                         {
-                            Id = 31,
+                            Id = 32,
                             Name = "dispersable-tab"
                         },
                         new
                         {
-                            Id = 32,
+                            Id = 33,
                             Name = "SR-coated-tab"
                         },
                         new
                         {
-                            Id = 33,
+                            Id = 34,
                             Name = "SR-cap"
                         },
                         new
                         {
-                            Id = 34,
+                            Id = 35,
                             Name = "vag-solu"
                         },
                         new
                         {
-                            Id = 35,
+                            Id = 36,
                             Name = "chew-tab"
                         },
                         new
                         {
-                            Id = 36,
+                            Id = 37,
                             Name = "ovule"
                         },
                         new
                         {
-                            Id = 37,
+                            Id = 38,
                             Name = "vag-ovule"
                         },
                         new
                         {
-                            Id = 38,
+                            Id = 39,
                             Name = "vag-cream"
                         },
                         new
                         {
-                            Id = 39,
+                            Id = 40,
                             Name = "nail-solu"
                         },
                         new
                         {
-                            Id = 40,
+                            Id = 41,
                             Name = "oral-paste"
                         },
                         new
                         {
-                            Id = 41,
+                            Id = 42,
                             Name = "ear-drop"
                         },
                         new
                         {
-                            Id = 42,
+                            Id = 43,
                             Name = "amp"
                         },
                         new
                         {
-                            Id = 43,
+                            Id = 44,
                             Name = "vial"
                         },
                         new
                         {
-                            Id = 44,
+                            Id = 45,
                             Name = "eye-oint"
                         },
                         new
                         {
-                            Id = 45,
+                            Id = 46,
                             Name = "rectal-cream"
                         },
                         new
                         {
-                            Id = 46,
+                            Id = 47,
                             Name = "dry-vial"
                         },
                         new
                         {
-                            Id = 47,
+                            Id = 48,
                             Name = "emultion"
                         },
                         new
                         {
-                            Id = 48,
+                            Id = 49,
                             Name = "enema"
                         },
                         new
                         {
-                            Id = 49,
+                            Id = 50,
                             Name = "vag-douch"
                         },
                         new
                         {
-                            Id = 50,
+                            Id = 51,
                             Name = "XR-tab"
                         },
                         new
                         {
-                            Id = 51,
+                            Id = 52,
                             Name = "vag-tab"
                         },
                         new
                         {
-                            Id = 52,
+                            Id = 53,
                             Name = "elexir"
                         },
                         new
                         {
-                            Id = 53,
+                            Id = 54,
                             Name = "vag-douch + app"
                         },
                         new
                         {
-                            Id = 54,
+                            Id = 55,
                             Name = "lotion"
                         },
                         new
                         {
-                            Id = 55,
+                            Id = 56,
                             Name = "mouth-wash"
                         },
                         new
                         {
-                            Id = 56,
+                            Id = 57,
                             Name = "cartridge"
                         },
                         new
                         {
-                            Id = 57,
+                            Id = 58,
                             Name = "coated-tab+loz"
                         },
                         new
                         {
-                            Id = 58,
+                            Id = 59,
                             Name = "loz"
                         },
                         new
                         {
-                            Id = 59,
+                            Id = 60,
                             Name = "dental-cartridge"
                         },
                         new
                         {
-                            Id = 60,
+                            Id = 61,
                             Name = "gum-tab"
                         },
                         new
                         {
-                            Id = 61,
+                            Id = 62,
                             Name = "plast-oral-drop"
                         },
                         new
                         {
-                            Id = 62,
+                            Id = 63,
                             Name = "chew-gum"
                         },
                         new
                         {
-                            Id = 63,
+                            Id = 64,
                             Name = "powder"
                         },
                         new
                         {
-                            Id = 64,
+                            Id = 65,
                             Name = "سوار للمعصم"
                         },
                         new
                         {
-                            Id = 65,
+                            Id = 66,
                             Name = "salt"
                         },
                         new
                         {
-                            Id = 66,
+                            Id = 67,
                             Name = "shampoo"
                         },
                         new
                         {
-                            Id = 67,
+                            Id = 68,
                             Name = "rectal-oint"
                         },
                         new
                         {
-                            Id = 68,
+                            Id = 69,
                             Name = "nasal-drop"
                         },
                         new
                         {
-                            Id = 69,
+                            Id = 70,
                             Name = "sublingual-tab"
                         },
                         new
                         {
-                            Id = 70,
+                            Id = 71,
                             Name = "soap"
                         },
                         new
                         {
-                            Id = 71,
+                            Id = 72,
                             Name = "balsam"
                         },
                         new
                         {
-                            Id = 72,
+                            Id = 73,
                             Name = "spray"
                         },
                         new
@@ -2844,6 +2930,43 @@ namespace DataLayer.Migrations
                     b.ToTable("Inventories");
                 });
 
+            modelBuilder.Entity("DataLayer.Tables.Medicines", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Barcode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BuyPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Caliber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FormatIdDescr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScientificName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Medicines");
+                });
+
             modelBuilder.Entity("DataLayer.Tables.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -2923,7 +3046,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 870, DateTimeKind.Local).AddTicks(7481));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 959, DateTimeKind.Local).AddTicks(2557));
 
                     b.Property<int>("PriceTagId")
                         .HasColumnType("int");
@@ -2975,7 +3098,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 869, DateTimeKind.Local).AddTicks(7518));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 955, DateTimeKind.Local).AddTicks(2545));
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
@@ -3072,7 +3195,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 873, DateTimeKind.Local).AddTicks(7400));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 963, DateTimeKind.Local).AddTicks(2540));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -3090,42 +3213,42 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "لا يوجد"
                         },
                         new
                         {
                             Id = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "طرد"
                         },
                         new
                         {
                             Id = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "علبة"
                         },
                         new
                         {
                             Id = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "ظرف"
                         },
                         new
                         {
                             Id = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "حبة"
                         },
                         new
                         {
                             Id = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 879, DateTimeKind.Local).AddTicks(7230),
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
                             Name = "إبرة"
                         });
                 });
@@ -3377,7 +3500,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 10, 3, 9, 2, 49, 872, DateTimeKind.Local).AddTicks(7425));
+                        .HasDefaultValue(new DateTime(2022, 8, 14, 14, 34, 24, 962, DateTimeKind.Local).AddTicks(2540));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -3395,8 +3518,8 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2021, 10, 3, 9, 2, 49, 878, DateTimeKind.Local).AddTicks(7256),
-                            Name = "2021"
+                            CreationDate = new DateTime(2022, 8, 14, 14, 34, 24, 971, DateTimeKind.Local).AddTicks(2541),
+                            Name = "2022"
                         });
                 });
 
@@ -3650,6 +3773,33 @@ namespace DataLayer.Migrations
                     b.HasOne("DataLayer.Tables.Year", "Year")
                         .WithMany("EntryMasters")
                         .HasForeignKey("YearId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.ExistStuff", b =>
+                {
+                    b.HasOne("DataLayer.Tables.User", "User")
+                        .WithMany()
+                        .HasForeignKey("CreationBy")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.ExpiryTransfeerDetail", b =>
+                {
+                    b.HasOne("DataLayer.Tables.User", "User")
+                        .WithMany()
+                        .HasForeignKey("CreationBy")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.FirstTimeArticles", b =>
+                {
+                    b.HasOne("DataLayer.Tables.User", "User")
+                        .WithMany()
+                        .HasForeignKey("CreationBy")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
