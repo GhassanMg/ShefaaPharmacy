@@ -22,7 +22,7 @@ namespace ShefaaPharmacy.Articles
 {
     public partial class ExpiryAerticlesStore : AbstractForm
     {
-        public List<ExpiryArticlesViewModel> _ExpiryArticlesViewModels { get; set; }
+        public List<ExpiryTransfeerDetail> _ExpiryArticlesViewModels { get; set; }
         List<PriceTagMaster> mylist = new List<PriceTagMaster>();
         public ExpiryAerticlesStore()
         {
@@ -32,7 +32,7 @@ namespace ShefaaPharmacy.Articles
         {
             if (_ExpiryArticlesViewModels == null)
             {
-                _ExpiryArticlesViewModels = new List<ExpiryArticlesViewModel>();
+                _ExpiryArticlesViewModels = new List<ExpiryTransfeerDetail>();
             }
             bindingSourceMaster.DataSource = _ExpiryArticlesViewModels;
             dgMaster.DataSource = bindingSourceMaster;

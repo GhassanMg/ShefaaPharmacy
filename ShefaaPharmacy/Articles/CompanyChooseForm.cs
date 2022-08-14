@@ -108,8 +108,8 @@ namespace ShefaaPharmacy.Articles
                 SqlCommand cmd = new SqlCommand("select distinct company as الشركة from Medicines order by company Desc ", con);
                 con.Open();
                 //    ==========
-                SqlCommand IfEmpty = new SqlCommand("Select count(name) from Medicines", con);
-                int res = System.Convert.ToInt32(IfEmpty.ExecuteScalar());
+                var Count = context.Medicines.Count();
+                
                 //    ==========
                 cmd.CommandType = CommandType.Text;
 
@@ -119,7 +119,7 @@ namespace ShefaaPharmacy.Articles
 
                 da.Fill(ds, "Medicines");
 
-                if (res == 0)
+                if (Count == 0)
                 {
                     pcloader.Visible = false;
                     lblLoading.Visible = false;
@@ -209,13 +209,13 @@ namespace ShefaaPharmacy.Articles
             else
             {
                 int CompsCount = 0;
-                List<string> comps = new List<string>();
+                List<string> Comps = new List<string>();
 
                 foreach (DataGridViewRow item in datagridcompane.Rows)
                 {
                     if (Convert.ToBoolean(item.Cells["Checked"].Value))
                     {
-                        comps.Add(item.Cells["الشركة"].Value.ToString());
+                        Comps.Add(item.Cells["الشركة"].Value.ToString());
                         CompsCount++;
                     }
                 }
@@ -230,7 +230,7 @@ namespace ShefaaPharmacy.Articles
                     pcloader.Visible = false;
                     lblLoading.Visible = false;
 
-                    NewImportArticlesOnline frm = new NewImportArticlesOnline(comps);
+                    NewImportArticlesOnline frm = new NewImportArticlesOnline(Comps);
                     frm.ShowDialog();
                     this.TopMost = false;
                 }

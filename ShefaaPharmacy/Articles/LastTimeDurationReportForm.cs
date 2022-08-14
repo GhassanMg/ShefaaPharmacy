@@ -157,7 +157,7 @@ namespace ShefaaPharmacy.Articles
 
             foreach (LastTimeArticleViewModel myrow in bindingSourceMaster)
             {
-                FullPrice.FullPrice += myrow.TotalPrice * myrow.QuantityLeft;
+                FullPrice.FullPrice += myrow.TotalPrice ;
             }
             bindingSourceDetail.DataSource = FullPrice;
             dgDetail.Refresh();

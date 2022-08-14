@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Configuration;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using ShefaaPharmacy;
 using DataLayer;
@@ -34,9 +35,10 @@ namespace ShefaaPharmacy
         {
             if (datagrid.Rows.Count != 0)
             {
-                try
-                {
-                    Insert(datagrid.DataSource as List<Medicine>);
+                try 
+                { 
+                    var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                    Insert(datagrid.DataSource as List<Medicines>);
                     _MessageBoxDialog.Show("تم الاستيراد بنجاح", MessageBoxState.Done);
                     button1.Visible = false;
                     this.Close();
@@ -48,23 +50,25 @@ namespace ShefaaPharmacy
             }
         }
 
-        public void Insert(List<Medicine> list)
+        public void Insert(List<Medicines> list)
         {
             using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
             {
                 DataTable dt = new DataTable();
-                copy.DestinationTableName = "dbo.medicines";
+                copy.DestinationTableName = "dbo.Medicines";
                 // Add mappings so that the column order doesn't matter
-                copy.ColumnMappings.Add(nameof(Medicine.id), "id");
-                copy.ColumnMappings.Add(nameof(Medicine.Name), "name");
-                copy.ColumnMappings.Add(nameof(Medicine.Company), "company");
-                copy.ColumnMappings.Add(nameof(Medicine.scientific_name), "scientific_name");
-                copy.ColumnMappings.Add(nameof(Medicine.caliber), "caliber");
-                copy.ColumnMappings.Add(nameof(Medicine.format_id_descr), "format_id_descr");
-                copy.ColumnMappings.Add(nameof(Medicine.size), "size");
-                copy.ColumnMappings.Add(nameof(Medicine.BuyPrice), "BuyPrice");
-                copy.ColumnMappings.Add(nameof(Medicine.SellPrice), "SellPrice");
-                copy.ColumnMappings.Add(nameof(Medicine.barcode), "barcode");
+                copy.ColumnMappings.Add(nameof(Medicines.Id), "Id");
+                copy.ColumnMappings.Add(nameof(Medicines.Name), "Name");
+                copy.ColumnMappings.Add(nameof(Medicines.Company), "Company");
+                copy.ColumnMappings.Add(nameof(Medicines.ScientificName), "ScientificName");
+                copy.ColumnMappings.Add(nameof(Medicines.Caliber), "Caliber");
+                copy.ColumnMappings.Add(nameof(Medicines.FormatIdDescr), "FormatIdDescr");
+                copy.ColumnMappings.Add(nameof(Medicines.Size), "Size");
+                copy.ColumnMappings.Add(nameof(Medicines.BuyPrice), "BuyPrice");
+                copy.ColumnMappings.Add(nameof(Medicines.SellPrice), "SellPrice");
+                copy.ColumnMappings.Add(nameof(Medicines.Barcode), "Barcode");
+                //copy.ColumnMappings.Add(nameof(Medicines.Barcode), "CreationBy");
+                //copy.ColumnMappings.Add(nameof(Medicines.Barcode), "CreationDate");
 
                 dt = ToDataTable(list);
                 copy.WriteToServer(dt);
@@ -128,20 +132,20 @@ namespace ShefaaPharmacy
             DataTable dt = tables[cboSheet.SelectedItem.ToString()];
             if (dt != null)
             {
-                List<Medicine> list = new List<Medicine>();
+                List<Medicines> list = new List<Medicines>();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    Medicine obj = new Medicine();
-                    obj.id = dt.Rows[i]["الرقم"].ToString();
+                    Medicines obj = new Medicines();
+                    obj.Id = dt.Rows[i]["الرقم"].ToString();
                     obj.Name = dt.Rows[i]["اسم المستحضر"].ToString();
                     obj.Company = dt.Rows[i]["معمل"].ToString();
-                    obj.scientific_name = dt.Rows[i]["تركيب"].ToString();
-                    obj.caliber = dt.Rows[i]["عيار"].ToString();
-                    obj.format_id_descr = dt.Rows[i]["شكل صيدلاني"].ToString();
-                    obj.size = dt.Rows[i]["شكل العبوة"].ToString();
+                    obj.ScientificName = dt.Rows[i]["تركيب"].ToString();
+                    obj.Caliber = dt.Rows[i]["عيار"].ToString();
+                    obj.FormatIdDescr = dt.Rows[i]["شكل صيدلاني"].ToString();
+                    obj.Size = dt.Rows[i]["شكل العبوة"].ToString();
                     obj.BuyPrice = dt.Rows[i]["نت"].ToString();
                     obj.SellPrice = dt.Rows[i]["عموم"].ToString();
-                    obj.barcode = dt.Rows[i]["BarCode"].ToString();
+                    obj.Barcode = dt.Rows[i]["barcode"].ToString();
                     list.Add(obj);
                 }
                 datagrid.DataSource = list;

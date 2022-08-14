@@ -357,7 +357,7 @@ namespace ShefaaPharmacy.Articles
             FirstTimeArticles newArt = new FirstTimeArticles();
             foreach (var item in mybalance)
             {
-                newArt.id = item.ArticleId;
+                //newArt.id = item.ArticleId;
                 newArt.UnitId = item.UnitId;
                 newArt.Name = item.ArticleIdDescr;
                 newArt.Price = item.Price;

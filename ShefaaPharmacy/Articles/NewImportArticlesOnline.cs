@@ -44,6 +44,7 @@ namespace ShefaaPharmacy.Articles
             dataGridView2.Columns["precautions"].Visible = false;
             dataGridView2.Columns["side_effects"].Visible = false;
             dataGridView2.Columns["scientific_name"].Visible = false;
+            dataGridView2.Columns["barcode"].Visible = false;
 
 
             dataGridView2.Columns["name"].ReadOnly = true;
@@ -57,30 +58,27 @@ namespace ShefaaPharmacy.Articles
             dataGridView2.Columns["barcode"].ReadOnly = true;
 
             dataGridView2.Columns["barcode"].DisplayIndex = dataGridView2.ColumnCount - 2;
+            dataGridView2.Columns["company_id_descr"].DisplayIndex = 1;
+            dataGridView2.Columns["format_id_descr"].DisplayIndex = 4;
+
 
             btnImport.Enabled = true;
             CheckArticles.Enabled = true;
             tbSearch.Enabled = true;
             dataGridView2.Refresh();
         }
-        public NewImportArticlesOnline(List<string> v)
+        public NewImportArticlesOnline(List<string> Comparray)
         {
             status = "offline";
             InitializeComponent();
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);//connection name
 
-            con.Open();
-            string[] CompsNames = v.ToArray();
-            string Comps = string.Join(",", CompsNames);
-            string LastNames = string.Join(",", Comps.Split(',').Select(s => "'" + s + "'"));
-            SqlCommand cmd = new SqlCommand(string.Format("select name as الاسم,company as الشركة,scientific_name as التركيب,caliber as العيار,format_id_descr as [الشكل الصيدلاني],size as [الحجم],BuyPrice as [سعر الشراء],SellPrice as [سعر المبيع],barcode from Medicines where company IN ({0}) order by company Asc", LastNames), con);
-            cmd.CommandType = CommandType.Text;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            var Medicines = context.Medicines.Where(x => Comparray.Contains(x.Company))
+                .OrderBy(x => x.Company)
+                .ToList();
 
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Medicines");
-            dataGridView2.DataSource = ds.Tables["Medicines"];
+            dataGridView2.DataSource = Medicines;
+            dataGridView2.Columns["Barcode"].Visible = dataGridView2.Columns["Id"].Visible = false;
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.HeaderText = "استيراد";
@@ -185,12 +183,12 @@ namespace ShefaaPharmacy.Articles
                         if (Convert.ToBoolean(item.Cells["checked"].Value) == true)
                         {
                             if (article.Name == null) break;
-                            article.Name = item.Cells["الاسم"].Value.ToString();
-                            article.ScientificName = item.Cells["التركيب"].Value.ToString();
-                            article.FormatId = DescriptionFK.GetFormatId(item.Cells["الشكل الصيدلاني"].Value.ToString());
+                            article.Name = item.Cells["Name"].Value.ToString();
+                            article.ScientificName = item.Cells["ScientificName"].Value.ToString();
+                            article.FormatId = DescriptionFK.GetFormatId(item.Cells["FormatIdDescr"].Value.ToString());
                             article.FormatIdDescr = DescriptionFK.GetFormatName(article.FormatId); //item.Cells["الشكل_الصيدلاني"].Value.ToString();
-                            article.Size = item.Cells["الحجم"].Value.ToString();
-                            article.CompanyId = DescriptionFK.GetCompanyId(item.Cells["الشركة"].Value.ToString()); //item.Cells["الشركة"].Value.ToString();
+                            article.Size = item.Cells["Size"].Value.ToString();
+                            article.CompanyId = DescriptionFK.GetCompanyId(item.Cells["Company"].Value.ToString()); //item.Cells["الشركة"].Value.ToString();
                             article.CompanyIdDescr = DescriptionFK.GetArticaleName((int)article.CompanyId);
                             article.Id = ++idcount2; idcount2 = article.Id;
                             if (dataGridView2.Columns.Contains("barcode")) article.Barcode = item.Cells["barcode"].Value.ToString();
@@ -198,7 +196,7 @@ namespace ShefaaPharmacy.Articles
                             article.ArticleIdGeneral = 1;
                             article.ArticleCategoryId = DescriptionFK.GetArticleCategory((article).ArticleIdGeneral).ArticleCategoryId;
                             article.ArticleCategoryIdDescr = DescriptionFK.GetArticaleCategoryName(article.ArticleCategoryId);
-                            article.Caliber = item.Cells["العيار"].Value.ToString();
+                            article.Caliber = item.Cells["Caliber"].Value.ToString();
                             article.ItsGeneral = false;
 
                             if (await Task.Run(() => IsConsist(article)))
@@ -208,7 +206,7 @@ namespace ShefaaPharmacy.Articles
                             }
                             else
                             {
-                                await Task.Run(() => Thread3Job(article, Convert.ToInt32(Convert.ToDouble(item.Cells["سعر الشراء"].Value)), Convert.ToInt32(Convert.ToDouble(item.Cells["سعر المبيع"].Value))));
+                                await Task.Run(() => Thread3Job(article, Convert.ToInt32(Convert.ToDouble(item.Cells["BuyPrice"].Value)), Convert.ToInt32(Convert.ToDouble(item.Cells["SellPrice"].Value))));
                             }
                         }
                     }
@@ -229,7 +227,7 @@ namespace ShefaaPharmacy.Articles
 
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;
             }
-            catch
+            catch(Exception e)
             {
                 _MessageBoxDialog.Show("حدث خطأ يرجى المحاولة مجدداً", MessageBoxState.Error);
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;
@@ -380,7 +378,7 @@ namespace ShefaaPharmacy.Articles
         }
         private void NewImportArticlesOnline_Load(object sender, EventArgs e)
         {
-            ChangeStyleOfGrid(dataGridView2);
+             ChangeStyleOfGrid(dataGridView2);
             ChangeFontForAll();
             WindowState = FormWindowState.Maximized;
         }

@@ -262,20 +262,23 @@ namespace ShefaaPharmacy.Articles
         }
         public void Insert(List<ExpiryTransfeerDetail> list)
         {
-            using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
-            {
-                DataTable dt = new DataTable();
-                copy.DestinationTableName = "dbo.ExpiryTransfeerDetail";
-                // Add mappings so that the column order doesn't matter
-                copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.ArticleIdDescr), "ArticleIdDescr");
-                copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.UnitIdDescr), "UnitIdDescr");
-                copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.LeftQuantity), "LeftQuantity");
-                copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.ExpiryDate), "ExpiryDate");
-                copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.TransQuantity), "TransQuantity");
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            context.ExpiryTransfeerDetails.AddRange(list);
+            context.SaveChanges();
+            //using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
+            //{
+            //    DataTable dt = new DataTable();
+            //    copy.DestinationTableName = "dbo.ExpiryTransfeerDetail";
+            //    // Add mappings so that the column order doesn't matter
+            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.ArticleIdDescr), "ArticleIdDescr");
+            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.UnitIdDescr), "UnitIdDescr");
+            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.LeftQuantity), "LeftQuantity");
+            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.ExpiryDate), "ExpiryDate");
+            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.TransQuantity), "TransQuantity");
 
-                dt = ToDataTable(list);
-                copy.WriteToServer(dt);
-            }
+            //    dt = ToDataTable(list);
+            //    copy.WriteToServer(dt);
+            //}
         }
         public DataTable ToDataTable<T>(List<T> items)
         {

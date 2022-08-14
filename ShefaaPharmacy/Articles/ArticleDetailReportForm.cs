@@ -135,62 +135,33 @@ namespace ShefaaPharmacy.Articale
                     .OrderByDescending(x => x.CreationDate)
                     .LastOrDefault();
 
-
-            SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("select name as الصنف ,InvoiceKind as [نوع الفاتورة],UnitIdDescr as الواحدة ,price as السعر,quantity as الكمية ,Total as الإجمالي,Expirydate as [تاريخ الصلاحية] from FirstTimeArticles where name='" + article.Name + "'", con);
-            cmd.CommandType = CommandType.Text;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-            DataSet ds = new DataSet();
-            da.Fill(ds, "FirstTimeArticles");
-
-            FirstTimeArticles FirstTimeDetailRow = new FirstTimeArticles();
-            foreach (DataRow dr in ds.Tables["FirstTimeArticles"].Rows)
+            var FirstArticles = context.FirstTimeArticles.Where(x => x.Id == article.Id).ToList();
+            foreach (FirstTimeArticles item in FirstArticles)
             {
-
-                FirstTimeDetailRow.Name = dr.ItemArray[0].ToString();
-                FirstTimeDetailRow.InvoiceKind = dr.ItemArray[1].ToString();
-                FirstTimeDetailRow.Quantity = Convert.ToInt32(dr.ItemArray[4]);
-                FirstTimeDetailRow.UnitIdDescr = dr.ItemArray[0].ToString();
-                FirstTimeDetailRow.Price = Convert.ToDouble(dr.ItemArray[3]);
-                FirstTimeDetailRow.Expirydate = Convert.ToDateTime(dr.ItemArray[6]).Date;
-                FirstTimeDetailRow.Total = Convert.ToInt32(dr.ItemArray[5]);
-
                 BillDetail NewRow = new BillDetail()
                 {
-                    ArticaleId = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Name == FirstTimeDetailRow.Name).Id,
-                    Barcode = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Name == FirstTimeDetailRow.Name).Barcode,
+                    ArticaleId = item.Id,
+                    Barcode = context.Articles.FirstOrDefault(x => x.Id == item.Id).Barcode,
                     InvoiceKind = InvoiceKind.GoodFirstTime,
-                    UnitTypeId = FirstTimeDetailRow.UnitId,
-                    Price = FirstTimeDetailRow.Price,
-                    Quantity = FirstTimeDetailRow.Quantity,
+                    UnitTypeId = item.UnitId,
+                    Price = item.Price,
+                    Quantity = item.Quantity,
 
                 };
                 resultReport.Add(NewRow);
                 //resultReport.OrderByDescending(x=>x.InvoiceKind);
             }
-            SqlCommand cmd2 = new SqlCommand("select ArticleIdDescr as الصنف,UnitIdDescr as الواحدة ,TransQuantity as الكمية from ExpiryTransfeerDetail where ArticleIdDescr='" + article.Name + "'", con);
-            cmd.CommandType = CommandType.Text;
-            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
 
-            DataSet ds2 = new DataSet();
-            da2.Fill(ds2, "ExpiryTransfeerDetail");
-
-            ExpiryTransfeerDetail ExpiryTransfeerDetailRow = new ExpiryTransfeerDetail();
-            foreach (DataRow dr in ds2.Tables["ExpiryTransfeerDetail"].Rows)
+            var LastArticles = context.ExpiryTransfeerDetails.Where(x => x.Id == article.Id).ToList();
+            foreach (ExpiryTransfeerDetail item in LastArticles)
             {
-                ExpiryTransfeerDetailRow.ArticleIdDescr = dr.ItemArray[0].ToString();
-                ExpiryTransfeerDetailRow.TransQuantity = Convert.ToInt32(dr.ItemArray[2]);
-                ExpiryTransfeerDetailRow.UnitIdDescr = dr.ItemArray[1].ToString();
-
                 BillDetail NewRow = new BillDetail()
                 {
-                    ArticaleId = context.Articles.FirstOrDefault(x => x.Name == ExpiryTransfeerDetailRow.ArticleIdDescr).Id,
-                    Barcode = context.Articles.FirstOrDefault(x => x.Name == ExpiryTransfeerDetailRow.ArticleIdDescr).Barcode,
+                    ArticaleId = item.Id,
+                    Barcode = context.Articles.FirstOrDefault(x => x.Id == item.Id).Barcode,
                     InvoiceKind = InvoiceKind.ExpiryArticles,
-                    UnitTypeId = context.ArticleUnits.ToList().FirstOrDefault(x => x.UnitTypeIdDescr == ExpiryTransfeerDetailRow.UnitIdDescr).UnitTypeId,
-                    Quantity = ExpiryTransfeerDetailRow.TransQuantity,
+                    UnitTypeId = context.ArticleUnits.ToList().FirstOrDefault(x => x.UnitTypeIdDescr == item.UnitIdDescr).UnitTypeId,
+                    Quantity = item.TransQuantity,
 
                 };
                 resultReport.Add(NewRow);
@@ -199,7 +170,6 @@ namespace ShefaaPharmacy.Articale
             for (int item = 0; item < resultReport.Count; item++)
             {
                 resultReport[item].CreationDate = resultReport[item].CreationDate.Date;
-
             }
             bindingSourceDetail.DataSource = resultReport.OrderByDescending(x => x.InvoiceKind);
             dgDetail.Refresh();
@@ -221,11 +191,6 @@ namespace ShefaaPharmacy.Articale
             DataSet ds = new DataSet();
             da.Fill(ds, "FirstTimeArticles");
             FirstTimebindingSource.DataSource = ds.Tables["FirstTimeArticles"];
-        }
-        private void dgMaster_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-
-
         }
 
         private void dgDetail2_BindingContextChanged(object sender, EventArgs e)
@@ -257,7 +222,6 @@ namespace ShefaaPharmacy.Articale
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
-
         private void dgMaster_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -300,16 +264,7 @@ namespace ShefaaPharmacy.Articale
                 dgDetail.Refresh();
             }
         }
-        public static DataSet ConvertToDataSet<T>(IEnumerable<T> source, string name)
-        {
-            if (source == null)
-                throw new ArgumentNullException("source ");
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
-            var converted = new DataSet(name);
-            converted.Tables.Add(NewTable(name, source));
-            return converted;
-        }
+
         private static DataRow CreateRow<T>(DataRow row, T listItem, PropertyInfo[] pi)
         {
             foreach (PropertyInfo p in pi)
