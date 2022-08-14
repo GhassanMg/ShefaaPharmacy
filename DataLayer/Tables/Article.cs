@@ -9,7 +9,6 @@ using System.Text;
 
 namespace DataLayer.Tables
 {
-
     public class Article : BaseModel
     {
         [DisplayName("اسم الصنف")]

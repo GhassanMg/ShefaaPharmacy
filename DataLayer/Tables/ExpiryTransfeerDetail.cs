@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataLayer.Helper;
 using System.ComponentModel;
 using System.Text;
 
 namespace DataLayer.Tables
 {
-    public class ExpiryTransfeerDetail
+    public class ExpiryTransfeerDetail : BaseModel
     {
-        [Browsable(false)]
-        public int Id { set; get; }
         [DisplayName("المادة")]
         public string ArticleIdDescr { set; get; }
         [DisplayName("الواحدة")]
@@ -21,8 +20,5 @@ namespace DataLayer.Tables
         public int TransQuantity { set; get; }
         //[DisplayName("تحويل")]
         //public bool Checked { set; get; }
-        //[Browsable(false)]
-        //[DisplayName("رقم سند القيد")]
-        //public int EntryDetailId { set; get; }
     }
 }

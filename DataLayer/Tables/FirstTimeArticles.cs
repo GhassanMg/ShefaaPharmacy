@@ -1,22 +1,23 @@
 ﻿using DataLayer.Enums;
+using DataLayer.Helper;
 using DataLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DataLayer.Tables
 {
-    public class FirstTimeArticles
+    public class FirstTimeArticles :BaseModel
     {
-        
-        public int id { get; set; }
         [DisplayName("المنتج")]
         public string Name { get; set; }
         [DisplayName("نوع الفاتورة")]
         public string InvoiceKind { get; set; }
         [Browsable(false)]
         public int UnitId { get; set; }
+        
         [DisplayName("الواحدة")]
         public string UnitIdDescr
         {
