@@ -58,7 +58,7 @@ namespace DataLayer.Script.Procedures
 					                    WHERE InvoiceKind = 3
 					                    AND CreationDate >= @FromDate AND CreationDate <=@ToDate
 						--بضاعة آخر المدة
-						select 8 as Id,'بضاعة آخر المدة' as Account,0 as Debit,0 as Credit,Sum(TotalPrice *QuantityLeft) as Total INTO #tempLastArticles From dbo.LastTimeArticles
+						select 8 as Id,'بضاعة آخر المدة' as Account,0 as Debit,0 as Credit,Sum(TotalPrice) as Total INTO #tempLastArticles From dbo.LastTimeArticles
 				                    WHERE CreationDate >= @FromDate AND CreationDate <=@ToDate
 									AND TotalPrice > 0
 
