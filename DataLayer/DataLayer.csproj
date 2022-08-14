@@ -13,6 +13,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220810083703_Initial.cs" />
+    <Compile Remove="Migrations\20220810083703_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20220810085419_addExistStuffTable.cs" />
+    <Compile Remove="Migrations\20220810085419_addExistStuffTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
       <PrivateAssets>all</PrivateAssets>

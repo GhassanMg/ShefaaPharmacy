@@ -3,6 +3,7 @@ using DataLayer.Helper;
 using DataLayer.MapTables;
 using DataLayer.Script.Procedures;
 using DataLayer.Tables;
+using DataLayer.ViewModels;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -42,7 +43,13 @@ namespace DataLayer
         public DbSet<Format> Formats { get; set; }
         public DbSet<ArticleUnits> ArticleUnits { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
-        //public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<Medicines> Medicines { get; set; }
+        public DbSet<FirstTimeArticles> FirstTimeArticles { get; set; }
+        public DbSet<ExistStuff> ExistStuffs { get; set; }
+        //public DbSet<LastTimeArticles> LastTimeArticles { get; set; }
+        public DbSet<ExpiryTransfeerDetail> ExpiryTransfeerDetails { get; set; }
+
+
         public ShefaaPharmacyDbContext()
         {
 
@@ -67,7 +74,7 @@ namespace DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TestMigration;Integrated Security=true;")
+                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_FiftthOne;Integrated Security=true;")
                 .UseSqlServer(ConStr)
                 .UseLoggerFactory(new LoggerFactory())
                 .EnableSensitiveDataLogging();
@@ -158,6 +165,16 @@ namespace DataLayer
             new BasicMap(modelBuilder.Entity<Barcode>());
             new BasicMap(modelBuilder.Entity<Connection>());
             new BasicMap(modelBuilder.Entity<Company>());
+
+            new ExistStuffMap(modelBuilder.Entity<ExistStuff>());
+
+            new ExpiryArticlesMap(modelBuilder.Entity<ExpiryTransfeerDetail>());
+
+            new MedicinesMap(modelBuilder.Entity<Medicines>());
+
+            new FirstTimeArticlesMap(modelBuilder.Entity<FirstTimeArticles>());
+
+            //new LastTimeArticlesMap(modelBuilder.Entity<LastTimeArticles>());
             #region Branches
             modelBuilder.Entity<Branch>().HasData(new Branch { Id = 1, Name = "جميع الفروع" });
             modelBuilder.Entity<Branch>().HasData(new Branch { Id = 2, Name = "الفرع الرئيسي" });
