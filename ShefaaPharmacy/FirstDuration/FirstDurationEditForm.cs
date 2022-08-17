@@ -496,6 +496,8 @@ namespace ShefaaPharmacy
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
 
+                    
+                    
                     if (CustomerBindingSource.Count < 1)
                     {
                         _MessageBoxDialog.Show("لا يوجد أسطر لإتمام العملية", MessageBoxState.Alert);
@@ -778,7 +780,7 @@ namespace ShefaaPharmacy
         }
         private void SaveFirstTimeGoods(List<ExistStuffViewModel> mystaff)
         {
-            List<ExistStuffViewModel> newArt = new List<ExistStuffViewModel>();
+            List<ExistStuff> newArt = new List<ExistStuff>();
             SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
             con.Open();
 
@@ -789,7 +791,7 @@ namespace ShefaaPharmacy
                     _MessageBoxDialog.Show("لايمكن ادخال قيمة الصفر في حقول (المادة ,العدد ,السعر)", MessageBoxState.Warning);
                     continue;
                 }
-                newArt.Add(new ExistStuffViewModel
+                newArt.Add(new ExistStuff
                 {
                     Name = item.Name,
                     Price = item.Price,
@@ -827,21 +829,24 @@ namespace ShefaaPharmacy
 
             return dataTable;
         }
-        private void InsertStuff(List<ExistStuffViewModel> mylist)
+        private void InsertStuff(List<ExistStuff> mylist)
         {
-            using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
-            {
-                DataTable dt = new DataTable();
-                copy.DestinationTableName = "dbo.ExistStuff";
-                // Add mappings so that the column order doesn't matter
-                copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Name), "name");
-                copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Count), "count");
-                copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Price), "price");
-                copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Description), "description");
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            context.ExistStuffs.AddRange(mylist);
+            context.SaveChanges();
+            //using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
+            //{
+            //    DataTable dt = new DataTable();
+            //    copy.DestinationTableName = "dbo.ExistStuff";
+            //    // Add mappings so that the column order doesn't matter
+            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Name), "name");
+            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Count), "count");
+            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Price), "price");
+            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Description), "description");
 
-                dt = ToDataTable(mylist);
-                copy.WriteToServer(dt);
-            }
+            //    dt = ToDataTable(mylist);
+            //    copy.WriteToServer(dt);
+            //}
         }
         SqlDateTime sqltime;
         private void SaveNewFirstTimeArticale(List<BalanceFirstDurationViewModel> mybalance)
@@ -856,7 +861,7 @@ namespace ShefaaPharmacy
             {
                 newArt.Add(new FirstTimeArticles
                 {
-                    //id = Convert.ToInt32(myid) + 1,
+                    ArticleId = item.ArticleId,
                     InvoiceKind = "رصيد أول مدة",
                     UnitId = item.UnitId,
                     Name = item.ArticleIdDescr,
@@ -871,23 +876,29 @@ namespace ShefaaPharmacy
         }
         public void Insert(List<FirstTimeArticles> list)
         {
-            using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
-            {
-                DataTable dt = new DataTable();
-                copy.DestinationTableName = "dbo.FirstTimeArticles";
-                // Add mappings so that the column order doesn't matter
-                //copy.ColumnMappings.Add(nameof(FirstTimeArticles.id), "id");
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.Name), "name");
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.InvoiceKind), "InvoiceKind");
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.UnitIdDescr), "UnitIdDescr");
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.Price), "Price");
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.Quantity), "Quantity");
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.Total), "Total");
-                copy.ColumnMappings.Add(nameof(FirstTimeArticles.Expirydate), "ExpiryDate");
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
 
-                dt = ToDataTable(list);
-                copy.WriteToServer(dt);
-            }
+            context.FirstTimeArticles.AddRange(list);
+            context.SaveChanges();
+
+
+            //using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
+            //{
+            //    DataTable dt = new DataTable();
+            //    copy.DestinationTableName = "dbo.FirstTimeArticles";
+            //    // Add mappings so that the column order doesn't matter
+            //    //copy.ColumnMappings.Add(nameof(FirstTimeArticles.id), "id");
+            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Name), "name");
+            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.InvoiceKind), "InvoiceKind");
+            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.UnitIdDescr), "UnitIdDescr");
+            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Price), "Price");
+            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Quantity), "Quantity");
+            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Total), "Total");
+            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Expirydate), "ExpiryDate");
+
+            //    dt = ToDataTable(list);
+            //    copy.WriteToServer(dt);
+            //}
         }
         BillMaster billMaster = new BillMaster();
         private bool SaveNewFirstTimeBill()
@@ -1361,12 +1372,13 @@ namespace ShefaaPharmacy
             userParameters.Acc_AccountId = 2;
             userParameters.BranchId = 1;
             string date = "01/01/2000";
-            DateTime firstdate = Convert.ToDateTime(date);
+            DateTime FirstDate = Convert.ToDateTime(date);
+            DateTime EndDate = Convert.ToDateTime(userParameters.ToDate);
             List<SqlParameter> parameters = new List<SqlParameter>()
             {
                 new SqlParameter("@AccountId", 2),
-                new SqlParameter("@FromDate", firstdate),
-                new SqlParameter("@ToDate", userParameters.ToDate),
+                new SqlParameter("@FromDate", FirstDate),
+                new SqlParameter("@ToDate", EndDate),
                 new SqlParameter("@CreationBy", userParameters.UserId)
             };
             DataTable result = DataBaseService.ExecStoredProcedure(ShefaaPharmacyDbContext.GetCurrentContext().Database.GetDbConnection(),
@@ -1837,13 +1849,15 @@ namespace ShefaaPharmacy
             detail.AccountIdDescr = CurrentAccount.Name;
             detail.Debit = Convert.ToDouble(dgvAllCustomers.CurrentRow.Cells["Debit"].Value);
             detail.Id = Convert.ToInt32(dgvAllCustomers.CurrentRow.Cells["Id"].Value);
-            foreach (DataGridViewRow item in dgvAllCustomers.Rows)
-            {
-                if (dgvAllCustomers.CurrentCell.Selected == true)
-                {
-                    detail.EntryMasterId = (item.DataBoundItem as EntryDetail).EntryMasterId;
-                }
-            }
+            detail.EntryMasterId = context.EntryDetails.FirstOrDefault(x => x.Id == detail.Id).EntryMasterId;
+
+            //foreach (DataGridViewRow item in dgvAllCustomers.Rows)
+            //{
+            //    if (dgvAllCustomers.CurrentCell.Selected == true)
+            //    {
+            //        detail.EntryMasterId = (item.DataBoundItem as EntryDetail).EntryMasterId;
+            //    }
+            //}
             FirstTimeCustomerEditForm editForm = new FirstTimeCustomerEditForm(detail);
             editForm.ShowDialog();
             LoadAllCustomerDepits();
