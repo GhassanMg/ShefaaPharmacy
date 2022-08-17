@@ -1,23 +1,17 @@
 ﻿using DataLayer;
 using DataLayer.Helper;
 using DataLayer.Tables;
-using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using ShefaaPharmacy.Helper;
 using System;
 using System.Collections;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using ShefaaPharmacy.GeneralUI;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using DataLayer.Enums;
-using System.Web;
-using System.Text;
-using DataLayer.ViewModels;
 using DataLayer.Services;
 
 // offered to the public domain for any use with no restriction
@@ -53,7 +47,6 @@ namespace ShefaaPharmacy.Api
             socket = s;
             this.srv = srv;
         }
-
         private string streamReadLine(Stream inputStream)
         {
             int next_char;
@@ -96,7 +89,7 @@ namespace ShefaaPharmacy.Api
             }
             outputStream.Flush();
             // bs.Flush(); // flush any remaining output
-            inputStream = null; outputStream = null; // bs = null;            
+            inputStream = null; outputStream = null;
             socket.Close();
         }
 
@@ -133,7 +126,7 @@ namespace ShefaaPharmacy.Api
             operation = Convert.ToInt32(temp1[2].Split('=')[1]);
             if (operation != 1)
                 userid = Convert.ToInt32(temp1[3].Split('=')[1]);
-            //Console.WriteLine(database);
+
             if (operation == 1)
                 barcode = temp1[1].Split('=')[1];
             else
@@ -141,7 +134,7 @@ namespace ShefaaPharmacy.Api
                 invoice = Uri.UnescapeDataString(temp1[1].Split('=')[1]);
                 IsMinus = temp1[4].Split('=')[1];
             }
-            //param = http_url.Split('=')[1].ToString();
+
             http_protocol_versionstring = tokens[2];
 
             Console.WriteLine("starting: " + request);
@@ -248,7 +241,6 @@ namespace ShefaaPharmacy.Api
     //[JsonObject(IsReference = true)]
     public abstract class HttpServer1
     {
-        BillMaster billmaster;
         protected int port;
         TcpListener listener;
         bool is_active = true;
@@ -302,7 +294,7 @@ namespace ShefaaPharmacy.Api
         }
 
 
-        private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr,bool IsMinus)
+        private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr, bool IsMinus)
         {
             BillService billService = new BillService(billMaster);
             bool result = false;
@@ -311,14 +303,13 @@ namespace ShefaaPharmacy.Api
                 case InvoiceKind.Sell:
                     if (IsMinus) result = billService.SellInMinusBill();
                     else result = billService.SellBillMobile(context, usr);
-                    //LastThreeOperation();
+
                     break;
                 default:
                     break;
             }
             if (!result)
             {
-                // _MessageBoxDialog.Show("حصل خطأ أثناء تخزين الفاتورة", MessageBoxState.Error);
                 return false;
             }
             return result;
@@ -344,14 +335,12 @@ namespace ShefaaPharmacy.Api
                         {
                             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                             Formatting = Formatting.Indented
-                        };//context.PriceTagMasters.Where(x => x.ArticleId == articleBarcode.Id && x.CountAllItem==0 && x.CountSoldItem==0).ToList();
+                        };
                         articleBarcode.PriceTagMasters = context.PriceTagMasters
-                                .Where(x => x.ArticleId == articleBarcode.Id /*&& ((x.CountAllItem + x.CountGiftItem) - x.CountSoldItem) != 0*/)
+                                .Where(x => x.ArticleId == articleBarcode.Id)
                                 .Include(x => x.PriceTagDetails)
                                 .OrderBy(x => x.ExpiryDate)
-                                .ToList(); /*DescriptionFK.GetOldestExpiryDate(articleBarcode.Id);*/
-                        //var countleft = Int32.Parse(articleBarcode.CountLeft);
-                        //articleBarcode.CountLeft = countleft.ToString();
+                                .ToList();
                         articleBarcode.ArticleUnits = context.ArticleUnits.Where(x => x.ArticleId == articleBarcode.Id).ToList();
                         var sample = new InvoiceModelToMobile()
                         {
@@ -380,15 +369,7 @@ namespace ShefaaPharmacy.Api
                     billMaster.YearId = YearService.GetAvailableYearMobile(context);
                     billMaster.AccountId = 11;
                     int userId = 0;
-                    
-                    if (p.IsMinus == "true")
-                    {
 
-                    }
-                    else
-                    {
-
-                    }
                     foreach (var item in list)
                     {
                         BillDetail detail = new BillDetail(billMaster);
@@ -419,8 +400,6 @@ namespace ShefaaPharmacy.Api
                             if (billMaster.AccountId == 0) billMaster.AccountId = 11;
                         }
                         mybilld.Add(detail);
-                        //detail.TotalPrice = item["totalPrice"];
-                        //detail.UnitTypeIdDescr
                     }
                     billMaster.BillDetails = mybilld;
                     CheckNumbers(context);
@@ -437,7 +416,6 @@ namespace ShefaaPharmacy.Api
                         if (res)
                         {
                             p.writeSuccess();
-                            // _MessageBoxDialog.Show("تم حفظ الفاتورة", MessageBoxState.Done);
                         }
                         else
                         {
@@ -475,7 +453,6 @@ namespace ShefaaPharmacy.Api
                 string response = JsonConvert.SerializeObject(barcode);
                 p.writeSuccess();
                 p.outputStream.WriteLine(response);
-                //response = response + "\n{\n\"db\"" + " : " + "\"" + DBs.Rows[i][0].ToString().Substring(3) + "\"\n" + "}" + (i == DBs.Rows.Count - 1 ? "" : ",");
             }
             else
             {
