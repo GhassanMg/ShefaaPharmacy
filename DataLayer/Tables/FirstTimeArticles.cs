@@ -11,6 +11,8 @@ namespace DataLayer.Tables
 {
     public class FirstTimeArticles :BaseModel
     {
+        [Browsable(false)]
+        public int ArticleId { get; set; }
         [DisplayName("المنتج")]
         public string Name { get; set; }
         [DisplayName("نوع الفاتورة")]

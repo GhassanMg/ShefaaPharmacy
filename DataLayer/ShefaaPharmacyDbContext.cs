@@ -52,7 +52,7 @@ namespace DataLayer
 
         public ShefaaPharmacyDbContext()
         {
-
+            
         }
         public ShefaaPharmacyDbContext(string connectionString) : base(GetOptions(connectionString))
         {
@@ -74,7 +74,7 @@ namespace DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_FiftthOne;Integrated Security=true;")
+                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_TuesdayDb;Integrated Security=true;")
                 .UseSqlServer(ConStr)
                 .UseLoggerFactory(new LoggerFactory())
                 .EnableSensitiveDataLogging();
