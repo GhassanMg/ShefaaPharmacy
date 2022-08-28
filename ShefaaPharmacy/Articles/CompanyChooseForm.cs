@@ -36,6 +36,8 @@ namespace ShefaaPharmacy.Articles
 
             ChangeStyleOfGrid(datagridcompane);
             ChangeFontForAll();
+            button2.Enabled = false;
+
         }
         void ChangeStyleOfGrid(DataGridView dataGridView)
         {
@@ -70,6 +72,7 @@ namespace ShefaaPharmacy.Articles
                 Thread t = new Thread(new ThreadStart(ThreadJob));
                 t.IsBackground = true;
                 t.Start();
+                button2.Enabled = true;
             }
             else
             {
@@ -156,7 +159,6 @@ namespace ShefaaPharmacy.Articles
                     CheckCompanies.Enabled = true;
                 }
             }
-
         }
         private ApiResponseViewModel<CompanyApiViewModel> GetRESTData(string uri)
         {
@@ -169,6 +171,10 @@ namespace ShefaaPharmacy.Articles
         }
         private async void Upload(string actionUrl)
         {
+            if (datagridcompane.RowCount <= 0)
+            {
+                return;
+            }
             List<string> companys = new List<string>();
             MultipartFormDataContent formContent = new MultipartFormDataContent();
             int i = 0;

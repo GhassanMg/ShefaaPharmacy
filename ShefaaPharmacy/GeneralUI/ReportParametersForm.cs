@@ -565,18 +565,21 @@ namespace ShefaaPharmacy.GeneralUI
 
         private void tbArticleName_Validating(object sender, CancelEventArgs e)
         {
-            Article result = DescriptionFK.ArticaleExists(true, tbArticleName.Text, 0);
-            if (result == null)
+            if(tbArticleName.Text != "")
             {
-                _MessageBoxDialog.Show("يرجى إدخال صنف صحيح", MessageBoxState.Error);
-                tbArticleName.Text = "";
-                tbArticleName.Focus();
-            }
-            else
-            {
-                (bsAccounting.Current as UserParameters).ArticleId = result.Id;
-                (bsAccounting.Current as UserParameters).ArticleIdDescr = result.Name;
-                tbSize.Focus();
+                Article result = DescriptionFK.ArticaleExists(true, tbArticleName.Text, 0);
+                if (result == null)
+                {
+                    _MessageBoxDialog.Show("يرجى إدخال صنف صحيح", MessageBoxState.Error);
+                    tbArticleName.Text = "";
+                    tbArticleName.Focus();
+                }
+                else
+                {
+                    (bsAccounting.Current as UserParameters).ArticleId = result.Id;
+                    (bsAccounting.Current as UserParameters).ArticleIdDescr = result.Name;
+                    tbSize.Focus();
+                }
             }
         }
 

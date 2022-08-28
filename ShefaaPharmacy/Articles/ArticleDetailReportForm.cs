@@ -135,7 +135,7 @@ namespace ShefaaPharmacy.Articale
                     .OrderByDescending(x => x.CreationDate)
                     .LastOrDefault();
 
-            var FirstArticles = context.FirstTimeArticles.Where(x => x.Id == article.Id).ToList();
+            var FirstArticles = context.FirstTimeArticles.Where(x => x.ArticleId == article.Id).ToList();
             foreach (FirstTimeArticles item in FirstArticles)
             {
                 BillDetail NewRow = new BillDetail()
@@ -396,7 +396,7 @@ namespace ShefaaPharmacy.Articale
         {
             if (bindingSourceMaster.Current == null)
                 return;
-            //LoadFirtTimeArticales(bindingSourceMaster.Current as Article);
+            LoadFirtTimeArticales(bindingSourceMaster.Current as Article);
         }
 
         private void dgDetail_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

@@ -495,9 +495,6 @@ namespace ShefaaPharmacy
                 }
                 else if (tabControl1.SelectedTab == tabPage2)
                 {
-
-                    
-                    
                     if (CustomerBindingSource.Count < 1)
                     {
                         _MessageBoxDialog.Show("لا يوجد أسطر لإتمام العملية", MessageBoxState.Alert);
@@ -1569,7 +1566,7 @@ namespace ShefaaPharmacy
             {
                 LoadPharmacyBankCash();
                 pictureBox2.Visible = false;
-
+                if (dgvBankCash.Rows.Count >= 1)  isfirst = false;
                 lblAdd.Text = "تعديل الرصيد";
             }
             if (tabControl1.SelectedTab == tabPage5)
