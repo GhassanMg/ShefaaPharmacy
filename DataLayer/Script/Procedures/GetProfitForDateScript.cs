@@ -42,19 +42,19 @@ namespace DataLayer.Script.Procedures
 									Into #TempNetSells
 
 						-- المشتريات
-	                    SELECT 4 as Id , 'المشتريات' as Account,0 as Credit,Sum(Debit) as Debit ,Sum(Debit) as Total  INTO #tempPurches  FROM dbo.EntryDetail 
+	                    SELECT 4 as Id , 'المشتريات' as Account,0 as Credit,Sum(Debit) as Debit ,Sum(Debit) as Total  INTO #tempPurches FROM dbo.EntryDetail 
 				                       WHERE AccountId IN (SELECT Id FROM dbo.Account WHERE AccountGeneralId = 5 OR Id=5) 
 				                       AND CreationDate >= @FromDate AND CreationDate <=@ToDate
 						--بضاعة أول مدة
-	                    SELECT  5 as Id ,'بضاعة أول مدة' as Account,Sum(Debit) as Debit,0 as Credit, Sum(Debit) as Total INTO #tempFirstGood  FROM dbo.EntryDetail 
+	                    SELECT  5 as Id ,'بضاعة أول مدة' as Account,Sum(Debit) as Debit,0 as Credit, Sum(Debit) as Total INTO #tempFirstGood FROM dbo.EntryDetail 
 				                       WHERE AccountId IN (SELECT Id FROM dbo.Account WHERE AccountGeneralId = 19 OR Id=19) 
 				                       AND CreationDate >= @FromDate AND CreationDate <=@ToDate
 						--خصم مكتسب
-	                    SELECT 6 as Id ,'خصم مكتسب' as Account,Sum(Discount) as Credit,0 as Debit, Sum(Discount) as Total INTO #tempPurchesDiscount  FROM dbo.BillMaster 
+	                    SELECT 6 as Id ,'خصم مكتسب' as Account,Sum(Discount) as Credit,0 as Debit, Sum(Discount) as Total INTO #tempPurchesDiscount FROM dbo.BillMaster 
 				                       WHERE InvoiceKind = 2 
 				                       AND CreationDate >= @FromDate AND CreationDate <=@ToDate
 						--مرتجع مشتريات
-	                    select 7 as Id ,'مرتجع مشتريات' as Account, Sum(payment) as Credit,0 as Debit, Sum(payment) as Total into #tempPurchesReturn from billmaster 
+	                    select 7 as Id ,'مرتجع مشتريات' as Account, Sum(payment) as Credit,0 as Debit, Sum(payment) as Total into #tempPurchesReturn From billmaster 
 					                    WHERE InvoiceKind = 3
 					                    AND CreationDate >= @FromDate AND CreationDate <=@ToDate
 						--بضاعة آخر المدة
@@ -82,7 +82,7 @@ namespace DataLayer.Script.Procedures
 									Where AccountId = 20
 
 						--صافي الربح
-						Select 13 as Id ,'صافي الربح' as Account ,  0 as Debit , 0 as Credit , IsNull((Select Sum(Total) from #TempProfit),0) -IsNull((Select Sum(Debit) from #tempExpense),0)  as Total
+						Select 13 as Id ,'صافي الربح' as Account ,  0 as Debit , 0 as Credit , IsNull((Select sum(Total) from #TempProfit),0) -IsNull((Select Sum(Total) from #tempExpense),0) -IsNull((Select Sum(Total) from #tempExpiryArticles),0)  as Total
 									into #TempNetProfit
 
 						

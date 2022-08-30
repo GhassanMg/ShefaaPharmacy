@@ -132,7 +132,7 @@ namespace ShefaaPharmacy.AccountingReport
             //    db.BulkInsert(list);
             //}
             con.Open();
-            SqlCommand cmd = new SqlCommand("WITH CTE AS(SELECT *, ROW_NUMBER() OVER(PARTITION BY ArticleId ORDER BY id) AS RN FROM lasttimearticles)DELETE FROM CTE WHERE RN <> 1", con);
+            SqlCommand cmd = new SqlCommand("WITH CTE AS(SELECT *, ROW_NUMBER() OVER(PARTITION BY ArticleId ORDER BY id Desc) AS RN FROM lasttimearticles)DELETE FROM CTE WHERE RN <> 1", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
