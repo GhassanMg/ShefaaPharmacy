@@ -171,11 +171,11 @@ namespace ShefaaPharmacy.Articale
             {
                 resultReport[item].CreationDate = resultReport[item].CreationDate.Date;
             }
-            bindingSourceDetail.DataSource = resultReport.OrderByDescending(x => x.InvoiceKind);
+            bindingSourceDetail.DataSource = resultReport.OrderByDescending(x => x.CreationDate);
             dgDetail.Refresh();
             articleDetail.CountLeft = String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTag(article.Id)));
-            articleDetail.LastBuyPrimary = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(article.Id)).BuyPrice;/*UnitTypeService.GetLastBuyPrice(article.Id, UnitTypeService.GetBrimaryPriceId(article.Id));*/
-            articleDetail.LastSellPrimary = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(article.Id)).SellPrice;/*UnitTypeService.GetLastSellPrice(article.Id, UnitTypeService.GetBrimaryPriceId(article.Id));*/
+            articleDetail.LastBuyPrimary = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(article.Id)).BuyPrice;
+            articleDetail.LastSellPrimary = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(article.Id)).SellPrice;
             bindingSourceDetail2.DataSource = articleDetail;
         }
         private void LoadFirtTimeArticales(Article article)

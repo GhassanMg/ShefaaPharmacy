@@ -162,7 +162,7 @@ namespace ShefaaPharmacy.Notification
                     UnitId = DescriptionFK.GetPrimaryUnit(g.Key.ArticleId)
                 }).ToList();
 
-                EditBindingSource.DataSource = mylist.Select(x => new { x.ArticleIdDescr,/* x.CreationDate,*/ x.UnitIdDescr, x.CountAllItem,/* Buy, sell,*/ x.ExpiryDate }).Where(x => x.CountAllItem != 0);
+                EditBindingSource.DataSource = mylist.Select(x => new { x.ArticleIdDescr,/* x.CreationDate,*/ x.UnitIdDescr, x.CountAllItem,/* Buy, sell,*/ x.ExpiryDate }).Where(x => x.CountAllItem > 0);
                 dgvNotification.AutoGenerateColumns = true;
                 dgvNotification.DataSource = EditBindingSource;
                 dgvNotification.Columns["ArticleIdDescr"].HeaderText = "اسم المنتج";
@@ -303,7 +303,7 @@ namespace ShefaaPharmacy.Notification
                     ArticleId = g.Key.ArticleId, // join better than taking First()
                     CountAllItem = g.Sum(i => i.CountAllItem - (i.CountSoldItem + i.CountGiftItem))
                 }).ToList();
-                int Count = mylist.Select(x => new { x.ArticleIdDescr,/* x.CreationDate,*/ x.UnitIdDescr, x.CountAllItem,/* Buy, sell,*/ x.ExpiryDate }).Where(x => x.CountAllItem != 0).Count();
+                int Count = mylist.Select(x => new { x.ArticleIdDescr,/* x.CreationDate,*/ x.UnitIdDescr, x.CountAllItem,/* Buy, sell,*/ x.ExpiryDate }).Where(x => x.CountAllItem > 0).Count();
 
                 if (Count > 0)
                 {
