@@ -564,7 +564,11 @@ namespace DataLayer.Services
 
             var RemainingAmount = GetAllArticleAmountRemaningInAllPrices(artId, unitId);
             var smallestunit = InventoryService.GetSmallestArticleUnit(artId);
-            var AmountFromSmallestUnit = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == artId && x.UnitTypeId == smallestunit).QuantityForPrimary;
+            var AmountFromSmallestUnit = 1;
+            if (!context.ArticleUnits.FirstOrDefault(x => x.UnitTypeId == smallestunit).IsPrimary)
+            {
+                AmountFromSmallestUnit = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == artId && x.UnitTypeId == smallestunit).QuantityForPrimary;
+            }
             if (RemainingAmount <= 0)
             {
                 PriceTagMaster NewPriceTagMaster = new PriceTagMaster()
@@ -572,8 +576,8 @@ namespace DataLayer.Services
                     ArticleId = artId,
                     UnitId = InventoryService.GetSmallestArticleUnit(artId),
                     CountGiftItem = 0,
-                    CountSoldItem = 0,
-                    CountAllItem = (quantity * AmountFromSmallestUnit) * -1,
+                    CountSoldItem = (quantity * AmountFromSmallestUnit),
+                    CountAllItem = 0,
                     BranchId = UserLoggedIn.User.BranchId,
                     ExpiryDate = DateTime.Now.AddYears(1),
                     PriceTagDetails = ArticleService
