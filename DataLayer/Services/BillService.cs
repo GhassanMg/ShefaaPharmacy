@@ -315,23 +315,6 @@ namespace DataLayer.Services
                 return false;
             }
         }
-
-        public bool BuyBill()
-        {
-            ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
-            try
-            {
-                var newMaster = context.BillMasters.Add(billMaster);
-                context.SaveChanges();
-                EntryService.InsertEntryBillBuy(newMaster.Entity);
-                InventoryService.UpdateInventory(newMaster.Entity.BillDetails.ToList(), newMaster.Entity.BranchId, newMaster.Entity.StoreId, invoiceKind: InvoiceKind.Buy);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
         public bool SellBillMobile(ShefaaPharmacyDbContext context, User user)
         {
             try
@@ -348,6 +331,23 @@ namespace DataLayer.Services
                 return false;
             }
 
+        }
+
+        public bool BuyBill()
+        {
+            ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
+            try
+            {
+                var newMaster = context.BillMasters.Add(billMaster);
+                context.SaveChanges();
+                EntryService.InsertEntryBillBuy(newMaster.Entity);
+                InventoryService.UpdateInventory(newMaster.Entity.BillDetails.ToList(), newMaster.Entity.BranchId, newMaster.Entity.StoreId, invoiceKind: InvoiceKind.Buy);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
     }

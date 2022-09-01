@@ -171,7 +171,7 @@ namespace ShefaaPharmacy.Api
 
         public void handleGETRequest()
         {
-            srv.handleGETRequest(this);
+            srv.handleGETRequest(this,IsMinus);
         }
 
         private const int BUF_SIZE = 4096;
@@ -272,7 +272,7 @@ namespace ShefaaPharmacy.Api
 
         }
 
-        public abstract void handleGETRequest(HttpProcessor1 p);
+        public abstract void handleGETRequest(HttpProcessor1 p,string IsMinus);
 
         public abstract void handlePOSTRequest(HttpProcessor1 p, StreamReader inputData);
     }
@@ -294,14 +294,14 @@ namespace ShefaaPharmacy.Api
         }
 
 
-        private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr, bool IsMinus)
+        private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr, string IsMinus)
         {
             BillService billService = new BillService(billMaster);
             bool result = false;
             switch (invoiceKind)
             {
                 case InvoiceKind.Sell:
-                    if (IsMinus) result = billService.SellInMinusBill();
+                    if (IsMinus =="true") result = billService.SellInMinusBill();
                     else result = billService.SellBillMobile(context, usr);
 
                     break;
@@ -314,9 +314,10 @@ namespace ShefaaPharmacy.Api
             }
             return result;
         }
-        public override void handleGETRequest(HttpProcessor1 p)
+        public override void handleGETRequest(HttpProcessor1 p,string IsMinus)
         {
             try
+            
             {
                 billMaster = new BillMaster();
                 string temp = ShefaaPharmacyDbContext.ConStr;
@@ -412,7 +413,7 @@ namespace ShefaaPharmacy.Api
                     bool res;
                     if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
                     {
-                        res = SaveNewBill(context, tmp, true);
+                        res = SaveNewBill(context, tmp, IsMinus);
                         if (res)
                         {
                             p.writeSuccess();
