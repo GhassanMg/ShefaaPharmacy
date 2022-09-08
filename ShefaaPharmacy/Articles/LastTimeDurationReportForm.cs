@@ -83,15 +83,15 @@ namespace ShefaaPharmacy.Articles
                     mynew.ArticleId = item.Id;
                     mynew.Name = item.Name;
                     var Fullquantity = InventoryService.GetAllArticleAmountRemaningInAllPricesDouble(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == mynew.ArticleId && x.IsPrimary).UnitTypeId);
-                    mynew.QuantityLeft = Math.Round(Fullquantity, 2);
+                    mynew.QuantityLeft = Math.Round(Fullquantity, 2).ToString();
 
-                    if (mynew.QuantityLeft == 0) mynew.TotalPrice = 0;
-                    else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * mynew.QuantityLeft);
+                    if (mynew.QuantityLeft == "0") mynew.TotalPrice = 0;
+                    else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * Convert.ToDouble(mynew.QuantityLeft));
                     mynew.UnitId = context.ArticleUnits.FirstOrDefault(x => x.IsPrimary && x.ArticleId == mynew.ArticleId).UnitTypeId;
                     mynew.UnitIdDescr = DescriptionFK.GetUnitName(mynew.UnitId);
 
                     mynew.CreationDate = item.CreationDate;
-                    if (mynew.QuantityLeft == 0) continue;
+                    if (mynew.QuantityLeft == "0") continue;
                     allarticles.Add(mynew);
                 }
             }
@@ -102,6 +102,8 @@ namespace ShefaaPharmacy.Articles
         {
             SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
 
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            
             using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
             {
                 DataTable dt = new DataTable();
@@ -157,7 +159,7 @@ namespace ShefaaPharmacy.Articles
 
             foreach (LastTimeArticleViewModel myrow in bindingSourceMaster)
             {
-                FullPrice.FullPrice += myrow.TotalPrice ;
+                FullPrice.FullPrice += myrow.TotalPrice;
             }
             bindingSourceDetail.DataSource = FullPrice;
             dgDetail.Refresh();

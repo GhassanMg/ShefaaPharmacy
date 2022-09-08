@@ -1,15 +1,11 @@
 ﻿using DataLayer.Enums;
 using DataLayer.Helper;
-using DataLayer.Services;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 
 namespace DataLayer.Services
 {
@@ -81,7 +77,7 @@ namespace DataLayer.Services
 
             // Update Bill
             var old = context.BillDetails.Where(x => x.BillMasterId == billMaster.Id).AsNoTracking().ToList();
- 
+
             foreach (var item in old)
             {
                 if (!billMaster.BillDetails.Any(x => x.ArticaleId == item.ArticaleId && x.UnitTypeId == item.UnitTypeId))
@@ -204,7 +200,7 @@ namespace DataLayer.Services
                         PaymentMethod = billMaster.PaymentMethod,
                         RemainingAmount = billMaster.RemainingAmount,
                         YearId = billMaster.YearId,
-                        Discount=billMaster.Discount
+                        Discount = billMaster.Discount
                     };
                     context.BillMasters.Add(newmasterbill);
                     context.SaveChanges();
@@ -223,7 +219,7 @@ namespace DataLayer.Services
                             Discount = item.Discount,
                             InvoiceKind = invoiceKind,
                             Price = item.Price,
-                            Quantity = item.Quantity ,
+                            Quantity = item.Quantity,
                             TotalPrice = item.TotalPrice,
                             UnitTypeId = item.UnitTypeId,
                             PriceTagId = item.PriceTagId
@@ -238,8 +234,7 @@ namespace DataLayer.Services
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnBuy);
                     }
                     else if (billMaster.InvoiceKind == Enums.InvoiceKind.Sell)
-                    { 
-
+                    {
                         EntryService.InsertEntryReturnBillBuy(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnSell);
                     }

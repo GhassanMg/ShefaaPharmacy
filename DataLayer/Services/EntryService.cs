@@ -265,7 +265,6 @@ namespace DataLayer.Services
             {
                 if (billMaster.PaymentMethod == PaymentMethod.Cash)
                 {
-                    //ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                     EntryMaster entryMaster = MakeEntryMaster(billMaster.Id, billMaster.TotalPrice, billMaster.TotalPrice, KindOperation.Sell);
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
@@ -289,7 +288,6 @@ namespace DataLayer.Services
                 }
                 else if (billMaster.PaymentMethod == PaymentMethod.Debit)
                 {
-                    //ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                     EntryMaster entryMaster = MakeEntryMaster(billMaster.Id, billMaster.TotalPrice, billMaster.TotalPrice, KindOperation.Sell);
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
@@ -395,7 +393,6 @@ namespace DataLayer.Services
             {
                 if (billMaster.PaymentMethod == PaymentMethod.Cash)
                 {
-                    // ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                     EntryMaster entryMaster = MakeEntryMaster(billMaster.Id, billMaster.TotalPrice, billMaster.TotalPrice, KindOperation.Sell);
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     entryMaster.CreationBy = billMaster.CreationBy;

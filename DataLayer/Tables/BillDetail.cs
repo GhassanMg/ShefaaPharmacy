@@ -104,20 +104,13 @@ namespace DataLayer.Tables
                 {
                     if (ArticaleId != 0)
                     {
-                        //Format("{0:0.##}", InventoryService.GetQuantityOfArticleAllPriceTag(artId: ArticaleId, unitId: UnitTypeId));
-                        //return InventoryService.GetQuantityOfArticleAllPriceTag(artId: ArticaleId, unitId: UnitTypeId);
                         string x = context != null ? String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTagMobile(context, artId: ArticaleId, unitId: UnitTypeId))) : String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTag(artId: ArticaleId, unitId: UnitTypeId)));
                         double dres =double.Parse(x);
-                        //int ires = Convert.ToInt32(dres);
+                        
                         return x;
                     }
                     else
                         return "";
-
-                    //if (ArticaleId != 0)
-                    //    return ArticleService.ItemLeftFromInventory(artId: ArticaleId);
-                    //else
-                    //    return "";
                 }
                 catch (Exception ex)
                 {

@@ -78,19 +78,19 @@ namespace ShefaaPharmacy.AccountingReport
                     mynew.ArticleId = item.Id;
                     mynew.Name = item.Name;
                     //var quantityofprimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == item.Id && x.UnitTypeId == lastPriceTage.UnitId).QuantityForPrimary;
-                    mynew.QuantityLeft = InventoryService.GetAllArticleAmountRemaningInAllPrices(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == mynew.ArticleId && x.IsPrimary).UnitTypeId);
-                    if (mynew.QuantityLeft == 0)
+                    mynew.QuantityLeft = InventoryService.GetAllArticleAmountRemaningInAllPrices(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == mynew.ArticleId && x.IsPrimary).UnitTypeId).ToString();
+                    if (mynew.QuantityLeft == "0")
                     {
                         mynew.TotalPrice = 0;
                         ToRemoveIds.Add(item.Id);
                         continue;
                     }
-                    else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * mynew.QuantityLeft);
+                    else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * Convert.ToInt32(mynew.QuantityLeft));
                     mynew.UnitId = context.ArticleUnits.FirstOrDefault(x => x.IsPrimary && x.ArticleId == mynew.ArticleId).UnitTypeId;
                     mynew.UnitIdDescr = DescriptionFK.GetUnitName(mynew.UnitId);
 
                     mynew.CreationDate = item.CreationDate;
-                    if (mynew.QuantityLeft == 0) continue;
+                    if (mynew.QuantityLeft == "0") continue;
                     FinalTotal += mynew.TotalPrice;
                     allarticles.Add(mynew);
                 }
