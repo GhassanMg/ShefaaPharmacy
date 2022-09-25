@@ -17,7 +17,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using ShefaaPharmacy.GeneralUI;
 using System.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -28,8 +27,6 @@ namespace ShefaaPharmacy.Articles
 
     public partial class UpdatePriceOnlineEditForm : ShefaaPharmacy.GeneralUI.GeneralEditForm
     {
-        List<Article> Articles { set; get; }
-        List<Article> SelectedArticles;
         string status;
         public UpdatePriceOnlineEditForm(string status)
         {
@@ -66,7 +63,6 @@ namespace ShefaaPharmacy.Articles
         int count = 0;
         private void button2_Click(object sender, EventArgs e)
         {
-
             count++;
             if (count % 2 != 0)
                 foreach (DataGridViewRow item in dataGridView1.Rows)
@@ -111,25 +107,11 @@ namespace ShefaaPharmacy.Articles
             {
                 if (dataGridView1.DataSource != null && (dataGridView1.DataSource as List<CompanyApiViewModel>).Count == 0)
                 {
-                    SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);//connection name
+                    var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                    var companies = context.Medicines.Select(l => l.Company).Distinct().ToList();
 
-                    SqlCommand cmd = new SqlCommand("select distinct company as الشركة from Medicines ", con);
-                    con.Open();
-
-                    SqlCommand IfEmpty = new SqlCommand("Select count(name) from Medicines", con);
-                    int res = System.Convert.ToInt32(IfEmpty.ExecuteScalar());
-                    
-                    cmd.CommandType = CommandType.Text;
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                    DataSet ds = new DataSet();
-
-                    da.Fill(ds, "Medicines");
-
-                    if (res == 0)
+                    if (companies.Count == 0)
                     {
-
                         if (_MessageBoxDialog.Show("لم يتم استيراد قائمة المواد من ملف الاكسل..يرجى الاستيراد اولاً", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
                         {
                             return;
@@ -137,12 +119,10 @@ namespace ShefaaPharmacy.Articles
                     }
                     else
                     {
-
-                        dataGridView1.DataSource = ds.Tables["Medicines"];
+                        dataGridView1.DataSource = companies;
                         dataGridView1.Columns[0].ReadOnly = true;
                         this.dataGridView1.Sort(this.dataGridView1.Columns[0], ListSortDirection.Ascending);
                         dataGridView1.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
-
                         button1.Enabled = true;
                         try
                         {
@@ -168,7 +148,6 @@ namespace ShefaaPharmacy.Articles
                 }
             }
         }
-        int mycount = 0;
         private async void Upload(string actionUrl)
         {
             List<string> companys = new List<string>();
@@ -187,15 +166,13 @@ namespace ShefaaPharmacy.Articles
             var response = await myHttpClient.PostAsync(actionUrl.ToString(), formContent);
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             string stringContent = await response.Content.ReadAsStringAsync();
-            //MessageBox.Show(stringContent);
+
             var x = JsonConvert.DeserializeObject<ApiResponseViewModel<ArticleApiViewModel>>(stringContent);
             List<ArticleApiViewModel> existarticale = new List<ArticleApiViewModel>();
             
-            var articles = (dataGridView2.DataSource as List<ArticleApiViewModel>);
+            //var articles = (dataGridView2.DataSource as List<ArticleApiViewModel>);
             foreach (var item in x.data)
             {
-
-                mycount++;
                 var rowFound = context.Articles.FirstOrDefault(s => s.Name == item.name
                                  && s.Caliber == item.caliber
                                  &&s.CompanyId == context.Companys.FirstOrDefault(e=>e.Name == item.company_id_descr).Id
@@ -250,7 +227,6 @@ namespace ShefaaPharmacy.Articles
         {
             if (status == "online")
             {
-                SelectedArticles = new List<Article>();
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 if ((dataGridView2.DataSource as List<ArticleApiViewModel>).Count > 0)
                 {
@@ -281,16 +257,14 @@ namespace ShefaaPharmacy.Articles
             }
             else
             {
-                SelectedArticles = new List<Article>();
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 if (dataGridView2.Rows.Count != 0)
                 {
-                    //var articles = (dataGridView2.DataSource as List<Medicine>);
                     foreach (DataGridViewRow item in dataGridView2.Rows)
                     {
-                        var rowFound = context.Articles.FirstOrDefault(s => s.Name == item.Cells["الاسم"].Value.ToString());
+                        var rowFound = context.Articles.FirstOrDefault(s => s.Name == item.Cells["Name"].Value.ToString());
 
-                        if (Convert.ToBoolean(dataGridView2.Rows[dataGridView2.CurrentRow.Index].Cells["checkBoxColumn"].Value) == true)
+                        if (Convert.ToBoolean(item.Cells["checkBoxColumn"].Value) == true)
                         {
                             if (rowFound != null)
                             {
@@ -300,13 +274,12 @@ namespace ShefaaPharmacy.Articles
                                 .OrderByDescending(x => x.CreationDate)
                                 .LastOrDefault();
                                 button4.Enabled = false; lblLoading.Visible = true; dataGridView2.Enabled = false;
-                                await Task.Run(() => UpdateCurrentPrice(price, rowFound.Id, Convert.ToDouble(item.Cells["سعر_الشراء"].Value),
-                                                                                            Convert.ToDouble(item.Cells["سعر_المبيع"].Value)));
-
+                                await Task.Run(() => UpdateCurrentPrice(price, rowFound.Id, Convert.ToDouble(item.Cells["BuyPrice"].Value),
+                                                                                            Convert.ToDouble(item.Cells["SellPrice"].Value)));
                             }
                         }
                     }
-                    _MessageBoxDialog.Show("تم تحديث أسعار المواد المحددة", MessageBoxState.Done);
+                    _MessageBoxDialog.Show("تم تحديث أسعار المواد المحددة بنجاح ", MessageBoxState.Done);
                     button4.Enabled = true; lblLoading.Visible = false; dataGridView2.Enabled = true;
                 }
             }
@@ -383,21 +356,14 @@ namespace ShefaaPharmacy.Articles
             context.SaveChanges();
 
         }
-        int press = 0;
         private void button1_Click_1(object sender, EventArgs e)
         {
-
             if (status == "online")
             {
                 Upload("http://lamsetshefaa-desktop.lamsetshefaa.com/api/articles/by/company-names");
-                press++;
             }
             else
             {
-
-                press++;
-
-                int count = 0;
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 List<string> companys = new List<string>();
                 List<DataGridViewRow> existarticale = new List<DataGridViewRow>();
@@ -406,72 +372,55 @@ namespace ShefaaPharmacy.Articles
                 {
                     if (Convert.ToBoolean(item.Cells["checkBoxColumn"].Value) == true)
                     {
-                        count++;
-                        if (count > 1)
-                        {
-                            _MessageBoxDialog.Show("يرجى تحديث مواد كل شركة على حدة..سيتم تحديد الشركة الأخيرة", MessageBoxState.Warning);
-                            break;
-                        }
-                        else
+                        //count++;
+                        //if (count > 1)
+                        //{
+                        //    _MessageBoxDialog.Show("يرجى تحديث مواد كل شركة على حدة..سيتم تحديد الشركة الأخيرة", MessageBoxState.Warning);
+                        //    break;
+                        //}
+                        //else
                             companys.Add(item.Cells[0].Value.ToString());
-
                     }
                 }
 
-                SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);//connection name
-
-                con.Open();
-                DataTable dt = new DataTable();
-                List<int> toremove = new List<int>();
-                List<Medicine> mymodel = new List<Medicine>();
+                List<Medicines> MyMedicines = new List<Medicines>();
                 foreach (string item in companys)
                 {
+                    var CompanyMedicines = context.Medicines.Where(x => x.Company == item).ToList();
 
-                    SqlCommand cmd = new SqlCommand("select name as الاسم,company as الشركة,scientific_name as التركيب,caliber as العيار,format_id_descr as الشكل_الصيدلاني,BuyPrice as سعر_الشراء,SellPrice as سعر_المبيع,barcode from Medicines where company='" + item + "'", con);
-                    cmd.CommandType = CommandType.Text;
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                    DataSet ds = new DataSet();
-
-                    da.Fill(ds, "Medicines");
-                    //dt = ds.Tables["Medicines"];
-                    dataGridView2.DataSource = ds.Tables["Medicines"];
-                    dataGridView2.Columns["الاسم"].ReadOnly = true;
-                    dataGridView2.Columns["الشركة"].ReadOnly = true;
-                    dataGridView2.Columns["التركيب"].ReadOnly = true;
-                    dataGridView2.Columns["العيار"].ReadOnly = true;
-                    dataGridView2.Columns["الشكل_الصيدلاني"].ReadOnly = true;
-                    dataGridView2.Columns["سعر_الشراء"].ReadOnly = true;
-                    dataGridView2.Columns["سعر_المبيع"].ReadOnly = true;
-                    dataGridView2.Columns["barcode"].ReadOnly = true;
-
-                }
-                foreach (DataGridViewRow f in dataGridView2.Rows)
-                {
-                    var rowFound = context.Articles.FirstOrDefault(s => s.Name == f.Cells["الاسم"].Value.ToString()
-                             && s.Caliber == f.Cells["العيار"].Value.ToString() /*format_id_descr*/
-                             && s.FormatId == DescriptionFK.FormatExistsAndCreate(f.Cells["الشكل_الصيدلاني"].Value.ToString()).Id);
-
-                    if (rowFound == null)
+                    foreach(Medicines temp in CompanyMedicines)
                     {
-                        dataGridView2.Rows.Remove(f);
+                        var rowFound = context.Articles.FirstOrDefault(s => s.Name ==temp.Name
+                            && s.Caliber == temp.Caliber
+                            && s.FormatId == DescriptionFK.FormatExistsAndCreate(temp.FormatIdDescr).Id);
+
+                        if (rowFound != null)
+                        {
+                            MyMedicines.Add(temp);
+                        }
                     }
                 }
+                dataGridView2.DataSource = MyMedicines;
+                dataGridView2.Columns["Id"].Visible = false;
+                dataGridView2.Columns["Name"].ReadOnly = true;
+                dataGridView2.Columns["Company"].ReadOnly = true;
+                dataGridView2.Columns["ScientificName"].ReadOnly = true;
+                dataGridView2.Columns["Caliber"].ReadOnly = true;
+                dataGridView2.Columns["FormatIdDescr"].ReadOnly = true;
+                dataGridView2.Columns["BuyPrice"].ReadOnly = true;
+                dataGridView2.Columns["SellPrice"].ReadOnly = true;
+                dataGridView2.Columns["Barcode"].ReadOnly = true;
+               
                 if (dataGridView2.Rows.Count == 0)
                     _MessageBoxDialog.Show("لا يوجد أدوية للشركة المحددة في المخزن", MessageBoxState.Warning);
-                else
-                {
 
-                }
-
-                if (dataGridView2.Columns.Count < 9 && dataGridView2.Rows.Count != 0)
+                if (dataGridView2.Columns.Count <= 10 && dataGridView2.Rows.Count != 0)
                 {
                     DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
                     checkBoxColumn.HeaderText = "استيراد";
                     checkBoxColumn.Width = 10;
                     checkBoxColumn.Name = "checkBoxColumn";
-                    dataGridView2.Columns.Insert(8, checkBoxColumn);
+                    dataGridView2.Columns.Insert(10, checkBoxColumn);
                 }
 
                 try
