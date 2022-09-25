@@ -76,6 +76,7 @@ namespace ShefaaPharmacy.Invoice
         {
             var firstTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 1);
             var LastTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+            dtCreationDate.Value = DateTime.Now;
             if (billMaster == null || billMaster.Id == 0)
                 PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.Where(x => x.CreationDate >= firstTime && x.CreationDate <= LastTime).ToList();
             else

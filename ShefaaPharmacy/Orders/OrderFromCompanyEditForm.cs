@@ -150,6 +150,7 @@ namespace ShefaaPharmacy.Orders
             {
                 (DetailBindingSource.Current as OrderDetail).Quantity += 1;
                 dgvOrderDetail.Refresh();
+                dgFinalOrder.Refresh();
             }
         }
         private void LbDeleteRow_Click(object sender, EventArgs e)

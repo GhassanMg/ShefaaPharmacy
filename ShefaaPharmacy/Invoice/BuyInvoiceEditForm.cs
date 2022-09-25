@@ -110,6 +110,10 @@ namespace ShefaaPharmacy.Invoice
             tbPayment.Text = billMaster.Payment.ToString();
             tbDiscount.Text = billMaster.Discount.ToString();
             tbRemainingAmount.Text = billMaster.RemainingAmount.ToString();
+            if(this.FormOperation == FormOperation.EditFromPicker)
+            {
+                pbDeleteRow.Enabled = false;
+            }
         }
         public void DeleteRow()
         {
@@ -414,7 +418,15 @@ namespace ShefaaPharmacy.Invoice
                 }
                 else if (cellName == "UnitIdDescr" && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as PurchesBillViewModel).UnitIdDescr != e.FormattedValue.ToString())
                 {
-                    ChangeUnitType(e.FormattedValue.ToString());
+                    ArticleUnits articleUnits = DescriptionFK.ArticleUnitExists((DetailBindingSource.Current as PurchesBillViewModel).ArticleId, e.FormattedValue.ToString());
+                    if (articleUnits == null)
+                    {
+                        e.Cancel = true;
+                        _MessageBoxDialog.Show("واحدة غير منتمية لهذا الصنف", MessageBoxState.Error);
+                        return;
+                    }
+
+                    else ChangeUnitType(e.FormattedValue.ToString());
                 }
                 else if (cellName == "Quantity")
                 {
@@ -721,7 +733,6 @@ namespace ShefaaPharmacy.Invoice
                     buy = Convert.ToInt32(buy2);
                     sell = Convert.ToInt32(sell2);
                     CheckEditPrice = true;
-
                 }
             }
             catch
@@ -805,7 +816,9 @@ namespace ShefaaPharmacy.Invoice
             }
             catch (Exception ex)
             {
-                _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
+                _MessageBoxDialog.Show("هناك خطأ في الإدخال يرجى اعادة العملية", MessageBoxState.Error);
+
+                //_MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
         private void DetailBindingSource_PositionChanged(object sender, EventArgs e)
@@ -893,7 +906,9 @@ namespace ShefaaPharmacy.Invoice
             }
             catch (Exception ex)
             {
-                _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
+                _MessageBoxDialog.Show("هناك خطأ في الإدخال يرجى اعادة العملية", MessageBoxState.Error);
+
+                //_MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
 

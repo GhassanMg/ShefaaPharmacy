@@ -140,12 +140,13 @@ namespace ShefaaPharmacy.Articale
             {
                 BillDetail NewRow = new BillDetail()
                 {
-                    ArticaleId = item.Id,
-                    Barcode = context.Articles.FirstOrDefault(x => x.Id == item.Id).Barcode,
+                    ArticaleId = item.ArticleId,
+                    Barcode = context.Articles.FirstOrDefault(x => x.Id == item.ArticleId).Barcode,
                     InvoiceKind = InvoiceKind.GoodFirstTime,
                     UnitTypeId = item.UnitId,
                     Price = item.Price,
                     Quantity = item.Quantity,
+                    CountLeft = InventoryService.GetQuantityOfArticleAllPriceTag(artId: item.Id, unitId: item.UnitId),
 
                 };
                 resultReport.Add(NewRow);
@@ -166,12 +167,12 @@ namespace ShefaaPharmacy.Articale
                 };
                 resultReport.Add(NewRow);
             }
-
+            resultReport = resultReport.OrderBy(x => x.Id).ToList();
             for (int item = 0; item < resultReport.Count; item++)
             {
                 resultReport[item].CreationDate = resultReport[item].CreationDate.Date;
             }
-            bindingSourceDetail.DataSource = resultReport.OrderByDescending(x => x.CreationDate);
+            bindingSourceDetail.DataSource = resultReport;
             dgDetail.Refresh();
             articleDetail.CountLeft = String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTag(article.Id)));
             articleDetail.LastBuyPrimary = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(article.Id)).BuyPrice;
@@ -404,7 +405,7 @@ namespace ShefaaPharmacy.Articale
             try
             {
                 dgDetail.Columns["Discount"].Visible = false;
-                //dgMaster.Columns["Description"].Visible = false;
+                dgDetail.Columns["CountLeft"].Visible = false;
                 dgDetail.Columns["CreationByDescr"].Visible = false;
                 //dgMaster.Columns["AccountIdDescr"].HeaderText = "حساب العملية";
 

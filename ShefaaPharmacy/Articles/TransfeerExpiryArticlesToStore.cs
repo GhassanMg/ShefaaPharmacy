@@ -134,7 +134,7 @@ namespace ShefaaPharmacy.Articles
                 var bindingList = new BindingList<PriceTagMaster>();
                 foreach (var item in mylist)
                 {
-                    if (item.CountAllItem != 0)
+                    if (item.CountAllItem > 0)
                     {
                         var lastPriceTage = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagMasters
                                             .Where(x => x.ArticleId == item.ArticleId && x.ExpiryDate == item.ExpiryDate)
@@ -200,8 +200,21 @@ namespace ShefaaPharmacy.Articles
             btOk.Select();
             try
             {
-                if (dgMaster.Rows.Count != 0)
+                if (dgMaster.Rows.Count > 0)
                 {
+                    int count = 0;
+                    foreach(DataGridViewRow item in dgMaster.Rows)
+                    {
+                        if (Convert.ToBoolean(item.Cells["Checked"].Value))
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        _MessageBoxDialog.Show("لم يتم تحديد مواد للتحويل", MessageBoxState.Error);
+                        return;
+                    }
                     UpdateInventoryForExpiryArticles();
                     SaveEntryDetailWithArticle();
                     _MessageBoxDialog.Show("تم التحويل بنجاح", MessageBoxState.Done);

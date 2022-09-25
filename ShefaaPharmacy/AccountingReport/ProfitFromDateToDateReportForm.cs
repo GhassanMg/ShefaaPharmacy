@@ -77,32 +77,32 @@ namespace ShefaaPharmacy.AccountingReport
                     LastTimeArticleViewModel mynew = new LastTimeArticleViewModel();
                     mynew.ArticleId = item.Id;
                     mynew.Name = item.Name;
-                    //var quantityofprimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == item.Id && x.UnitTypeId == lastPriceTage.UnitId).QuantityForPrimary;
-                    mynew.QuantityLeft = InventoryService.GetAllArticleAmountRemaningInAllPrices(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == mynew.ArticleId && x.IsPrimary).UnitTypeId).ToString();
+                    var Fullquantity = InventoryService.GetAllArticleAmountRemaningInAllPricesDouble(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == mynew.ArticleId && x.IsPrimary).UnitTypeId);
+                    mynew.QuantityLeft = Math.Round(Fullquantity, 2).ToString();
                     if (mynew.QuantityLeft == "0")
                     {
                         mynew.TotalPrice = 0;
-                        ToRemoveIds.Add(item.Id);
-                        continue;
+                        //ToRemoveIds.Add(item.Id);
+                        //continue;
                     }
-                    else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * Convert.ToInt32(mynew.QuantityLeft));
+                    else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * Convert.ToDouble(mynew.QuantityLeft));
                     mynew.UnitId = context.ArticleUnits.FirstOrDefault(x => x.IsPrimary && x.ArticleId == mynew.ArticleId).UnitTypeId;
                     mynew.UnitIdDescr = DescriptionFK.GetUnitName(mynew.UnitId);
 
                     mynew.CreationDate = item.CreationDate;
                     if (mynew.QuantityLeft == "0") continue;
-                    FinalTotal += mynew.TotalPrice;
+                    //FinalTotal += mynew.TotalPrice;
                     allarticles.Add(mynew);
                 }
             }
-            foreach (var Id in ToRemoveIds)
-            {
-                SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
-                con.Open();
-                SqlCommand cmd = new SqlCommand("delete from lasttimearticles where ArticleId='" + Id + "'", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
+            //foreach (var Id in ToRemoveIds)
+            //{
+            //    SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
+            //    con.Open();
+            //    SqlCommand cmd = new SqlCommand("delete from lasttimearticles where ArticleId='" + Id + "'", con);
+            //    cmd.ExecuteNonQuery();
+            //    con.Close();
+            //}
             //context.Articles.RemoveRange(ToRemoveArts);
             Insert(allarticles);
 
@@ -126,11 +126,6 @@ namespace ShefaaPharmacy.AccountingReport
                 dt = ToDataTable(list);
                 copy.WriteToServer(dt);
             }
-            //DapperPlusManager.Entity<LastTimeArticleViewModel>().Table("LastTimeArticles");
-            //using (IDbConnection db = new SqlConnection(ShefaaPharmacyDbContext.ConStr))
-            //{
-            //    db.BulkInsert(list);
-            //}
             con.Open();
             SqlCommand cmd = new SqlCommand("WITH CTE AS(SELECT *, ROW_NUMBER() OVER(PARTITION BY ArticleId ORDER BY id Desc) AS RN FROM lasttimearticles)DELETE FROM CTE WHERE RN <> 1", con);
             cmd.ExecuteNonQuery();

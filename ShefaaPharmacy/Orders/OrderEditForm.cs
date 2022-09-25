@@ -32,6 +32,7 @@ namespace ShefaaPharmacy.Orders
             FillCompanyDDL();
             SelectedFromDDL = false;
             HelperUI.BindToEnum<OrderState>(ddlOrderState);
+            ddlOrderState.SelectedIndex = 4;
         }
         public OrderEditForm(OrderMaster orderMaster, FormOperation formOperation = FormOperation.New)
         {

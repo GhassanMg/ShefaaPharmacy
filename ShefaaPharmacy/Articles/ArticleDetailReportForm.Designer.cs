@@ -271,7 +271,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Red;
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.dgDetail);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(24, 267);
@@ -327,7 +327,7 @@
             this.dgDetail.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDetail.Size = new System.Drawing.Size(999, 450);
-            this.dgDetail.TabIndex = 0;
+            this.dgDetail.TabIndex = 1;
             this.dgDetail.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgDetail_DataBindingComplete);
             this.dgDetail.BindingContextChanged += new System.EventHandler(this.dgDetail_BindingContextChanged);
             // 
@@ -439,8 +439,8 @@
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.panel3, 0);
-            this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.dgDetail2, 0);
+            this.Controls.SetChildIndex(this.pHelperButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizing)).EndInit();
@@ -480,7 +480,6 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private MetroFramework.Controls.MetroGrid dgDetail;
         private System.Windows.Forms.BindingSource bindingSourceMaster;
         private System.Windows.Forms.BindingSource bindingSourceDetail;
         private MetroFramework.Controls.MetroGrid dgDetail2;
@@ -496,5 +495,6 @@
         private System.Windows.Forms.ToolStripMenuItem miShowBill;
         private System.Windows.Forms.ToolStripMenuItem miShowEntry;
         private System.Windows.Forms.BindingSource FirstTimebindingSource;
+        private MetroFramework.Controls.MetroGrid dgDetail;
     }
 }

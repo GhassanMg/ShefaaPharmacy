@@ -959,7 +959,9 @@ namespace ShefaaPharmacy.GeneralUI
             }
             catch (Exception ex)
             {
-                _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
+                _MessageBoxDialog.Show("حصل خطأ في الادخال يرجى اعادة المحاولة", MessageBoxState.Error);
+
+                //_MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
         private bool CheckExpiryDate(Article articale)
@@ -1724,7 +1726,9 @@ namespace ShefaaPharmacy.GeneralUI
             }
             catch (Exception ex)
             {
-                _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
+                _MessageBoxDialog.Show("حصل خطأ في الادخال يرجى اعادة المحاولة", MessageBoxState.Error);
+
+                //_MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
 

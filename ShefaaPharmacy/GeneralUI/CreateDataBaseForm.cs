@@ -85,7 +85,7 @@ namespace ShefaaPharmacy.GeneralUI
                 }
                 catch (Exception ex)
                 {
-                    //_MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
+                    _MessageBoxDialog.Show("حدث خطأ, يرجى اعادة العملية", MessageBoxState.Error);
                 }
             }
         }

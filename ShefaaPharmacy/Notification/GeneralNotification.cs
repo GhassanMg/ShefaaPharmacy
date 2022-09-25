@@ -162,7 +162,7 @@ namespace ShefaaPharmacy.Notification
                     UnitId = DescriptionFK.GetPrimaryUnit(g.Key.ArticleId)
                 }).ToList();
 
-                EditBindingSource.DataSource = mylist.Select(x => new { x.ArticleIdDescr,/* x.CreationDate,*/ x.UnitIdDescr, x.CountAllItem,/* Buy, sell,*/ x.ExpiryDate }).Where(x => x.CountAllItem > 0);
+                EditBindingSource.DataSource = mylist.Select(x => new { x.ArticleIdDescr, x.UnitIdDescr, x.CountAllItem, x.ExpiryDate }).Where(x => x.CountAllItem > 0);
                 dgvNotification.AutoGenerateColumns = true;
                 dgvNotification.DataSource = EditBindingSource;
                 dgvNotification.Columns["ArticleIdDescr"].HeaderText = "اسم المنتج";
