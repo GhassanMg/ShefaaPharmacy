@@ -29,6 +29,7 @@ namespace ShefaaPharmacy.Articles
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdatePriceOnlineEditForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -36,6 +37,7 @@ namespace ShefaaPharmacy.Articles
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.lblLoading = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -52,6 +54,7 @@ namespace ShefaaPharmacy.Articles
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -64,13 +67,13 @@ namespace ShefaaPharmacy.Articles
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(3366, 0);
+            this.btnCancel.Location = new System.Drawing.Point(4006, 0);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btnCancel.Size = new System.Drawing.Size(148, 42);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(3520, 0);
+            this.btnOk.Location = new System.Drawing.Point(4160, 0);
             this.btnOk.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btnOk.Size = new System.Drawing.Size(148, 42);
             // 
@@ -106,6 +109,7 @@ namespace ShefaaPharmacy.Articles
             this.dataGridView1.RowTemplate.Height = 26;
             this.dataGridView1.Size = new System.Drawing.Size(498, 305);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // panel3
             // 
@@ -153,6 +157,7 @@ namespace ShefaaPharmacy.Articles
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.picLoader);
             this.panel4.Controls.Add(this.lblLoading);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
@@ -162,11 +167,22 @@ namespace ShefaaPharmacy.Articles
             this.panel4.Size = new System.Drawing.Size(652, 103);
             this.panel4.TabIndex = 0;
             // 
+            // picLoader
+            // 
+            this.picLoader.Image = ((System.Drawing.Image)(resources.GetObject("picLoader.Image")));
+            this.picLoader.Location = new System.Drawing.Point(113, 24);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(69, 64);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLoader.TabIndex = 64;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
             // lblLoading
             // 
             this.lblLoading.AutoSize = true;
             this.lblLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblLoading.Location = new System.Drawing.Point(392, 46);
+            this.lblLoading.Location = new System.Drawing.Point(197, 48);
             this.lblLoading.Name = "lblLoading";
             this.lblLoading.Size = new System.Drawing.Size(152, 16);
             this.lblLoading.TabIndex = 62;
@@ -175,7 +191,7 @@ namespace ShefaaPharmacy.Articles
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(250, 42);
+            this.button4.Location = new System.Drawing.Point(364, 42);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(120, 28);
@@ -242,6 +258,7 @@ namespace ShefaaPharmacy.Articles
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -261,5 +278,6 @@ namespace ShefaaPharmacy.Articles
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblLoading;
+        private System.Windows.Forms.PictureBox picLoader;
     }
 }

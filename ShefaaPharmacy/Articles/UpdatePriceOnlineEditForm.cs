@@ -105,7 +105,7 @@ namespace ShefaaPharmacy.Articles
             }
             else
             {
-                if (dataGridView1.DataSource != null && (dataGridView1.DataSource as List<CompanyApiViewModel>).Count == 0)
+                if (dataGridView1.DataSource != null && dataGridView1.Rows.Count == 0)
                 {
                     var context = ShefaaPharmacyDbContext.GetCurrentContext();
                     var companies = context.Medicines.Select(l => l.Company).Distinct().ToList();
@@ -119,9 +119,9 @@ namespace ShefaaPharmacy.Articles
                     }
                     else
                     {
-                        dataGridView1.DataSource = companies;
+                        dataGridView1.DataSource = companies.Select(arr => new { الشركة = arr }).OrderBy(i=>i.الشركة).ToArray();
                         dataGridView1.Columns[0].ReadOnly = true;
-                        this.dataGridView1.Sort(this.dataGridView1.Columns[0], ListSortDirection.Ascending);
+                        //this.dataGridView1.Sort(this.dataGridView1.Columns[0], ListSortDirection.Ascending);
                         dataGridView1.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
                         button1.Enabled = true;
                         try
@@ -173,10 +173,11 @@ namespace ShefaaPharmacy.Articles
             //var articles = (dataGridView2.DataSource as List<ArticleApiViewModel>);
             foreach (var item in x.data)
             {
-                var rowFound = context.Articles.FirstOrDefault(s => s.Name == item.name
-                                 && s.Caliber == item.caliber
-                                 &&s.CompanyId == context.Companys.FirstOrDefault(e=>e.Name == item.company_id_descr).Id
-                                 && s.FormatId == DescriptionFK.FormatExistsAndCreate(item.format_id_descr.ToString()).Id);
+                var rowFound = context.Articles.FirstOrDefault(s => 
+                                    s.Name      == item.name
+                                 && s.Caliber   == item.caliber
+                                 && s.CompanyId == context.Companys.FirstOrDefault(e=>e.Name == item.company_id_descr).Id
+                                 && s.FormatId  == DescriptionFK.FormatExistsAndCreate(item.format_id_descr.ToString()).Id);
                 if (rowFound != null)
                 {
                     existarticale.Add(item);
@@ -246,13 +247,13 @@ namespace ShefaaPharmacy.Articles
                                 .Include(x => x.PriceTagDetails)
                                 .OrderByDescending(x => x.CreationDate)
                                 .LastOrDefault();
-                                button4.Enabled = false; lblLoading.Visible = true; dataGridView2.Enabled = false;
+                                button4.Enabled = false; lblLoading.Visible = true; dataGridView2.Enabled = false; picLoader.Visible = true;
                                 await Task.Run(() => UpdateCurrentPrice(price, rowFound.Id, item.BuyPrice, item.SellPrice));
                             }
                         }
                     }
-                    _MessageBoxDialog.Show("تم تحديث أسعار المواد المحددة", MessageBoxState.Done);
-                    button4.Enabled = true; lblLoading.Visible = false; dataGridView2.Enabled = true;
+                    button4.Enabled = true; lblLoading.Visible = false; dataGridView2.Enabled = true; picLoader.Visible = false;
+                    _MessageBoxDialog.Show("تم تحديث أسعار المواد المحددة بنجاح", MessageBoxState.Done);
                 }
             }
             else
@@ -273,14 +274,14 @@ namespace ShefaaPharmacy.Articles
                                 .Include(x => x.PriceTagDetails)
                                 .OrderByDescending(x => x.CreationDate)
                                 .LastOrDefault();
-                                button4.Enabled = false; lblLoading.Visible = true; dataGridView2.Enabled = false;
+                                button4.Enabled = false; lblLoading.Visible = true; dataGridView2.Enabled = false; picLoader.Visible = true;
                                 await Task.Run(() => UpdateCurrentPrice(price, rowFound.Id, Convert.ToDouble(item.Cells["BuyPrice"].Value),
                                                                                             Convert.ToDouble(item.Cells["SellPrice"].Value)));
                             }
                         }
                     }
+                    button4.Enabled = true; lblLoading.Visible = false; dataGridView2.Enabled = true; picLoader.Visible = false;
                     _MessageBoxDialog.Show("تم تحديث أسعار المواد المحددة بنجاح ", MessageBoxState.Done);
-                    button4.Enabled = true; lblLoading.Visible = false; dataGridView2.Enabled = true;
                 }
             }
         }
@@ -390,9 +391,11 @@ namespace ShefaaPharmacy.Articles
 
                     foreach(Medicines temp in CompanyMedicines)
                     {
-                        var rowFound = context.Articles.FirstOrDefault(s => s.Name ==temp.Name
-                            && s.Caliber == temp.Caliber
-                            && s.FormatId == DescriptionFK.FormatExistsAndCreate(temp.FormatIdDescr).Id);
+                        var rowFound = context.Articles.FirstOrDefault(s =>
+                                    s.Name      == temp.Name
+                                 && s.Caliber   == temp.Caliber
+                                 && s.CompanyId == context.Companys.FirstOrDefault(q => q.Name == temp.Company).Id
+                                 && s.FormatId  == DescriptionFK.FormatExistsAndCreate(temp.FormatIdDescr.ToString()).Id);
 
                         if (rowFound != null)
                         {
@@ -436,6 +439,14 @@ namespace ShefaaPharmacy.Articles
                     return;
                 }
             }
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            //foreach (DataGridViewColumn column in dataGridView1.Columns)
+            //{
+            //    column.SortMode = DataGridViewColumnSortMode.Programmatic;
+            //}
         }
     }
 }
