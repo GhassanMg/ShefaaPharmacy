@@ -95,15 +95,7 @@ namespace ShefaaPharmacy.AccountingReport
                     allarticles.Add(mynew);
                 }
             }
-            //foreach (var Id in ToRemoveIds)
-            //{
-            //    SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
-            //    con.Open();
-            //    SqlCommand cmd = new SqlCommand("delete from lasttimearticles where ArticleId='" + Id + "'", con);
-            //    cmd.ExecuteNonQuery();
-            //    con.Close();
-            //}
-            //context.Articles.RemoveRange(ToRemoveArts);
+
             Insert(allarticles);
 
         }
@@ -171,25 +163,6 @@ namespace ShefaaPharmacy.AccountingReport
 
             List<GetProfitFromDateToDateViewModel> resultReport = DataBaseService.ConvertDataTable<GetProfitFromDateToDateViewModel>(result);
 
-
-            //GetProfitFromDateToDateViewModel ExpiryDateArticles = new GetProfitFromDateToDateViewModel
-            //{
-            //    Account = "بضاعة منتهية الصلاحية",
-            //    Credit = 0,
-            //    Debit = 0,
-            //    Total = GetTotalLastTimeArticles()
-            //};
-
-            //GetProfitFromDateToDateViewModel LastTimeArticles = new GetProfitFromDateToDateViewModel
-            //{
-            //    Account = "بضاعة آخر المدة",
-            //    Credit = 0,
-            //    Debit = 0,
-            //    Total = RebindLastTimeArts()
-            //};
-            //resultReport[3].Total = RebindLastTimeArts();
-            //resultReport.Insert(7, ExpiryDateArticles);
-            //resultReport[8].Total -= ExpiryDateArticles.Total;
             bindingSourceMaster.DataSource = resultReport;
 
             bindingNavigator1.BindingSource = bindingSourceMaster;

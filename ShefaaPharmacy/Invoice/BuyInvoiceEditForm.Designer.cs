@@ -648,6 +648,7 @@ namespace ShefaaPharmacy.Invoice
             // 
             // dgDetail
             // 
+            this.dgDetail.AllowUserToDeleteRows = false;
             this.dgDetail.AllowUserToResizeRows = false;
             this.dgDetail.AutoGenerateColumns = false;
             this.dgDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;

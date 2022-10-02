@@ -80,6 +80,7 @@ namespace DataLayer.Script.Procedures
 						--بضاعة منتهية الصلاحية
 						Select 12 as Id , 'بضاعة منتهية الصلاحية' As Account, Sum(Debit) as Debit , 0 as Credit ,Sum(Debit) as Total INTO #tempExpiryArticles from dbo.EntryDetail
 									Where AccountId = 20
+									AND CreationDate >= @FromDate AND CreationDate <=@ToDate
 
 						--صافي الربح
 						Select 13 as Id ,'صافي الربح' as Account ,  0 as Debit , 0 as Credit , IsNull((Select sum(Total) from #TempProfit),0) -IsNull((Select Sum(Total) from #tempExpense),0) -IsNull((Select Sum(Total) from #tempExpiryArticles),0)  as Total
