@@ -36,7 +36,6 @@ namespace ShefaaPharmacy.AccountingReport
                 dgMaster.AutoGenerateColumns = true;
                 dgMaster.AllowUserToAddRows = false;
                 dgMaster.ReadOnly = true;
-
             }
         }
         public ProfitFromDateToDateReportForm(UserParameters userParameters)
@@ -63,7 +62,6 @@ namespace ShefaaPharmacy.AccountingReport
             List<Article> resultReport = context.Articles.ToList();
             List<LastTimeArticleViewModel> allarticles = new List<LastTimeArticleViewModel>();
             List<int> ToRemoveIds = new List<int>();
-            int FinalTotal = 0;
             foreach (var item in resultReport)
             {
                 if (!item.ItsGeneral)
@@ -82,8 +80,6 @@ namespace ShefaaPharmacy.AccountingReport
                     if (mynew.QuantityLeft == "0")
                     {
                         mynew.TotalPrice = 0;
-                        //ToRemoveIds.Add(item.Id);
-                        //continue;
                     }
                     else mynew.TotalPrice = Convert.ToInt32(lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * Convert.ToDouble(mynew.QuantityLeft));
                     mynew.UnitId = context.ArticleUnits.FirstOrDefault(x => x.IsPrimary && x.ArticleId == mynew.ArticleId).UnitTypeId;
@@ -91,7 +87,6 @@ namespace ShefaaPharmacy.AccountingReport
 
                     mynew.CreationDate = item.CreationDate;
                     if (mynew.QuantityLeft == "0") continue;
-                    //FinalTotal += mynew.TotalPrice;
                     allarticles.Add(mynew);
                 }
             }
@@ -162,11 +157,8 @@ namespace ShefaaPharmacy.AccountingReport
                                                 parameters.ToArray());
 
             List<GetProfitFromDateToDateViewModel> resultReport = DataBaseService.ConvertDataTable<GetProfitFromDateToDateViewModel>(result);
-
             bindingSourceMaster.DataSource = resultReport;
-
             bindingNavigator1.BindingSource = bindingSourceMaster;
-
         }
 
         private int GetTotalLastTimeArticles()
@@ -179,7 +171,6 @@ namespace ShefaaPharmacy.AccountingReport
                 SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
                 con.Open();
                 SqlCommand cmd = new SqlCommand(string.Format("select Debit as Total FROM dbo.EntryDetail where AccountId =20", IDS), con);
-                //"Select sum(TotalPrice) from LastTimeArticles where ArticleId in (5,10)",con);
                 cmd.CommandType = CommandType.Text;
                 int T = Convert.ToInt32(cmd.ExecuteScalar());
                 return T;
@@ -188,7 +179,6 @@ namespace ShefaaPharmacy.AccountingReport
             {
                 return 0;
             }
-
         }
         private List<int> GetExpiredTimeArticles()
         {
@@ -200,17 +190,6 @@ namespace ShefaaPharmacy.AccountingReport
                 var dbConfig = context.DataBaseConfigurations.FirstOrDefault();
                 List<PriceTagMaster> PriceTagsForArticleInStore = context.PriceTagMasters.Include(x => x.Article).ToList();
                 List<PriceTagMaster> articles = PriceTagsForArticleInStore.Where(x => (DateTime.Now.AddDays(dbConfig.DayForExpiry) >= x.ExpiryDate)).ToList();
-                //List<PriceTagMaster> mylist = new List<PriceTagMaster>();
-
-                //foreach (var item in articles)
-                //{
-                //    var lastPriceTage = DescriptionFK.GetLastPriceTagForArt(item.ArticleId);
-                //    Buy = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(articles.FirstOrDefault().ArticleId)).BuyPrice;
-                //    sell = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(articles.FirstOrDefault().ArticleId)).SellPrice;
-                //foreach(var item in articles)
-                //{
-                //    if(item.ExpiryDate!=null)
-                //}
 
                 for (int i = 0; i < articles.Count; i++)
                 {
@@ -244,8 +223,6 @@ namespace ShefaaPharmacy.AccountingReport
             {
                 IdList.Clear();
                 return IdList;
-                //_MessageBoxDialog.Show("لا يوجد منتجات تجاوزت تاريخ صلاحيتها", MessageBoxState.Warning);
-                //this.Close();
             }
         }
         private void ProfitFromDateToDateReportForm_Load(object sender, System.EventArgs e)
@@ -282,7 +259,6 @@ namespace ShefaaPharmacy.AccountingReport
                 userParameters = oldUserParameter;
             }
         }
-
         private void DgMaster_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             if (SumRows.Contains(e.RowIndex))

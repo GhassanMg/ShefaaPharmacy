@@ -25,8 +25,6 @@ namespace ShefaaPharmacy.Articles
         {
             InitializeComponent();
             tbSearch.Enabled = false;
-            //picLoader.Left = (this.dataGridView2.Width - picLoader.Width) / 2;
-            //picLoader.Top = (this.dataGridView2.Height - picLoader.Height) / 2;
         }
         string status;
         public NewImportArticlesOnline(List<ArticleApiViewModel> x)
@@ -95,8 +93,6 @@ namespace ShefaaPharmacy.Articles
             try
             {
                 DisplayData();
-                //Thread threadInput = new Thread(DisplayData);
-                //threadInput.Start();
             }
             catch (Exception ex)
             {
@@ -112,16 +108,10 @@ namespace ShefaaPharmacy.Articles
             {
                 try
                 {
-                    //Stopwatch stopwatch = new Stopwatch();
-
-                    //stopwatch.Start();
                     lblWait.Visible = true;
                     btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = false;
                     await Task.Delay(2000);
                     await Task.Run(() => Thread1Job());
-                    //stopwatch.Stop();
-                    //_MessageBoxDialog.Show("الوقت المستغرق في معالجة العملية \n "+stopwatch.ElapsedMilliseconds, MessageBoxState.Error);
-
                 }
                 catch (Exception e)
                 {
@@ -160,7 +150,6 @@ namespace ShefaaPharmacy.Articles
                             article.CompanyId = DescriptionFK.GetCompanyId(item.Cells["company_id_descr"].Value.ToString());
                             article.CompanyIdDescr = DescriptionFK.GetArticaleName((int)article.CompanyId);
                             article.ArticleIdGeneral = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.ItsGeneral == true).Id;
-                            //article.ArticleIdGeneralDescr = "a";
                             article.Id = ++idcount2; idcount2 = article.Id;
                             article.Caliber = item.Cells["caliber"].Value.ToString();
                             article.ArticleCategoryId = DescriptionFK.GetArticleCategory((article).ArticleIdGeneral).ArticleCategoryId;
@@ -330,21 +319,6 @@ namespace ShefaaPharmacy.Articles
             frm.ShowDialog();
             this.Close();
         }
-        //private ApiResponseViewModel<CompanyApiViewModel> GetRESTData(string uri)
-        //{
-        //    var webRequest = (HttpWebRequest)WebRequest.Create(uri);
-        //    var webResponse = (HttpWebResponse)webRequest.GetResponse();
-        //    var reader = new StreamReader(webResponse.GetResponseStream());
-        //    string s = reader.ReadToEnd();
-        //    //Console.WriteLine(JsonConvert.DeserializeObject<ApiResponseViewModel<CompanyApiViewModel>>(s));
-        //    //MessageBox.Show("["+s+"]");
-        //    var x = JsonConvert.DeserializeObject<ApiResponseViewModel<CompanyApiViewModel>>(s);
-        //    //Console.WriteLine(x);
-        //    //outputStream.WriteLine(x);
-        //    var context = ShefaaPharmacyDbContext.GetCurrentContext();
-        //    var T = context.Articles.FirstOrDefault().ScientificName.Split();
-        //    return x;
-        //}
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -407,7 +381,6 @@ namespace ShefaaPharmacy.Articles
                 });
             }
         }
-
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
             if (status == "offline")
@@ -428,40 +401,15 @@ namespace ShefaaPharmacy.Articles
             {
                 try
                 {
-                    //BindingSource bs = new BindingSource();
                     dataGridView2.ClearSelection();
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
-                        //row.Selected = false;
                         if (row.Cells[0].Value.ToString().ToUpper().Contains(tbSearch.Text.ToUpper()))
                         {
                             row.Selected = true;
                             dataGridView2.FirstDisplayedScrollingRowIndex = dataGridView2.SelectedRows[0].Index;
-                            //bs.Add(row);
-
-                            //(dataGridView2.DataSource as DataTable).DefaultView.RowFilter = string.Format("name = '{0}'", tbSearch.Text);
-
-                            //BindingSource bs = new BindingSource();
-                            //bs.DataSource = dataGridView2.DataSource;
-                            //bs.Filter = "[name] Like '%" + tbSearch.Text.ToUpper() + "%'";
-                            //dataGridView2.DataSource = bs;
-
-                            //var bd = (BindingSource)dataGridView2.DataSource;
-                            //var dt = (DataTable)bd.DataSource;
-                            //dt.DefaultView.RowFilter = string.Format("اسم الصنف like '%{0}%'", tbSearch.Text.Trim().Replace("'", "''"));
-                            //dataGridView2.DataSource = dt;
-                            //dataGridView2.Refresh();
-
-                            //dataTable1.DefaultView.RowFilter = $"[{name}] LIKE '%{textBoxFilter.Text}%'";
-
-                            //((DataTable)dataGridView2.DataSource).DefaultView.RowFilter = $"name LIKE %{tbSearch.Text.ToUpper()}%";
-
-                            //(dataGridView2.DataSource as DataTable).DefaultView.RowFilter = string.Format("Field = '{0}'", tbSearch.Text);
-
-                            //break;
                         }
                     }
-                    //dataGridView2.DataSource = bs;
                 }
                 catch (Exception ex)
                 {
