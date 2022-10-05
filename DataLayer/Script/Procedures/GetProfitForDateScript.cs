@@ -86,7 +86,6 @@ namespace DataLayer.Script.Procedures
 						Select 13 as Id ,'صافي الربح' as Account ,  0 as Debit , 0 as Credit , IsNull((Select sum(Total) from #TempProfit),0) -IsNull((Select Sum(Total) from #tempExpense),0) -IsNull((Select Sum(Total) from #tempExpiryArticles),0)  as Total
 									into #TempNetProfit
 
-						
 											
 	                    --select @sumsells as 'Sells' , @sumpurches as 'Purches' , @allprofit as 'All Profit' , @allexpense as 'Expense' , @netprofit as 'Net Profit'  
 						--select * from #tempSell 
