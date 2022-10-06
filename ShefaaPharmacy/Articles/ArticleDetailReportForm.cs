@@ -46,7 +46,6 @@ namespace ShefaaPharmacy.Articale
                 dgMaster.ReadOnly = true;
                 dgDetail.ReadOnly = true;
                 dgDetail2.ReadOnly = true;
-
             }
         }
 
@@ -73,7 +72,6 @@ namespace ShefaaPharmacy.Articale
                 dgMaster.ReadOnly = true;
                 dgDetail.ReadOnly = true;
                 dgDetail2.ReadOnly = true;
-
             }
         }
         private void LoadMaster()
@@ -147,7 +145,6 @@ namespace ShefaaPharmacy.Articale
                     Price = item.Price,
                     Quantity = item.Quantity,
                     CountLeft = InventoryService.GetQuantityOfArticleAllPriceTag(artId: item.Id, unitId: item.UnitId),
-
                 };
                 resultReport.Add(NewRow);
                 //resultReport.OrderByDescending(x=>x.InvoiceKind);

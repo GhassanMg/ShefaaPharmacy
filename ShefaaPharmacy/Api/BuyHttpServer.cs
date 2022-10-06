@@ -269,7 +269,6 @@ namespace ShefaaPharmacy.Api
             {
 
             }
-
         }
 
         public abstract void handleGETRequest(HttpProcessor1 p,string IsMinus);
@@ -317,7 +316,6 @@ namespace ShefaaPharmacy.Api
         public override void handleGETRequest(HttpProcessor1 p,string IsMinus)
         {
             try
-            
             {
                 billMaster = new BillMaster();
                 string temp = ShefaaPharmacyDbContext.ConStr;
