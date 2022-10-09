@@ -61,6 +61,7 @@ namespace DataLayer.MapTables
             entity.HasData(new Account() { Id = 8, Name = "المصاريف", CategoryId = ConstantDataBase.AC_Expense, General = true, AccountGeneralId = 1, CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Account() { Id = 9, Name = "رأس المال", CategoryId = ConstantDataBase.AC_Profits, General = true, AccountGeneralId = 1, CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Account() { Id = 10, Name = "الموجودات", CategoryId = ConstantDataBase.AC_Asset, General = true, AccountGeneralId = 1, CreationDate = DateTime.Now, CreationBy = 2 });
+            entity.HasData(new Account() { Id = 23, Name = "الإيرادات", CategoryId = ConstantDataBase.AC_Cash, General = true, AccountGeneralId = 1, CreationDate = DateTime.Now, CreationBy = 2 });
             #endregion
 
             #region Non General
@@ -76,6 +77,8 @@ namespace DataLayer.MapTables
             entity.HasData(new Account() { Id = 20, Name = "مخزن المواد منتهية الصلاحية", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 8, CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Account() { Id = 21, Name = "الأصول الثابتة", CategoryId = ConstantDataBase.AC_Asset, General = false, AccountGeneralId = 10, CreationDate = DateTime.Now, CreationBy = 2 });
             entity.HasData(new Account() { Id = 22, Name = "الحسم", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 8, CreationDate = DateTime.Now, CreationBy = 2 });
+            entity.HasData(new Account() { Id = 24, Name = "مردودات المشتريات", CategoryId = ConstantDataBase.AC_Profits, General = false, AccountGeneralId = 23, CreationDate = DateTime.Now, CreationBy = 2 });
+            entity.HasData(new Account() { Id = 25, Name = "مردودات المبيعات", CategoryId = ConstantDataBase.AC_Expense, General = false, AccountGeneralId = 8, CreationDate = DateTime.Now, CreationBy = 2 });
             #endregion
 
         }

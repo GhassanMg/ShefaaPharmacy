@@ -1037,7 +1037,8 @@ namespace DataLayer.Migrations
                     { 8, "مصاريف" },
                     { 9, "ضرائب" },
                     { 10, "الأرباح ورأس المال" },
-                    { 11, "الموجودات" }
+                    { 11, "الموجودات" },
+                    { 23, "الإيرادات" }
                 });
 
             migrationBuilder.InsertData(
@@ -1424,7 +1425,8 @@ namespace DataLayer.Migrations
                     { 7, null, 1, 2, 9, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), true, "الضرائب" },
                     { 8, null, 1, 2, 8, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), true, "المصاريف" },
                     { 9, null, 1, 2, 10, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), true, "رأس المال" },
-                    { 10, null, 1, 2, 11, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), true, "الموجودات" }
+                    { 10, null, 1, 2, 11, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), true, "الموجودات" },
+                    { 23, null, 1, 2, 3, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), true, "الإيرادات" }
                 });
 
             migrationBuilder.InsertData(
@@ -1443,7 +1445,9 @@ namespace DataLayer.Migrations
                     { 22, null, 8, 2, 10, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), false, "الحسم" },
                     { 18, null, 9, 2, 10, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), false, "رأس مال الصيدلية" },
                     { 19, null, 10, 2, 11, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), false, "مخزن الأدوية" },
-                    { 21, null, 10, 2, 11, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), false, "الأصول الثابتة" }
+                    { 21, null, 10, 2, 11, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), false, "الأصول الثابتة" },
+                    { 24, null, 23, 2, 10, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), false, "مردودات المشتريات " },
+                    { 25, null, 8, 2, 8, 2, new DateTime(2022, 8, 16, 10, 47, 55, 795, DateTimeKind.Local).AddTicks(495), false, "مردودات المبيعات" }
                 });
 
             migrationBuilder.InsertData(
