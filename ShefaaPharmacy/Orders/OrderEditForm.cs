@@ -1,6 +1,5 @@
 ﻿using DataLayer.Enums;
 using DataLayer;
-using DataLayer.Enums;
 using DataLayer.Tables;
 using Microsoft.EntityFrameworkCore;
 using ShefaaPharmacy.GeneralUI;
@@ -11,7 +10,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Orders

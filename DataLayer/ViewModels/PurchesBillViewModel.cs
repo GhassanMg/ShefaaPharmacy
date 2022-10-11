@@ -1,9 +1,6 @@
-﻿using DataLayer.Enums;
-using DataLayer.Services;
+﻿using DataLayer.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace DataLayer.ViewModels
 {

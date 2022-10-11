@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
-using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using DataLayer;
 using ShefaaPharmacy.Helper;
 using DataLayer.Helper;
 using DataLayer.Tables;
-using DataLayer.Services;
-using System.Text;
 using Newtonsoft.Json;
 using ShefaaPharmacy.GeneralUI;
-using System.Security.Policy;
-using System.Web;
 using System.Diagnostics;
 // offered to the public domain for any use with no restriction
 // and also with no warranty of any kind, please enjoy. - David Jeske. 

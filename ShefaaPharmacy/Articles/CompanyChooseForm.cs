@@ -1,13 +1,10 @@
 ﻿using DataLayer;
-using DataLayer.Helper;
-using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Newtonsoft.Json;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -15,7 +12,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 

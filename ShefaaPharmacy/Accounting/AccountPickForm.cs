@@ -1,16 +1,11 @@
 ﻿using DataLayer.Enums;
 using DataLayer;
-using DataLayer.Helper;
 using DataLayer.Tables;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using ShefaaPharmacy.Helper;
 
 namespace ShefaaPharmacy.Accounting
 {

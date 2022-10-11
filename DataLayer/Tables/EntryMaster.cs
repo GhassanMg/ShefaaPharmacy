@@ -2,11 +2,9 @@
 using DataLayer.Enums;
 using DataLayer.Helper;
 using DataLayer.Services;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace DataLayer.Tables
 {

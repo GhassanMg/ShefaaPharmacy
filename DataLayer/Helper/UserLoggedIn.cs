@@ -1,7 +1,4 @@
 ﻿using DataLayer.Tables;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DataLayer.Helper
 {

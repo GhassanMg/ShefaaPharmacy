@@ -5,7 +5,6 @@ using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using ShefaaPharmacy.Accounting;
-using ShefaaPharmacy.Articles;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using ShefaaPharmacy.Invoice;

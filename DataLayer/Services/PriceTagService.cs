@@ -1,10 +1,6 @@
-﻿using DataLayer.Helper;
-using DataLayer.Tables;
-using DataLayer.ViewModels;
-using System;
+﻿using DataLayer.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataLayer.Services
 {

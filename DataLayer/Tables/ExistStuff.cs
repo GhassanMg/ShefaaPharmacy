@@ -1,7 +1,4 @@
-﻿using System;
-using DataLayer.Helper;
-using System.Collections.Generic;
-using System.Text;
+﻿using DataLayer.Helper;
 using System.ComponentModel;
 
 namespace DataLayer.Tables

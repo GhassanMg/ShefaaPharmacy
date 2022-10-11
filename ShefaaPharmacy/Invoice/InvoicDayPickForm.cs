@@ -4,17 +4,10 @@ using DataLayer.Tables;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using DataLayer.ViewModels;
-using DataLayer.Helper;
-using DataLayer.Services;
-using System.Threading;
 
 namespace ShefaaPharmacy.Invoice
 {

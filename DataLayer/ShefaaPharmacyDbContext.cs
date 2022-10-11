@@ -3,8 +3,6 @@ using DataLayer.Helper;
 using DataLayer.MapTables;
 using DataLayer.Script.Procedures;
 using DataLayer.Tables;
-using DataLayer.ViewModels;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;

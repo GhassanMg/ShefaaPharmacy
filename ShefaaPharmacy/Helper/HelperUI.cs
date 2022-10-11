@@ -1,16 +1,12 @@
 ﻿using DataLayer.Enums;
 using DataLayer.Helper;
-using MetroFramework.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Helper

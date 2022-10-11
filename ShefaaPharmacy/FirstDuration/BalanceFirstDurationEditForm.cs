@@ -5,7 +5,6 @@ using DataLayer.Services;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using ShefaaPharmacy.Accounting;
-using ShefaaPharmacy.Articale;
 using ShefaaPharmacy.Articles;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;

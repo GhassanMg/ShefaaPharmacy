@@ -1,11 +1,4 @@
-﻿using DataLayer.Helper;
-using DataLayer.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-
-namespace DataLayer.Tables
+﻿namespace DataLayer.Tables
 {
     public class LastTimeArticles 
     {

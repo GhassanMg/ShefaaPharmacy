@@ -1,9 +1,7 @@
 ﻿using DataLayer.Services;
 using DataLayer.Tables;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace DataLayer.ViewModels
 {

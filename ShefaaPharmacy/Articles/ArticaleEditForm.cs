@@ -3,7 +3,6 @@ using DataLayer;
 using DataLayer.Helper;
 using DataLayer.Services;
 using DataLayer.Tables;
-using MetroFramework.Controls;
 using ShefaaPharmacy.Definition;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
@@ -12,9 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ShefaaPharmacy.Articles;
 

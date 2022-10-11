@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace ShefaaPharmacy.GeneralUI
+﻿namespace ShefaaPharmacy.GeneralUI
 {
     public partial class GeneralMasterDetailReportForm : ShefaaPharmacy.GeneralUI.AbstractForm
     {

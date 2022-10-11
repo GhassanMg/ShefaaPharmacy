@@ -1,20 +1,11 @@
 ﻿using DataLayer;
-using Microsoft.EntityFrameworkCore;
 using ShefaaPharmacy.Helper;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using ShefaaPharmacy.GeneralUI;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.SqlServer.Management.Smo;
-using Database = Microsoft.SqlServer.Management.Smo.Database;
-using System.Data.Odbc;
 using System.Threading.Tasks;
 
 namespace ShefaaPharmacy.DataBaseSetting

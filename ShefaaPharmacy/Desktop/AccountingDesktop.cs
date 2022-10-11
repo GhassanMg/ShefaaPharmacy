@@ -3,20 +3,11 @@ using DataLayer.Helper;
 using DataLayer.Tables;
 using ShefaaPharmacy.Accounting;
 using ShefaaPharmacy.Articale;
-using ShefaaPharmacy.Articles;
-using ShefaaPharmacy.Definition;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using ShefaaPharmacy.Invoice;
 using ShefaaPharmacy.Public;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Desktop

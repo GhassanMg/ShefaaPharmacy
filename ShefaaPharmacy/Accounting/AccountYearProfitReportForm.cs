@@ -7,11 +7,9 @@ using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Accounting

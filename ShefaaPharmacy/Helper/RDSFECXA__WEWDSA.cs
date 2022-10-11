@@ -1,14 +1,10 @@
 ﻿using Microsoft.Win32;
 using ShefaaPharmacy.GeneralUI;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Management;
 using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ShefaaPharmacy.Helper
 {
