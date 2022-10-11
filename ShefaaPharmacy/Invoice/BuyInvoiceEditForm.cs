@@ -300,7 +300,7 @@ namespace ShefaaPharmacy.Invoice
             if (!result)
             {
                 _MessageBoxDialog.Show("حصل خطأ أثناء تخزين الفاتورة", MessageBoxState.Error);
-                return false;
+                return false;   
             }
             return result;
         }
@@ -317,6 +317,17 @@ namespace ShefaaPharmacy.Invoice
 
         private bool ReturnBill()
         {
+            var CurentGridItems = DetailBindingSource.DataSource as List<PurchesBillViewModel>;
+
+            foreach (var detail in billMaster.BillDetails.ToList())
+            {
+                bool has = CurentGridItems.Any(cus => cus.ArticleId == detail.ArticaleId);
+                if (!has)
+                {
+                    billMaster.BillDetails.Remove(detail);
+                }
+            }
+
             BillService billService = new BillService(billMaster);
             return billService.ReturnBill(InvoiceKind.ReturnBuy);
         }
@@ -650,7 +661,6 @@ namespace ShefaaPharmacy.Invoice
                     }
                 }
             }
-
         }
         private void FillWithArticleName(string value)
         {
@@ -869,8 +879,14 @@ namespace ShefaaPharmacy.Invoice
             {
                 return;
             }
-            if (dgDetail.CurrentRow.DataBoundItem == null)
+            try
+            {
+                if (dgDetail.CurrentRow.DataBoundItem == null)
+                    return;
+            }catch(Exception ex)
+            {
                 return;
+            }
             try
             {
                 string artVal = dgDetail.Rows[e.RowIndex].Cells["ArticleIdDescr"].Value.ToString().Trim();
@@ -982,12 +998,12 @@ namespace ShefaaPharmacy.Invoice
             }
             if (billMaster.PaymentMethod == PaymentMethod.Cash)
             {
-                billMaster.Payment = billMaster.TotalPrice - Convert.ToInt32(tbDiscount.Text);//(billMaster.TotalPrice * Convert.ToDouble(tbDiscount.Text) / 100);
+                billMaster.Payment = billMaster.TotalPrice - Convert.ToInt32(tbDiscount.Text);
                 billMaster.RemainingAmount = 0;
             }
             else
             {
-                billMaster.RemainingAmount = billMaster.TotalPrice - Convert.ToInt32(tbDiscount.Text);//(billMaster.TotalPrice * Convert.ToDouble(tbDiscount.Text) / 100);
+                billMaster.RemainingAmount = billMaster.TotalPrice - Convert.ToInt32(tbDiscount.Text);
                 billMaster.Payment = 0;
             }
             tbPayment.Text = billMaster.Payment + "";

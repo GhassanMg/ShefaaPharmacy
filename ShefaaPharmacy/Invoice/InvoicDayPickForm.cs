@@ -180,8 +180,6 @@ namespace ShefaaPharmacy.Invoice
 
             //tsddlSearch.SelectedIndexChanged += tsddlSearch_SelectedIndexChanged;
             //tsddlSearch2.SelectedIndexChanged += tsddlSearch2_SelectedIndexChanged;
-
-
         }
         protected override void tsddlSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
