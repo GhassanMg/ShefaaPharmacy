@@ -135,9 +135,9 @@ namespace ShefaaPharmacy.Setting
             this.label5.Location = new System.Drawing.Point(320, 42);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 53);
+            this.label5.Size = new System.Drawing.Size(158, 53);
             this.label5.TabIndex = 30;
-            this.label5.Text = "تسجيل دخول";
+            this.label5.Text = "تسجيل الدخول";
             // 
             // btnCancel
             // 
