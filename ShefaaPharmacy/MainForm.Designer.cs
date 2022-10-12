@@ -45,6 +45,8 @@
             this.miInvoiceUpdateInvoice = new System.Windows.Forms.ToolStripMenuItem();
             this.miInvoiceDeleteInvoice = new System.Windows.Forms.ToolStripMenuItem();
             this.mExpiredArticles = new System.Windows.Forms.ToolStripMenuItem();
+            this.miReturnSellInvoice = new System.Windows.Forms.ToolStripMenuItem();
+            this.miReturnBuyInvoice = new System.Windows.Forms.ToolStripMenuItem();
             this.miAccountingPick = new System.Windows.Forms.ToolStripMenuItem();
             this.miPickAccount = new System.Windows.Forms.ToolStripMenuItem();
             this.miEntryPick = new System.Windows.Forms.ToolStripMenuItem();
@@ -308,7 +310,9 @@
             this.miInvoiceReturningInvoice,
             this.miInvoiceUpdateInvoice,
             this.miInvoiceDeleteInvoice,
-            this.mExpiredArticles});
+            this.mExpiredArticles,
+            this.miReturnSellInvoice,
+            this.miReturnBuyInvoice});
             this.miAccountingOperations.Image = global::ShefaaPharmacy.Properties.Resources.Operation;
             this.miAccountingOperations.Name = "miAccountingOperations";
             this.miAccountingOperations.Size = new System.Drawing.Size(207, 30);
@@ -319,7 +323,7 @@
             this.miInvoiceReturningInvoice.Image = global::ShefaaPharmacy.Properties.Resources.icons8_return_purchase_40px;
             this.miInvoiceReturningInvoice.Name = "miInvoiceReturningInvoice";
             this.miInvoiceReturningInvoice.Size = new System.Drawing.Size(278, 30);
-            this.miInvoiceReturningInvoice.Text = "إرجاع فاتورة";
+            this.miInvoiceReturningInvoice.Text = "إرجاع فاتورة كاملة";
             this.miInvoiceReturningInvoice.Click += new System.EventHandler(this.miInvoiceReturningSelling_Click);
             // 
             // miInvoiceUpdateInvoice
@@ -348,6 +352,22 @@
             this.mExpiredArticles.Visible = false;
             this.mExpiredArticles.Click += new System.EventHandler(this.miDestructionBill_Click);
             // 
+            // miReturnSellInvoice
+            // 
+            this.miReturnSellInvoice.Image = global::ShefaaPharmacy.Properties.Resources.icons8_refundSell_48;
+            this.miReturnSellInvoice.Name = "miReturnSellInvoice";
+            this.miReturnSellInvoice.Size = new System.Drawing.Size(278, 30);
+            this.miReturnSellInvoice.Text = "مرتجع مبيعات";
+            this.miReturnSellInvoice.Click += new System.EventHandler(this.miReturnSellInvoice_Click);
+            // 
+            // miReturnBuyInvoice
+            // 
+            this.miReturnBuyInvoice.Image = global::ShefaaPharmacy.Properties.Resources.icons8_refundBuy_48;
+            this.miReturnBuyInvoice.Name = "miReturnBuyInvoice";
+            this.miReturnBuyInvoice.Size = new System.Drawing.Size(278, 30);
+            this.miReturnBuyInvoice.Text = "مرتجع مشتريات";
+            this.miReturnBuyInvoice.Click += new System.EventHandler(this.miReturnBuyInvoice_Click);
+            // 
             // miAccountingPick
             // 
             this.miAccountingPick.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -366,7 +386,7 @@
             this.miPickAccount.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miPickAccount.Image = global::ShefaaPharmacy.Properties.Resources.icons8_account_48px;
             this.miPickAccount.Name = "miPickAccount";
-            this.miPickAccount.Size = new System.Drawing.Size(229, 30);
+            this.miPickAccount.Size = new System.Drawing.Size(225, 30);
             this.miPickAccount.Text = "إستعراض الحسابات";
             this.miPickAccount.Click += new System.EventHandler(this.miPickAccount_Click);
             // 
@@ -375,7 +395,7 @@
             this.miEntryPick.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miEntryPick.Image = global::ShefaaPharmacy.Properties.Resources.icons8_memo_48px;
             this.miEntryPick.Name = "miEntryPick";
-            this.miEntryPick.Size = new System.Drawing.Size(229, 30);
+            this.miEntryPick.Size = new System.Drawing.Size(225, 30);
             this.miEntryPick.Text = "إستعراض سندات القيد";
             this.miEntryPick.Click += new System.EventHandler(this.miEntryPick_Click);
             // 
@@ -384,7 +404,7 @@
             this.miInvoicDayPick.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miInvoicDayPick.Image = global::ShefaaPharmacy.Properties.Resources.icons8_bill_48px;
             this.miInvoicDayPick.Name = "miInvoicDayPick";
-            this.miInvoicDayPick.Size = new System.Drawing.Size(229, 30);
+            this.miInvoicDayPick.Size = new System.Drawing.Size(225, 30);
             this.miInvoicDayPick.Text = "إستعراض فواتير اليوم";
             this.miInvoicDayPick.Click += new System.EventHandler(this.miInvoicDayPick_Click);
             // 
@@ -393,7 +413,7 @@
             this.miPickAccountPayments.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miPickAccountPayments.Image = global::ShefaaPharmacy.Properties.Resources.icons8_receive_cash_48px;
             this.miPickAccountPayments.Name = "miPickAccountPayments";
-            this.miPickAccountPayments.Size = new System.Drawing.Size(229, 30);
+            this.miPickAccountPayments.Size = new System.Drawing.Size(225, 30);
             this.miPickAccountPayments.Text = "إستعراض دفعات اليوم";
             this.miPickAccountPayments.Click += new System.EventHandler(this.miPickAccountPayments_Click);
             // 
@@ -1632,6 +1652,8 @@
         private System.Windows.Forms.ToolStripMenuItem stmExpiryAerticlesStore;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddNewAccountPayment;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditAccountPayment;
+        private System.Windows.Forms.ToolStripMenuItem miReturnSellInvoice;
+        private System.Windows.Forms.ToolStripMenuItem miReturnBuyInvoice;
     }
 }
 

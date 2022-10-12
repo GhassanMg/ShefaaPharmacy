@@ -155,7 +155,7 @@ namespace ShefaaPharmacy.GeneralUI
                 }
 
             }
-            else if (FormOperation == FormOperation.ReturnEmpty)
+            else if (FormOperation == FormOperation.ReturnEmpty || FormOperation == FormOperation.ReturnArticles)
             {
                 this.billMaster.BillDetails = new List<BillDetail>();
                 this.billMaster.InvoiceKind = this.invoiceKind;
@@ -216,6 +216,11 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 lbDeleteBill.Visible = lbReturnBill.Visible = true;
                 this.Text = "إرجاع فاتورة";
+            }
+            else if (formOperation == FormOperation.ReturnArticles)
+            {
+                lbDeleteBill.Visible = lbReturnBill.Visible = true;
+                this.Text = "فاتورة مرتجع مبيعات";
             }
             else if (formOperation == FormOperation.DestructionBill)
             {
@@ -553,6 +558,17 @@ namespace ShefaaPharmacy.GeneralUI
         }
         private bool ReturnBill()
         {
+            var CurentGridItems = DetailBindingSource.DataSource as List<BillDetail>;
+
+            foreach (var detail in billMaster.BillDetails.ToList())
+            {
+                bool has = CurentGridItems.Any(cus => cus.ArticaleId == detail.ArticaleId);
+                if (!has)
+                {
+                    billMaster.BillDetails.Remove(detail);
+                }
+            }
+
             BillService billService = new BillService(billMaster);
             return billService.ReturnBill(InvoiceKind.ReturnSell);
         }
@@ -627,7 +643,7 @@ namespace ShefaaPharmacy.GeneralUI
                                 if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[0].Value.ToString() == e.FormattedValue.ToString())
                                 {
                                     //(DetailBindingSource.DataSource as BillDetail).BarcodeDescr = "";
-                                    if (Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
+                                    if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                     {
                                         int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
                                         string msg = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + quant + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -672,7 +688,7 @@ namespace ShefaaPharmacy.GeneralUI
                         else
                         {
                             articleBarcode.PriceTagMasters = pricetag;
-                            if (CheckExpiryDate(articleBarcode))
+                            if (this.FormOperation != FormOperation.ReturnArticles && CheckExpiryDate(articleBarcode))
                             {
                                 _MessageBoxDialog.Show("يوجد كمية منتهية المدة من هذه المادة", MessageBoxState.Alert);
                             }
@@ -705,7 +721,7 @@ namespace ShefaaPharmacy.GeneralUI
                                         if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[0].Value.ToString() == result.Barcode)
                                         {
                                             //(DetailBindingSource.DataSource as BillDetail).BarcodeDescr = "";
-                                            if (Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
+                                            if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                             {
                                                 int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
                                                 string msg = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + quant + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -747,7 +763,7 @@ namespace ShefaaPharmacy.GeneralUI
                     {
                         Article Articale = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Id == (DetailBindingSource.Current as BillDetail).ArticaleId);
                         int remainingamount = InventoryService.GetAllArticleAmountRemaningInAllPrices(Articale.Id, (DetailBindingSource.Current as BillDetail).UnitTypeId);
-                        if (remainingamount < Articale.LimitDown)
+                        if (this.FormOperation != FormOperation.ReturnArticles && remainingamount < Articale.LimitDown)
                         {
                             _MessageBoxDialog.Show("المادة قد تجاوزت الحد الأدنى للكمية" + "\n" + "الحد الأدنى : " + Articale.LimitDown + "", MessageBoxState.Warning);
                         }
@@ -810,7 +826,7 @@ namespace ShefaaPharmacy.GeneralUI
                                 if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[2].Value.ToString() == result.Name)
                                 {
                                     //(DetailBindingSource.DataSource as BillDetail).BarcodeDescr = "";
-                                    if (Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
+                                    if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                     {
                                         int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
                                         string msg = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + quant + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -859,7 +875,7 @@ namespace ShefaaPharmacy.GeneralUI
                                     if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[2].Value.ToString() == result.Name)
                                     {
                                         //(DetailBindingSource.DataSource as BillDetail).BarcodeDescr = "";
-                                        if (Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
+                                        if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                         {
                                             int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
                                             string msg = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + quant + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -930,7 +946,7 @@ namespace ShefaaPharmacy.GeneralUI
                             _MessageBoxDialog.Show("يجب إدخال رقم أكبر من الصفر", MessageBoxState.Error);
                             return;
                         }
-                        else if (Convert.ToInt32(e.FormattedValue.ToString()) > qu && (FormOperation != FormOperation.ReturnEmpty && FormOperation != FormOperation.Return))
+                        else if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(e.FormattedValue.ToString()) > qu && (FormOperation != FormOperation.ReturnEmpty && FormOperation != FormOperation.Return))
                         {
                             //e.Cancel = true;
                             string message = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + qu + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -1021,7 +1037,7 @@ namespace ShefaaPharmacy.GeneralUI
                 //    _MessageBoxDialog.Show("لا يوجد كمية من هذه الواحدة ولكن يوجد من الواحدة الأصغر منها", MessageBoxState.Warning);
                 //    return true;
                 //}
-                if (FormOperation == FormOperation.ReturnEmpty)
+                if (this.FormOperation != FormOperation.ReturnArticles && FormOperation == FormOperation.ReturnEmpty)
                 {
                     _MessageBoxDialog.Show("لا يوجد أي قطعة من هذا الصنف", MessageBoxState.Warning);
                     currentRow.ArticaleId = articale.Id;
@@ -1057,13 +1073,8 @@ namespace ShefaaPharmacy.GeneralUI
                     dgItemLeft.DataSource = InventoryService.GetArticleAmountRemaning(articale.Id);
                     return true;
                 }
-                //return false;
-                string message = "لا يوجد أي قطعة من هذا الصنف هل تريد المبيع بالسالب ؟";
-                MessageBoxAnswer dialogResult;
-                dialogResult = _MessageBoxDialog.Show(message, MessageBoxState.Answering);
-                if (dialogResult == MessageBoxAnswer.Yes)
+                if (this.FormOperation == FormOperation.ReturnArticles)
                 {
-                    IsInMinus = true;
                     currentRow.ArticaleId = articale.Id;
                     currentRow.ArticaleIdDescr = articale.Name;
                     var lastPriceTage = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagMasters
@@ -1102,7 +1113,54 @@ namespace ShefaaPharmacy.GeneralUI
                     dgItemLeft.DataSource = InventoryService.GetArticleAmountRemaning(articale.Id);
                     return true;
                 }
-                return false;
+                else
+                {
+                    string message = "لا يوجد أي قطعة من هذا الصنف هل تريد المبيع بالسالب ؟";
+                    MessageBoxAnswer dialogResult;
+                    dialogResult = _MessageBoxDialog.Show(message, MessageBoxState.Answering);
+                    if (dialogResult == MessageBoxAnswer.Yes)
+                    {
+                        IsInMinus = true;
+                        currentRow.ArticaleId = articale.Id;
+                        currentRow.ArticaleIdDescr = articale.Name;
+                        var lastPriceTage = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagMasters
+                        .Where(x => x.ArticleId == articale.Id)
+                        .Include(x => x.PriceTagDetails)
+                        .OrderByDescending(x => x.CreationDate).FirstOrDefault();
+                        /*.LastOrDefault(); *//*DescriptionFK.GetLastPriceTagForArt(articale.Id);*/
+                        if (lastPriceTage.PharmacyOperator1 != null && lastPriceTage.PharmacyOperator1.Trim() != "")
+                        {
+                            _MessageBoxDialog.Show(" يوجد تصنيف صيدلية أول :" + lastPriceTage.PharmacyOperator1, MessageBoxState.Alert);
+                        }
+                        if (lastPriceTage.PharmacyOperator2 != null && lastPriceTage.PharmacyOperator2.Trim() != "")
+                        {
+                            _MessageBoxDialog.Show(" يوجد تصنيف صيدلية ثاني :" + lastPriceTage.PharmacyOperator2, MessageBoxState.Alert);
+                        }
+                        currentRow.PriceTagId = lastPriceTage.Id;
+                        currentRow.UnitTypeId = DescriptionFK.GetPrimaryUnit(articale.Id);
+                        currentRow.UnitTypeIdBasic = DescriptionFK.GetPrimaryUnit(articale.Id);
+                        currentRow.UnitTypeIdDescr = DescriptionFK.GetUnitName(lastPriceTage.UnitId);
+                        var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                        var quentityofprimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == articale.Id && x.UnitTypeId == lastPriceTage.UnitId).QuantityForPrimary;
+                        if (lastPriceTage.PriceTagDetails.Count > 0)
+                        {
+                            currentRow.Price = lastPriceTage.PriceTagDetails.FirstOrDefault(x => x.UnitId == DescriptionFK.GetPrimaryUnit(articale.Id)).SellPrice /*/ quentityofprimary*/;
+                            //currentRow.Price = lastPriceTage.PriceTagDetails.Last(x=>x.UnitId==DescriptionFK.GetPrimaryUnit(articale.Id)).SellPrice/quentityofprimary;
+                        }
+                        else
+                        {
+                            currentRow.Price = 0;
+                        }
+
+                        currentRow.Quantity = 1;
+                        currentRow.Barcode = articale.Barcode;
+                        //if (currentRow.CountLeft == "") currentRow.CountLeft = "0";
+                        currentRow.BarcodeDescr = articale.Barcode;
+                        dgItemLeft.DataSource = InventoryService.GetArticleAmountRemaning(articale.Id);
+                        return true;
+                    }
+                    return false;
+                }
             }
             else
             {
@@ -1331,6 +1389,15 @@ namespace ShefaaPharmacy.GeneralUI
                 }
             }
             else if (FormOperation == FormOperation.ReturnEmpty)
+            {
+                res = ReturnBill();
+                if (res)
+                {
+                    _MessageBoxDialog.Show("تم إرجاع الفاتورة", MessageBoxState.Done);
+                    Close();
+                }
+            }
+            else if (FormOperation == FormOperation.ReturnArticles)
             {
                 res = ReturnBill();
                 if (res)

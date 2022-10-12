@@ -1499,6 +1499,8 @@
   <ItemGroup>
     <Content Include="128-128.ico" />
     <Content Include="hnet.com-image.ico" />
+    <None Include="Resources\icons8-refundSell-48.png" />
+    <None Include="Resources\icons8-refundBuy-48.png" />
     <None Include="Resources\Card_Cash_First.png" />
     <None Include="Resources\transaction_48px.png" />
     <None Include="Resources\exchange_48px.png" />

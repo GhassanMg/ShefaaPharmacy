@@ -1693,9 +1693,34 @@ namespace ShefaaPharmacy
 
         }
 
-        private void طلبيةنوعجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        private void miReturnSellInvoice_Click(object sender, EventArgs e)
         {
+            if (Auth.IsDataEntry())
+            {
+                var newbill = new BillMaster();
+                newbill.InvoiceKind = InvoiceKind.ReturnSell;
+                GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(newbill, InvoiceKind.ReturnSell, FormOperation.ReturnArticles);
+                generalInvoiceEditForm.ShowDialog();
+            }
+            else
+            {
+                _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
+            }
+        }
 
+        private void miReturnBuyInvoice_Click(object sender, EventArgs e)
+        {
+            if (Auth.IsDataEntry())
+            {
+                var newbill = new BillMaster();
+                newbill.InvoiceKind = InvoiceKind.ReturnBuy;
+                BuyInvoiceEditForm buyInvoiceEditForm = new BuyInvoiceEditForm(newbill, FormOperation.ReturnArticles);
+                buyInvoiceEditForm.ShowDialog();
+            }
+            else
+            {
+                _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
+            }
         }
     }
 }

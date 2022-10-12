@@ -100,6 +100,11 @@ namespace ShefaaPharmacy.Invoice
             dgDetail.Columns["Gift"].Visible = false;
             #endregion
             BindingControl();
+            if (formOperation == FormOperation.ReturnArticles)
+            {
+                this.Text = "فاتورة مرتجع مشتريات";
+                billMaster.InvoiceKind = InvoiceKind.ReturnBuy;
+            }
             billMaster.CalcTotal();
             ChangeImageButton();
             this.cbPaymentMethod.SelectedIndexChanged += new System.EventHandler(this.cbPaymentMethod_SelectedIndexChanged);
@@ -441,6 +446,14 @@ namespace ShefaaPharmacy.Invoice
                 {
                     Article CurrentArticle = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Id == (DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
                     int remainingamount = InventoryService.GetAllArticleAmountRemaningInAllPrices(CurrentArticle.Id, (DetailBindingSource.Current as PurchesBillViewModel).UnitId);
+
+                    if (FormOperation == FormOperation.ReturnArticles && Convert.ToDouble(remainingamount) == 0)
+                    {
+                        _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Warning);
+                        e.Cancel = true;
+                        return;
+                    }
+
                     int LimitUp = CurrentArticle.LimitUp;
                     int LimitDown = CurrentArticle.LimitDown;
                     if (LimitUp != 0 || LimitDown != 0)
@@ -625,6 +638,15 @@ namespace ShefaaPharmacy.Invoice
                     Close();
                 }
             }
+            else if (FormOperation == FormOperation.ReturnArticles)
+            {
+                res = ReturnBill();
+                if (res)
+                {
+                    _MessageBoxDialog.Show("تم إرجاع الفاتورة", MessageBoxState.Done);
+                    Close();
+                }
+            }
         }
 
         private void lbAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -644,8 +666,17 @@ namespace ShefaaPharmacy.Invoice
             var articleBarcode = context.Articles.Include(x => x.PriceTagMasters).Where(x => x.Barcode == value).FirstOrDefault();
             if (articleBarcode != null)
             {
-                FillRow(articleBarcode);
-                count++;
+                var RemainingAmount = InventoryService.GetQuantityOfArticleAllPriceTag(articleBarcode.Id);
+                if (FormOperation == FormOperation.ReturnArticles && Convert.ToDouble(RemainingAmount) == 0)
+                {
+                    _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Error);
+                    return;
+                }
+                else
+                {
+                    FillRow(articleBarcode);
+                    count++;
+                }
             }
             else
             {
@@ -654,8 +685,17 @@ namespace ShefaaPharmacy.Invoice
                     Article result = ArticlePicker.PickArticale("", 0, FormOperation.Pick);
                     if (result != null)
                     {
-                        FillRow(result);
-                        count++;
+                        var RemainingAmount = InventoryService.GetQuantityOfArticleAllPriceTag(result.Id);
+                        if (FormOperation == FormOperation.ReturnArticles && Convert.ToDouble(RemainingAmount) == 0)
+                        {
+                            _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Warning);
+                            return;
+                        }
+                        else
+                        {
+                            FillRow(result);
+                            count++;
+                        }
                     }
                 }
             }
@@ -1234,6 +1274,7 @@ namespace ShefaaPharmacy.Invoice
                 }
                 tbPayment.Text = billMaster.Payment.ToString();
             }
+            //if(dgDetail.CurrentRow.Cells["Quantity"].Value>)
             InitEntity_onUpdateForm();
         }
 

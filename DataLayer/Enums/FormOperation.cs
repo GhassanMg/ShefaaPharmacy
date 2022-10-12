@@ -6,6 +6,7 @@
         Edit,
         Delete,
         Return,
+        ReturnArticles,
         ReturnEmpty,
         Pick,
         Show,

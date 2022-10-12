@@ -223,17 +223,16 @@ namespace DataLayer.Services
                             TotalPrice = item.TotalPrice,
                             UnitTypeId = item.UnitTypeId,
                             PriceTagId = item.PriceTagId
-                        }
-                        );
+                        });
                     }
                     context.BillDetails.AddRange(newdetailbil);
                     context.SaveChanges();
-                    if (billMaster.InvoiceKind == InvoiceKind.Buy)
+                    if (billMaster.InvoiceKind == InvoiceKind.ReturnBuy)
                     {
                         EntryService.InsertEntryReturnBillSell(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnBuy);
                     }
-                    else if (billMaster.InvoiceKind == Enums.InvoiceKind.Sell)
+                    else if (billMaster.InvoiceKind == Enums.InvoiceKind.ReturnSell)
                     {
                         EntryService.InsertEntryReturnBillBuy(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnSell);

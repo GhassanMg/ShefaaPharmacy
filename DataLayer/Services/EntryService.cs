@@ -78,18 +78,19 @@ namespace DataLayer.Services
         }
         public static void InsertEntryReturnBillBuy(BillMaster billMaster)
         {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            int AccountDiscountId = context.Accounts.FirstOrDefault(x => x.Name == "الحسم").Id;
+            int AccountReturnBillSellId = context.Accounts.FirstOrDefault(x => x.Name == "مردودات المبيعات").Id;
             try
             {
                 if (billMaster.PaymentMethod == PaymentMethod.Cash)
                 {
-                    ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
-                    int AccountDiscountId = context.Accounts.FirstOrDefault(x => x.Name == "الحسم").Id;
                     EntryMaster entryMaster = MakeEntryMaster(billMaster.Id, billMaster.TotalPrice, billMaster.TotalPrice, KindOperation.Return);
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, DescriptionFK.GetAccountName(billMaster.AccountId)));
-                    entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.BuyAccountId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, "المشتريات"));
+                    entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, "مرتجع مبيعات"));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, DescriptionFK.GetAccountName(billMaster.AccountId)));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "الصندوق"));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Discount, 0, KindOperation.Buy, entryMaster.Id, billMaster.AccountIdDescr));
@@ -107,14 +108,12 @@ namespace DataLayer.Services
                 }
                 else if (billMaster.PaymentMethod == PaymentMethod.Debit)
                 {
-                    ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
-                    int AccountDiscountId = context.Accounts.FirstOrDefault(x => x.Name == "الحسم").Id;
                     EntryMaster entryMaster = MakeEntryMaster(billMaster.Id, billMaster.TotalPrice, billMaster.TotalPrice, KindOperation.Return);
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, billMaster.AccountIdDescr));
-                    entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.BuyAccountId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, "المشتريات"));
+                    entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, "مرتجع مبيعات"));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, billMaster.AccountIdDescr));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "الصندوق"));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Discount, 0, KindOperation.Buy, entryMaster.Id, billMaster.AccountIdDescr));
@@ -200,6 +199,7 @@ namespace DataLayer.Services
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             int AccountDiscountId = context.Accounts.FirstOrDefault(x => x.Name == "الحسم").Id;
+            int AccountReturnBillSellId = context.Accounts.FirstOrDefault(x => x.Name == "مردودات المشتريات").Id;
             try
             {
                 if (billMaster.PaymentMethod == PaymentMethod.Cash)
@@ -210,7 +210,7 @@ namespace DataLayer.Services
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, "حساب المندوب"));
-                    entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.SellAccountId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, "المبيعات"));
+                    entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, "مرتجع مشتريات"));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, "الصندوق"));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "حساب المندوب"));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.TotalPrice - billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, DescriptionFK.GetAccountName(AccountDiscountId)));
@@ -234,7 +234,7 @@ namespace DataLayer.Services
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, "حساب المندوب"));
-                    entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.SellAccountId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, "المبيعات"));
+                    entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, "مرتجع مشتريات"));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, "الصندوق"));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "حساب المندوب"));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.Discount, 0, KindOperation.Return, entryMaster.Id, DescriptionFK.GetAccountName(AccountDiscountId)));

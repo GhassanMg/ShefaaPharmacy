@@ -139,9 +139,6 @@
   <data name="icons8_database_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\icons8_database_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Card-Pick-Invices" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Card-Pick-Invices.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8_procurement_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_procurement_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -214,9 +211,6 @@
   <data name="bell" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_coin_wallet_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\icons8_coin_wallet_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="loader_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loader_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -267,6 +261,9 @@
   </data>
   <data name="ReturnButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ReturnButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Group 2300" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Group 2300.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -343,8 +340,11 @@
   <data name="icons8_home_page_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_home_page_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="loader_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loader_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8_coin_wallet_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\icons8_coin_wallet_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-refundBuy-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-refundBuy-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_account_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\icons8_account_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -363,6 +363,9 @@
   </data>
   <data name="Group 2318" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Group 2318.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Card-Rep-Cash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Card-Rep-Cash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -454,8 +457,8 @@
   <data name="icons8_stacked_organizational_chart_highlighted_first_node_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\icons8_stacked_organizational_chart_highlighted_first_node_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Card-Pick-Invices" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Card-Pick-Invices.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ConfirmButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ConfirmButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -468,6 +471,9 @@
   </data>
   <data name="Main-Enter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Main-Enter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loader_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loader_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_email_open_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_email_open_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -487,7 +493,7 @@
   <data name="تكبير" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\تكبير.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-refundSell-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-refundSell-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
