@@ -320,19 +320,75 @@ namespace ShefaaPharmacy.Invoice
 
         private bool ReturnBill()
         {
-            var CurentGridItems = DetailBindingSource.DataSource as List<PurchesBillViewModel>;
-
-            foreach (var detail in billMaster.BillDetails.ToList())
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            if(FormOperation == FormOperation.ReturnArticles)
             {
-                bool has = CurentGridItems.Any(cus => cus.ArticleId == detail.ArticaleId);
-                if (!has)
+                var newmasterbill = new BillMaster()
                 {
-                    billMaster.BillDetails.Remove(detail);
+                    AccountId = billMaster.AccountId,
+                    TotalItem = billMaster.TotalItem,
+                    TotalPrice = billMaster.TotalPrice,
+                    BranchId = billMaster.BranchId,
+                    CreationBy = billMaster.CreationBy,
+                    InvoiceKind = InvoiceKind.ReturnBuy,
+                    CreationDate = DateTime.Now,
+                    Payment = billMaster.Payment,
+                    PaymentMethod = billMaster.PaymentMethod,
+                    RemainingAmount = billMaster.RemainingAmount,
+                    YearId = billMaster.YearId,
+                    Discount = billMaster.Discount
+                };
+                context.BillMasters.Add(newmasterbill);
+                context.SaveChanges();
+                foreach (var detail in DetailBindingSource.DataSource as List<PurchesBillViewModel>)
+                {
+                    var newdetailbil = new List<BillDetail>();
+
+                    newdetailbil.Add(new BillDetail(newmasterbill)
+                    {
+                        ArticaleId = detail.ArticleId,
+                        Barcode = detail.Barcode,
+                        BillMasterId = newmasterbill.Id,
+                        CreationBy = billMaster.CreationBy,
+                        CreationDate = DateTime.Now,
+                        Discount = billMaster.Discount,
+                        InvoiceKind = InvoiceKind.ReturnBuy,
+                        Price = detail.PurchasePrice,
+                        Quantity = detail.Quantity,
+                        TotalPrice = detail.PurchasePrice * detail.Quantity,
+                        UnitTypeId = detail.UnitId,
+                        PriceTag = new PriceTagMaster()
+                        {
+                            ArticleId = detail.ArticleId,
+                            UnitId = InventoryService.GetSmallestArticleUnit(detail.ArticleId),
+                            CountGiftItem = InventoryService.ConvertArticleUnitToSmallestUnit(detail.ArticleId, detail.UnitId, detail.Gift),
+                            CountSoldItem = InventoryService.ConvertArticleUnitToSmallestUnit(detail.ArticleId, detail.UnitId, detail.Quantity),
+                            CountAllItem = 0,
+                            BranchId = UserLoggedIn.User.BranchId,
+                            ExpiryDate = detail.ExpiryDate,
+                            PriceTagDetails = ArticleService.MakeNewPriceTagDetailForArticle(detail),
+                        },
+                    });
+                    context.BillDetails.AddRange(newdetailbil);
+                    context.SaveChanges();
+                }
+            }
+            else
+            {
+                var CurentGridItems = DetailBindingSource.DataSource as List<PurchesBillViewModel>;
+
+                foreach (var detail in billMaster.BillDetails.ToList())
+                {
+                    bool has = CurentGridItems.Any(cus => cus.ArticleId == detail.ArticaleId);
+                    if (!has)
+                    {
+                        billMaster.BillDetails.Remove(detail);
+                    }
                 }
             }
 
             BillService billService = new BillService(billMaster);
-            return billService.ReturnBill(InvoiceKind.ReturnBuy);
+            return billService.ReturnBuyBill(InvoiceKind.ReturnBuy);
         }
 
         private bool EditBill()
@@ -446,10 +502,17 @@ namespace ShefaaPharmacy.Invoice
                 {
                     Article CurrentArticle = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Id == (DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
                     int remainingamount = InventoryService.GetAllArticleAmountRemaningInAllPrices(CurrentArticle.Id, (DetailBindingSource.Current as PurchesBillViewModel).UnitId);
-
+                    //int qu = InventoryService.GetAllArticleAmountRemaningInAllPrices((DetailBindingSource.Current as BillDetail).ArticaleId, (DetailBindingSource.Current as BillDetail).UnitTypeId);
                     if (FormOperation == FormOperation.ReturnArticles && Convert.ToDouble(remainingamount) == 0)
                     {
-                        _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Warning);
+                        _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Error);
+                        e.Cancel = true;
+                        return;
+                    }
+                    else if (this.FormOperation == FormOperation.ReturnArticles && Convert.ToInt32(e.FormattedValue.ToString()) > remainingamount )
+                    {
+                        string message = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + remainingamount + "";
+                        _MessageBoxDialog.Show(message, MessageBoxState.Error);
                         e.Cancel = true;
                         return;
                     }
@@ -458,7 +521,7 @@ namespace ShefaaPharmacy.Invoice
                     int LimitDown = CurrentArticle.LimitDown;
                     if (LimitUp != 0 || LimitDown != 0)
                     {
-                        if (FormOperation == FormOperation.Edit || FormOperation == FormOperation.EditFromPicker)
+                        if (this.FormOperation != FormOperation.ReturnArticles && FormOperation == FormOperation.Edit || FormOperation == FormOperation.EditFromPicker)
                         {
                             if (int.Parse(e.FormattedValue.ToString()) > LimitUp)
                             {
@@ -471,11 +534,11 @@ namespace ShefaaPharmacy.Invoice
                         }
                         else
                         {
-                            if (int.Parse(e.FormattedValue.ToString()) + remainingamount > LimitUp)
+                            if (this.FormOperation != FormOperation.ReturnArticles && int.Parse(e.FormattedValue.ToString()) + remainingamount > LimitUp)
                             {
                                 _MessageBoxDialog.Show("بشرائك هذه الكمية ستتجاوز الحد الأعلى للمادة" + "\n" + "الحد الأعلى : " + LimitUp + "", MessageBoxState.Warning);
                             }
-                            else if (int.Parse(e.FormattedValue.ToString()) + remainingamount < LimitDown)
+                            else if (this.FormOperation != FormOperation.ReturnArticles && int.Parse(e.FormattedValue.ToString()) + remainingamount < LimitDown)
                             {
                                 _MessageBoxDialog.Show("بشرائك هذه الكمية ستبقى تحت الحد الأدنى للمادة" + "\n" + "الحد الأدنى : " + LimitDown + "", MessageBoxState.Warning);
                             }

@@ -954,7 +954,7 @@ namespace ShefaaPharmacy.GeneralUI
                             _MessageBoxDialog.Show(message, MessageBoxState.Warning);
                             ////return;
                         }
-                        else if (remainingamount - int.Parse(e.FormattedValue.ToString()) < Articale.LimitDown)
+                        else if (this.FormOperation != FormOperation.ReturnArticles && remainingamount - int.Parse(e.FormattedValue.ToString()) < Articale.LimitDown)
                         {
                             _MessageBoxDialog.Show("ببيعك هذه الكمية ستتجاوز الحد الأدنى للمادة" + "\n" + "الحد الأدنى : " + Articale.LimitDown + "", MessageBoxState.Warning);
                         }

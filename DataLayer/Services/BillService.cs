@@ -184,9 +184,9 @@ namespace DataLayer.Services
             {
                 try
                 {
-                    billMaster.IsReturned = true;
-                    billMaster.ReturnedTime = DateTime.Now;
-                    context.BillMasters.Update(billMaster);
+                    //billMaster.IsReturned = true;
+                    //billMaster.ReturnedTime = DateTime.Now;
+                    //context.BillMasters.Update(billMaster);
                     var newmasterbill = new BillMaster()
                     {
                         AccountId = billMaster.AccountId,
@@ -246,6 +246,31 @@ namespace DataLayer.Services
                     dbContextTransaction.Rollback();
                     throw ex;
                 }
+            }
+        }
+        public bool ReturnBuyBill(InvoiceKind invoiceKind)
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            try
+            {
+                if (billMaster.InvoiceKind == InvoiceKind.ReturnBuy)
+                {
+                    EntryService.InsertEntryReturnBillSell(billMaster);
+                    InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnBuy);
+                }
+                else if (billMaster.InvoiceKind == Enums.InvoiceKind.ReturnSell)
+                {
+                    EntryService.InsertEntryReturnBillBuy(billMaster);
+                    InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnSell);
+                }
+                context.SaveChanges();
+                //dbContextTransaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //dbContextTransaction.Rollback();
+                throw ex;
             }
         }
         public bool ExpiryArticlesTransfeer()

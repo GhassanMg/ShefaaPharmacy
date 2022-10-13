@@ -48,6 +48,7 @@ namespace ShefaaPharmacy.GeneralUI
                     timer1.Enabled = true;
                     var thread = new Thread(() =>
                     {
+                        var OldConnectionString = ShefaaPharmacyDbContext.ConStr;
                         ShefaaPharmacyDbContext.ConStr = ConnectionManager.GetConnection(ConnectionManager.DataBasePrefex + tbName.Text);
                         ShefaaPharmacyDbContext.Migrate();
 
@@ -57,6 +58,7 @@ namespace ShefaaPharmacy.GeneralUI
                         string query = "CREATE TABLE [dbo].[LastTimeArticles]([id] [int] identity(1,1) NOT NULL,[ArticleId] [int] NOT NULL,[Name] [nvarchar] (600) NOT NULL,[UnitId] [int] NOT NULL,[QuantityLeft] [float] NULL,[TotalPrice] [decimal] NULL,[CreationDate] [datetime2](7) NOT NULL)ON [PRIMARY];";
                         SqlCommand cmd = new SqlCommand(query, sqcon);
                         cmd.ExecuteNonQuery();
+                        sqcon.Close();
                         context.SaveChanges();
                         _MessageBoxDialog.Show("تم إنشاء قاعدة البيانات بنجاح", MessageBoxState.Done);
                         if (lbDots.InvokeRequired)
@@ -70,7 +72,8 @@ namespace ShefaaPharmacy.GeneralUI
                                 timer1.Enabled = false;
                             }));
                         }
-                        sqcon.Close();
+                        ShefaaPharmacyDbContext.ConStr = OldConnectionString;
+
                     });
 
                     thread.Start();

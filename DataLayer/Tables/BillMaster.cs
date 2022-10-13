@@ -123,6 +123,9 @@ namespace DataLayer.Tables
                 onUpdateForm?.Invoke();
             }
         }
+        /// <summary>
+        ///  الحسم
+        /// </summary>
         [NotMapped]
         [Browsable(false)]
         public double discount;
