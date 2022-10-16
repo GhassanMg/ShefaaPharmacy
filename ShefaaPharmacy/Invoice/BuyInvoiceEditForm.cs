@@ -113,7 +113,7 @@ namespace ShefaaPharmacy.Invoice
             tbPayment.Text = billMaster.Payment.ToString();
             tbDiscount.Text = billMaster.Discount.ToString();
             tbRemainingAmount.Text = billMaster.RemainingAmount.ToString();
-            if(this.FormOperation == FormOperation.EditFromPicker)
+            if (this.FormOperation == FormOperation.EditFromPicker)
             {
                 pbDeleteRow.Enabled = false;
             }
@@ -126,7 +126,6 @@ namespace ShefaaPharmacy.Invoice
                 {
                     dgDetail.Rows.RemoveAt(dgDetail.CurrentRow.Index);
                     dgDetail.Refresh();
-
                 }
             }
             catch (Exception ex)
@@ -303,7 +302,7 @@ namespace ShefaaPharmacy.Invoice
             if (!result)
             {
                 _MessageBoxDialog.Show("حصل خطأ أثناء تخزين الفاتورة", MessageBoxState.Error);
-                return false;   
+                return false;
             }
             return result;
         }
@@ -321,7 +320,7 @@ namespace ShefaaPharmacy.Invoice
         private bool ReturnBill()
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            if(FormOperation == FormOperation.ReturnArticles)
+            if (FormOperation == FormOperation.ReturnArticles)
             {
                 var newmasterbill = new BillMaster()
                 {
@@ -462,7 +461,6 @@ namespace ShefaaPharmacy.Invoice
                 {
                     if (_MessageBoxDialog.Show("هل تريد تثبيت هذا السعر وتعديل بطاقة سعر المادة", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
                     {
-
                         int artId = (DetailBindingSource.Current as PurchesBillViewModel).ArticleId;
                         var context = ShefaaPharmacyDbContext.GetCurrentContext();
                         int pricetagId = context.PriceTagMasters.FirstOrDefault(x => x.ArticleId == artId).Id;
@@ -479,7 +477,6 @@ namespace ShefaaPharmacy.Invoice
                     {
                         buy = Convert.ToDouble(e.FormattedValue);
                     }
-
                 }
                 else if (cellName == "ArticleIdDescr" && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as PurchesBillViewModel).ArticleIdDescr != e.FormattedValue.ToString())
                 {
@@ -502,14 +499,13 @@ namespace ShefaaPharmacy.Invoice
                 {
                     Article CurrentArticle = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Id == (DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
                     int remainingamount = InventoryService.GetAllArticleAmountRemaningInAllPrices(CurrentArticle.Id, (DetailBindingSource.Current as PurchesBillViewModel).UnitId);
-                    //int qu = InventoryService.GetAllArticleAmountRemaningInAllPrices((DetailBindingSource.Current as BillDetail).ArticaleId, (DetailBindingSource.Current as BillDetail).UnitTypeId);
                     if (FormOperation == FormOperation.ReturnArticles && Convert.ToDouble(remainingamount) == 0)
                     {
                         _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Error);
                         e.Cancel = true;
                         return;
                     }
-                    else if (this.FormOperation == FormOperation.ReturnArticles && Convert.ToInt32(e.FormattedValue.ToString()) > remainingamount )
+                    else if (this.FormOperation == FormOperation.ReturnArticles && Convert.ToInt32(e.FormattedValue.ToString()) > remainingamount)
                     {
                         string message = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + remainingamount + "";
                         _MessageBoxDialog.Show(message, MessageBoxState.Error);
@@ -748,7 +744,7 @@ namespace ShefaaPharmacy.Invoice
                     FillRow(articleBarcode);
                     count++;
                 }
-                
+
             }
             else
             {
@@ -818,16 +814,13 @@ namespace ShefaaPharmacy.Invoice
                 }
             }
         }
-
         private void ChangeUnitType(string value)
         {
             PriceTagMaster priceTag = DescriptionFK.PriceTagExists((DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
-
             double buy2 = 0;
             double sell2 = 0;
             try
             {
-
                 if (priceTag != null)
                 {
                     int unitId = DescriptionFK.GetUnitId(value);
@@ -841,7 +834,6 @@ namespace ShefaaPharmacy.Invoice
                     buy = Convert.ToInt32(buy2);
                     sell = Convert.ToInt32(sell2);
                     CheckEditPrice = true;
-
                 }
                 else
                 {
@@ -993,7 +985,8 @@ namespace ShefaaPharmacy.Invoice
             {
                 if (dgDetail.CurrentRow.DataBoundItem == null)
                     return;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return;
             }
