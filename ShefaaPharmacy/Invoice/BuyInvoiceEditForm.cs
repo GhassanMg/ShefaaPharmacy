@@ -729,17 +729,26 @@ namespace ShefaaPharmacy.Invoice
             var articleBarcode = context.Articles.Include(x => x.PriceTagMasters).Where(x => x.Barcode == value).FirstOrDefault();
             if (articleBarcode != null)
             {
-                var RemainingAmount = InventoryService.GetQuantityOfArticleAllPriceTag(articleBarcode.Id);
-                if (FormOperation == FormOperation.ReturnArticles && Convert.ToDouble(RemainingAmount) == 0)
+                try
                 {
-                    _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Error);
-                    return;
+                    var RemainingAmount = InventoryService.GetQuantityOfArticleAllPriceTag(articleBarcode.Id);
+                    if (FormOperation == FormOperation.ReturnArticles && Convert.ToDouble(RemainingAmount) == 0)
+                    {
+                        _MessageBoxDialog.Show("لايوجد كمية من هذا الصنف", MessageBoxState.Error);
+                        return;
+                    }
+                    else
+                    {
+                        FillRow(articleBarcode);
+                        count++;
+                    }
                 }
-                else
+                catch
                 {
                     FillRow(articleBarcode);
                     count++;
                 }
+                
             }
             else
             {

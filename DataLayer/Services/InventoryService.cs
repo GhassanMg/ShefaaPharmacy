@@ -509,9 +509,28 @@ namespace DataLayer.Services
             }
             else if (invoiceKind == InvoiceKind.ReturnSell)
             {
-                priceTag.CountSoldItem -= ConvertQuantityToUnit(artId, unitId, priceTag.UnitId, quantity);
-                context.PriceTagMasters.Update(priceTag);
-                context.SaveChanges();
+                if(priceTag.CountAllItem == 0 && priceTag.CountGiftItem == 0 && priceTag.CountSoldItem == 0)
+                {
+                    PriceTagMaster price = new PriceTagMaster()
+                    {
+                        ArticleId = artId,
+                        UnitId = GetSmallestArticleUnit(artId),
+                        CountGiftItem = 0,
+                        CountSoldItem = 0,
+                        CountAllItem = ConvertArticleUnitToSmallestUnit(artId, unitId, quantity),
+                        BranchId = UserLoggedIn.User.BranchId,
+                        ExpiryDate = expiryDate,
+                        PriceTagDetails = ArticleService.MakeNewPriceTagDetailForArticle(artId, unitId, purchasePrice),
+                    };
+                    context.PriceTagMasters.Add(price);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    priceTag.CountSoldItem -= ConvertQuantityToUnit(artId, unitId, priceTag.UnitId, quantity);
+                    context.PriceTagMasters.Update(priceTag);
+                    context.SaveChanges();
+                }
             }
             else if (invoiceKind == InvoiceKind.ReturnBuy)
             {
