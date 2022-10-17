@@ -278,8 +278,8 @@ namespace ShefaaPharmacy
                 ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                 EntryMaster entryMaster = EntryService.MakeEntryMaster(0, Convert.ToDouble(ExistStuffTotal), Convert.ToDouble(ExistStuffTotal), kindOperation: KindOperation.GoodFirstTime);
                 entryMaster.EntryDetails = new List<EntryDetail>();
-                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, Convert.ToDouble(ExistStuffTotal), kindOperation: KindOperation.GoodFirstTime, 0, "رأس مال"));
-                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountAssetId, Convert.ToDouble(ExistStuffTotal), 0, kindOperation: KindOperation.GoodFirstTime, 0, "رأس مال"));
+                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, Convert.ToDouble(ExistStuffTotal), kindOperation: KindOperation.GoodFirstTime, 0, "الموجودات - رصيد أول مدة"));
+                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountAssetId, Convert.ToDouble(ExistStuffTotal), 0, kindOperation: KindOperation.GoodFirstTime, 0, "الموجودات - رصيد أول مدة"));
                 context.EntryMasters.Add(entryMaster);
                 context.SaveChanges();
             }
@@ -309,15 +309,14 @@ namespace ShefaaPharmacy
                         ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                         EntryMaster entryMaster = EntryService.MakeEntryMaster(0, Convert.ToDouble(detail.Total), Convert.ToDouble(detail.Total), kindOperation: KindOperation.GoodFirstTime);
                         entryMaster.EntryDetails = new List<EntryDetail>();
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, Convert.ToDouble(detail.Total), kindOperation: KindOperation.GoodFirstTime, 0, "رأس مال"));
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountAssetId, Convert.ToDouble(detail.Total), 0, kindOperation: KindOperation.GoodFirstTime, 0, "رأس مال"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, Convert.ToDouble(detail.Total), kindOperation: KindOperation.GoodFirstTime, 0, "رصيد أول المدة"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountAssetId, Convert.ToDouble(detail.Total), 0, kindOperation: KindOperation.GoodFirstTime, 0, "رصيد أول المدة"));
                         context.EntryMasters.Add(entryMaster);
                         context.SaveChanges();
                     }
                     catch (Exception ex)
                     {
                         _MessageBoxDialog.Show("حصل خطأ يرجى اعادة العملية", MessageBoxState.Error);
-                        //throw ex;
                     }
                 }
             }
@@ -335,8 +334,8 @@ namespace ShefaaPharmacy
                         AccountProfitId = 18;
                         EntryMaster entryMaster = EntryService.MakeEntryMaster(0, Convert.ToDouble(item.Credit), Convert.ToDouble(item.Credit), kindOperation: KindOperation.GoodFirstTime);
                         entryMaster.EntryDetails = new List<EntryDetail>();
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, item.Credit, 0, kindOperation: KindOperation.GoodFirstTime, 0, "رأس مال"));
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(item.AccountId, 0, item.Credit, kindOperation: KindOperation.GoodFirstTime, 0, "حساب المورد - رصيد أول مدة"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, item.Credit, 0, kindOperation: KindOperation.GoodFirstTime, 0, "ديون الموردين - رصيد أول مدة"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(item.AccountId, 0, item.Credit, kindOperation: KindOperation.GoodFirstTime, 0, "ديون الموردين - رصيد أول مدة"));
                         context.EntryMasters.Add(entryMaster);
                         mydepitIds.Add(entryMaster.Id);
                         context.SaveChanges();
@@ -367,8 +366,8 @@ namespace ShefaaPharmacy
                         AccountProfitId = 18;
                         EntryMaster entryMaster = EntryService.MakeEntryMaster(0, Convert.ToDouble(item.Debit), Convert.ToDouble(item.Debit), kindOperation: KindOperation.GoodFirstTime);
                         entryMaster.EntryDetails = new List<EntryDetail>();
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(item.AccountId, item.Debit, 0, kindOperation: KindOperation.GoodFirstTime, 0, "حساب الزبون - رصيد أول مدة"));
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, item.Debit, kindOperation: KindOperation.GoodFirstTime, 0, "رأس مال"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(item.AccountId, item.Debit, 0, kindOperation: KindOperation.GoodFirstTime, 0, "ديون الزبائن - رصيد أول مدة"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, item.Debit, kindOperation: KindOperation.GoodFirstTime, 0, "ديون الزبائن - رصيد أول مدة"));
                         context.EntryMasters.Add(entryMaster);
                         mydepitIds.Add(entryMaster.Id);
                         context.SaveChanges();
@@ -403,8 +402,8 @@ namespace ShefaaPharmacy
                     {
                         EntryMaster entryMaster = EntryService.MakeEntryMaster(0, Cash, Cash, kindOperation: KindOperation.GoodFirstTime);
                         entryMaster.EntryDetails = new List<EntryDetail>();
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountCashId, Cash, 0, kindOperation: KindOperation.GoodFirstTime, 0, "حساب الصندوق - رصيد أول مدة"));
-                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, Cash, kindOperation: KindOperation.GoodFirstTime, 0, "حساب رأس المال"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountCashId, Cash, 0, kindOperation: KindOperation.GoodFirstTime, 0, "رصيد الصندوق - رصيد أول مدة"));
+                        entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(AccountProfitId, 0, Cash, kindOperation: KindOperation.GoodFirstTime, 0, "رصيد الصندوق - رصيد أول مدة"));
                         context.EntryMasters.Add(entryMaster);
                         context.SaveChanges();
 

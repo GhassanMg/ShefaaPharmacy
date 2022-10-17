@@ -228,7 +228,7 @@ namespace ShefaaPharmacy.Articles
                 return;
             }
         }
-        private void SetExpiryEntry(double BuyPrice, int Quantity)
+        private void SetExpiryEntry(string articaleName, double BuyPrice, int Quantity)
         {
             ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
             double Price = Quantity * BuyPrice;
@@ -237,8 +237,8 @@ namespace ShefaaPharmacy.Articles
                 EntryMaster entryMaster = EntryService.MakeEntryMaster(0, Price, Price, KindOperation.Expired);
                 entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                 entryMaster.EntryDetails = new List<EntryDetail>();
-                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(20, Price, 0, kindOperation: KindOperation.Expired, 0, "مواد منتهية الصلاحية"));
-                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(14, 0, Price, kindOperation: KindOperation.Expired, 0, "المشتريات"));
+                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(20, Price, 0, kindOperation: KindOperation.Expired, 0, "تحويل "+ articaleName + "لمخزن المواد منتهية الصلاحية"));
+                entryMaster.EntryDetails.Add(EntryService.MakeEntryDetail(14, 0, Price, kindOperation: KindOperation.Expired, 0, "تحويل " + articaleName + "لمخزن المواد منتهية الصلاحية"));
 
                 context.EntryMasters.Add(entryMaster);
                 context.SaveChanges();
@@ -319,7 +319,8 @@ namespace ShefaaPharmacy.Articles
                 item.MyPriceTag.PriceTagDetails = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagDetails.Where(x => x.PriceTagId == item.MyPriceTag.Id).ToList();
                 int unitid = DescriptionFK.GetPrimaryUnit(item.MyPriceTag.ArticleId);
                 UpdateInventoryExpiry(item.MyPriceTag.ArticleId, unitid, item.MyPriceTag.Id, item.Quantity, InvoiceKind.ExpiryArticles, DateTime.Now, item.MyPriceTag.PriceTagDetails.FirstOrDefault().BuyPrice);
-                SetExpiryEntry(item.MyPriceTag.PriceTagDetails.FirstOrDefault().BuyPrice, item.Quantity);
+                Article article = ShefaaPharmacyDbContext.GetCurrentContext().Articles.Where(x => x.Id == item.MyPriceTag.ArticleId).FirstOrDefault();
+                SetExpiryEntry(article.Name, item.MyPriceTag.PriceTagDetails.FirstOrDefault().BuyPrice, item.Quantity);
             }
         }
 

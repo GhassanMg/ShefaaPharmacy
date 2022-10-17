@@ -132,7 +132,7 @@ namespace ShefaaPharmacy.Accounting
             try
             {
                 dgMaster.Columns["Id"].Visible = false;
-                dgMaster.Columns["Description"].Visible = false;
+                //dgMaster.Columns["Description"].Visible = false;
                 dgMaster.Columns["CreationByDescr"].Visible = false;
                 dgMaster.Columns["AccountIdDescr"].HeaderText = "حساب العملية";
 
