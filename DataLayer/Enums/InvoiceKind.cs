@@ -43,6 +43,12 @@ namespace DataLayer.Enums
         ExpiryArticles = 10,
         [Description("تعديل فاتورة شراء")]
         [Display(Name = "تعديل فاتورة شراء")]
-        EditBuy = 11
+        EditBuy = 11,
+        [Description("مرتجع مواد شراء")]
+        [Display(Name = "مرتجع مواد شراء")]
+        ReturnBuyArticles = 12,
+        [Description("مرتجع مواد مبيع")]
+        [Display(Name = "مرتجع مواد مبيع")]
+        ReturnSellArticles = 13,
     }
 }

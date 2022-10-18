@@ -557,9 +557,16 @@ namespace ShefaaPharmacy.GeneralUI
             //        billMaster.BillDetails.Remove(detail);
             //    }
             //}
-
-            BillService billService = new BillService(billMaster);
-            return billService.ReturnBill(InvoiceKind.ReturnSell);
+            if (FormOperation == FormOperation.ReturnArticles)
+            {
+                BillService billService1 = new BillService(billMaster);
+                return billService1.ReturnBill(InvoiceKind.ReturnSellArticles);
+            }
+            else
+            {
+                BillService billService2 = new BillService(billMaster);
+                return billService2.ReturnBill(InvoiceKind.ReturnSell);
+            }
         }
         private bool EditBill()
         {

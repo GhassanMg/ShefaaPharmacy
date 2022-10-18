@@ -329,7 +329,7 @@ namespace ShefaaPharmacy.Invoice
                     TotalPrice = billMaster.TotalPrice,
                     BranchId = billMaster.BranchId,
                     CreationBy = billMaster.CreationBy,
-                    InvoiceKind = InvoiceKind.ReturnBuy,
+                    InvoiceKind = InvoiceKind.ReturnBuyArticles,
                     CreationDate = DateTime.Now,
                     Payment = billMaster.Payment,
                     PaymentMethod = billMaster.PaymentMethod,
@@ -351,7 +351,7 @@ namespace ShefaaPharmacy.Invoice
                         CreationBy = billMaster.CreationBy,
                         CreationDate = DateTime.Now,
                         Discount = billMaster.Discount,
-                        InvoiceKind = InvoiceKind.ReturnBuy,
+                        InvoiceKind = InvoiceKind.ReturnBuyArticles,
                         Price = detail.PurchasePrice,
                         Quantity = detail.Quantity,
                         TotalPrice = detail.PurchasePrice * detail.Quantity,
@@ -371,6 +371,8 @@ namespace ShefaaPharmacy.Invoice
                     context.BillDetails.AddRange(newdetailbil);
                     context.SaveChanges();
                 }
+                BillService billService1 = new BillService(billMaster);
+                return billService1.ReturnBuyBill(InvoiceKind.ReturnBuyArticles);
             }
             else
             {
@@ -384,10 +386,11 @@ namespace ShefaaPharmacy.Invoice
                         billMaster.BillDetails.Remove(detail);
                     }
                 }
+                BillService billService2 = new BillService(billMaster);
+                return billService2.ReturnBill(InvoiceKind.ReturnBuy);
             }
 
-            BillService billService = new BillService(billMaster);
-            return billService.ReturnBuyBill(InvoiceKind.ReturnBuy);
+            
         }
 
         private bool EditBill()
@@ -803,7 +806,7 @@ namespace ShefaaPharmacy.Invoice
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             var lastPriceTage = DescriptionFK.GetLastPriceTagForArt((DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
             var lastSellPrice = UnitTypeService.GetLastSellPrice((DetailBindingSource.Current as PurchesBillViewModel).ArticleId, (DetailBindingSource.Current as PurchesBillViewModel).UnitId);
-            if (Convert.ToDouble(value) != lastSellPrice)
+            if (Convert.ToDouble(value) != lastSellPrice) 
             {
                 string message = "سعر الصنف في هذه البطاقة " + lastSellPrice + "\n هل تريد إضافة سعر جديد";
                 MessageBoxAnswer dialogResult;

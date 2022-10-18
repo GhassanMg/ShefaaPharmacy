@@ -507,9 +507,9 @@ namespace DataLayer.Services
                 context.PriceTagMasters.Update(priceTag);
                 context.SaveChanges();
             }
-            else if (invoiceKind == InvoiceKind.ReturnSell)
+            else if (invoiceKind == InvoiceKind.ReturnSellArticles)
             {
-                if(priceTag.CountAllItem == 0 && priceTag.CountGiftItem == 0 && priceTag.CountSoldItem == 0)
+                if (priceTag.CountAllItem == 0 && priceTag.CountGiftItem == 0 && priceTag.CountSoldItem == 0)
                 {
                     PriceTagMaster price = new PriceTagMaster()
                     {
@@ -532,7 +532,13 @@ namespace DataLayer.Services
                     context.SaveChanges();
                 }
             }
-            else if (invoiceKind == InvoiceKind.ReturnBuy)
+            else if (invoiceKind == InvoiceKind.ReturnSell)
+            {
+                priceTag.CountSoldItem -= ConvertQuantityToUnit(artId, unitId, priceTag.UnitId, quantity);
+                context.PriceTagMasters.Update(priceTag);
+                context.SaveChanges();
+            }
+            else if(invoiceKind == InvoiceKind.ReturnBuyArticles)
             {
                 PriceTagMaster price = new PriceTagMaster()
                 {
@@ -547,12 +553,14 @@ namespace DataLayer.Services
                 };
                 context.PriceTagMasters.Add(price);
                 context.SaveChanges();
-
-                //priceTag.CountAllItem = 0;
-                //priceTag.CountGiftItem = 0;
-                //priceTag.CountSoldItem = 0;
-                //context.PriceTagMasters.Update(priceTag);
-                //context.SaveChanges();
+            }
+            else if (invoiceKind == InvoiceKind.ReturnBuy)
+            {
+                priceTag.CountAllItem = 0;
+                priceTag.CountGiftItem = 0;
+                priceTag.CountSoldItem = 0;
+                context.PriceTagMasters.Update(priceTag);
+                context.SaveChanges();
             }
             else if (invoiceKind == InvoiceKind.EditBuy)
             {

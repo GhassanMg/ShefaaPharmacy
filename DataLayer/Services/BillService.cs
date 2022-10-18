@@ -227,12 +227,22 @@ namespace DataLayer.Services
                     }
                     context.BillDetails.AddRange(newdetailbil);
                     context.SaveChanges();
-                    if (billMaster.InvoiceKind == InvoiceKind.ReturnBuy)
+                    if (billMaster.InvoiceKind == InvoiceKind.ReturnBuyArticles)
+                    {
+                        EntryService.InsertEntryReturnBillSell(billMaster);
+                        InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnBuyArticles);
+                    }
+                    else if (billMaster.InvoiceKind == Enums.InvoiceKind.ReturnSellArticles)
+                    {
+                        EntryService.InsertEntryReturnBillBuy(billMaster);
+                        InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnSellArticles);
+                    }
+                    else if (billMaster.InvoiceKind == InvoiceKind.Buy)
                     {
                         EntryService.InsertEntryReturnBillSell(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnBuy);
                     }
-                    else if (billMaster.InvoiceKind == Enums.InvoiceKind.ReturnSell)
+                    else if (billMaster.InvoiceKind == Enums.InvoiceKind.Sell)
                     {
                         EntryService.InsertEntryReturnBillBuy(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnSell);
