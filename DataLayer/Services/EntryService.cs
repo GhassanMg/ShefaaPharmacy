@@ -46,7 +46,6 @@ namespace DataLayer.Services
             }
             catch (Exception ex)
             {
-                //_MessageBoxDialog.Show(ex.Message, "خطأ");
                 return false;
             }
 
@@ -89,15 +88,14 @@ namespace DataLayer.Services
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
-                    string description = " مرتجع شراء نقدي ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
+                    string description = " مرتجع مبيع نقدي ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Discount, 0, KindOperation.Buy, entryMaster.Id, "حسم "+ description));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId, 0,  billMaster.Discount, KindOperation.Return, entryMaster.Id, "حسم "+ description));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;
@@ -113,15 +111,14 @@ namespace DataLayer.Services
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
-                    string description = " مرتجع شراء آجل ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
+                    string description = " مرتجع مبيع آجل ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Discount, 0, KindOperation.Buy, entryMaster.Id, "حسم "+ description));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId, 0, billMaster.Discount, KindOperation.Return, entryMaster.Id, "حسم "+ description));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;
@@ -152,8 +149,8 @@ namespace DataLayer.Services
                     string description = "شراء نقدي ف "+ entryMaster.Id+" "+ billMaster.AccountIdDescr;
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice, KindOperation.Buy, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.BuyAccountId, billMaster.TotalPrice, 0, KindOperation.Buy, entryMaster.Id, description));
-                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Payment, 0, KindOperation.Buy, entryMaster.Id, description));
-                    entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, 0, billMaster.Payment, KindOperation.Buy, entryMaster.Id, description));
+                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Payment, 0, KindOperation.Buy, entryMaster.Id, "دفعة من "+ description));
+                    entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, 0, billMaster.Payment, KindOperation.Buy, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.Discount, 0, KindOperation.Buy, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId, 0,  billMaster.Discount, KindOperation.Buy, entryMaster.Id, "حسم "+description));
                     double totDebit = 0, totCredit = 0;
@@ -210,15 +207,14 @@ namespace DataLayer.Services
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
-                    string description = " مرتجع بيع نقدي ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
+                    string description = " مرتجع شراء نقدي ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.TotalPrice - billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, "حسم "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice - billMaster.Payment, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;
@@ -234,15 +230,14 @@ namespace DataLayer.Services
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
-                    string description = " مرتجع بيع آجل ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
+                    string description = " مرتجع شراء آجل ف" + entryMaster.Id + " " + billMaster.AccountIdDescr;
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(AccountReturnBillSellId, 0, billMaster.TotalPrice, KindOperation.Return, entryMaster.Id, description));
                     entryDetails.Add(MakeEntryDetail(UserLoggedIn.User.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Return, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.Discount, 0, KindOperation.Return, entryMaster.Id, "حسم "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Discount, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;
@@ -277,8 +272,7 @@ namespace DataLayer.Services
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Sell, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId,billMaster.TotalPrice - billMaster.Payment,0, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice - billMaster.Payment, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;
@@ -301,8 +295,7 @@ namespace DataLayer.Services
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Sell, entryMaster.Id, "دفعة من "+ description));
                     entryDetails.Add(MakeEntryDetail(AccountDiscountId,  billMaster.Discount,0, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
                     entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Discount, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;
@@ -402,14 +395,14 @@ namespace DataLayer.Services
                     entryMaster.YearId = billMaster.YearId;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
-                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Sell, entryMaster.Id, "حساب الزبون"));
-                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.SellAccountId, 0, billMaster.TotalPrice, KindOperation.Sell, entryMaster.Id, "المبيعات"));
-                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Sell, entryMaster.Id, "حساب الزبون"));
-                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Sell, entryMaster.Id, "الصندوق"));
-                    entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.TotalPrice - billMaster.Payment, 0, KindOperation.Sell, entryMaster.Id, DescriptionFK.GetAccountName(AccountDiscountId)));
-                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice - billMaster.Payment, KindOperation.Sell, entryMaster.Id, "حساب الزبون"));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    string description = "بيع نقدي ف " + entryMaster.Id + " " + billMaster.AccountIdDescr;
+                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Sell, entryMaster.Id, description));
+                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.SellAccountId, 0, billMaster.TotalPrice, KindOperation.Sell, entryMaster.Id, description));
+                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Sell, entryMaster.Id, "دفعة من "+ description));
+                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Sell, entryMaster.Id, "دفعة من "+ description));
+                    entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.TotalPrice - billMaster.Payment, 0, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
+                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.TotalPrice - billMaster.Payment, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);   
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;
@@ -424,21 +417,20 @@ namespace DataLayer.Services
 
                 else if (billMaster.PaymentMethod == PaymentMethod.Debit)
                 {
-                    // ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                     EntryMaster entryMaster = MakeEntryMaster(billMaster.Id, billMaster.TotalPrice, billMaster.TotalPrice, KindOperation.Sell);
                     entryMaster = context.EntryMasters.Add(entryMaster).Entity;
                     entryMaster.CreationBy = billMaster.CreationBy;
                     entryMaster.YearId = billMaster.YearId;
                     context.SaveChanges();
                     List<EntryDetail> entryDetails = new List<EntryDetail>();
-                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Sell, entryMaster.Id, "حساب الزبون"));
-                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.SellAccountId, 0, billMaster.TotalPrice, KindOperation.Sell, entryMaster.Id, "المبيعات"));
-                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Sell, entryMaster.Id, "حساب الزبون"));
-                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Sell, entryMaster.Id, "الصندوق"));
-                    entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.Discount, 0, KindOperation.Sell, entryMaster.Id, DescriptionFK.GetAccountName(AccountDiscountId)));
-                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Discount, KindOperation.Sell, entryMaster.Id, "حساب الزبون"));
-                    double totDebit = 0;
-                    double totCredit = 0;
+                    string description = "بيع آجل ف " + entryMaster.Id + " " + billMaster.AccountIdDescr;
+                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, billMaster.TotalPrice, 0, KindOperation.Sell, entryMaster.Id, description));
+                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.SellAccountId, 0, billMaster.TotalPrice, KindOperation.Sell, entryMaster.Id, description));
+                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Payment, KindOperation.Sell, entryMaster.Id, "دفعة من "+ description));
+                    entryDetails.Add(MakeEntryDetail(user.UserPermissions.CashAccountId, billMaster.Payment, 0, KindOperation.Sell, entryMaster.Id, "دفعة من "+ description));
+                    entryDetails.Add(MakeEntryDetail(AccountDiscountId, billMaster.Discount, 0, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
+                    entryDetails.Add(MakeEntryDetail(billMaster.AccountId, 0, billMaster.Discount, KindOperation.Sell, entryMaster.Id, "حسم "+ description));
+                    double totDebit = 0, totCredit = 0;
                     entryDetails.ForEach(x => totCredit += x.Credit);
                     entryDetails.ForEach(x => totDebit += x.Debit);
                     entryMaster.TotalCredit = totCredit;

@@ -55,7 +55,7 @@ namespace DataLayer.Tables
                 }
             }
         }
-        [DisplayName("ملاحظة")]
+        [DisplayName("البيان")]
         public string Description { get; set; }
         [DisplayName("الحساب")]
         [NotMapped]
