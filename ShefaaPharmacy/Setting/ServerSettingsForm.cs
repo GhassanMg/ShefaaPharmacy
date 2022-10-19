@@ -116,7 +116,7 @@ namespace ShefaaPharmacy.Setting
 
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void ServerSettingsForm_Load(object sender, EventArgs e)
         {
 
         }

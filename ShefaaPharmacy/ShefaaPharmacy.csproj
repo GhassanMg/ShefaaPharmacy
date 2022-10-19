@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\ghassan-m\Desktop\Tuseday_Setup_after_description 18-10-2022\</PublishUrl>
+    <PublishUrl>C:\Users\ghassan-m\Desktop\to_try_update 19-10-2022\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -30,10 +30,10 @@
     <UpdateUrl>\\localhost\C%24\ShefaaPharmacyVersions\NewVersion\</UpdateUrl>
     <ProductName>ShefaaPharmacy</ProductName>
     <PublisherName>JoyBox.Co</PublisherName>
-    <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.6</MinimumRequiredVersion>
     <WebPage>publish.html</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1104,6 +1104,12 @@
     <Compile Include="FirstDuration\FirstDurationEditForm.designer.cs">
       <DependentUpon>FirstDurationEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Setting\SetTaxAccountCredentials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\SetTaxAccountCredentials.Designer.cs">
+      <DependentUpon>SetTaxAccountCredentials.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSetting\UserPermissionEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1421,6 +1427,9 @@
     <EmbeddedResource Include="FirstDuration\FirstDurationEditForm.resx">
       <DependentUpon>FirstDurationEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Setting\SetTaxAccountCredentials.resx">
+      <DependentUpon>SetTaxAccountCredentials.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserSetting\UserPermissionEditForm.resx">
       <DependentUpon>UserPermissionEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1499,6 +1508,8 @@
   <ItemGroup>
     <Content Include="128-128.ico" />
     <Content Include="hnet.com-image.ico" />
+    <None Include="Resources\icons8-tax-48 %281%29.png" />
+    <None Include="Resources\icons8-tax-48.png" />
     <None Include="Resources\icons8-refundSell-48.png" />
     <None Include="Resources\icons8-refundBuy-48.png" />
     <None Include="Resources\Card_Cash_First.png" />

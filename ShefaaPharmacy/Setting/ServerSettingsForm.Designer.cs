@@ -50,16 +50,15 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(152, -2);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3);
             this.btnCancel.Size = new System.Drawing.Size(131, 38);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(289, -2);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(3);
             this.btnOk.Size = new System.Drawing.Size(131, 38);
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // plButtom
             // 
@@ -84,7 +83,7 @@
             // 
             // pHelperButton
             // 
-            this.pHelperButton.Location = new System.Drawing.Point(584, 6);
+            this.pHelperButton.Location = new System.Drawing.Point(485, 7);
             this.pHelperButton.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
             this.pHelperButton.Size = new System.Drawing.Size(112, 35);
             // 
@@ -222,9 +221,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ServerSettingsForm";
-            this.Padding = new System.Windows.Forms.Padding(27, 50, 14, 6);
+            this.Padding = new System.Windows.Forms.Padding(27, 60, 14, 6);
             this.Resizable = false;
             this.Text = "إعدادات الإتصال";
+            this.Load += new System.EventHandler(this.ServerSettingsForm_Load);
             this.Controls.SetChildIndex(this.plButtom, 0);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.lbServerName, 0);

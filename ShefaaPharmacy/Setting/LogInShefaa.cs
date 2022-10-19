@@ -120,6 +120,11 @@ namespace ShefaaPharmacy.Setting
         }
         private void btOK_Click(object sender, EventArgs e)
         {
+            if (cbDataBase.SelectedIndex == -1)
+            {
+                _MessageBoxDialog.Show("لا يوجد أي قاعدة بيانات قم بإنشاء واحدة", MessageBoxState.Error);
+                return;
+            }
             ShefaaPharmacyDbContext.ConStr = ConnectionManager.GetConnection(cbDataBase.SelectedValue.ToString());
             ShefaaPharmacyDbContext.Migrate();
             ShefaaPharmacyDbContext.CheckVersion();
