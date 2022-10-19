@@ -76,6 +76,11 @@ namespace ShefaaPharmacy.Setting
         }
         private bool CheckLoginCredentials(TaxAccount NewAcount)
         {
+            //{
+            //    "username": "testpos2",
+            //    "password": "A@123456789",
+            //    "taxNumber": "000000100000"
+            //}
             HttpClient client = new HttpClient();
             Uri baseAddress = new Uri("http://213.178.227.75/Taxapi/api/account/AccountingSoftwarelogin");
             client.BaseAddress = baseAddress;
