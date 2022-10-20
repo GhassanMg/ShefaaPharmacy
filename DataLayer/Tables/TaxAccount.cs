@@ -14,7 +14,7 @@ namespace DataLayer.Tables
         public int Id { get; set; }
         [DisplayName("اسم المستخدم")]
         public string username { get; set; }
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
         [DisplayName("كلمة المرور")]
         public string password { get; set; }
         [DisplayName("الرقم الضريبي")]
