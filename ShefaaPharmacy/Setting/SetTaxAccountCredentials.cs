@@ -84,12 +84,14 @@ namespace ShefaaPharmacy.Setting
         {
             try
             {
+                //Default Account For Test
                 TaxAccount myaccount = new TaxAccount
                 {
                     username = "testpos2",
                     password = "A@123456789",
                     taxNumber = "000000100000"
                 };
+                //*
                 string url = String.Format("http://213.178.227.75/Taxapi/api/account/AccountingSoftwarelogin");
 
                 WebRequest requestPost = WebRequest.Create(url);
@@ -102,7 +104,6 @@ namespace ShefaaPharmacy.Setting
                     streamWriter.Write(postData);
                     streamWriter.Flush();
                     streamWriter.Close();
-
                 }
                 var httpResponse = requestPost.GetResponse();
 
@@ -110,7 +111,6 @@ namespace ShefaaPharmacy.Setting
                 {
                     var res = streamReader.ReadToEnd();
                     var resultJson = JsonConvert.DeserializeObject(res);
-                    TaxAccount x = JsonConvert.DeserializeObject<TaxAccount>(res);
                 }
             }
             catch (Exception ex)
