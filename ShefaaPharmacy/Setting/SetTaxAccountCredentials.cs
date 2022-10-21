@@ -80,7 +80,7 @@ namespace ShefaaPharmacy.Setting
         {
             base.btCancel_Click(sender, e);
         }
-        private void LoginExternalAsync(TaxAccount NewAccount)
+        private async void LoginExternalAsync(TaxAccount NewAccount)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace ShefaaPharmacy.Setting
                 {
                     username = "testpos2",
                     password = "A@123456789",
-                    taxNumber = "000000100000"
+                    taxNumber = " "
                 };
                 //*
                 string url = String.Format("http://213.178.227.75/Taxapi/api/account/AccountingSoftwarelogin");
@@ -105,12 +105,19 @@ namespace ShefaaPharmacy.Setting
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
-                var httpResponse = requestPost.GetResponse();
-
+                var httpResponse = (HttpWebResponse)requestPost.GetResponse();
+                ///var httpResponse = await requestPost.GetResponseAsync();
+                
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
+                    int code = (int)httpResponse.StatusCode;
                     var res = streamReader.ReadToEnd();
-                    var resultJson = JsonConvert.DeserializeObject(res);
+                    JObject resultJson = (JObject)JsonConvert.DeserializeObject(res);
+                    IList<string> keys = resultJson.Properties().Select(p => p.Name).ToList();
+                    JObject retes = (JObject)resultJson["data"];
+                    string token = retes["token"].ToString();
+                    string[] splitted = token.Split(' ');
+                    token = splitted[1];
                 }
             }
             catch (Exception ex)
