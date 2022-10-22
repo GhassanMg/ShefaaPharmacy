@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using DataLayer.Helper;
 
 namespace ShefaaPharmacy.Setting
 {
@@ -138,6 +139,13 @@ namespace ShefaaPharmacy.Setting
                 //Program.mainForm.ShowDialog();
                 DescriptionFK.LoadImportantDataForImages();
                 this.Close();
+                var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                if (!context.TaxAccount.Any())
+                {
+                    _MessageBoxDialog.Show("يرجى تسجيل معلومات الحساب الضريبي", MessageBoxState.Alert);
+                    SetTaxAccountCredentials TaxAccountCred = new SetTaxAccountCredentials();
+                    TaxAccountCred.ShowDialog();
+                }
             }
             else
             {

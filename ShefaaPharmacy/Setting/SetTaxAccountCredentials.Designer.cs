@@ -163,7 +163,6 @@ namespace ShefaaPharmacy.Setting
             this.Padding = new System.Windows.Forms.Padding(27, 73, 14, 9);
             this.Resizable = false;
             this.Text = "تسجيل معلومات الحساب الضريبي";
-            this.Load += new System.EventHandler(this.SetTaxAccountCredentials_Load);
             this.Controls.SetChildIndex(this.plButtom, 0);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.lbUserName, 0);

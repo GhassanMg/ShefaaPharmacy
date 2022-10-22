@@ -9,15 +9,36 @@ namespace DataLayer.Tables
 {
     public class TaxAccount 
     {
+        public TaxAccount()
+        {
+            try
+            {
+                if (UserLoggedIn.User != null)
+                {
+                    CreationBy = UserLoggedIn.User.Id;
+                }
+            }
+            catch (Exception)
+            {
+                ;
+            }
+        }
         [Key]
         [DisplayName("المعرف")]
         public int Id { get; set; }
+        [Browsable(false)]
+        [DisplayName("تم انشاؤه من قبل")]
+        public int CreationBy { get; set; }
         [DisplayName("اسم المستخدم")]
         public string username { get; set; }
-        //[DataType(DataType.Password)]
         [DisplayName("كلمة المرور")]
         public string password { get; set; }
+        [DisplayName("اسم الصيدلية")]
+        public string facilityName { get; set; }
         [DisplayName("الرقم الضريبي")]
-        public string taxNumber { set; get; } = "";
+        public string taxNumber { set; get; }
+        [Browsable(false)]
+        [DisplayName("رمز التحقق الخاص")]
+        public string Token { set; get; } = "";
     }
 }

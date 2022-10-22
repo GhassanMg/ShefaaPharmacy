@@ -47,6 +47,7 @@ namespace DataLayer
         //public DbSet<LastTimeArticles> LastTimeArticles { get; set; }
         public DbSet<ExpiryTransfeerDetail> ExpiryTransfeerDetails { get; set; }
         public DbSet<TaxAccount> TaxAccount { get; set; }
+        public DbSet<DetailedTaxCode> DetailedTaxCode { get; set; }
 
         public ShefaaPharmacyDbContext()
         {
@@ -72,7 +73,7 @@ namespace DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_TryAdd;Integrated Security=true;")
+                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_Saturday;Integrated Security=true;")
                 .UseSqlServer(ConStr)
                 .UseLoggerFactory(new LoggerFactory())
                 .EnableSensitiveDataLogging();

@@ -1319,6 +1319,7 @@ namespace ShefaaPharmacy.GeneralUI
                     tbPayment.Text = "0";
                     tbDiscount.Text = "0";
                     SetFocus();
+
                 }
             }
             else if (FormOperation == FormOperation.Delete)

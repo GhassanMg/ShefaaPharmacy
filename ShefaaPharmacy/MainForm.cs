@@ -1727,6 +1727,15 @@ namespace ShefaaPharmacy
         {
             if (Auth.IsDataEntry())
             {
+                var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                if (context.TaxAccount.Any())
+                {   
+                    if (UserLoggedIn.User.Id == context.TaxAccount.FirstOrDefault().CreationBy)
+                    {
+                        _MessageBoxDialog.Show("الحساب الضريبي للمستخدم الحالي مسجل بالفعل", MessageBoxState.Warning);
+                        return;
+                    }
+                }
                 SetTaxAccountCredentials TaxAccountCred = new SetTaxAccountCredentials();
                 TaxAccountCred.ShowDialog();
             }

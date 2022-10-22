@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.MapTables
 {
-    class TaxAccountMap
+    class DetailedTaxCodeMap
     {
-        public TaxAccountMap(EntityTypeBuilder<TaxAccount> entity)
+        public DetailedTaxCodeMap(EntityTypeBuilder<DetailedTaxCode> entity)
         {
-            entity.ToTable("TaxAccount");
+            entity.ToTable("DetailedTaxCode");
         }
     }
 }
