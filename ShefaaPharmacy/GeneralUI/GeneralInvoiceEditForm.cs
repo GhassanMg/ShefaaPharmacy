@@ -5,6 +5,8 @@ using DataLayer.Services;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ShefaaPharmacy.Accounting;
 using ShefaaPharmacy.Articale;
 using ShefaaPharmacy.Articles;
@@ -17,7 +19,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.GeneralUI
@@ -1319,7 +1323,7 @@ namespace ShefaaPharmacy.GeneralUI
                     tbPayment.Text = "0";
                     tbDiscount.Text = "0";
                     SetFocus();
-
+                    AddInvoiveToTaxSystem();
                 }
             }
             else if (FormOperation == FormOperation.Delete)
@@ -1394,6 +1398,37 @@ namespace ShefaaPharmacy.GeneralUI
                 }
             }
             IsInMinus = false;
+        }
+        private void AddInvoiveToTaxSystem()
+        {
+            string url = String.Format("http://213.178.227.75/Taxapi/api/Bill/AddFullBill");
+            WebRequest requestPost = WebRequest.Create(url);
+            requestPost.Method = "POST";
+            requestPost.ContentType = "application/json";
+            requestPost.Headers.Add("Authorization", "Bearer " + ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.FirstOrDefault().Token);
+            TaxReportViewModel newObj = new TaxReportViewModel
+            {
+                billValue = 1000,
+                billNumber= "2",
+                code = "9373de8d-6e10-49b8-85b3-58ddf7f843d4",
+                currency = Currency.SP,
+                exProgram = "test",
+                date = DateTime.Now.Date,
+            };
+
+            var postData = JsonConvert.SerializeObject(newObj);
+            using (var streamWriter = new StreamWriter(requestPost.GetRequestStream()))
+            {
+                streamWriter.Write(postData);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+
+            var httpResponse = (HttpWebResponse)requestPost.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                int code = (int)httpResponse.StatusCode;
+            }
         }
         /// <summary>
         /// حذف الفاتورة أو إلغاء العملية

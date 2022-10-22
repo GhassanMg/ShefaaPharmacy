@@ -4,7 +4,6 @@ namespace DataLayer.ViewModels
 {
     public class ExistStuffViewModel
     {
-       
         [DisplayName("المادة")]
         public string Name { get; set; }
         [DisplayName("العدد")]
@@ -13,6 +12,5 @@ namespace DataLayer.ViewModels
         public double Price { get; set; }
         [DisplayName("الوصف")]
         public string Description { get; set; }
-
     }
 }
