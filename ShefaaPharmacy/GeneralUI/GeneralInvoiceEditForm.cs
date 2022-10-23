@@ -1434,7 +1434,7 @@ namespace ShefaaPharmacy.GeneralUI
                 PosNumber = 10,
                 taxNumber = "000000100000",
                 RandomCode = randomNumber,
-                DateTime = DateTime.Now.Date,
+                DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
                 IsTransfeered = Istransfered,
                 InvoiceKind = InvoiceKind.Sell
             };

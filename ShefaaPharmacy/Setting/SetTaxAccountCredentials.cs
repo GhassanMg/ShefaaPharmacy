@@ -4,6 +4,7 @@ using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -54,6 +55,9 @@ namespace ShefaaPharmacy.Setting
                         };
                         bool token = LoginExternal(NewAccount);
                         if (!token) return;
+                        byte[] encData_byte = new byte[NewAccount.password.Length];
+                        encData_byte = System.Text.Encoding.UTF8.GetBytes(NewAccount.password);
+                        NewAccount.password = Convert.ToBase64String(encData_byte);
                         NewAccount.Token = Token;
                         NewAccount.facilityName = FacilityName;
                         context.TaxAccount.Add(NewAccount);
@@ -93,7 +97,7 @@ namespace ShefaaPharmacy.Setting
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
-                //var proccess = Process.Start();
+
                 var httpResponse = (HttpWebResponse)requestPost.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {

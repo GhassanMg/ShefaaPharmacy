@@ -19,7 +19,7 @@ namespace DataLayer.Tables
         [DisplayName("رقم الفاتورة")]
         public String BillNumber { set; get; }
         [DisplayName("تاريخ الفاتورة")]
-        public DateTime DateTime { set; get; }
+        public string DateTime { set; get; }
         [DisplayName("قيمة الفاتورة")]
         public double BillValue { set; get; }
         /// <summary>
