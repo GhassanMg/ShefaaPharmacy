@@ -1,13 +1,11 @@
 ﻿using DataLayer.Helper;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace DataLayer.Tables
 {
-    public class TaxAccount 
+    public class TaxAccount
     {
         public TaxAccount()
         {

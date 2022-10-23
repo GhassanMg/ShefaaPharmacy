@@ -396,7 +396,7 @@ namespace ShefaaPharmacy.Invoice
                 return billService2.ReturnBill(InvoiceKind.ReturnBuy);
             }
 
-            
+
         }
 
         private bool EditBill()
@@ -896,7 +896,7 @@ namespace ShefaaPharmacy.Invoice
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             var lastPriceTage = DescriptionFK.GetLastPriceTagForArt((DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
             var lastSellPrice = UnitTypeService.GetLastSellPrice((DetailBindingSource.Current as PurchesBillViewModel).ArticleId, (DetailBindingSource.Current as PurchesBillViewModel).UnitId);
-            if (Convert.ToDouble(value) != lastSellPrice) 
+            if (Convert.ToDouble(value) != lastSellPrice)
             {
                 string message = "سعر الصنف في هذه البطاقة " + lastSellPrice + "\n هل تريد إضافة سعر جديد";
                 MessageBoxAnswer dialogResult;

@@ -203,7 +203,6 @@
             this.tbAccountIdDescr.Name = "tbAccountIdDescr";
             this.tbAccountIdDescr.Size = new System.Drawing.Size(207, 24);
             this.tbAccountIdDescr.TabIndex = 19;
-            this.tbAccountIdDescr.MouseHover += new System.EventHandler(this.tbAccountIdDescr_MouseHover);
             // 
             // lbPaymentMethod
             // 

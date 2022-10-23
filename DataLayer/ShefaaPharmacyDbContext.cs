@@ -51,7 +51,7 @@ namespace DataLayer
 
         public ShefaaPharmacyDbContext()
         {
-            
+
         }
         public ShefaaPharmacyDbContext(string connectionString) : base(GetOptions(connectionString))
         {
@@ -121,9 +121,9 @@ namespace DataLayer
             //}
             //catch
             //{
-                return false;
+            return false;
             //}
-           
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -261,7 +261,7 @@ namespace DataLayer
         public static void BackUp()
         {
             DataModuleVersion dataModuleVersion = new DataModuleVersion();
-            dataModuleVersion.BackUp();            
+            dataModuleVersion.BackUp();
         }
 
     }

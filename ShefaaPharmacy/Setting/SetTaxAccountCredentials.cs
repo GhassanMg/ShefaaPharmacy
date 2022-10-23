@@ -4,7 +4,6 @@ using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -13,14 +12,12 @@ using Newtonsoft.Json;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
-using DataLayer.Helper;
-using System.Diagnostics;
 
 namespace ShefaaPharmacy.Setting
 {
     public partial class SetTaxAccountCredentials : ShefaaPharmacy.GeneralUI.DialogForm
     {
-        string Token =" ";
+        string Token = " ";
         string FacilityName;
         public SetTaxAccountCredentials()
         {
@@ -103,7 +100,7 @@ namespace ShefaaPharmacy.Setting
                 {
                     int code = (int)httpResponse.StatusCode;
                     var res = streamReader.ReadToEnd();
-                    bool succeed ;
+                    bool succeed;
                     JObject resultJson = (JObject)JsonConvert.DeserializeObject(res);
                     IList<string> keys = resultJson.Properties().Select(p => p.Name).ToList();
                     if (resultJson["data"] == null)
@@ -123,17 +120,17 @@ namespace ShefaaPharmacy.Setting
             }
             catch (Exception ex)
             {
-                if(ex.Message == "The operation has timed out")
+                if (ex.Message == "The operation has timed out")
                 {
                     _MessageBoxDialog.Show("هناك مشكلة في المخدم يرجى المحاولة لاحقاً ", MessageBoxState.Error);
                     Close();
                     return false;
                 }
-                _MessageBoxDialog.Show("يرجى التأكد من اتصالك بالإنترنت واعادة المحاولة", MessageBoxState.Error);                
+                _MessageBoxDialog.Show("يرجى التأكد من اتصالك بالإنترنت واعادة المحاولة", MessageBoxState.Error);
                 return false;
             }
         }
-        
+
         private void tbPassword_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbPassword.Text))

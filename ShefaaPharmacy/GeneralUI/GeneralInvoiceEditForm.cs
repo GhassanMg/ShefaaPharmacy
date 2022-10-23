@@ -23,10 +23,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace ShefaaPharmacy.GeneralUI
@@ -162,7 +158,6 @@ namespace ShefaaPharmacy.GeneralUI
                 {
                     billMaster.AccountId = UserLoggedIn.User.UserPermissions.CustomerAccountId;
                 }
-
             }
             else if (FormOperation == FormOperation.ReturnEmpty || FormOperation == FormOperation.ReturnArticles)
             {
@@ -374,7 +369,6 @@ namespace ShefaaPharmacy.GeneralUI
                 object sender = new object();
                 tbDiscount_Validating(sender, ee);
                 dgDetail.Refresh();
-
             }
         }
         public void InecreseQuantity()
@@ -450,7 +444,6 @@ namespace ShefaaPharmacy.GeneralUI
             e.NewObject = new BillDetail(billMaster);
             AbortAddNewRow = false;
         }
-
         private void EditBindingSource_AddingNew(object sender, AddingNewEventArgs e)
         {
             billMaster = new BillMaster();
@@ -582,9 +575,6 @@ namespace ShefaaPharmacy.GeneralUI
         {
             BillService billService = new BillService(billMaster);
             return billService.EditBill();
-        }
-        private void tbAccountIdDescr_MouseHover(object sender, EventArgs e)
-        {
         }
 
         private void cbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -747,7 +737,6 @@ namespace ShefaaPharmacy.GeneralUI
                                     }
                                 }
 
-
                                 result.PriceTagMasters = DescriptionFK.GetOldestExpiryDate(articleId: result.Id);
                                 if (invoiceKind == InvoiceKind.Sell)
                                 {
@@ -771,7 +760,6 @@ namespace ShefaaPharmacy.GeneralUI
                     {
                         ;
                     }
-
                 }
                 else if (cellName == "Price" && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as BillDetail).Price != Convert.ToDouble(e.FormattedValue))
                 {
@@ -850,7 +838,6 @@ namespace ShefaaPharmacy.GeneralUI
                                 break;
                             }
                         }
-
                         result.PriceTagMasters = DescriptionFK.GetOldestExpiryDate(articleId: result.Id);
                         if (!CheckQuantityOnSell(result))
                             e.Cancel = true;
@@ -883,7 +870,6 @@ namespace ShefaaPharmacy.GeneralUI
                                         {
                                             item.Cells["quantity"].Value = Convert.ToInt32(item.Cells["quantity"].Value) + 1;
                                         }
-
                                         e.Cancel = true;
                                         dgDetail.Rows[item.Index].Selected = true;
                                         dgDetail.CurrentRow.Cells[0].Value = "";
@@ -955,9 +941,7 @@ namespace ShefaaPharmacy.GeneralUI
                     {
                         return;
                     }
-
                 }
-
                 CancelEventArgs ee = new CancelEventArgs();
                 //object sender = new object();
                 tbDiscount_Validating(sender, ee);
@@ -1088,7 +1072,6 @@ namespace ShefaaPharmacy.GeneralUI
                     {
                         currentRow.Price = 0;
                     }
-
                     currentRow.Quantity = 1;
                     currentRow.Barcode = articale.Barcode;
                     currentRow.BarcodeDescr = articale.Barcode;
@@ -1132,7 +1115,6 @@ namespace ShefaaPharmacy.GeneralUI
                         {
                             currentRow.Price = 0;
                         }
-
                         currentRow.Quantity = 1;
                         currentRow.Barcode = articale.Barcode;
                         currentRow.BarcodeDescr = articale.Barcode;
@@ -1235,7 +1217,6 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 billMaster.BillDetails.RemoveAt(dgDetail.Rows.Count - 1);
             }
-
         }
         /// <summary>
         /// الفاتورة قبل الأخيرة
@@ -1283,7 +1264,6 @@ namespace ShefaaPharmacy.GeneralUI
                     _MessageBoxDialog.Show("النسخة غير مسجلة يجب التسجيل للإكمال", MessageBoxState.Warning);
                     return;
                 }
-
             }
             catch (Exception ex)
             {
@@ -1301,8 +1281,6 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 dgDetail.Rows.Remove(dgDetail.Rows[dgDetail.Rows.Count - 2]);
                 dgDetail.Rows[0].Selected = true;
-
-                //return;
             }
             if (DetailBindingSource.Count < 1)
             {
@@ -1363,10 +1341,8 @@ namespace ShefaaPharmacy.GeneralUI
                 }
                 catch (Exception ex)
                 {
-
                     throw;
                 }
-
             }
             else if (FormOperation == FormOperation.Return)
             {
@@ -1486,7 +1462,6 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 return false;
             }
-
         }
         /// <summary>
         /// حذف الفاتورة أو إلغاء العملية
@@ -1627,7 +1602,6 @@ namespace ShefaaPharmacy.GeneralUI
                     RemainingAmoungIfBigger = Convert.ToDouble(tbPayment.Text);
                 }
             }
-
             if (tbPayment.Text == "")
             {
                 return;
@@ -1667,7 +1641,6 @@ namespace ShefaaPharmacy.GeneralUI
             //    }
             //    else
             //    {
-
             //        bill.RemainingAmount = bill.TotalPrice - (Convert.ToDouble(tbPayment.Text));
             //    }
             //}
@@ -1777,7 +1750,6 @@ namespace ShefaaPharmacy.GeneralUI
                 tbDiscount.SelectionLength = tbDiscount.Text.Length;
             }
         }
-
         private void dgDetail_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             if ((EditBindingSource.DataSource as BillMaster) != null)
@@ -1835,11 +1807,9 @@ namespace ShefaaPharmacy.GeneralUI
                 Article result = DescriptionFK.ArticaleExists(artVal);
                 if (result == null)
                 {
-
                     _MessageBoxDialog.Show("يجب وضع مادة", MessageBoxState.Warning);
                     e.Cancel = true;
                     SetFocus();
-
                 }
             }
             catch (Exception ex)
@@ -1938,21 +1908,11 @@ namespace ShefaaPharmacy.GeneralUI
         {
             DateTime date = this.dtCreationDate.Value;
             billMaster.CreationDate = date;
-            //this.dtCreationDate.Text = date.ToString("yyyy-mm-dd");
         }
 
 
         private void tbDiscount_TextChanged(object sender, EventArgs e)
         {
-            //if (radioButton1.Checked == true)
-            //{
-            //    double tot = calcSum();
-            //    double dis = tbDiscount.Text == "" ? 0.0 : double.Parse(tbDiscount.Text);
-            //    double per = (tot * dis) / 100;
-            //    tbDiscount.Text = per.ToString();
-            //}
-            //else
-            //{  
             if (billMaster.paymentMethod == PaymentMethod.Debit)
             {
                 billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.Payment - (tbDiscount.Text == "" ? 0 : double.Parse(tbDiscount.Text));
