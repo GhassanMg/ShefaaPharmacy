@@ -23,12 +23,18 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
 
 namespace ShefaaPharmacy.GeneralUI
 {
     public partial class GeneralInvoiceEditForm : ShefaaPharmacy.GeneralUI.AbstractForm
     {
         BillMaster billMaster;
+        string billNumber;
         InvoiceKind invoiceKind;
         BillMaster lastOp, prevLastOp, prevPrevLastOp;
         bool AbortAddNewRow = false;
@@ -1258,6 +1264,10 @@ namespace ShefaaPharmacy.GeneralUI
             tbDiscount.Select();
             tbId.Select();
             tbId.Focus();
+            if (ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.Any())
+                billNumber = (ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.ToList().LastOrDefault().Id + 1).ToString();
+            else
+                billNumber = "1";
             try
             {
                 //if (RDSFECXA__WEWDSA.ReeD())
@@ -1313,17 +1323,30 @@ namespace ShefaaPharmacy.GeneralUI
             bool res;
             if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
             {
+                double billValue = billMaster.TotalPrice;
                 res = SaveNewBill();
                 if (res)
                 {
-
                     _MessageBoxDialog.Show("تم حفظ الفاتورة", MessageBoxState.Done);
                     EditBindingSource.AddNew();
                     cbPaymentMethod.SelectedIndex = 0;
                     tbPayment.Text = "0";
                     tbDiscount.Text = "0";
                     SetFocus();
-                    AddInvoiveToTaxSystem();
+                    Guid GCode = Guid.NewGuid();
+                    string GUIDCode = GCode.ToString();
+                    var thread = new Thread(() =>
+                    {
+                        if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
+                        {
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, true);
+                        }
+                        else
+                        {
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, false);
+                        }
+                    });
+                    thread.Start();
                 }
             }
             else if (FormOperation == FormOperation.Delete)
@@ -1399,36 +1422,71 @@ namespace ShefaaPharmacy.GeneralUI
             }
             IsInMinus = false;
         }
-        private void AddInvoiveToTaxSystem()
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, bool Istransfered)
         {
-            string url = String.Format("http://213.178.227.75/Taxapi/api/Bill/AddFullBill");
-            WebRequest requestPost = WebRequest.Create(url);
-            requestPost.Method = "POST";
-            requestPost.ContentType = "application/json";
-            requestPost.Headers.Add("Authorization", "Bearer " + ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.FirstOrDefault().Token);
-            TaxReportViewModel newObj = new TaxReportViewModel
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
             {
-                billValue = 1000,
-                billNumber= "2",
-                code = "9373de8d-6e10-49b8-85b3-58ddf7f843d4",
-                currency = Currency.SP,
-                exProgram = "test",
-                date = DateTime.Now.Date,
+                BillValue = billValue,
+                BillNumber = billNumber,
+                Currency = "sp",
+                FacilityName = "ShefaaPharmacy",
+                PosNumber = 10,
+                taxNumber = "000000100000",
+                RandomCode = randomNumber,
+                DateTime = DateTime.Now.Date,
+                IsTransfeered = Istransfered,
+                InvoiceKind = InvoiceKind.Sell
             };
-
-            var postData = JsonConvert.SerializeObject(newObj);
-            using (var streamWriter = new StreamWriter(requestPost.GetRequestStream()))
+            context.DetailedTaxCode.Add(NewTaxInvoice);
+            context.SaveChanges();
+        }
+        private bool AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
+        {
+            try
             {
-                streamWriter.Write(postData);
-                streamWriter.Flush();
-                streamWriter.Close();
+                string url = String.Format("http://213.178.227.75/Taxapi/api/Bill/AddFullBill");
+                WebRequest requestPost = WebRequest.Create(url);
+                requestPost.Method = "POST";
+                requestPost.ContentType = "application/json";
+                requestPost.Headers.Add("Authorization", "Bearer " + ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.FirstOrDefault().Token);
+                TaxReportViewModel newObj = new TaxReportViewModel
+                {
+                    billValue = billValue,
+                    billNumber = billNumber,
+                    code = GUIDCode,
+                    currency = "sp",
+                    exProgram = "ShefaaPharmacy",
+                    date = DateTime.Now.Date,
+                };
+
+                var postData = JsonConvert.SerializeObject(newObj);
+                using (var streamWriter = new StreamWriter(requestPost.GetRequestStream()))
+                {
+                    streamWriter.Write(postData);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                var httpResponse = (HttpWebResponse)requestPost.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    int code = (int)httpResponse.StatusCode;
+                    var res = streamReader.ReadToEnd();
+                    JObject resultJson = (JObject)JsonConvert.DeserializeObject(res);
+                    IList<string> keys = resultJson.Properties().Select(p => p.Name).ToList();
+                    if (resultJson["data"] != null)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
 
-            var httpResponse = (HttpWebResponse)requestPost.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                int code = (int)httpResponse.StatusCode;
-            }
         }
         /// <summary>
         /// حذف الفاتورة أو إلغاء العملية

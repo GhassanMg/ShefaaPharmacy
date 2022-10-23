@@ -5,6 +5,8 @@ using DataLayer.Services;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ShefaaPharmacy.Accounting;
 using ShefaaPharmacy.Articale;
 using ShefaaPharmacy.Articles;
@@ -15,7 +17,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Invoice
@@ -23,6 +28,7 @@ namespace ShefaaPharmacy.Invoice
     public partial class BuyInvoiceEditForm : ShefaaPharmacy.GeneralUI.AbstractForm
     {
         BillMaster billMaster;
+        string billNumber;
         bool EdittedPrice = false;
         bool CheckEditPrice = false;
         List<PurchesBillViewModel> purchesBillViewModels;
@@ -634,6 +640,10 @@ namespace ShefaaPharmacy.Invoice
         private void pbOk_Click(object sender, EventArgs e)
         {
             pbOk.Select();
+            if (ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.Any())
+                billNumber = (ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.ToList().LastOrDefault().Id + 1).ToString();
+            else
+                billNumber = "1";
             try
             {
                 if (!RDSFECXA__WEWDSA.Ree())
@@ -660,12 +670,27 @@ namespace ShefaaPharmacy.Invoice
             bool res;
             if (FormOperation == FormOperation.New || FormOperation == FormOperation.NewFromPicker)
             {
+                double billValue = billMaster.TotalPrice;
                 res = SaveNewBill();
                 if (res)
                 {
                     _MessageBoxDialog.Show("تم حفظ الفاتورة", MessageBoxState.Done);
                     MasterBindingSource.AddNew();
                     cbPaymentMethod.SelectedIndex = 0;
+                    Guid GCode = Guid.NewGuid();
+                    string GUIDCode = GCode.ToString();
+                    var thread = new Thread(() =>
+                    {
+                        if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
+                        {
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, true);
+                        }
+                        else
+                        {
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, false);
+                        }
+                    });
+                    thread.Start();
                 }
             }
             else if (FormOperation == FormOperation.Edit || FormOperation == FormOperation.EditFromPicker)
@@ -710,7 +735,72 @@ namespace ShefaaPharmacy.Invoice
                 }
             }
         }
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, bool Istransfered)
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
+            {
+                BillValue = billValue,
+                BillNumber = billNumber,
+                Currency = "sp",
+                FacilityName = "ShefaaPharmacy",
+                PosNumber = 10,
+                taxNumber = "000000100000",
+                RandomCode = randomNumber,
+                DateTime = DateTime.Now.Date,
+                IsTransfeered = Istransfered,
+                InvoiceKind = InvoiceKind.Buy
+            };
+            context.DetailedTaxCode.Add(NewTaxInvoice);
+            context.SaveChanges();
+        }
+        private bool AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
+        {
+            try
+            {
+                string url = String.Format("http://213.178.227.75/Taxapi/api/Bill/AddFullBill");
+                WebRequest requestPost = WebRequest.Create(url);
+                requestPost.Method = "POST";
+                requestPost.ContentType = "application/json";
+                requestPost.Headers.Add("Authorization", "Bearer " + ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.FirstOrDefault().Token);
+                TaxReportViewModel newObj = new TaxReportViewModel
+                {
+                    billValue = billValue,
+                    billNumber = billNumber,
+                    code = GUIDCode,
+                    currency = "sp",
+                    exProgram = "ShefaaPharmacy",
+                    date = DateTime.Now.Date,
+                };
 
+                var postData = JsonConvert.SerializeObject(newObj);
+                using (var streamWriter = new StreamWriter(requestPost.GetRequestStream()))
+                {
+                    streamWriter.Write(postData);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                var httpResponse = (HttpWebResponse)requestPost.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    int code = (int)httpResponse.StatusCode;
+                    var res = streamReader.ReadToEnd();
+                    JObject resultJson = (JObject)JsonConvert.DeserializeObject(res);
+                    IList<string> keys = resultJson.Properties().Select(p => p.Name).ToList();
+                    if (resultJson["data"] != null)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
         private void lbAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Account result = AccountPickForm.PickAccount("", new int[1] { ConstantDataBase.AC_Supplier }, null, FormOperation.Pick);

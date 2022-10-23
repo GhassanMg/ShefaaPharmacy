@@ -73,7 +73,7 @@ namespace DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_Saturday;Integrated Security=true;")
+                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_SunRaise;Integrated Security=true;")
                 .UseSqlServer(ConStr)
                 .UseLoggerFactory(new LoggerFactory())
                 .EnableSensitiveDataLogging();

@@ -26,7 +26,7 @@ namespace DataLayer.Tables
         /// العملة {SP , USD }
         /// </summary>
         [DisplayName("العملة")]
-        public Currency Currency { set; get; }
+        public string Currency { set; get; }
         [DisplayName("التطبيق المصدر للفاتورة")]
         public string BillExporterApp { set; get; } = "ShefaaPharmacy";
         /// <summary>

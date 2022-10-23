@@ -13,7 +13,7 @@ namespace DataLayer.ViewModels
         [DisplayName("تاريخ الفاتورة")]
         public String code { set; get; }
         [DisplayName("العملة")]
-        public Currency currency { set; get; }
+        public string currency { set; get; }
         [DisplayName("التطبيق المصدر للفاتورة")]
         public string exProgram { set; get; } = "ShefaaPharmacy";
         [DisplayName("تاريخ الفاتورة")]

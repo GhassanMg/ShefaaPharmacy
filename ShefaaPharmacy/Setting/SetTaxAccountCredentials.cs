@@ -13,6 +13,7 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using DataLayer.Helper;
+using System.Diagnostics;
 
 namespace ShefaaPharmacy.Setting
 {
@@ -92,7 +93,7 @@ namespace ShefaaPharmacy.Setting
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
-               
+                //var proccess = Process.Start();
                 var httpResponse = (HttpWebResponse)requestPost.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
@@ -118,6 +119,12 @@ namespace ShefaaPharmacy.Setting
             }
             catch (Exception ex)
             {
+                if(ex.Message == "The operation has timed out")
+                {
+                    _MessageBoxDialog.Show("هناك مشكلة في المخدم يرجى المحاولة لاحقاً ", MessageBoxState.Error);
+                    Close();
+                    return false;
+                }
                 _MessageBoxDialog.Show("يرجى التأكد من اتصالك بالإنترنت واعادة المحاولة", MessageBoxState.Error);                
                 return false;
             }
