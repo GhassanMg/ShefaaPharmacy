@@ -10,7 +10,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using DataLayer.Helper;
 
 namespace ShefaaPharmacy.Setting
 {

@@ -41,7 +41,6 @@ namespace ShefaaPharmacy.Articles
             dataGridView2.Columns["scientific_name"].Visible = false;
             dataGridView2.Columns["barcode"].Visible = false;
 
-
             dataGridView2.Columns["name"].ReadOnly = true;
             dataGridView2.Columns["size"].ReadOnly = true;
             dataGridView2.Columns["active_ingredients"].ReadOnly = true;
@@ -55,7 +54,6 @@ namespace ShefaaPharmacy.Articles
             dataGridView2.Columns["barcode"].DisplayIndex = dataGridView2.ColumnCount - 2;
             dataGridView2.Columns["company_id_descr"].DisplayIndex = 1;
             dataGridView2.Columns["format_id_descr"].DisplayIndex = 4;
-
 
             btnImport.Enabled = true;
             CheckArticles.Enabled = true;
@@ -318,7 +316,6 @@ namespace ShefaaPharmacy.Articles
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
             if (CheckArticles.Checked)
             {
                 foreach (DataGridViewRow item in dataGridView2.Rows)

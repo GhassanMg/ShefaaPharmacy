@@ -1,7 +1,4 @@
-﻿using System;
-using DataLayer.Tables;
-using System.Collections.Generic;
-using System.Text;
+﻿using DataLayer.Tables;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 

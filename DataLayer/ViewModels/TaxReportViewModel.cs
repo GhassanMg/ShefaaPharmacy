@@ -1,5 +1,4 @@
-﻿using DataLayer.Enums;
-using System;
+﻿using System;
 using System.ComponentModel;
 
 namespace DataLayer.ViewModels
