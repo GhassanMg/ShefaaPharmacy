@@ -395,8 +395,6 @@ namespace ShefaaPharmacy.Invoice
                 BillService billService2 = new BillService(billMaster);
                 return billService2.ReturnBill(InvoiceKind.ReturnBuy);
             }
-
-
         }
 
         private bool EditBill()
@@ -571,7 +569,6 @@ namespace ShefaaPharmacy.Invoice
             catch (Exception ex)
             {
                 _MessageBoxDialog.Show("يرجى التأكد من صحة البيانات المدخلة ومكانها المناسب", MessageBoxState.Error);
-
             }
         }
         private void dgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -954,7 +951,6 @@ namespace ShefaaPharmacy.Invoice
                     .Include(x => x.PriceTagDetails)
                     .OrderByDescending(x => x.CreationDate)
                     .LastOrDefault();
-
             try
             {
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -1022,8 +1018,6 @@ namespace ShefaaPharmacy.Invoice
             catch (Exception ex)
             {
                 _MessageBoxDialog.Show("هناك خطأ في الإدخال يرجى اعادة العملية", MessageBoxState.Error);
-
-                //_MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
         private void DetailBindingSource_PositionChanged(object sender, EventArgs e)
