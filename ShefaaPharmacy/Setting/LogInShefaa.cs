@@ -51,18 +51,6 @@ namespace ShefaaPharmacy.Setting
                     {
                         cbDataBase.SelectedIndex = 0;
                     }
-                    //ApplicationDeployment deploy = ApplicationDeployment.CurrentDeployment;
-                    //UpdateCheckInfo update = deploy.CheckForDetailedUpdate();
-                    //MessageBox.Show("You can update to version: " + update.AvailableVersion.ToString());
-
-                    //ApplicationDeployment deploy = ApplicationDeployment.CurrentDeployment;
-                    //UpdateCheckInfo update = deploy.CheckForDetailedUpdate();
-                    //if (deploy.CheckForUpdate())
-                    //{
-                    //    MessageBox.Show("You can update to version: " + update.AvailableVersion.ToString());
-                    //    deploy.Update();
-                    //    Application.Restart();
-                    //}
                 }
                 else
                 {
@@ -77,7 +65,6 @@ namespace ShefaaPharmacy.Setting
             {
                 Cursor.Current = Cursors.Default;
             }
-
         }
         private void cbDataBase_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -144,6 +131,12 @@ namespace ShefaaPharmacy.Setting
                     _MessageBoxDialog.Show("يرجى تسجيل معلومات الحساب الضريبي", MessageBoxState.Alert);
                     SetTaxAccountCredentials TaxAccountCred = new SetTaxAccountCredentials();
                     TaxAccountCred.ShowDialog();
+                }
+                else
+                {
+                    SetTaxAccountCredentials Credentials = new SetTaxAccountCredentials();
+                    var CurrentAccount = context.TaxAccount.ToList().FirstOrDefault();
+                    Credentials.LoginToRefreshToken(CurrentAccount);
                 }
             }
             else
