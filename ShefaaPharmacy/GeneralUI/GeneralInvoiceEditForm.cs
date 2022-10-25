@@ -1251,14 +1251,6 @@ namespace ShefaaPharmacy.GeneralUI
                 billNumber = "1";
             try
             {
-                //if (RDSFECXA__WEWDSA.ReeD())
-                //{
-                //    if (ShefaaPharmacyDbContext.IsItMoreThanMonth())
-                //    {
-                //        _MessageBoxDialog.Show("انتهت النسخة التجريبية لديك", MessageBoxState.Warning);
-                //        return;
-                //    }
-                //}
                 if (!RDSFECXA__WEWDSA.Ree())
                 {
                     _MessageBoxDialog.Show("النسخة غير مسجلة يجب التسجيل للإكمال", MessageBoxState.Warning);

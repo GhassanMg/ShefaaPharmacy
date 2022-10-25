@@ -29,9 +29,10 @@ namespace ShefaaPharmacy.Api
     {
         public TcpClient socket;
         public HttpServer1 srv;
-
         private Stream inputStream;
         public StreamWriter outputStream;
+        public Hashtable httpHeaders = new Hashtable();
+
         public string barcode;
         public string database;
         public int operation;
@@ -41,7 +42,6 @@ namespace ShefaaPharmacy.Api
         public string http_method;
         public string http_url;
         public string http_protocol_versionstring;
-        public Hashtable httpHeaders = new Hashtable();
 
         private static int MAX_POST_SIZE = 10 * 1024 * 1024; // 10MB
 
@@ -91,7 +91,6 @@ namespace ShefaaPharmacy.Api
                 writeFailure();
             }
             outputStream.Flush();
-            // bs.Flush(); // flush any remaining output
             inputStream = null; outputStream = null;
             socket.Close();
         }
@@ -99,7 +98,6 @@ namespace ShefaaPharmacy.Api
         public void parseRequest()
         {
             String request = streamReadLine(inputStream);
-
             string[] tokens = request.Split(' ');
             if (tokens.Length != 3)
             {
@@ -137,9 +135,7 @@ namespace ShefaaPharmacy.Api
                 invoice = Uri.UnescapeDataString(temp1[1].Split('=')[1]);
                 IsMinus = temp1[4].Split('=')[1];
             }
-
             http_protocol_versionstring = tokens[2];
-
             Console.WriteLine("starting: " + request);
         }
 
@@ -154,7 +150,6 @@ namespace ShefaaPharmacy.Api
                     Console.WriteLine("got headers");
                     return;
                 }
-
                 int separator = line.IndexOf(':');
                 if (separator == -1)
                 {
@@ -171,7 +166,6 @@ namespace ShefaaPharmacy.Api
                 httpHeaders[name] = value;
             }
         }
-
         public void handleGETRequest()
         {
             srv.handleGETRequest(this, IsMinus);
@@ -241,7 +235,6 @@ namespace ShefaaPharmacy.Api
             outputStream.WriteLine("");
         }
     }
-    //[JsonObject(IsReference = true)]
     public abstract class HttpServer1
     {
         protected int port;
@@ -285,8 +278,7 @@ namespace ShefaaPharmacy.Api
         string billNumber;
         InvoiceKind invoiceKind = InvoiceKind.Sell;
         FormOperation FormOperation = FormOperation.New;
-        public SellHttpServer(int port)
-            : base(port)
+        public SellHttpServer(int port) : base(port)
         {
         }
         public void CheckNumbers(ShefaaPharmacyDbContext context)
@@ -295,8 +287,6 @@ namespace ShefaaPharmacy.Api
             billMaster.TotalPrice = Convert.ToInt32(DescriptionFK.RoundInMath(billMaster.TotalPrice, context.DataBaseConfigurations.FirstOrDefault().CountNumberAfterComma));
             billMaster.Payment = Convert.ToInt32(DescriptionFK.RoundInMath(billMaster.Payment, context.DataBaseConfigurations.FirstOrDefault().CountNumberAfterComma));
         }
-
-
         private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr, string IsMinus)
         {
             if (ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.Any())
@@ -311,7 +301,6 @@ namespace ShefaaPharmacy.Api
                 case InvoiceKind.Sell:
                     if (IsMinus == "true") result = billService.SellInMinusBill();
                     else result = billService.SellBillMobile(context, usr);
-
                     break;
                 default:
                     break;
@@ -410,7 +399,6 @@ namespace ShefaaPharmacy.Api
                 billMaster = new BillMaster();
                 string temp = ShefaaPharmacyDbContext.ConStr;
                 ShefaaPharmacyDbContext.ConStr = ConnectionManager.GetConnection("TM_" + p.database);
-                //var query = "SET IDENTITY_INSERT dbo.BillMaster ON; INSERT INTO dbo.BillMaster (IdentityColumn) VALUES (@identityColumnValue); SET IDENTITY_INSERT dbo.BillMaster ON;";
                 ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                 billMaster.context = context;
                 //System.Diagnostics.Debugger.Break
@@ -520,7 +508,6 @@ namespace ShefaaPharmacy.Api
                 p.writeFailure();
             }
         }
-
         public override void handlePOSTRequest(HttpProcessor1 p, StreamReader inputData)
         {
             Console.WriteLine("POST request: {0}", p.http_url);
@@ -550,8 +537,6 @@ namespace ShefaaPharmacy.Api
             }
         }
     }
-
-
 }
 
 
