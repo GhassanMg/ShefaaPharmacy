@@ -1313,15 +1313,16 @@ namespace ShefaaPharmacy.GeneralUI
                     SetFocus();
                     Guid GCode = Guid.NewGuid();
                     string GUIDCode = GCode.ToString();
+                    string TaxNumber = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault().taxNumber;
                     var thread = new Thread(() =>
                     {
                         if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, true);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, true);
                         }
                         else
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, false);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, false);
                         }
                     });
                     thread.Start();
@@ -1398,7 +1399,7 @@ namespace ShefaaPharmacy.GeneralUI
             }
             IsInMinus = false;
         }
-        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, bool Istransfered)
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, bool Istransfered)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
@@ -1408,7 +1409,7 @@ namespace ShefaaPharmacy.GeneralUI
                 Currency = "sp",
                 FacilityName = "ShefaaPharmacy",
                 PosNumber = 10,
-                taxNumber = "000000100000",
+                taxNumber = TaxNumber,
                 RandomCode = randomNumber,
                 DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
                 IsTransfeered = Istransfered,
