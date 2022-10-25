@@ -1810,7 +1810,6 @@ namespace ShefaaPharmacy.GeneralUI
                 _MessageBoxDialog.Show("حصل خطأ في الادخال يرجى اعادة المحاولة", MessageBoxState.Error);
             }
         }
-
         private void dgDetail_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1819,7 +1818,6 @@ namespace ShefaaPharmacy.GeneralUI
                 tbPayment.Select();
             }
         }
-
         private void tbPayment_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1849,7 +1847,6 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
-
         }
 
         private void LbReturnBill_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
