@@ -74,7 +74,7 @@
             this.mExpiredArticlesReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTransfeerToExpiryStore = new System.Windows.Forms.ToolStripMenuItem();
             this.stmExpiryAerticlesStore = new System.Windows.Forms.ToolStripMenuItem();
-            this.تحديثالأسعارأونلاينToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miUpdatePrices = new System.Windows.Forms.ToolStripMenuItem();
             this.miOrders = new System.Windows.Forms.ToolStripMenuItem();
             this.miOrderFromCompany = new System.Windows.Forms.ToolStripMenuItem();
             this.miPickAllOrders = new System.Windows.Forms.ToolStripMenuItem();
@@ -440,7 +440,7 @@
             this.miAccountMovementReport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miAccountMovementReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_account_48px;
             this.miAccountMovementReport.Name = "miAccountMovementReport";
-            this.miAccountMovementReport.Size = new System.Drawing.Size(248, 30);
+            this.miAccountMovementReport.Size = new System.Drawing.Size(244, 30);
             this.miAccountMovementReport.Text = "تقرير الحسابات التفصيلي";
             this.miAccountMovementReport.Click += new System.EventHandler(this.miAccountMovementReport_Click);
             // 
@@ -449,7 +449,7 @@
             this.miInvoiceReport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miInvoiceReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_bill_48px;
             this.miInvoiceReport.Name = "miInvoiceReport";
-            this.miInvoiceReport.Size = new System.Drawing.Size(248, 30);
+            this.miInvoiceReport.Size = new System.Drawing.Size(244, 30);
             this.miInvoiceReport.Text = "تقرير الفواتير";
             this.miInvoiceReport.Click += new System.EventHandler(this.miInvoiceReport_Click);
             // 
@@ -458,7 +458,7 @@
             this.miEntryReport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miEntryReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_memo_48px;
             this.miEntryReport.Name = "miEntryReport";
-            this.miEntryReport.Size = new System.Drawing.Size(248, 30);
+            this.miEntryReport.Size = new System.Drawing.Size(244, 30);
             this.miEntryReport.Text = "تقرير سندات القيد";
             this.miEntryReport.Click += new System.EventHandler(this.MiEntryReport_Click);
             // 
@@ -467,7 +467,7 @@
             this.miCashMovementReport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miCashMovementReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_coin_wallet_48px;
             this.miCashMovementReport.Name = "miCashMovementReport";
-            this.miCashMovementReport.Size = new System.Drawing.Size(248, 30);
+            this.miCashMovementReport.Size = new System.Drawing.Size(244, 30);
             this.miCashMovementReport.Text = "تقرير حركة الصندوق";
             this.miCashMovementReport.Click += new System.EventHandler(this.miCashMovementReport_Click);
             // 
@@ -476,7 +476,7 @@
             this.miAccountYearProfitReport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miAccountYearProfitReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_expensive_price_48px;
             this.miAccountYearProfitReport.Name = "miAccountYearProfitReport";
-            this.miAccountYearProfitReport.Size = new System.Drawing.Size(248, 30);
+            this.miAccountYearProfitReport.Size = new System.Drawing.Size(244, 30);
             this.miAccountYearProfitReport.Text = "تقرير الربح السنوي";
             this.miAccountYearProfitReport.Visible = false;
             this.miAccountYearProfitReport.Click += new System.EventHandler(this.miAccountYearProfitReport_Click);
@@ -485,7 +485,7 @@
             // 
             this.miAccountProfitFromDateToDateReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_expensive_price_48px;
             this.miAccountProfitFromDateToDateReport.Name = "miAccountProfitFromDateToDateReport";
-            this.miAccountProfitFromDateToDateReport.Size = new System.Drawing.Size(248, 30);
+            this.miAccountProfitFromDateToDateReport.Size = new System.Drawing.Size(244, 30);
             this.miAccountProfitFromDateToDateReport.Text = "تقرير الربح ";
             this.miAccountProfitFromDateToDateReport.Click += new System.EventHandler(this.MiAccountProfitFromDateToDateReport_Click);
             // 
@@ -493,7 +493,7 @@
             // 
             this.miLastTimeReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_procurement_48px;
             this.miLastTimeReport.Name = "miLastTimeReport";
-            this.miLastTimeReport.Size = new System.Drawing.Size(248, 30);
+            this.miLastTimeReport.Size = new System.Drawing.Size(244, 30);
             this.miLastTimeReport.Text = "تقرير بضاعة آخر المدة";
             this.miLastTimeReport.Click += new System.EventHandler(this.miLastTimeReport_Click);
             // 
@@ -508,7 +508,7 @@
             this.miImportExcel,
             this.miArticleUnits,
             this.mExpiredArticlesReport,
-            this.تحديثالأسعارأونلاينToolStripMenuItem});
+            this.miUpdatePrices});
             this.miArticale.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.miArticale.ForeColor = System.Drawing.Color.Black;
             this.miArticale.Name = "miArticale";
@@ -521,7 +521,7 @@
             this.miDefintionArticale.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miDefintionArticale.Image = global::ShefaaPharmacy.Properties.Resources.icons8_blog_48px;
             this.miDefintionArticale.Name = "miDefintionArticale";
-            this.miDefintionArticale.Size = new System.Drawing.Size(229, 30);
+            this.miDefintionArticale.Size = new System.Drawing.Size(233, 30);
             this.miDefintionArticale.Text = "بطاقة مادة";
             this.miDefintionArticale.Click += new System.EventHandler(this.miDefintionArticale_Click);
             // 
@@ -530,7 +530,7 @@
             this.miDefArticlePriceTag.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miDefArticlePriceTag.Image = global::ShefaaPharmacy.Properties.Resources.icons8_expensive_price_48px;
             this.miDefArticlePriceTag.Name = "miDefArticlePriceTag";
-            this.miDefArticlePriceTag.Size = new System.Drawing.Size(229, 30);
+            this.miDefArticlePriceTag.Size = new System.Drawing.Size(233, 30);
             this.miDefArticlePriceTag.Text = "بطاقة سعر مادة";
             this.miDefArticlePriceTag.Click += new System.EventHandler(this.miDefArticlePriceTag_Click);
             // 
@@ -539,7 +539,7 @@
             this.miArticleGeneralDef.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miArticleGeneralDef.Image = global::ShefaaPharmacy.Properties.Resources.icons8_stacked_organizational_chart_highlighted_first_node_48px;
             this.miArticleGeneralDef.Name = "miArticleGeneralDef";
-            this.miArticleGeneralDef.Size = new System.Drawing.Size(229, 30);
+            this.miArticleGeneralDef.Size = new System.Drawing.Size(233, 30);
             this.miArticleGeneralDef.Text = "تعريف صنف رئيسي";
             this.miArticleGeneralDef.Click += new System.EventHandler(this.miAreticleGeneralDef_Click);
             // 
@@ -551,7 +551,7 @@
             this.miArticalePick.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miArticalePick.Image = global::ShefaaPharmacy.Properties.Resources.icons8_playlist_48px;
             this.miArticalePick.Name = "miArticalePick";
-            this.miArticalePick.Size = new System.Drawing.Size(229, 30);
+            this.miArticalePick.Size = new System.Drawing.Size(233, 30);
             this.miArticalePick.Text = "استعراضات المواد";
             // 
             // miArticleGeneralPickSub
@@ -579,7 +579,7 @@
             this.تقاريرالأصنافToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.تقاريرالأصنافToolStripMenuItem1.Image = global::ShefaaPharmacy.Properties.Resources.icons8_page_48px;
             this.تقاريرالأصنافToolStripMenuItem1.Name = "تقاريرالأصنافToolStripMenuItem1";
-            this.تقاريرالأصنافToolStripMenuItem1.Size = new System.Drawing.Size(229, 30);
+            this.تقاريرالأصنافToolStripMenuItem1.Size = new System.Drawing.Size(233, 30);
             this.تقاريرالأصنافToolStripMenuItem1.Text = "تقارير المواد";
             // 
             // miArticleDetailQuentity
@@ -596,7 +596,7 @@
             this.miImportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miImportExcel.Image = global::ShefaaPharmacy.Properties.Resources.restore_DataBase;
             this.miImportExcel.Name = "miImportExcel";
-            this.miImportExcel.Size = new System.Drawing.Size(229, 30);
+            this.miImportExcel.Size = new System.Drawing.Size(233, 30);
             this.miImportExcel.Text = "إستيراد مواد";
             this.miImportExcel.Click += new System.EventHandler(this.miImportExcel_Click);
             // 
@@ -604,7 +604,7 @@
             // 
             this.miArticleUnits.Image = ((System.Drawing.Image)(resources.GetObject("miArticleUnits.Image")));
             this.miArticleUnits.Name = "miArticleUnits";
-            this.miArticleUnits.Size = new System.Drawing.Size(229, 30);
+            this.miArticleUnits.Size = new System.Drawing.Size(233, 30);
             this.miArticleUnits.Text = "واحدات المادة";
             this.miArticleUnits.Click += new System.EventHandler(this.MiArticleUnits_Click);
             // 
@@ -615,7 +615,7 @@
             this.stmExpiryAerticlesStore});
             this.mExpiredArticlesReport.Image = global::ShefaaPharmacy.Properties.Resources.clear_cart_48px;
             this.mExpiredArticlesReport.Name = "mExpiredArticlesReport";
-            this.mExpiredArticlesReport.Size = new System.Drawing.Size(229, 30);
+            this.mExpiredArticlesReport.Size = new System.Drawing.Size(233, 30);
             this.mExpiredArticlesReport.Text = "المواد منتهية الصلاحية";
             // 
             // tsmTransfeerToExpiryStore
@@ -634,13 +634,13 @@
             this.stmExpiryAerticlesStore.Text = "تقرير مواد منتهية الصلاحية ";
             this.stmExpiryAerticlesStore.Click += new System.EventHandler(this.stmExpiryAerticlesStore_Click);
             // 
-            // تحديثالأسعارأونلاينToolStripMenuItem
+            // miUpdatePrices
             // 
-            this.تحديثالأسعارأونلاينToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("تحديثالأسعارأونلاينToolStripMenuItem.Image")));
-            this.تحديثالأسعارأونلاينToolStripMenuItem.Name = "تحديثالأسعارأونلاينToolStripMenuItem";
-            this.تحديثالأسعارأونلاينToolStripMenuItem.Size = new System.Drawing.Size(229, 30);
-            this.تحديثالأسعارأونلاينToolStripMenuItem.Text = "تحديث الأسعار";
-            this.تحديثالأسعارأونلاينToolStripMenuItem.Click += new System.EventHandler(this.تحديثالأسعارأونلاينToolStripMenuItem_Click);
+            this.miUpdatePrices.Image = ((System.Drawing.Image)(resources.GetObject("miUpdatePrices.Image")));
+            this.miUpdatePrices.Name = "miUpdatePrices";
+            this.miUpdatePrices.Size = new System.Drawing.Size(233, 30);
+            this.miUpdatePrices.Text = "تحديث الأسعار";
+            this.miUpdatePrices.Click += new System.EventHandler(this.miUpdatePrices_Click);
             // 
             // miOrders
             // 
@@ -1657,7 +1657,7 @@
         private System.Windows.Forms.ToolStripMenuItem miOrderFromCompany;
         private System.Windows.Forms.ToolStripMenuItem miArticleUnits;
         private System.Windows.Forms.ToolStripMenuItem mExpiredArticles;
-        private System.Windows.Forms.ToolStripMenuItem تحديثالأسعارأونلاينToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miUpdatePrices;
         private System.Windows.Forms.Timer notifytimer;
         private System.Windows.Forms.ToolStripMenuItem miLastTimeReport;
         private System.Windows.Forms.ToolStripMenuItem tsmiAlmostExpiryDateArticles;

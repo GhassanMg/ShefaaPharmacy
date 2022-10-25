@@ -1412,11 +1412,12 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
-        private void تحديثالأسعارأونلاينToolStripMenuItem_Click(object sender, EventArgs e)
+        private void miUpdatePrices_Click(object sender, EventArgs e)
         {
             SetUpdateStatus frm = new SetUpdateStatus();
             frm.ShowDialog();
         }
+
         int ticks = 0;
         bool GetNotified = false;
         GeneralNotification generalNotification = new GeneralNotification();
@@ -1559,6 +1560,7 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
+
     }
 }
 
