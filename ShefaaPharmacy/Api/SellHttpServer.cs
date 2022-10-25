@@ -279,13 +279,13 @@ namespace ShefaaPharmacy.Api
         public abstract void handlePOSTRequest(HttpProcessor1 p, StreamReader inputData);
     }
 
-    public class BuyHttpServer : HttpServer1
+    public class SellHttpServer : HttpServer1
     {
         BillMaster billMaster = new BillMaster();
         string billNumber;
         InvoiceKind invoiceKind = InvoiceKind.Sell;
         FormOperation FormOperation = FormOperation.New;
-        public BuyHttpServer(int port)
+        public SellHttpServer(int port)
             : base(port)
         {
         }

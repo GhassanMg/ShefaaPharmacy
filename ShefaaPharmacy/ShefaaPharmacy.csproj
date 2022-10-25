@@ -550,7 +550,7 @@
     <Compile Include="Accounting\PaymentDayPickForm.Designer.cs">
       <DependentUpon>PaymentDayPickForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Api\BuyHttpServer.cs" />
+    <Compile Include="Api\SellHttpServer.cs" />
     <Compile Include="Api\DBsHttpServer.cs" />
     <Compile Include="Api\LoginHttpServer.cs" />
     <Compile Include="Articles\ArticaleCategoryEditForm.cs">

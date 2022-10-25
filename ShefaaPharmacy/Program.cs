@@ -43,8 +43,8 @@ namespace ShefaaPharmacy
             loginHttpServer = new LoginHttpServer(2020);
             Thread thread2 = new Thread(new ThreadStart(loginHttpServer.listen));
             thread2.Start();
-            BuyHttpServer buyhttpserver;
-            buyhttpserver = new BuyHttpServer(3030);
+            SellHttpServer buyhttpserver;
+            buyhttpserver = new SellHttpServer(3030);
             Thread thread3 = new Thread(new ThreadStart(buyhttpserver.listen));
             thread3.Start();
             if (!ConnectionManager.LoadConnection())
