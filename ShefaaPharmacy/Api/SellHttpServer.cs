@@ -435,7 +435,7 @@ namespace ShefaaPharmacy.Api
                         p.outputStream.WriteLine("fail");
                     }
                 }
-                else // it's mean that the request is to make buy invoice
+                else // it's mean that the request is to make sell invoice
                 {
                     string resp = p.invoice;
                     List<Dictionary<String, String>> list = new List<Dictionary<string, string>>();

@@ -1032,7 +1032,6 @@ namespace ShefaaPharmacy.Invoice
                 throw ex;
             }
         }
-
         private void dgDetail_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             if (e.RowIndex % 2 != 0)
@@ -1044,14 +1043,12 @@ namespace ShefaaPharmacy.Invoice
                 dgDetail.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
             }
         }
-
         private void pbDeleteRow_Click(object sender, EventArgs e)
         {
             DeleteRow();
             billMaster.CalcTotalForPurchesWhenUpdatePrice(DetailBindingSource.DataSource as List<PurchesBillViewModel>);
             InitEntity_onUpdateForm();
         }
-
         private void pbAddQuantity_Click(object sender, EventArgs e)
         {
             InecreseQuantity();
@@ -1113,8 +1110,6 @@ namespace ShefaaPharmacy.Invoice
             catch (Exception ex)
             {
                 _MessageBoxDialog.Show("هناك خطأ في الإدخال يرجى اعادة العملية", MessageBoxState.Error);
-
-                //_MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
 
