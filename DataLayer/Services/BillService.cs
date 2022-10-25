@@ -24,7 +24,6 @@ namespace DataLayer.Services
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             var master = context.EntryMasters.Where(x => x.RelatedDocument == billMaster.Id).Include("EntryDetails").FirstOrDefault();
-            //var pricetag=context.PriceTagMasters.Where(x=>x.==billMaster.ar) //لحذف كمية المواد بعد حذف الفاتورة
             if (master != null)
             {
                 context.EntryDetails.RemoveRange(master.EntryDetails);

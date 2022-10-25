@@ -28,7 +28,7 @@ namespace ShefaaPharmacy.Setting
         public void LoginToRefreshToken(TaxAccount NewAccount)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            NewAccount.password = DecodeFrom64(NewAccount.password);
+            NewAccount.password = DecodePasswordFromBase64(NewAccount.password);
             bool token = LoginExternal(NewAccount);
             if (!token) return;
             var Current = context.TaxAccount.ToList().FirstOrDefault();
@@ -155,7 +155,7 @@ namespace ShefaaPharmacy.Setting
             }
         }
         //this function Convert to Decord your Password
-        public string DecodeFrom64(string encodedData)
+        public string DecodePasswordFromBase64(string encodedData)
         {
             System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
             System.Text.Decoder utf8Decode = encoder.GetDecoder();
