@@ -1391,25 +1391,6 @@ namespace ShefaaPharmacy.GeneralUI
             }
             IsInMinus = false;
         }
-        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, bool Istransfered)
-        {
-            var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
-            {
-                BillValue = billValue,
-                BillNumber = billNumber,
-                Currency = "sp",
-                FacilityName = "ShefaaPharmacy",
-                PosNumber = 10,
-                taxNumber = TaxNumber,
-                RandomCode = randomNumber,
-                DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
-                IsTransfeered = Istransfered,
-                InvoiceKind = InvoiceKind.Sell
-            };
-            context.DetailedTaxCode.Add(NewTaxInvoice);
-            context.SaveChanges();
-        }
         private bool AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
         {
             try
@@ -1455,6 +1436,25 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 return false;
             }
+        }
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, bool Istransfered)
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
+            {
+                BillValue = billValue,
+                BillNumber = billNumber,
+                Currency = "sp",
+                FacilityName = "ShefaaPharmacy",
+                PosNumber = 10,
+                taxNumber = TaxNumber,
+                RandomCode = randomNumber,
+                DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
+                IsTransfeered = Istransfered,
+                InvoiceKind = InvoiceKind.Sell
+            };
+            context.DetailedTaxCode.Add(NewTaxInvoice);
+            context.SaveChanges();
         }
         /// <summary>
         /// حذف الفاتورة أو إلغاء العملية

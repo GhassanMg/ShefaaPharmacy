@@ -676,15 +676,16 @@ namespace ShefaaPharmacy.Invoice
                     cbPaymentMethod.SelectedIndex = 0;
                     Guid GCode = Guid.NewGuid();
                     string GUIDCode = GCode.ToString();
+                    string TaxNumber = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault().taxNumber;
                     var thread = new Thread(() =>
                     {
                         if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, true);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, true);
                         }
                         else
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, false);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, false);
                         }
                     });
                     thread.Start();
@@ -732,25 +733,6 @@ namespace ShefaaPharmacy.Invoice
                 }
             }
         }
-        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, bool Istransfered)
-        {
-            var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
-            {
-                BillValue = billValue,
-                BillNumber = billNumber,
-                Currency = "sp",
-                FacilityName = "ShefaaPharmacy",
-                PosNumber = 10,
-                taxNumber = "000000100000",
-                RandomCode = randomNumber,
-                DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
-                IsTransfeered = Istransfered,
-                InvoiceKind = InvoiceKind.Buy
-            };
-            context.DetailedTaxCode.Add(NewTaxInvoice);
-            context.SaveChanges();
-        }
         private bool AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
         {
             try
@@ -796,7 +778,25 @@ namespace ShefaaPharmacy.Invoice
             {
                 return false;
             }
-
+        }
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, bool Istransfered)
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
+            {
+                BillValue = billValue,
+                BillNumber = billNumber,
+                Currency = "sp",
+                FacilityName = "ShefaaPharmacy",
+                PosNumber = 10,
+                taxNumber = TaxNumber,
+                RandomCode = randomNumber,
+                DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
+                IsTransfeered = Istransfered,
+                InvoiceKind = InvoiceKind.Buy
+            };
+            context.DetailedTaxCode.Add(NewTaxInvoice);
+            context.SaveChanges();
         }
         private void lbAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
