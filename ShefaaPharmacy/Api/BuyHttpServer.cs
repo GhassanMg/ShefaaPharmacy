@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using DataLayer.Enums;
 using DataLayer.Services;
+using System.Net;
+using Newtonsoft.Json.Linq;
+using DataLayer.ViewModels;
 
 // offered to the public domain for any use with no restriction
 // and also with no warranty of any kind, please enjoy. - David Jeske. 
@@ -171,7 +174,7 @@ namespace ShefaaPharmacy.Api
 
         public void handleGETRequest()
         {
-            srv.handleGETRequest(this,IsMinus);
+            srv.handleGETRequest(this, IsMinus);
         }
 
         private const int BUF_SIZE = 4096;
@@ -271,7 +274,7 @@ namespace ShefaaPharmacy.Api
             }
         }
 
-        public abstract void handleGETRequest(HttpProcessor1 p,string IsMinus);
+        public abstract void handleGETRequest(HttpProcessor1 p, string IsMinus);
 
         public abstract void handlePOSTRequest(HttpProcessor1 p, StreamReader inputData);
     }
@@ -279,6 +282,7 @@ namespace ShefaaPharmacy.Api
     public class BuyHttpServer : HttpServer1
     {
         BillMaster billMaster = new BillMaster();
+        string billNumber;
         InvoiceKind invoiceKind = InvoiceKind.Sell;
         FormOperation FormOperation = FormOperation.New;
         public BuyHttpServer(int port)
@@ -295,12 +299,17 @@ namespace ShefaaPharmacy.Api
 
         private bool SaveNewBill(ShefaaPharmacyDbContext context, User usr, string IsMinus)
         {
+            if (ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.Any())
+                billNumber = (ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.ToList().LastOrDefault().Id + 1).ToString();
+            else
+                billNumber = "1";
+            double billValue = billMaster.TotalPrice;
             BillService billService = new BillService(billMaster);
             bool result = false;
             switch (invoiceKind)
             {
                 case InvoiceKind.Sell:
-                    if (IsMinus =="true") result = billService.SellInMinusBill();
+                    if (IsMinus == "true") result = billService.SellInMinusBill();
                     else result = billService.SellBillMobile(context, usr);
 
                     break;
@@ -311,9 +320,89 @@ namespace ShefaaPharmacy.Api
             {
                 return false;
             }
+
+            Guid GCode = Guid.NewGuid();
+            string GUIDCode = GCode.ToString();
+            var thread = new Thread(() =>
+            {
+                if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
+                {
+                    SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, true);
+                }
+                else
+                {
+                    SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, false);
+                }
+            });
+            thread.Start();
             return result;
         }
-        public override void handleGETRequest(HttpProcessor1 p,string IsMinus)
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, bool Istransfered)
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
+            {
+                BillValue = billValue,
+                BillNumber = billNumber,
+                Currency = "sp",
+                FacilityName = "ShefaaPharmacy",
+                PosNumber = 10,
+                taxNumber = "000000100000",
+                RandomCode = randomNumber,
+                DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
+                IsTransfeered = Istransfered,
+                InvoiceKind = InvoiceKind.Sell
+            };
+            context.DetailedTaxCode.Add(NewTaxInvoice);
+            context.SaveChanges();
+        }
+        private bool AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
+        {
+            try
+            {
+                string url = String.Format("http://213.178.227.75/Taxapi/api/Bill/AddFullBill");
+                WebRequest requestPost = WebRequest.Create(url);
+                requestPost.Method = "POST";
+                requestPost.ContentType = "application/json";
+                requestPost.Headers.Add("Authorization", "Bearer " + ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.FirstOrDefault().Token);
+                TaxReportViewModel newObj = new TaxReportViewModel
+                {
+                    billValue = billValue,
+                    billNumber = billNumber,
+                    code = GUIDCode,
+                    currency = "sp",
+                    exProgram = "ShefaaPharmacy",
+                    date = DateTime.Now.Date,
+                };
+
+                var postData = JsonConvert.SerializeObject(newObj);
+                using (var streamWriter = new StreamWriter(requestPost.GetRequestStream()))
+                {
+                    streamWriter.Write(postData);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                var httpResponse = (HttpWebResponse)requestPost.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    int code = (int)httpResponse.StatusCode;
+                    var res = streamReader.ReadToEnd();
+                    JObject resultJson = (JObject)JsonConvert.DeserializeObject(res);
+                    IList<string> keys = resultJson.Properties().Select(p => p.Name).ToList();
+                    if (resultJson["data"] != null)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public override void handleGETRequest(HttpProcessor1 p, string IsMinus)
         {
             try
             {
