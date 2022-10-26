@@ -18,7 +18,6 @@ using System.Diagnostics;
 
 namespace ShefaaPharmacy.Api
 {
-
     public class HttpProcessor
     {
         public TcpClient socket;
@@ -35,7 +34,6 @@ namespace ShefaaPharmacy.Api
         public String http_protocol_versionstring;
         public Hashtable httpHeaders = new Hashtable();
 
-
         private static int MAX_POST_SIZE = 10 * 1024 * 1024; // 10MB
 
         public HttpProcessor(TcpClient s, HttpServer srv)
@@ -43,7 +41,6 @@ namespace ShefaaPharmacy.Api
             this.socket = s;
             this.srv = srv;
         }
-
 
         private string streamReadLine(Stream inputStream)
         {
@@ -91,11 +88,9 @@ namespace ShefaaPharmacy.Api
             inputStream = null; outputStream = null; // bs = null;            
             socket.Close();
         }
-
         public void parseRequest()
         {
             String request = streamReadLine(inputStream);
-
             string[] tokens = request.Split(' ');
             if (tokens.Length != 3)
             {
@@ -109,12 +104,10 @@ namespace ShefaaPharmacy.Api
             dataBase = temp1[0].Split('=')[1].ToString();
             userName = temp1[1].Split('=')[1];
             Password = temp1[2].Split('=')[1];
-            //param = http_url.Split('=')[1].ToString();
             http_protocol_versionstring = tokens[2];
 
             Console.WriteLine("starting: " + request);
         }
-
         public void readHeaders()
         {
             Console.WriteLine("readHeaders()");
@@ -144,7 +137,6 @@ namespace ShefaaPharmacy.Api
                 httpHeaders[name] = value;
             }
         }
-
         public void handleGETRequest()
         {
             srv.handleGETRequest(this);
@@ -197,9 +189,7 @@ namespace ShefaaPharmacy.Api
             }
             Console.WriteLine("get post data end");
             srv.handlePOSTRequest(this, new StreamReader(ms));
-
         }
-
         public void writeSuccess(string content_type = "text/html")
         {
             outputStream.WriteLine("HTTP/1.0 200 OK");
@@ -215,19 +205,15 @@ namespace ShefaaPharmacy.Api
             outputStream.WriteLine("");
         }
     }
-
     public abstract class HttpServer
     {
-
         protected int port;
         TcpListener listener;
         bool is_active = true;
-
         public HttpServer(int port)
         {
             this.port = port;
         }
-
         public void listen()
         {
             try
@@ -240,21 +226,12 @@ namespace ShefaaPharmacy.Api
                     HttpProcessor processor = new HttpProcessor(s, this);
                     Thread thread = new Thread(new ThreadStart(processor.process));
                     thread.Start();
-
-
                 }
             }
             catch
             {
-                //_MessageBoxDialog.Show("Just test", MessageBoxState.Error);
                 _MessageBoxDialog.Show("البرنامج قيد العمل بالفعل", MessageBoxState.Error);
-                //Application.Exit();
                 Process.GetCurrentProcess().Kill();
-                ////Process[] array = Process.GetProcesses();
-                ////for (int i = 0; i < array.Length; i++)
-                ////{
-                ////    Process.GetProcessById(array[i].Id).Kill();
-                ////}
                 return;
             }
         }
@@ -262,13 +239,10 @@ namespace ShefaaPharmacy.Api
         public abstract void handleGETRequest(HttpProcessor p);
         public abstract void handlePOSTRequest(HttpProcessor p, StreamReader inputData);
     }
-
     public class LoginHttpServer : HttpServer
     {
-        public LoginHttpServer(int port)
-            : base(port)
+        public LoginHttpServer(int port) : base(port)
         {
-
         }
         public override void handleGETRequest(HttpProcessor p)
         {
@@ -290,8 +264,6 @@ namespace ShefaaPharmacy.Api
                 string response = Newtonsoft.Json.JsonConvert.SerializeObject(user, settings);
                 p.writeSuccess();
                 p.outputStream.WriteLine(response);
-                //response = response + "\n{\n\"db\"" + " : " + "\"" + DBs.Rows[i][0].ToString().Substring(3) + "\"\n" + "}" + (i == DBs.Rows.Count - 1 ? "" : ",");
-
             }
             else
             {
@@ -299,19 +271,11 @@ namespace ShefaaPharmacy.Api
                 p.outputStream.WriteLine("fail");
             }
             ShefaaPharmacyDbContext.ConStr = temp;
-
-            //p.outputStream.WriteLine("true");
-            //p.outputStream.WriteLine("<p>&quot;database&quot; : &quot;" + p.dataBase + "&quot;</p>");
-            //p.outputStream.WriteLine("<p>&quot;username&quot; : &quot;" + p.userName + "&quot;</p>");
-            //p.outputStream.WriteLine("<p>&quot;password&quot; : &quot;" + p.Password + "&quot;</p>");
-
         }
-
         public override void handlePOSTRequest(HttpProcessor p, StreamReader inputData)
         {
             Console.WriteLine("POST request: {0}", p.http_url);
             string data = inputData.ReadToEnd();
-
 
             p.writeSuccess();
             p.outputStream.WriteLine("<html><body><h1>test server</h1>");
@@ -319,8 +283,6 @@ namespace ShefaaPharmacy.Api
             p.outputStream.WriteLine("postbody: <pre>{0}</pre>", data);
         }
     }
-
-
 }
 
 

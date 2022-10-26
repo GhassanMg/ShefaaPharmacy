@@ -53,14 +53,14 @@ namespace ShefaaPharmacy.Articles
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(305, 4);
+            this.btnCancel.Location = new System.Drawing.Point(529, 4);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btnCancel.Size = new System.Drawing.Size(104, 39);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(417, 4);
+            this.btnOk.Location = new System.Drawing.Point(641, 4);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOk.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btnOk.Size = new System.Drawing.Size(104, 39);
@@ -103,6 +103,7 @@ namespace ShefaaPharmacy.Articles
             this.Name = "FirstTimeSupplierEditForm";
             this.Padding = new System.Windows.Forms.Padding(15, 111, 15, 14);
             this.Text = "تعديل ديون الموردين لأول مدة :";
+            this.Load += new System.EventHandler(this.FirstTimeSupplierEditForm_Load);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.pBottom, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

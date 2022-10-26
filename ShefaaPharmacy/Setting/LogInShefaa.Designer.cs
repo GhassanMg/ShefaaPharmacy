@@ -62,7 +62,7 @@ namespace ShefaaPharmacy.Setting
             this.tbPassword.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tbPassword.Size = new System.Drawing.Size(217, 26);
             this.tbPassword.TabIndex = 26;
-            this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPassword_KeyDown);
+            this.tbPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbPassword_KeyDown);
             // 
             // label3
             // 
@@ -124,7 +124,7 @@ namespace ShefaaPharmacy.Setting
             this.cbDataBase.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cbDataBase.Size = new System.Drawing.Size(217, 28);
             this.cbDataBase.TabIndex = 21;
-            this.cbDataBase.SelectedIndexChanged += new System.EventHandler(this.cbDataBase_SelectedIndexChanged);
+            this.cbDataBase.SelectedIndexChanged += new System.EventHandler(this.CbDataBase_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -150,7 +150,7 @@ namespace ShefaaPharmacy.Setting
             this.btnCancel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnCancel.TabIndex = 32;
             this.btnCancel.TabStop = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btOK
             // 

@@ -227,7 +227,7 @@ namespace ShefaaPharmacy.Invoice
             this.dtCreationDate.Name = "dtCreationDate";
             this.dtCreationDate.Size = new System.Drawing.Size(200, 29);
             this.dtCreationDate.TabIndex = 16;
-            this.dtCreationDate.ValueChanged += new System.EventHandler(this.dtCreationDate_ValueChanged);
+            this.dtCreationDate.ValueChanged += new System.EventHandler(this.DtCreationDate_ValueChanged);
             // 
             // groupBox2
             // 
@@ -326,7 +326,7 @@ namespace ShefaaPharmacy.Invoice
             this.tbPayment.Name = "tbPayment";
             this.tbPayment.Size = new System.Drawing.Size(134, 24);
             this.tbPayment.TabIndex = 33;
-            this.tbPayment.TextChanged += new System.EventHandler(this.tbPayment_TextChanged);
+            this.tbPayment.TextChanged += new System.EventHandler(this.TbPayment_TextChanged);
             // 
             // panel1
             // 
@@ -533,7 +533,7 @@ namespace ShefaaPharmacy.Invoice
             this.pbDecresedQuantity.TabIndex = 31;
             this.pbDecresedQuantity.TabStop = false;
             this.ttAccountPicker.SetToolTip(this.pbDecresedQuantity, "إنقاص كمية");
-            this.pbDecresedQuantity.Click += new System.EventHandler(this.pbDecresedQuantity_Click);
+            this.pbDecresedQuantity.Click += new System.EventHandler(this.PbDecresedQuantity_Click);
             // 
             // pbAddQuantity
             // 
@@ -548,7 +548,7 @@ namespace ShefaaPharmacy.Invoice
             this.pbAddQuantity.TabIndex = 30;
             this.pbAddQuantity.TabStop = false;
             this.ttAccountPicker.SetToolTip(this.pbAddQuantity, "زيادة كمية");
-            this.pbAddQuantity.Click += new System.EventHandler(this.pbAddQuantity_Click);
+            this.pbAddQuantity.Click += new System.EventHandler(this.PbAddQuantity_Click);
             // 
             // pbDeleteRow
             // 
@@ -563,7 +563,7 @@ namespace ShefaaPharmacy.Invoice
             this.pbDeleteRow.TabIndex = 29;
             this.pbDeleteRow.TabStop = false;
             this.ttAccountPicker.SetToolTip(this.pbDeleteRow, "حذف سطر");
-            this.pbDeleteRow.Click += new System.EventHandler(this.pbDeleteRow_Click);
+            this.pbDeleteRow.Click += new System.EventHandler(this.PbDeleteRow_Click);
             // 
             // lbAccount
             // 
@@ -578,7 +578,7 @@ namespace ShefaaPharmacy.Invoice
             this.lbAccount.TabStop = true;
             this.lbAccount.Text = "الحساب";
             this.ttAccountPicker.SetToolTip(this.lbAccount, "إستعراض الحسابات");
-            this.lbAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbAccount_LinkClicked);
+            this.lbAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LbAccount_LinkClicked);
             // 
             // cbStore
             // 
@@ -621,7 +621,7 @@ namespace ShefaaPharmacy.Invoice
             this.tbAccountIdDescr.Name = "tbAccountIdDescr";
             this.tbAccountIdDescr.Size = new System.Drawing.Size(176, 24);
             this.tbAccountIdDescr.TabIndex = 19;
-            this.tbAccountIdDescr.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbAccountIdDescr_MouseDown);
+            this.tbAccountIdDescr.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TbAccountIdDescr_MouseDown);
             // 
             // cbPaymentMethod
             // 
@@ -695,13 +695,13 @@ namespace ShefaaPharmacy.Invoice
             this.dgDetail.Size = new System.Drawing.Size(1220, 346);
             this.dgDetail.TabIndex = 7;
             this.dgDetail.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDetail_CellValidated);
-            this.dgDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgDetail_CellValidating);
-            this.dgDetail.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgDetail_EditingControlShowing);
-            this.dgDetail.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgDetail_RowPrePaint);
-            this.dgDetail.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDetail_RowValidated);
-            this.dgDetail.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgDetail_RowValidating);
+            this.dgDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgDetail_CellValidating);
+            this.dgDetail.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DgDetail_EditingControlShowing);
+            this.dgDetail.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.DgDetail_RowPrePaint);
+            this.dgDetail.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDetail_RowValidated);
+            this.dgDetail.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DgDetail_RowValidating);
             this.dgDetail.BindingContextChanged += new System.EventHandler(this.dgDetail_BindingContextChanged);
-            this.dgDetail.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgDetail_MouseDown);
+            this.dgDetail.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DgDetail_MouseDown);
             // 
             // DetailBindingSource
             // 
@@ -731,21 +731,21 @@ namespace ShefaaPharmacy.Invoice
             this.miAccountFainancial.Name = "miAccountFainancial";
             this.miAccountFainancial.Size = new System.Drawing.Size(201, 22);
             this.miAccountFainancial.Text = "الحركة التفصيلية للحساب";
-            this.miAccountFainancial.Click += new System.EventHandler(this.miAccountFainancial_Click);
+            this.miAccountFainancial.Click += new System.EventHandler(this.MiAccountFainancial_Click);
             // 
             // miArticleQuantity
             // 
             this.miArticleQuantity.Name = "miArticleQuantity";
             this.miArticleQuantity.Size = new System.Drawing.Size(201, 22);
             this.miArticleQuantity.Text = "كمية الصنف";
-            this.miArticleQuantity.Click += new System.EventHandler(this.miArticleQuantity_Click);
+            this.miArticleQuantity.Click += new System.EventHandler(this.MiArticleQuantity_Click);
             // 
             // miEditArticleInfo
             // 
             this.miEditArticleInfo.Name = "miEditArticleInfo";
             this.miEditArticleInfo.Size = new System.Drawing.Size(201, 22);
             this.miEditArticleInfo.Text = "تعديل معلومات المادة";
-            this.miEditArticleInfo.Click += new System.EventHandler(this.miEditArticleInfo_Click);
+            this.miEditArticleInfo.Click += new System.EventHandler(this.MiEditArticleInfo_Click);
             // 
             // miAddArticleUnit
             // 

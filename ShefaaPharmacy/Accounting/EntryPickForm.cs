@@ -16,7 +16,6 @@ namespace ShefaaPharmacy.Accounting
         {
             InitializeComponent();
             PickBindingNavigator.AddNewItem.Enabled = false;
-
         }
         public EntryPickForm(EntryMaster entry)
         {
@@ -58,9 +57,7 @@ namespace ShefaaPharmacy.Accounting
             }
             finally
             {
-
                 fmPick.Dispose();
-
             }
         }
         protected override void AdjustmentGridColumns()
@@ -74,16 +71,11 @@ namespace ShefaaPharmacy.Accounting
             {
                 ;
             }
-
             PickGridView.Refresh();
         }
         protected override void Rebinding()
         {
-            //if (entry == null || entry.Id == 0)
             PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().EntryMasters.ToList();
-            //else
-            //PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().EntryMasters.Where(x => x.KindOperation == KindOperation.GoodFirstTime).ToList();
-
             HiddenColumn = new string[] { "Balance" };
             base.Rebinding();
         }
@@ -102,16 +94,13 @@ namespace ShefaaPharmacy.Accounting
             //        shefaaPharmacyDbContext.EntryDetails.RemoveRange(shefaaPharmacyDbContext.EntryDetails.Where(x=>x.EntryMasterId==entry));
             //    } 
             //}
-
         }
-
         protected override void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             //base.bindingNavigatorAddNewItem_Click(sender, e);
             //EntryEditForm.CreateEntry(new EntryMaster(), FormOperation.NewFromPicker);
             //Rebinding();
         }
-
         protected override void tsbtnEdit_Click(object sender, EventArgs e)
         {
             if (PickBindingSource.Current == null)
@@ -140,7 +129,6 @@ namespace ShefaaPharmacy.Accounting
                 Close();
             }
         }
-
         private void EntryPickForm_Load(object sender, EventArgs e)
         {
 

@@ -59,7 +59,7 @@ namespace ShefaaPharmacy.Desktop
             // panel4
             // 
             this.panel4.AutoSize = true;
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.pbBillPick);
             this.panel4.Controls.Add(this.pbAccountReport);
             this.panel4.Controls.Add(this.pbPaymentAccount);

@@ -234,7 +234,7 @@
             this.miDefinitionAccount.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miDefinitionAccount.Image = global::ShefaaPharmacy.Properties.Resources.icons8_account_48px;
             this.miDefinitionAccount.Name = "miDefinitionAccount";
-            this.miDefinitionAccount.Size = new System.Drawing.Size(207, 30);
+            this.miDefinitionAccount.Size = new System.Drawing.Size(203, 30);
             this.miDefinitionAccount.Text = "بطاقة حساب";
             this.miDefinitionAccount.Click += new System.EventHandler(this.miDefinitionAccount_Click);
             // 
@@ -243,7 +243,7 @@
             this.miBalanceFirstDuration.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miBalanceFirstDuration.Image = global::ShefaaPharmacy.Properties.Resources.icons8_procurement_48px;
             this.miBalanceFirstDuration.Name = "miBalanceFirstDuration";
-            this.miBalanceFirstDuration.Size = new System.Drawing.Size(207, 30);
+            this.miBalanceFirstDuration.Size = new System.Drawing.Size(203, 30);
             this.miBalanceFirstDuration.Text = "رصيد أول مدة";
             this.miBalanceFirstDuration.Click += new System.EventHandler(this.miBalanceFirstDuration_Click);
             // 
@@ -252,7 +252,7 @@
             this.miDefinitionEntry.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miDefinitionEntry.Image = global::ShefaaPharmacy.Properties.Resources.icons8_memo_48px;
             this.miDefinitionEntry.Name = "miDefinitionEntry";
-            this.miDefinitionEntry.Size = new System.Drawing.Size(207, 30);
+            this.miDefinitionEntry.Size = new System.Drawing.Size(203, 30);
             this.miDefinitionEntry.Text = "سند قيد";
             this.miDefinitionEntry.Visible = false;
             this.miDefinitionEntry.Click += new System.EventHandler(this.miDefinitionEntry_Click);
@@ -262,7 +262,7 @@
             this.miInvoiceSell.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miInvoiceSell.Image = global::ShefaaPharmacy.Properties.Resources.icons8_shopping_cart_48px;
             this.miInvoiceSell.Name = "miInvoiceSell";
-            this.miInvoiceSell.Size = new System.Drawing.Size(207, 30);
+            this.miInvoiceSell.Size = new System.Drawing.Size(203, 30);
             this.miInvoiceSell.Text = "إدخال فاتورة مبيع";
             this.miInvoiceSell.Click += new System.EventHandler(this.miInvoiceSell_Click);
             // 
@@ -271,7 +271,7 @@
             this.miInvoiceBuy.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miInvoiceBuy.Image = global::ShefaaPharmacy.Properties.Resources.icons8_shopping_cart_48px;
             this.miInvoiceBuy.Name = "miInvoiceBuy";
-            this.miInvoiceBuy.Size = new System.Drawing.Size(207, 30);
+            this.miInvoiceBuy.Size = new System.Drawing.Size(203, 30);
             this.miInvoiceBuy.Text = "إدخال فاتورة شراء";
             this.miInvoiceBuy.Click += new System.EventHandler(this.miInvoiceBuy_Click);
             // 
@@ -283,7 +283,7 @@
             this.miAccountPayment.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miAccountPayment.Image = global::ShefaaPharmacy.Properties.Resources.cash_48px;
             this.miAccountPayment.Name = "miAccountPayment";
-            this.miAccountPayment.Size = new System.Drawing.Size(207, 30);
+            this.miAccountPayment.Size = new System.Drawing.Size(203, 30);
             this.miAccountPayment.Text = "دفعة حساب";
             this.miAccountPayment.Click += new System.EventHandler(this.miAccountPayment_Click);
             // 
@@ -316,7 +316,7 @@
             this.miReturnBuyInvoice});
             this.miAccountingOperations.Image = global::ShefaaPharmacy.Properties.Resources.Operation;
             this.miAccountingOperations.Name = "miAccountingOperations";
-            this.miAccountingOperations.Size = new System.Drawing.Size(207, 30);
+            this.miAccountingOperations.Size = new System.Drawing.Size(203, 30);
             this.miAccountingOperations.Text = "عمليات";
             // 
             // miInvoiceReturningInvoice
@@ -379,7 +379,7 @@
             this.miAccountingPick.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miAccountingPick.Image = global::ShefaaPharmacy.Properties.Resources.icons8_playlist_48px;
             this.miAccountingPick.Name = "miAccountingPick";
-            this.miAccountingPick.Size = new System.Drawing.Size(207, 30);
+            this.miAccountingPick.Size = new System.Drawing.Size(203, 30);
             this.miAccountingPick.Text = "إستعراض";
             // 
             // miPickAccount
@@ -431,7 +431,7 @@
             this.miAccountingReport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miAccountingReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_page_48px;
             this.miAccountingReport.Name = "miAccountingReport";
-            this.miAccountingReport.Size = new System.Drawing.Size(207, 30);
+            this.miAccountingReport.Size = new System.Drawing.Size(203, 30);
             this.miAccountingReport.Text = "تقارير";
             this.miAccountingReport.Click += new System.EventHandler(this.miAccountingReport_Click);
             // 
@@ -521,7 +521,7 @@
             this.miDefintionArticale.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miDefintionArticale.Image = global::ShefaaPharmacy.Properties.Resources.icons8_blog_48px;
             this.miDefintionArticale.Name = "miDefintionArticale";
-            this.miDefintionArticale.Size = new System.Drawing.Size(233, 30);
+            this.miDefintionArticale.Size = new System.Drawing.Size(229, 30);
             this.miDefintionArticale.Text = "بطاقة مادة";
             this.miDefintionArticale.Click += new System.EventHandler(this.miDefintionArticale_Click);
             // 
@@ -530,7 +530,7 @@
             this.miDefArticlePriceTag.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miDefArticlePriceTag.Image = global::ShefaaPharmacy.Properties.Resources.icons8_expensive_price_48px;
             this.miDefArticlePriceTag.Name = "miDefArticlePriceTag";
-            this.miDefArticlePriceTag.Size = new System.Drawing.Size(233, 30);
+            this.miDefArticlePriceTag.Size = new System.Drawing.Size(229, 30);
             this.miDefArticlePriceTag.Text = "بطاقة سعر مادة";
             this.miDefArticlePriceTag.Click += new System.EventHandler(this.miDefArticlePriceTag_Click);
             // 
@@ -539,9 +539,9 @@
             this.miArticleGeneralDef.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miArticleGeneralDef.Image = global::ShefaaPharmacy.Properties.Resources.icons8_stacked_organizational_chart_highlighted_first_node_48px;
             this.miArticleGeneralDef.Name = "miArticleGeneralDef";
-            this.miArticleGeneralDef.Size = new System.Drawing.Size(233, 30);
+            this.miArticleGeneralDef.Size = new System.Drawing.Size(229, 30);
             this.miArticleGeneralDef.Text = "تعريف صنف رئيسي";
-            this.miArticleGeneralDef.Click += new System.EventHandler(this.miAreticleGeneralDef_Click);
+            this.miArticleGeneralDef.Click += new System.EventHandler(this.MiAreticleGeneralDef_Click);
             // 
             // miArticalePick
             // 
@@ -551,7 +551,7 @@
             this.miArticalePick.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miArticalePick.Image = global::ShefaaPharmacy.Properties.Resources.icons8_playlist_48px;
             this.miArticalePick.Name = "miArticalePick";
-            this.miArticalePick.Size = new System.Drawing.Size(233, 30);
+            this.miArticalePick.Size = new System.Drawing.Size(229, 30);
             this.miArticalePick.Text = "استعراضات المواد";
             // 
             // miArticleGeneralPickSub
@@ -579,7 +579,7 @@
             this.تقاريرالأصنافToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.تقاريرالأصنافToolStripMenuItem1.Image = global::ShefaaPharmacy.Properties.Resources.icons8_page_48px;
             this.تقاريرالأصنافToolStripMenuItem1.Name = "تقاريرالأصنافToolStripMenuItem1";
-            this.تقاريرالأصنافToolStripMenuItem1.Size = new System.Drawing.Size(233, 30);
+            this.تقاريرالأصنافToolStripMenuItem1.Size = new System.Drawing.Size(229, 30);
             this.تقاريرالأصنافToolStripMenuItem1.Text = "تقارير المواد";
             // 
             // miArticleDetailQuentity
@@ -596,15 +596,15 @@
             this.miImportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miImportExcel.Image = global::ShefaaPharmacy.Properties.Resources.restore_DataBase;
             this.miImportExcel.Name = "miImportExcel";
-            this.miImportExcel.Size = new System.Drawing.Size(233, 30);
+            this.miImportExcel.Size = new System.Drawing.Size(229, 30);
             this.miImportExcel.Text = "إستيراد مواد";
-            this.miImportExcel.Click += new System.EventHandler(this.miImportExcel_Click);
+            this.miImportExcel.Click += new System.EventHandler(this.MiImportExcel_Click);
             // 
             // miArticleUnits
             // 
             this.miArticleUnits.Image = ((System.Drawing.Image)(resources.GetObject("miArticleUnits.Image")));
             this.miArticleUnits.Name = "miArticleUnits";
-            this.miArticleUnits.Size = new System.Drawing.Size(233, 30);
+            this.miArticleUnits.Size = new System.Drawing.Size(229, 30);
             this.miArticleUnits.Text = "واحدات المادة";
             this.miArticleUnits.Click += new System.EventHandler(this.MiArticleUnits_Click);
             // 
@@ -615,7 +615,7 @@
             this.stmExpiryAerticlesStore});
             this.mExpiredArticlesReport.Image = global::ShefaaPharmacy.Properties.Resources.clear_cart_48px;
             this.mExpiredArticlesReport.Name = "mExpiredArticlesReport";
-            this.mExpiredArticlesReport.Size = new System.Drawing.Size(233, 30);
+            this.mExpiredArticlesReport.Size = new System.Drawing.Size(229, 30);
             this.mExpiredArticlesReport.Text = "المواد منتهية الصلاحية";
             // 
             // tsmTransfeerToExpiryStore
@@ -624,7 +624,7 @@
             this.tsmTransfeerToExpiryStore.Name = "tsmTransfeerToExpiryStore";
             this.tsmTransfeerToExpiryStore.Size = new System.Drawing.Size(335, 30);
             this.tsmTransfeerToExpiryStore.Text = "تحويل الى مخزن مواد منتهية الصلاحية";
-            this.tsmTransfeerToExpiryStore.Click += new System.EventHandler(this.tsmTransfeerToExpiryStore_Click);
+            this.tsmTransfeerToExpiryStore.Click += new System.EventHandler(this.TsmTransfeerToExpiryStore_Click);
             // 
             // stmExpiryAerticlesStore
             // 
@@ -638,7 +638,7 @@
             // 
             this.miUpdatePrices.Image = ((System.Drawing.Image)(resources.GetObject("miUpdatePrices.Image")));
             this.miUpdatePrices.Name = "miUpdatePrices";
-            this.miUpdatePrices.Size = new System.Drawing.Size(233, 30);
+            this.miUpdatePrices.Size = new System.Drawing.Size(229, 30);
             this.miUpdatePrices.Text = "تحديث الأسعار";
             this.miUpdatePrices.Click += new System.EventHandler(this.miUpdatePrices_Click);
             // 
@@ -720,7 +720,7 @@
             this.miDefenetionCompany.Name = "miDefenetionCompany";
             this.miDefenetionCompany.Size = new System.Drawing.Size(235, 30);
             this.miDefenetionCompany.Text = "تعريف مستودع الأدوية";
-            this.miDefenetionCompany.Click += new System.EventHandler(this.miDefenetionCompany_Click);
+            this.miDefenetionCompany.Click += new System.EventHandler(this.MiDefenetionCompany_Click);
             // 
             // miDefenetionYear
             // 
@@ -729,7 +729,7 @@
             this.miDefenetionYear.Name = "miDefenetionYear";
             this.miDefenetionYear.Size = new System.Drawing.Size(235, 30);
             this.miDefenetionYear.Text = "تعريف سنة مالية";
-            this.miDefenetionYear.Click += new System.EventHandler(this.miDefenetionYear_Click);
+            this.miDefenetionYear.Click += new System.EventHandler(this.MiDefenetionYear_Click);
             // 
             // miDefenetionStore
             // 
@@ -738,7 +738,7 @@
             this.miDefenetionStore.Name = "miDefenetionStore";
             this.miDefenetionStore.Size = new System.Drawing.Size(235, 30);
             this.miDefenetionStore.Text = "تعريف فرع";
-            this.miDefenetionStore.Click += new System.EventHandler(this.miDefenetionStore_Click);
+            this.miDefenetionStore.Click += new System.EventHandler(this.MiDefenetionStore_Click);
             // 
             // miDefinitionUser
             // 
@@ -1304,6 +1304,7 @@
             // 
             // pFill
             // 
+            this.pFill.BackColor = System.Drawing.Color.White;
             this.pFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pFill.Location = new System.Drawing.Point(0, 38);
             this.pFill.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1359,7 +1360,7 @@
             this.lbUserNameDataBaseName.AutoSize = true;
             this.lbUserNameDataBaseName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.lbUserNameDataBaseName.ForeColor = System.Drawing.Color.White;
-            this.lbUserNameDataBaseName.Location = new System.Drawing.Point(274, 6);
+            this.lbUserNameDataBaseName.Location = new System.Drawing.Point(245, 6);
             this.lbUserNameDataBaseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbUserNameDataBaseName.Name = "lbUserNameDataBaseName";
             this.lbUserNameDataBaseName.Size = new System.Drawing.Size(122, 29);

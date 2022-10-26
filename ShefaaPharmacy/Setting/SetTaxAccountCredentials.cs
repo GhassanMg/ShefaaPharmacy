@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ShefaaPharmacy.Setting
 {
-    public partial class SetTaxAccountCredentials : ShefaaPharmacy.GeneralUI.DialogForm
+    public partial class SetTaxAccountCredentials : DialogForm
     {
         string Token = " ";
         string FacilityName;

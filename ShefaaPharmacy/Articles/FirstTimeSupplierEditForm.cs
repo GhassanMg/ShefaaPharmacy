@@ -104,5 +104,9 @@ namespace ShefaaPharmacy.Articles
                 }
             }
         }
+        private void FirstTimeSupplierEditForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

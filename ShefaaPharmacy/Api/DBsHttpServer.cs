@@ -20,7 +20,6 @@ namespace ShefaaPharmacy.Api
         public String http_protocol_versionstring;
         public Hashtable httpHeaders = new Hashtable();
 
-
         private static int MAX_POST_SIZE = 10 * 1024 * 1024; // 10MB
 
         public HttpProcessor2(TcpClient s, HttpServer2 srv)
@@ -28,7 +27,6 @@ namespace ShefaaPharmacy.Api
             this.socket = s;
             this.srv = srv;
         }
-
 
         private string streamReadLine(Stream inputStream)
         {
@@ -75,7 +73,6 @@ namespace ShefaaPharmacy.Api
             inputStream = null; outputStream = null; // bs = null;            
             socket.Close();
         }
-
         public void parseRequest()
         {
             String request = streamReadLine(inputStream);
@@ -91,7 +88,6 @@ namespace ShefaaPharmacy.Api
 
             Console.WriteLine("starting: " + request);
         }
-
         public void readHeaders()
         {
             Console.WriteLine("readHeaders()");
@@ -121,7 +117,6 @@ namespace ShefaaPharmacy.Api
                 httpHeaders[name] = value;
             }
         }
-
         public void handleGETRequest()
         {
             srv.handleGETRequest(this);
@@ -174,7 +169,6 @@ namespace ShefaaPharmacy.Api
             }
             Console.WriteLine("get post data end");
             srv.handlePOSTRequest(this, new StreamReader(ms));
-
         }
 
         public void writeSuccess(string content_type = "text/html")
@@ -195,7 +189,6 @@ namespace ShefaaPharmacy.Api
 
     public abstract class HttpServer2
     {
-
         protected int port;
         TcpListener listener;
         bool is_active = true;
@@ -225,20 +218,17 @@ namespace ShefaaPharmacy.Api
                 ;
             }
         }
-
         public abstract void handleGETRequest(HttpProcessor2 p);
         public abstract void handlePOSTRequest(HttpProcessor2 p, StreamReader inputData);
     }
 
     public class DBsHttpServer : HttpServer2
     {
-        public DBsHttpServer(int port)
-            : base(port)
+        public DBsHttpServer(int port) : base(port)
         {
         }
         public override void handleGETRequest(HttpProcessor2 p)
         {
-
             SqlConnection sqlConn;
             sqlConn = new SqlConnection();
             sqlConn.ConnectionString = ConnectionManager.GetConnection();
@@ -247,15 +237,10 @@ namespace ShefaaPharmacy.Api
             for (int i = 0; i < DBs.Rows.Count; i++)
             {
                 response = response + "\n{\n\"db\"" + " : " + "\"" + DBs.Rows[i][0].ToString().Substring(3) + "\"\n" + "}" + (i == DBs.Rows.Count - 1 ? "" : ",");
-
             }
             response = response + "]";
             p.writeSuccess();
             p.outputStream.WriteLine(response);
-            //p.outputStream.WriteLine("true");
-            //p.outputStream.WriteLine("<p>&quot;database&quot; : &quot;" + p.dataBase + "&quot;</p>");
-            //p.outputStream.WriteLine("<p>&quot;username&quot; : &quot;" + p.userName + "&quot;</p>");
-            //p.outputStream.WriteLine("<p>&quot;password&quot; : &quot;" + p.Password + "&quot;</p>");
         }
 
         public override void handlePOSTRequest(HttpProcessor2 p, StreamReader inputData)
@@ -267,8 +252,6 @@ namespace ShefaaPharmacy.Api
             p.outputStream.WriteLine("<html><body><h1>test server</h1>");
             p.outputStream.WriteLine("<a href=/test>return</a><p>");
             p.outputStream.WriteLine("postbody: <pre>{0}</pre>", data);
-
-
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ShefaaPharmacy.Setting
         {
             try
             {
-                this.cbDataBase.DropDownStyle = ComboBoxStyle.DropDownList;
+                cbDataBase.DropDownStyle = ComboBoxStyle.DropDownList;
                 Cursor.Current = Cursors.WaitCursor;
                 cbDataBase.Items.Clear();
                 DataTable DBs = ConnectionManager.GetDataTable(sqlConn, @"SELECT  name,  Right(name, LEN(name) - 3) AS DBMask FROM SYSDATABASES WHERE name like '" + ConnectionManager.DataBasePrefex + "%'");
@@ -66,7 +66,7 @@ namespace ShefaaPharmacy.Setting
                 Cursor.Current = Cursors.Default;
             }
         }
-        private void cbDataBase_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbDataBase_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbDataBase.SelectedIndex == -1)
                 return;
@@ -119,10 +119,6 @@ namespace ShefaaPharmacy.Setting
             if (login.TryLogin(((User)cbUserName.SelectedItem).Name, tbPassword.Text))
             {
                 ConnectionManager.SetLastOpenedDB(cbDataBase.SelectedValue.ToString());
-                //this.Close();
-                //this.Dispose();
-                //Program.mainForm = new MainForm();
-                //Program.mainForm.ShowDialog();
                 DescriptionFK.LoadImportantDataForImages();
                 this.Close();
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -144,15 +140,14 @@ namespace ShefaaPharmacy.Setting
                 _MessageBoxDialog.Show("خطأ في اسم المستخدم أو كلمة المرور", MessageBoxState.Error);
             }
         }
-        private void tbPassword_KeyDown(object sender, KeyEventArgs e)
+        private void TbPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 btOK_Click(sender, e);
             }
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -167,7 +162,6 @@ namespace ShefaaPharmacy.Setting
             ReleaseCapture();
             SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
-
         private void LogInShefaa_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

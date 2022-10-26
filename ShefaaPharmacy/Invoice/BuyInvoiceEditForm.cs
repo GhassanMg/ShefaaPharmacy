@@ -25,7 +25,7 @@ using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Invoice
 {
-    public partial class BuyInvoiceEditForm : ShefaaPharmacy.GeneralUI.AbstractForm
+    public partial class BuyInvoiceEditForm : AbstractForm
     {
         BillMaster billMaster;
         string billNumber;
@@ -36,10 +36,8 @@ namespace ShefaaPharmacy.Invoice
         {
             InitializeComponent();
         }
-
         private void BuyInvoiceEditForm_Load(object sender, EventArgs e)
         {
-            //pHelperButton.Location = new Point(this.Size.Width - 96, 7);
             btnMaximaizing.Enabled = false;
             dgDetail.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgDetail.ColumnHeadersDefaultCellStyle.Font = new Font("AD-STOOR", 12);
@@ -50,7 +48,6 @@ namespace ShefaaPharmacy.Invoice
             dgDetail.Columns["sellprice"].ReadOnly = true;
             SetFocus();
         }
-
         private void ChangeImageButton()
         {
             if (FormOperation == FormOperation.New || FormOperation == FormOperation.NewFromPicker)
@@ -113,7 +110,7 @@ namespace ShefaaPharmacy.Invoice
             }
             billMaster.CalcTotal();
             ChangeImageButton();
-            this.cbPaymentMethod.SelectedIndexChanged += new System.EventHandler(this.cbPaymentMethod_SelectedIndexChanged);
+            this.cbPaymentMethod.SelectedIndexChanged += new System.EventHandler(this.CbPaymentMethod_SelectedIndexChanged);
             this.tbDiscount.Validating += new System.ComponentModel.CancelEventHandler(this.TbDiscount_Validating);
             this.tbPayment.Validating += new System.ComponentModel.CancelEventHandler(this.TbPayment_Validating);
             tbPayment.Text = billMaster.Payment.ToString();
@@ -155,7 +152,6 @@ namespace ShefaaPharmacy.Invoice
                 dgDetail.Refresh();
             }
         }
-
         public void InecreseQuantity()
         {
             if (dgDetail.Rows.Count > 0 && DetailBindingSource.Current != null)
@@ -164,7 +160,6 @@ namespace ShefaaPharmacy.Invoice
                 dgDetail.Refresh();
             }
         }
-
         public void SetFocus(string col = "")
         {
             if (col == "")
@@ -247,7 +242,6 @@ namespace ShefaaPharmacy.Invoice
             e.NewObject = purchesBillViewModel;
             SetFocus();
         }
-
         private void MasterBindingSource_AddingNew(object sender, AddingNewEventArgs e)
         {
             billMaster = new BillMaster();
@@ -382,21 +376,20 @@ namespace ShefaaPharmacy.Invoice
             }
             else
             {
-                var CurentGridItems = DetailBindingSource.DataSource as List<PurchesBillViewModel>;
+                //var CurentGridItems = DetailBindingSource.DataSource as List<PurchesBillViewModel>;
 
-                foreach (var detail in billMaster.BillDetails.ToList())
-                {
-                    bool has = CurentGridItems.Any(cus => cus.ArticleId == detail.ArticaleId);
-                    if (!has)
-                    {
-                        billMaster.BillDetails.Remove(detail);
-                    }
-                }
+                //foreach (var detail in billMaster.BillDetails.ToList())
+                //{
+                //    bool has = CurentGridItems.Any(cus => cus.ArticleId == detail.ArticaleId);
+                //    if (!has)
+                //    {
+                //        billMaster.BillDetails.Remove(detail);
+                //    }
+                //}
                 BillService billService2 = new BillService(billMaster);
                 return billService2.ReturnBill(InvoiceKind.ReturnBuy);
             }
         }
-
         private bool EditBill()
         {
             List<BillDetail> _billDetails = new List<BillDetail>();
@@ -431,17 +424,15 @@ namespace ShefaaPharmacy.Invoice
             return billService.EditBill(DetailBindingSource.DataSource as List<PurchesBillViewModel>);
         }
 
-        private void cbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             billMaster.PaymentMethod = (PaymentMethod)cbPaymentMethod.SelectedValue;
             billMaster.PaymentMethod = (PaymentMethod)cbPaymentMethod.SelectedValue;
             if ((PaymentMethod)cbPaymentMethod.SelectedValue == PaymentMethod.Debit)
             {
-
                 billMaster.RemainingAmount = billMaster.TotalPrice;
                 billMaster.Payment = 0;
                 billMaster.Discount = 0;
-
             }
             else if ((PaymentMethod)cbPaymentMethod.SelectedValue == PaymentMethod.Cash)
             {
@@ -451,7 +442,7 @@ namespace ShefaaPharmacy.Invoice
             }
             MasterBindingSource.ResetCurrentItem();
         }
-        private void dgDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        private void DgDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dgDetail.CurrentRow.DataBoundItem == null)
                 return;
@@ -566,12 +557,12 @@ namespace ShefaaPharmacy.Invoice
                 }
                 InitEntity_onUpdateForm();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _MessageBoxDialog.Show("يرجى التأكد من صحة البيانات المدخلة ومكانها المناسب", MessageBoxState.Error);
             }
         }
-        private void dgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        private void DgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (FormOperation == FormOperation.Return)
             {
@@ -676,16 +667,16 @@ namespace ShefaaPharmacy.Invoice
                     cbPaymentMethod.SelectedIndex = 0;
                     Guid GCode = Guid.NewGuid();
                     string GUIDCode = GCode.ToString();
-                    string TaxNumber = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault().taxNumber;
+                    var CurrentTaxAccount = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault();
                     var thread = new Thread(() =>
                     {
                         if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, true);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, true);
                         }
                         else
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, false);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, false);
                         }
                     });
                     thread.Start();
@@ -747,7 +738,7 @@ namespace ShefaaPharmacy.Invoice
                     billValue = billValue,
                     billNumber = billNumber,
                     code = GUIDCode,
-                    currency = "sp",
+                    currency = "SP",
                     exProgram = "ShefaaPharmacy",
                     date = DateTime.Now.Date,
                 };
@@ -779,15 +770,15 @@ namespace ShefaaPharmacy.Invoice
                 return false;
             }
         }
-        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, bool Istransfered)
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, string FacilityName, bool Istransfered)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
             {
                 BillValue = billValue,
                 BillNumber = billNumber,
-                Currency = "sp",
-                FacilityName = "ShefaaPharmacy",
+                Currency = "SP",
+                FacilityName = FacilityName,
                 PosNumber = 10,
                 taxNumber = TaxNumber,
                 RandomCode = randomNumber,
@@ -798,7 +789,7 @@ namespace ShefaaPharmacy.Invoice
             context.DetailedTaxCode.Add(NewTaxInvoice);
             context.SaveChanges();
         }
-        private void lbAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LbAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Account result = AccountPickForm.PickAccount("", new int[1] { ConstantDataBase.AC_Supplier }, null, FormOperation.Pick);
             if (result != null)
@@ -808,7 +799,7 @@ namespace ShefaaPharmacy.Invoice
                 tbAccountIdDescr.Text = result.Name;
             }
         }
-        int count = 0;
+        private int count = 0;
         private void FillWithBarcode(string value)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -876,32 +867,6 @@ namespace ShefaaPharmacy.Invoice
             else
             {
                 FillRow(result);
-            }
-        }
-        private void ChangeBuyPrice(string currentPrice)
-        {
-            buy = Convert.ToDouble(currentPrice);
-            var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            PriceTagMaster lastPriceTage = context.PriceTagMasters.FirstOrDefault(x => x.ArticleId == (DetailBindingSource.Current as PurchesBillViewModel).ArticleId); /*DescriptionFK.GetLastPriceTagForArt((DetailBindingSource.Current as PurchesBillViewModel).ArticleId);*/
-            int quantityOfPrimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == (DetailBindingSource.Current as PurchesBillViewModel).ArticleId && x.UnitTypeId == lastPriceTage.UnitId).QuantityForPrimary;
-            context.PriceTagDetails.FirstOrDefault(x => x.PriceTagId == lastPriceTage.Id).BuyPrice = Convert.ToDouble(currentPrice);
-            context.SaveChanges();
-
-        }
-        private void ChangePrice(string value)
-        {
-            var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            var lastPriceTage = DescriptionFK.GetLastPriceTagForArt((DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
-            var lastSellPrice = UnitTypeService.GetLastSellPrice((DetailBindingSource.Current as PurchesBillViewModel).ArticleId, (DetailBindingSource.Current as PurchesBillViewModel).UnitId);
-            if (Convert.ToDouble(value) != lastSellPrice)
-            {
-                string message = "سعر الصنف في هذه البطاقة " + lastSellPrice + "\n هل تريد إضافة سعر جديد";
-                MessageBoxAnswer dialogResult;
-                dialogResult = _MessageBoxDialog.Show(message, MessageBoxState.Answering);
-                if (dialogResult == MessageBoxAnswer.Yes)
-                {
-                    context.SaveChanges();
-                }
             }
         }
         private void ChangeUnitType(string value)
@@ -1032,7 +997,7 @@ namespace ShefaaPharmacy.Invoice
                 throw ex;
             }
         }
-        private void dgDetail_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        private void DgDetail_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             if (e.RowIndex % 2 != 0)
             {
@@ -1043,23 +1008,23 @@ namespace ShefaaPharmacy.Invoice
                 dgDetail.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
             }
         }
-        private void pbDeleteRow_Click(object sender, EventArgs e)
+        private void PbDeleteRow_Click(object sender, EventArgs e)
         {
             DeleteRow();
             billMaster.CalcTotalForPurchesWhenUpdatePrice(DetailBindingSource.DataSource as List<PurchesBillViewModel>);
             InitEntity_onUpdateForm();
         }
-        private void pbAddQuantity_Click(object sender, EventArgs e)
+        private void PbAddQuantity_Click(object sender, EventArgs e)
         {
             InecreseQuantity();
         }
 
-        private void pbDecresedQuantity_Click(object sender, EventArgs e)
+        private void PbDecresedQuantity_Click(object sender, EventArgs e)
         {
             DecreseQuantity();
         }
 
-        private void dgDetail_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        private void DgDetail_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (ActiveControl == null || !ActiveControl.Name.Contains("dgDetail"))
             {
@@ -1070,7 +1035,7 @@ namespace ShefaaPharmacy.Invoice
                 if (dgDetail.CurrentRow.DataBoundItem == null)
                     return;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return;
             }
@@ -1112,8 +1077,7 @@ namespace ShefaaPharmacy.Invoice
                 _MessageBoxDialog.Show("هناك خطأ في الإدخال يرجى اعادة العملية", MessageBoxState.Error);
             }
         }
-
-        private void miArticleQuantity_Click(object sender, EventArgs e)
+        private void MiArticleQuantity_Click(object sender, EventArgs e)
         {
             var currentRow = (DetailBindingSource.Current as PurchesBillViewModel);
             if (currentRow != null)
@@ -1122,8 +1086,7 @@ namespace ShefaaPharmacy.Invoice
                 articleDetailReportForm.ShowDialog();
             }
         }
-
-        private void dgDetail_MouseDown(object sender, MouseEventArgs e)
+        private void DgDetail_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -1133,8 +1096,7 @@ namespace ShefaaPharmacy.Invoice
                 contextMenuStrip1.Show(MousePosition);
             }
         }
-
-        private void miEditArticleInfo_Click(object sender, EventArgs e)
+        private void MiEditArticleInfo_Click(object sender, EventArgs e)
         {
             var currentRow = (DetailBindingSource.Current as PurchesBillViewModel);
             if (currentRow != null)
@@ -1154,8 +1116,7 @@ namespace ShefaaPharmacy.Invoice
                 _MessageBoxDialog.Show("يوجد خطأ في تحديد الصنف", MessageBoxState.Error);
             }
         }
-
-        private void tbAccountIdDescr_MouseDown(object sender, MouseEventArgs e)
+        private void TbAccountIdDescr_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -1165,8 +1126,7 @@ namespace ShefaaPharmacy.Invoice
                 contextMenuStrip1.Show(MousePosition);
             }
         }
-
-        private void miAccountFainancial_Click(object sender, EventArgs e)
+        private void MiAccountFainancial_Click(object sender, EventArgs e)
         {
             var currentRow = billMaster;
             if (currentRow != null)
@@ -1306,7 +1266,6 @@ namespace ShefaaPharmacy.Invoice
                 tbPayment.Text = billMaster.Payment.ToString();
             }
         }
-
         private void TbPayment_Validating(object sender, CancelEventArgs e)
         {
             if (tbPayment.Text == "" || Convert.ToDouble(tbPayment.Text) == 0)
@@ -1360,8 +1319,7 @@ namespace ShefaaPharmacy.Invoice
                 {
                     if ((int)cbPaymentMethod.SelectedValue == (int)PaymentMethod.Cash)
                     {
-                        if (((billMaster.TotalPrice - (Convert.ToDouble(tbPayment.Text))) / billMaster.TotalPrice * 100) / 100 > ShefaaPharmacyDbContext.GetCurrentContext().DataBaseConfigurations.FirstOrDefault().DiscountPercentage
-                       && Auth.DataEntryAndDown())
+                        if (((billMaster.TotalPrice - (Convert.ToDouble(tbPayment.Text))) / billMaster.TotalPrice * 100) / 100 > ShefaaPharmacyDbContext.GetCurrentContext().DataBaseConfigurations.FirstOrDefault().DiscountPercentage && Auth.DataEntryAndDown())
                         {
                             _MessageBoxDialog.Show("ليس من صلاحياتك الخصم بهذه القيمة", MessageBoxState.Warning);
                             if (billMaster.PaymentMethod == PaymentMethod.Cash)
@@ -1400,7 +1358,6 @@ namespace ShefaaPharmacy.Invoice
                 }
             }
         }
-
         private void DgDetail_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             if (dgDetail.CurrentRow.DataBoundItem == null)
@@ -1421,10 +1378,8 @@ namespace ShefaaPharmacy.Invoice
                 }
                 tbPayment.Text = billMaster.Payment.ToString();
             }
-            //if(dgDetail.CurrentRow.Cells["Quantity"].Value>)
             InitEntity_onUpdateForm();
         }
-
         private void CbUnitName_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1443,38 +1398,31 @@ namespace ShefaaPharmacy.Invoice
                 ;
             }
         }
-
         private void AllBills_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (Auth.IsReportReader())
             {
-
                 InvoicDayPickForm invoicDayPickForm = new InvoicDayPickForm(null);
                 invoicDayPickForm.ShowDialog();
-
             }
             else
             {
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
-        private void dgDetail_RowValidated(object sender, DataGridViewCellEventArgs e)
+        private void DgDetail_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
-        private void dtCreationDate_ValueChanged(object sender, EventArgs e)
+        private void DtCreationDate_ValueChanged(object sender, EventArgs e)
         {
             DateTime date = this.dtCreationDate.Value;
             billMaster.CreationDate = date;
         }
-
-        private void tbPayment_TextChanged(object sender, EventArgs e)
+        private void TbPayment_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void MiAddArticleUnit_Click(object sender, EventArgs e)
         {
             var currentRow = (DetailBindingSource.Current as PurchesBillViewModel);

@@ -33,7 +33,7 @@ using System.Windows.Forms;
 
 namespace ShefaaPharmacy
 {
-    public partial class MainForm : GeneralUI.AbstractForm
+    public partial class MainForm : AbstractForm
     {
         AccountingDesktop accountingDesktop;
         BasicDesktop basicDesktop;
@@ -43,26 +43,26 @@ namespace ShefaaPharmacy
         public class Data
         {
             public int id { get; set; }
-            public string file { get; set; }
-            public string platform { get; set; }
-            public string version_number { get; set; }
-            public string description { get; set; }
-            public DateTime created_at { get; set; }
-            public DateTime updated_at { get; set; }
+            public string File { get; set; }
+            public string Platform { get; set; }
+            public string Version_number { get; set; }
+            public string Description { get; set; }
+            public DateTime Created_at { get; set; }
+            public DateTime Updated_at { get; set; }
         }
         public class Root
         {
-            public string message { get; set; }
-            public string success { get; set; }
-            public int status_code { get; set; }
-            public Data data { get; set; }
+            public string Message { get; set; }
+            public string Success { get; set; }
+            public int Status_code { get; set; }
+            public Data Data { get; set; }
         }
         public MainForm()
         {
             InitializeComponent();
             basicDesktop = new BasicDesktop();
         }
-        private void miDefenetionCompany_Click(object sender, EventArgs e)
+        private void MiDefenetionCompany_Click(object sender, EventArgs e)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace ShefaaPharmacy
             }
         }
 
-        private void miDefenetionYear_Click(object sender, EventArgs e)
+        private void MiDefenetionYear_Click(object sender, EventArgs e)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
-        private void miDefenetionStore_Click(object sender, EventArgs e)
+        private void MiDefenetionStore_Click(object sender, EventArgs e)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
-        private void miAreticleGeneralDef_Click(object sender, EventArgs e)
+        private void MiAreticleGeneralDef_Click(object sender, EventArgs e)
         {
             try
             {
@@ -314,8 +314,6 @@ namespace ShefaaPharmacy
                 {
                     ArticlePicker articlePicker = new ArticlePicker(new List<Article>());
                     articlePicker.ShowDialog();
-                    //ArticalePickForm articalePickForm = new ArticalePickForm(null);
-                    //articalePickForm.ShowDialog();
                 }
                 else
                 {
@@ -435,7 +433,6 @@ namespace ShefaaPharmacy
                 else
                 {
                     _MessageBoxDialog.Show("ليس لديك صلاحية لفتح الواجهة", MessageBoxState.Error);
-
                 }
                 //BuyInvoiceEditForm buyInvoiceForm = new BuyInvoiceEditForm(new BillMaster());
                 //buyInvoiceForm.ShowDialog();
@@ -462,7 +459,6 @@ namespace ShefaaPharmacy
                     _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
                 }
             }
-
             catch (Exception ex)
             {
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
@@ -481,7 +477,6 @@ namespace ShefaaPharmacy
                 {
                     _MessageBoxDialog.Show("لا يوجد صلاحية للوصول لهذه الواجهة", MessageBoxState.Error);
                 }
-
             }
             catch (Exception ex)
             {
@@ -609,7 +604,6 @@ namespace ShefaaPharmacy
         private void CheckUpdateVerison()
         {
             string Currentversion = Assembly.GetExecutingAssembly().GetName().Version.Major.ToString();
-            //Version ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
             int LatestVersion = CheckForUpdates("http://lamsetshefaa-desktop.lamsetshefaa.com/api/versions/desktop/last");
             if (LatestVersion > Convert.ToInt32(Currentversion))
             {
@@ -625,10 +619,10 @@ namespace ShefaaPharmacy
                 var reader = new StreamReader(webResponse.GetResponseStream());
                 string s = reader.ReadToEnd();
                 Root x = JsonConvert.DeserializeObject<Root>(s);
-                if (x.data != null)
+                if (x.Data != null)
                 {
-                    int Version = Convert.ToInt32(x.data.version_number);
-                    DownloadPath = x.data.file;
+                    int Version = Convert.ToInt32(x.Data.Version_number);
+                    DownloadPath = x.Data.File;
                     return Version;
                 }
                 else
@@ -717,7 +711,6 @@ namespace ShefaaPharmacy
             ActivationProgram activationProgram = new ActivationProgram();
             activationProgram.ShowDialog();
         }
-
         private void miInvoiceReturningSelling_Click(object sender, EventArgs e)
         {
             if (Auth.IsDataEntry())
@@ -746,7 +739,7 @@ namespace ShefaaPharmacy
             }
         }
         List<string> mylist = new List<string>();
-        private void miImportExcel_Click(object sender, EventArgs e)
+        private void MiImportExcel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -793,7 +786,6 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
         private void miAccountPayment_Click(object sender, EventArgs e)
         {
             if (Auth.IsDataEntry())
@@ -1249,7 +1241,6 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
         private void MiInvoiceDeleteInvoice_Click(object sender, EventArgs e)
         {
             if (Auth.IsDataEntry() && ((UserLoggedIn.User.UserPermissions.CanDeleteBill) || ((int)UserLoggedIn.User.Position <= (int)Position.manager)))
@@ -1330,7 +1321,6 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
         private void MiEntryReport_Click(object sender, EventArgs e)
         {
             try
@@ -1424,7 +1414,6 @@ namespace ShefaaPharmacy
         private void notifytimer_Tick(object sender, EventArgs e)
         {
             ticks++;
-
             if (generalNotification.QuantityNotification() == true)
             {
                 pbWarning.Image = Properties.Resources.notify;
@@ -1453,59 +1442,48 @@ namespace ShefaaPharmacy
                 notifytimer.Start();
             }
         }
-
         private void pFill_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Process.GetCurrentProcess().Kill();
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
 
         }
-
         private void tTracking_Tick(object sender, EventArgs e)
         {
 
         }
-
         private void lblclock_Click(object sender, EventArgs e)
         {
 
         }
-
         private void miOrders_Click(object sender, EventArgs e)
         {
 
         }
-
         private void miAccountingReport_Click(object sender, EventArgs e)
         {
 
         }
-
         private void miNotificationsPick_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void tsmTransfeerToExpiryStore_Click(object sender, EventArgs e)
+        private void TsmTransfeerToExpiryStore_Click(object sender, EventArgs e)
         {
             TransfeerExpiryArticlesToStore frm = new TransfeerExpiryArticlesToStore();
             frm.ShowDialog();
         }
-
         private void stmExpiryAerticlesStore_Click(object sender, EventArgs e)
         {
             ExpiryAerticlesStore frm = new ExpiryAerticlesStore();
             frm.ShowDialog();
         }
-
         private void miArticale_Click(object sender, EventArgs e)
         {
 
@@ -1538,7 +1516,6 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
         private void miTaxAccount_Click(object sender, EventArgs e)
         {
             if (Auth.IsDataEntry())
@@ -1560,7 +1537,6 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
     }
 }
 

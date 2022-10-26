@@ -65,7 +65,6 @@ namespace ShefaaPharmacy.Articles
             status = "offline";
             InitializeComponent();
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-
             var Medicines = context.Medicines.Where(x => Comparray.Contains(x.Company))
                 .OrderBy(x => x.Company)
                 .ToList();
@@ -97,7 +96,6 @@ namespace ShefaaPharmacy.Articles
         private async void DisplayData()
         {
             SetLoading(true);
-
             // Do other operations...
             if (dataGridView2.DataSource != null)
             {
@@ -114,7 +112,6 @@ namespace ShefaaPharmacy.Articles
                 }
             }
             else _MessageBoxDialog.Show("لم يتم تحديد مواد", MessageBoxState.Warning);
-
         }
         int addcheck = 0, isconsist = 0;
         private async void AddToDatabase()
@@ -206,12 +203,9 @@ namespace ShefaaPharmacy.Articles
                 {
                     _MessageBoxDialog.Show("تمت اضافة " + addcheck + " مادة" + "\n" + "المواد الموجودة سابقاً من المواد المحددة " + isconsist + " مادة", MessageBoxState.Alert);
                 }
-
-
-
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _MessageBoxDialog.Show("حدث خطأ يرجى المحاولة مجدداً", MessageBoxState.Error);
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;
@@ -241,9 +235,7 @@ namespace ShefaaPharmacy.Articles
         {
             this.Invoke((MethodInvoker)delegate
             {
-
                 AddToDatabase();
-
             });
         }
         private void Thread3Job(Article article, int BuyPrice, int SellPrice)
@@ -342,11 +334,10 @@ namespace ShefaaPharmacy.Articles
 
             dataGridView.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
         }
         private void NewImportArticlesOnline_Load(object sender, EventArgs e)
         {
-             ChangeStyleOfGrid(dataGridView2);
+            ChangeStyleOfGrid(dataGridView2);
             ChangeFontForAll();
             WindowState = FormWindowState.Maximized;
         }

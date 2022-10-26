@@ -179,6 +179,7 @@ namespace DataLayer.Services
         public bool ReturnBill(InvoiceKind invoiceKind)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            billMaster.InvoiceKind = invoiceKind;
             using (var dbContextTransaction = context.Database.BeginTransaction())
             {
                 try

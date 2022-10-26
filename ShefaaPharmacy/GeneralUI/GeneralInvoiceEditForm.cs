@@ -27,7 +27,7 @@ using System.Threading;
 
 namespace ShefaaPharmacy.GeneralUI
 {
-    public partial class GeneralInvoiceEditForm : ShefaaPharmacy.GeneralUI.AbstractForm
+    public partial class GeneralInvoiceEditForm : AbstractForm
     {
         BillMaster billMaster;
         string billNumber;
@@ -1305,16 +1305,16 @@ namespace ShefaaPharmacy.GeneralUI
                     SetFocus();
                     Guid GCode = Guid.NewGuid();
                     string GUIDCode = GCode.ToString();
-                    string TaxNumber = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault().taxNumber;
+                    var CurrentTaxAccount = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault();
                     var thread = new Thread(() =>
                     {
                         if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, true);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, true);
                         }
                         else
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, false);
+                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, false);
                         }
                     });
                     thread.Start();
@@ -1405,7 +1405,7 @@ namespace ShefaaPharmacy.GeneralUI
                     billValue = billValue,
                     billNumber = billNumber,
                     code = GUIDCode,
-                    currency = "sp",
+                    currency = "SP",
                     exProgram = "ShefaaPharmacy",
                     date = DateTime.Now.Date,
                 };
@@ -1437,15 +1437,15 @@ namespace ShefaaPharmacy.GeneralUI
                 return false;
             }
         }
-        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, bool Istransfered)
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, string FacilityName, bool Istransfered)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
             {
                 BillValue = billValue,
                 BillNumber = billNumber,
-                Currency = "sp",
-                FacilityName = "ShefaaPharmacy",
+                Currency = "SP",
+                FacilityName = FacilityName,
                 PosNumber = 10,
                 taxNumber = TaxNumber,
                 RandomCode = randomNumber,

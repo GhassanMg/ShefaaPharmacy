@@ -31,19 +31,6 @@ namespace ShefaaPharmacy.Articles
         {
             InitializeComponent();
         }
-        private void BindDataGridView()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.AddRange(new DataColumn[3] {
-    new DataColumn("Id", typeof(int)),
-    new DataColumn("Name", typeof(string)),
-    new DataColumn("Date",typeof(DateTime)) });
-            dt.Rows.Add(1, "John Hammond", DateTime.Now.ToShortDateString());
-            dt.Rows.Add(2, "Mudassar Khan", DateTime.Now.ToShortDateString());
-            dt.Rows.Add(3, "Suzanne Mathews", DateTime.Now.ToShortDateString());
-            dt.Rows.Add(4, "Robert Schidner", DateTime.Now.ToShortDateString());
-            this.dgvArticles.DataSource = dt;
-        }
         public FirstDurationArticlesEditForm(BalanceFirstDurationViewModel k, string status, EntryDetail detail)
         {
             this.status = status;
@@ -60,7 +47,6 @@ namespace ShefaaPharmacy.Articles
             EditBindingSource.DataSource = k;
             dgvArticles.Refresh();
             expiarydate = Convert.ToDateTime(dgvArticles.Rows[0].Cells["ExpiryDate"].Value);
-
         }
 
         private void LoadGrid()
@@ -81,7 +67,6 @@ namespace ShefaaPharmacy.Articles
             dataGridView.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
-
         private void FillWithArticleName(string value)
         {
             Article result = DescriptionFK.ArticleExistsNameOrBarcode(value);
@@ -375,9 +360,7 @@ namespace ShefaaPharmacy.Articles
             SqlCommand cmd = new SqlCommand("update FirstTimeArticles set Quantity = '" + quant + "' , Price='" + myprice + "',Total='" + MyTotal + "',ExpiryDate='" + dateString + "' WHERE name ='" + myart.Name + "'and Expirydate ='" + myolddate + "'", con);
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
-
         }
-
         private void dgvArticles_EditingControlShowing_1(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             int column = dgvArticles.CurrentCell.ColumnIndex;
@@ -415,14 +398,11 @@ namespace ShefaaPharmacy.Articles
             switch (dgvArticles.Columns[e.ColumnIndex].Name)
             {
                 case "Column2":
-
-                    _Rectangle = dgvArticles.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true); //  
-                    dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height); //  
-                    dtp.Location = new Point(_Rectangle.X, _Rectangle.Y); //  
+                    _Rectangle = dgvArticles.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                    dtp.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+                    dtp.Location = new Point(_Rectangle.X, _Rectangle.Y);
                     dtp.Visible = true;
-
                     break;
-
             }
         }
         private void dgvArticles_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)

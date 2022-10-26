@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Properties\" />
     <Folder Include="Repository\Repo\Pickers\" />
     <Folder Include="Repository\Repo\Reports\" />

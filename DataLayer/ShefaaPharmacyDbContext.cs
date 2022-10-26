@@ -123,19 +123,13 @@ namespace DataLayer
             //{
             return false;
             //}
-
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //SqlConnection sqcon = new SqlConnection(ConStr); sqcon.Open();
-            //SqlCommand cmd = new SqlCommand("CREATE TABLE [dbo].[Medicines]([id][nchar](5) NOT NULL,[name][nvarchar](600) NULL,[company][nvarchar](600) NULL,[scientific_name][nvarchar](600) NULL,[caliber][nvarchar](600) NULL,[format_id_descr][nvarchar](600) NULL,[شكل العبوة][nvarchar](600) NULL,[BuyPrice][nvarchar](600) NULL,[SellPrice][nvarchar](600) NULL,[barcode][nvarchar](600) NULL) ON[PRIMARY]",sqcon);
-            //cmd.ExecuteNonQuery(); sqcon.Close();
-
             modelBuilder.Entity<ArticleUnits>()
                 .HasKey(c => new { c.ArticleId, c.UnitTypeId });
             modelBuilder.Entity<Inventory>()
                 .HasKey(c => new { c.ArticleId, c.UnitTypeId, c.BranchId, c.StoreId, c.PriceTagId });
-            //base.OnModelCreating(modelBuilder);
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
@@ -263,6 +257,5 @@ namespace DataLayer
             DataModuleVersion dataModuleVersion = new DataModuleVersion();
             dataModuleVersion.BackUp();
         }
-
     }
 }

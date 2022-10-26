@@ -127,5 +127,10 @@ namespace ShefaaPharmacy.Accounting
                 userParameters = oldUserParameter;
             }
         }
+
+        private void AccountCashMovementReportForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

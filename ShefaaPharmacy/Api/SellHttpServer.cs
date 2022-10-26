@@ -50,7 +50,7 @@ namespace ShefaaPharmacy.Api
             socket = s;
             this.srv = srv;
         }
-        private string streamReadLine(Stream inputStream)
+        private string StreamReadLine(Stream inputStream)
         {
             int next_char;
             string data = "";
@@ -64,7 +64,7 @@ namespace ShefaaPharmacy.Api
             }
             return data;
         }
-        public void process()
+        public void Process()
         {
             // we can't use a StreamReader for input, because it buffers up extra data on us inside it's
             // "processed" view of the world, and we want the data raw after the headers
@@ -74,30 +74,30 @@ namespace ShefaaPharmacy.Api
             outputStream = new StreamWriter(new BufferedStream(socket.GetStream()));
             try
             {
-                parseRequest();
-                readHeaders();
+                ParseRequest();
+                ReadHeaders();
                 if (http_method.Equals("GET"))
                 {
-                    handleGETRequest();
+                    HandleGETRequest();
                 }
                 else if (http_method.Equals("POST"))
                 {
-                    handlePOSTRequest();
+                    HandlePOSTRequest();
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception: " + e.ToString());
-                writeFailure();
+                WriteFailure();
             }
             outputStream.Flush();
             inputStream = null; outputStream = null;
             socket.Close();
         }
 
-        public void parseRequest()
+        public void ParseRequest()
         {
-            String request = streamReadLine(inputStream);
+            String request = StreamReadLine(inputStream);
             string[] tokens = request.Split(' ');
             if (tokens.Length != 3)
             {
@@ -139,11 +139,11 @@ namespace ShefaaPharmacy.Api
             Console.WriteLine("starting: " + request);
         }
 
-        public void readHeaders()
+        public void ReadHeaders()
         {
             Console.WriteLine("readHeaders()");
             String line;
-            while ((line = streamReadLine(inputStream)) != null)
+            while ((line = StreamReadLine(inputStream)) != null)
             {
                 if (line.Equals(""))
                 {
@@ -166,13 +166,13 @@ namespace ShefaaPharmacy.Api
                 httpHeaders[name] = value;
             }
         }
-        public void handleGETRequest()
+        public void HandleGETRequest()
         {
             srv.handleGETRequest(this, IsMinus);
         }
 
         private const int BUF_SIZE = 4096;
-        public void handlePOSTRequest()
+        public void HandlePOSTRequest()
         {
             // this post data processing just reads everything into a memory stream.
             // this is fine for smallish things, but for large stuff we should really
@@ -181,11 +181,10 @@ namespace ShefaaPharmacy.Api
             // length, because otherwise he won't know when he's seen it all! 
 
             Console.WriteLine("get post data start");
-            int content_len = 0;
             MemoryStream ms = new MemoryStream();
             if (this.httpHeaders.ContainsKey("Content-Length"))
             {
-                content_len = Convert.ToInt32(this.httpHeaders["Content-Length"]);
+                int content_len = Convert.ToInt32(this.httpHeaders["Content-Length"]);
                 if (content_len > MAX_POST_SIZE)
                 {
                     throw new Exception(
@@ -220,7 +219,7 @@ namespace ShefaaPharmacy.Api
             srv.handlePOSTRequest(this, new StreamReader(ms));
         }
 
-        public void writeSuccess(string content_type = "text/html")
+        public void WriteSuccess(string content_type = "text/html")
         {
             outputStream.WriteLine("HTTP/1.0 200 OK");
             outputStream.WriteLine("Content-Type: " + content_type);
@@ -228,7 +227,7 @@ namespace ShefaaPharmacy.Api
             outputStream.WriteLine("");
         }
 
-        public void writeFailure()
+        public void WriteFailure()
         {
             outputStream.WriteLine("HTTP/1.0 404 File not found");
             outputStream.WriteLine("Connection: close");
@@ -256,7 +255,7 @@ namespace ShefaaPharmacy.Api
                 {
                     TcpClient s = listener.AcceptTcpClient();
                     HttpProcessor1 processor = new HttpProcessor1(s, this);
-                    Thread thread = new Thread(new ThreadStart(processor.process));
+                    Thread thread = new Thread(new ThreadStart(processor.Process));
                     thread.Start();
                     Thread.Sleep(1);
                 }
@@ -312,16 +311,16 @@ namespace ShefaaPharmacy.Api
 
             Guid GCode = Guid.NewGuid();
             string GUIDCode = GCode.ToString();
-            string TaxNumber = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault().taxNumber;
+            var CurrentTaxAccount = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault();
             var thread = new Thread(() =>
             {
                 if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
                 {
-                    SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, true);
+                    SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, true);
                 }
                 else
                 {
-                    SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, TaxNumber, false);
+                    SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, false);
                 }
             });
             thread.Start();
@@ -341,7 +340,7 @@ namespace ShefaaPharmacy.Api
                     billValue = billValue,
                     billNumber = billNumber,
                     code = GUIDCode,
-                    currency = "sp",
+                    currency = "SP",
                     exProgram = "ShefaaPharmacy",
                     date = DateTime.Now.Date,
                 };
@@ -368,20 +367,20 @@ namespace ShefaaPharmacy.Api
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
         }
-        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, bool Istransfered)
+        private void SaveNewTaxReportForInvoice(string billNumber, double billValue, string randomNumber, string TaxNumber, string FacilityName, bool Istransfered)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             DetailedTaxCode NewTaxInvoice = new DetailedTaxCode
             {
                 BillValue = billValue,
                 BillNumber = billNumber,
-                Currency = "sp",
-                FacilityName = "ShefaaPharmacy",
+                Currency = "SP",
+                FacilityName = FacilityName,
                 PosNumber = 10,
                 taxNumber = TaxNumber,
                 RandomCode = randomNumber,
@@ -401,7 +400,6 @@ namespace ShefaaPharmacy.Api
                 ShefaaPharmacyDbContext.ConStr = ConnectionManager.GetConnection("TM_" + p.database);
                 ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                 billMaster.context = context;
-                //System.Diagnostics.Debugger.Break
                 if (p.operation == 1) // 1 mean it's the first request to get articale info from database
                 {
                     var articleBarcode = context.Articles.Where(x => x.Barcode == p.barcode).FirstOrDefault();
@@ -425,13 +423,13 @@ namespace ShefaaPharmacy.Api
                             AccountsArray = context.Accounts.Where(x => x.CategoryId == ConstantDataBase.AC_Customer).ToList()
                         };
                         string response = JsonConvert.SerializeObject(sample, settings);
-                        p.writeSuccess();
+                        p.WriteSuccess();
                         p.outputStream.WriteLine(response);
                         ShefaaPharmacyDbContext.ConStr = temp;
                     }
                     else
                     {
-                        p.writeFailure();
+                        p.WriteFailure();
                         p.outputStream.WriteLine("fail");
                     }
                 }
@@ -492,20 +490,19 @@ namespace ShefaaPharmacy.Api
                         res = SaveNewBill(context, tmp, IsMinus);
                         if (res)
                         {
-                            p.writeSuccess();
+                            p.WriteSuccess();
                         }
                         else
                         {
-                            p.writeFailure();
+                            p.WriteFailure();
                         }
                     }
                 }
                 ShefaaPharmacyDbContext.ConStr = temp;
-
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                p.writeFailure();
+                p.WriteFailure();
             }
         }
         public override void handlePOSTRequest(HttpProcessor1 p, StreamReader inputData)
@@ -513,26 +510,23 @@ namespace ShefaaPharmacy.Api
             Console.WriteLine("POST request: {0}", p.http_url);
             string data = inputData.ReadToEnd();
 
-            p.writeSuccess();
+            p.WriteSuccess();
             p.outputStream.WriteLine("<html><body><h1>test server</h1>");
             p.outputStream.WriteLine("<a href=/test>return</a><p>");
             p.outputStream.WriteLine("postbody: <pre>{0}</pre>", data);
-
-            string temp = ShefaaPharmacyDbContext.ConStr;
             ShefaaPharmacyDbContext.ConStr = ConnectionManager.GetConnection("TM_" + p.database);
             ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
             BillDetail ID = new BillDetail();
             if (ID.AddArticleByMobile(context, p.barcode) != null)
             {
                 Article barcode = ID.AddArticleByMobile(context, p.barcode);
-                // User user = login.LoginForMobile(context, p.userName, p.Password);
                 string response = JsonConvert.SerializeObject(barcode);
-                p.writeSuccess();
+                p.WriteSuccess();
                 p.outputStream.WriteLine(response);
             }
             else
             {
-                p.writeSuccess();
+                p.WriteSuccess();
                 p.outputStream.WriteLine("fail");
             }
         }

@@ -72,17 +72,17 @@
             // 
             // pHelperButton
             // 
-            this.pHelperButton.Location = new System.Drawing.Point(1280, 8);
-            this.pHelperButton.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
+            this.pHelperButton.Location = new System.Drawing.Point(724, 5);
+            this.pHelperButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.bindingNavigator1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(27, 97);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Location = new System.Drawing.Point(24, 63);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1017, 35);
+            this.panel1.Size = new System.Drawing.Size(890, 23);
             this.panel1.TabIndex = 1;
             // 
             // bindingNavigator1
@@ -92,7 +92,7 @@
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bindingNavigator1.Font = new System.Drawing.Font("AD-STOOR", 11F);
+            this.bindingNavigator1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
@@ -113,7 +113,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1017, 35);
+            this.bindingNavigator1.Size = new System.Drawing.Size(890, 23);
             this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -124,7 +124,7 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(55, 32);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(43, 20);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -134,7 +134,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(24, 32);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(24, 20);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -143,27 +143,28 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(24, 32);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(24, 20);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 35);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 23);
             // 
             // bindingNavigatorPositionItem
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(65, 27);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(57, 23);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 35);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -171,7 +172,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(24, 32);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(24, 20);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -180,7 +181,7 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(24, 32);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(24, 20);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // tsRefresh
@@ -189,7 +190,7 @@
             this.tsRefresh.Image = global::ShefaaPharmacy.Properties.Resources.icons8_refresh_48px;
             this.tsRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsRefresh.Name = "tsRefresh";
-            this.tsRefresh.Size = new System.Drawing.Size(24, 32);
+            this.tsRefresh.Size = new System.Drawing.Size(24, 20);
             this.tsRefresh.Text = "toolStripButton1";
             this.tsRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tsRefresh.ToolTipText = "تحديث";
@@ -198,14 +199,14 @@
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 35);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 23);
             // 
             // tsReset
             // 
             this.tsReset.Image = global::ShefaaPharmacy.Properties.Resources.icons8_reset_48px;
             this.tsReset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsReset.Name = "tsReset";
-            this.tsReset.Size = new System.Drawing.Size(151, 32);
+            this.tsReset.Size = new System.Drawing.Size(122, 20);
             this.tsReset.Text = "إعادة طلب التقرير";
             this.tsReset.ToolTipText = "إعادة طلب";
             this.tsReset.Click += new System.EventHandler(this.tsReset_Click);
@@ -214,10 +215,10 @@
             // 
             this.pFooter.Controls.Add(this.dgDetail);
             this.pFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pFooter.Location = new System.Drawing.Point(27, 673);
-            this.pFooter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pFooter.Location = new System.Drawing.Point(24, 406);
+            this.pFooter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pFooter.Name = "pFooter";
-            this.pFooter.Size = new System.Drawing.Size(1017, 154);
+            this.pFooter.Size = new System.Drawing.Size(890, 100);
             this.pFooter.TabIndex = 5;
             // 
             // dgDetail
@@ -254,7 +255,7 @@
             this.dgDetail.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dgDetail.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dgDetail.Location = new System.Drawing.Point(0, 0);
-            this.dgDetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgDetail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgDetail.Name = "dgDetail";
             this.dgDetail.ReadOnly = true;
             this.dgDetail.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -268,7 +269,7 @@
             this.dgDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgDetail.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDetail.Size = new System.Drawing.Size(1017, 154);
+            this.dgDetail.Size = new System.Drawing.Size(890, 100);
             this.dgDetail.TabIndex = 0;
             this.dgDetail.BindingContextChanged += new System.EventHandler(this.dgDetail_BindingContextChanged);
             // 
@@ -276,10 +277,10 @@
             // 
             this.pMaster.Controls.Add(this.dgMaster);
             this.pMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pMaster.Location = new System.Drawing.Point(27, 132);
-            this.pMaster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pMaster.Location = new System.Drawing.Point(24, 86);
+            this.pMaster.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pMaster.Name = "pMaster";
-            this.pMaster.Size = new System.Drawing.Size(1017, 541);
+            this.pMaster.Size = new System.Drawing.Size(890, 320);
             this.pMaster.TabIndex = 6;
             // 
             // dgMaster
@@ -316,7 +317,7 @@
             this.dgMaster.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dgMaster.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dgMaster.Location = new System.Drawing.Point(0, 0);
-            this.dgMaster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgMaster.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgMaster.Name = "dgMaster";
             this.dgMaster.ReadOnly = true;
             this.dgMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -330,21 +331,22 @@
             this.dgMaster.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgMaster.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMaster.Size = new System.Drawing.Size(1017, 541);
+            this.dgMaster.Size = new System.Drawing.Size(890, 320);
             this.dgMaster.TabIndex = 0;
             this.dgMaster.BindingContextChanged += new System.EventHandler(this.dgMaster_BindingContextChanged);
             // 
             // AccountCashMovementReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
-            this.ClientSize = new System.Drawing.Size(1057, 839);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.ClientSize = new System.Drawing.Size(925, 514);
             this.Controls.Add(this.pMaster);
             this.Controls.Add(this.pFooter);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AccountCashMovementReportForm";
-            this.Padding = new System.Windows.Forms.Padding(27, 97, 13, 12);
+            this.Padding = new System.Windows.Forms.Padding(24, 63, 11, 8);
             this.Text = "تقرير حركة الصندوق";
+            this.Load += new System.EventHandler(this.AccountCashMovementReportForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pFooter, 0);
             this.Controls.SetChildIndex(this.pMaster, 0);
