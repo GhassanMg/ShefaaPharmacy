@@ -983,6 +983,16 @@ namespace ShefaaPharmacy.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_tax_48__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-tax-48 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_type_48px {
             get {
                 object obj = ResourceManager.GetObject("icons8_type_48px", resourceCulture);

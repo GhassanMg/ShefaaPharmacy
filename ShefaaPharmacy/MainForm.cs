@@ -1537,6 +1537,11 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
+
+        private void miTaxAccountReport_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
