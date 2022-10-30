@@ -52,7 +52,7 @@ namespace ShefaaPharmacy.Accounting
             this.dgDetail = new System.Windows.Forms.DataGridView();
             this.bindingSourceDetail = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.miEditEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.miShowBill = new System.Windows.Forms.ToolStripMenuItem();
             this.dgMaster = new MetroFramework.Controls.MetroGrid();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -242,17 +242,17 @@ namespace ShefaaPharmacy.Accounting
             this.contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miEditEntry});
+            this.miShowBill});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
             // 
-            // miEditEntry
+            // miShowBill
             // 
-            this.miEditEntry.Name = "miEditEntry";
-            this.miEditEntry.Size = new System.Drawing.Size(172, 22);
-            this.miEditEntry.Text = "إستعراض سند القيد";
-            this.miEditEntry.Click += new System.EventHandler(this.MiEditEntry_Click);
+            this.miShowBill.Name = "miShowBill";
+            this.miShowBill.Size = new System.Drawing.Size(180, 22);
+            this.miShowBill.Text = "إستعراض الفاتورة";
+            this.miShowBill.Click += new System.EventHandler(this.miShowBill_Click);
             // 
             // dgMaster
             // 
@@ -274,6 +274,7 @@ namespace ShefaaPharmacy.Accounting
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMaster.ContextMenuStrip = this.contextMenuStrip1;
             this.dgMaster.DataSource = this.bindingSourceMaster;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -302,6 +303,7 @@ namespace ShefaaPharmacy.Accounting
             this.dgMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMaster.Size = new System.Drawing.Size(770, 468);
             this.dgMaster.TabIndex = 0;
+            this.dgMaster.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMaster_CellClick);
             this.dgMaster.BindingContextChanged += new System.EventHandler(this.dgMaster_BindingContextChanged);
             // 
             // AccountTaxReportForm
@@ -359,7 +361,7 @@ namespace ShefaaPharmacy.Accounting
         private System.Windows.Forms.BindingSource bindingSourceMaster;
         private System.Windows.Forms.BindingSource bindingSourceDetail;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem miEditEntry;
+        private System.Windows.Forms.ToolStripMenuItem miShowBill;
         private MetroFramework.Controls.MetroGrid dgMaster;
     }
 }

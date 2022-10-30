@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using ShefaaPharmacy.Invoice;
 
 namespace ShefaaPharmacy.Accounting
 {
@@ -117,17 +118,31 @@ namespace ShefaaPharmacy.Accounting
                 return;
             LoadDetail(bindingSourceMaster.Current as EntryMaster);
         }
-        private void MiEditEntry_Click(object sender, EventArgs e)
+        private void miShowBill_Click(object sender, EventArgs e)
         {
-            if (bindingSourceMaster.Current == null)
-                return;
-            EntryEditForm entryEditForm = new EntryEditForm(bindingSourceMaster.Current as EntryMaster, KindOperation.Entry, FormOperation.EditFromPicker);
-            entryEditForm.ShowDialog();
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            if ((bindingSourceMaster.Current as DetailedTaxCode).InvoiceKind == InvoiceKind.Sell)
+            {
+                var BillMaster = context.BillMasters.Where(x=>x.Id==Convert.ToInt32((bindingSourceMaster.Current as DetailedTaxCode).BillNumber)).FirstOrDefault();
+                GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(BillMaster, InvoiceKind.Sell, FormOperation.EditFromPicker);
+                generalInvoiceEditForm.ShowDialog();
+            }
+            else if ((bindingSourceMaster.Current as DetailedTaxCode).InvoiceKind == InvoiceKind.Buy)
+            {
+                var BillMaster = context.BillMasters.Where(x => x.Id == Convert.ToInt32((bindingSourceMaster.Current as DetailedTaxCode).BillNumber)).FirstOrDefault();
+                BuyInvoiceEditForm buyInvoiceEditForm = new BuyInvoiceEditForm(BillMaster, FormOperation.EditFromPicker);
+                buyInvoiceEditForm.ShowDialog();
+            }
         }
-
         private void AccountTaxReportForm_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void dgMaster_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }

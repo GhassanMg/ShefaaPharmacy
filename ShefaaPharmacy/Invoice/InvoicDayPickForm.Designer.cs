@@ -36,6 +36,11 @@
             this.pHelperButton.SuspendLayout();
             this.SuspendLayout();
             // 
+            // metroPanel2
+            // 
+            this.metroPanel2.Location = new System.Drawing.Point(11, 98);
+            this.metroPanel2.Size = new System.Drawing.Size(1004, 271);
+            // 
             // dtCreationDate
             // 
             this.dtCreationDate.Location = new System.Drawing.Point(549, 64);
@@ -56,6 +61,7 @@
             this.Padding = new System.Windows.Forms.Padding(11, 63, 11, 8);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Load += new System.EventHandler(this.InvoicDayPickForm_Load);
+            this.Controls.SetChildIndex(this.metroPanel2, 0);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.dtCreationDate, 0);
             ((System.ComponentModel.ISupportInitialize)(this.PickBindingSource)).EndInit();

@@ -340,7 +340,7 @@
             this.miShowEntry});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
             this.contextMenuStrip2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip2.Size = new System.Drawing.Size(195, 48);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(195, 70);
             // 
             // miShowBill
             // 
