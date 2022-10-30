@@ -428,8 +428,8 @@
             this.miCashMovementReport,
             this.miAccountYearProfitReport,
             this.miAccountProfitFromDateToDateReport,
-            this.miLastTimeReport,
-            this.miTaxAccountReport});
+            this.miTaxAccountReport,
+            this.miLastTimeReport});
             this.miAccountingReport.ForeColor = System.Drawing.SystemColors.ControlText;
             this.miAccountingReport.Image = global::ShefaaPharmacy.Properties.Resources.icons8_page_48px;
             this.miAccountingReport.Name = "miAccountingReport";
@@ -505,7 +505,6 @@
             this.miTaxAccountReport.Name = "miTaxAccountReport";
             this.miTaxAccountReport.Size = new System.Drawing.Size(248, 30);
             this.miTaxAccountReport.Text = "تقرير الحساب الضريبي";
-            this.miTaxAccountReport.Visible = false;
             this.miTaxAccountReport.Click += new System.EventHandler(this.miTaxAccountReport_Click);
             // 
             // miArticale

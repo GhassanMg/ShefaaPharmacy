@@ -40,6 +40,7 @@ namespace ShefaaPharmacy.Helper
             foreach (DataRow row in dt.Rows)
             {
                 T item = GetItem<T>(row);
+
                 data.Add(item);
             }
             return data;

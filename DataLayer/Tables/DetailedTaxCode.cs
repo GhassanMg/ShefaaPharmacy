@@ -2,6 +2,7 @@
 using DataLayer.Helper;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer.Tables
 {
@@ -24,7 +25,7 @@ namespace DataLayer.Tables
         /// </summary>
         [DisplayName("العملة")]
         public string Currency { set; get; }
-        [DisplayName("التطبيق المصدر للفاتورة")]
+        [DisplayName("اسم التطبيق")]
         public string BillExporterApp { set; get; } = "ShefaaPharmacy";
         /// <summary>
         /// نوع الفاتورة {Buy , Sell }
@@ -35,5 +36,13 @@ namespace DataLayer.Tables
         public string RandomCode { set; get; }
         [DisplayName("تم ترحيلها")]
         public bool IsTransfeered { set; get; }
+
+        #region Relation
+        [Browsable(false)]
+        public int YearId { get; set; }
+        [Browsable(false)]
+        [ForeignKey("YearId")]
+        public Year Year { get; set; }
+        #endregion
     }
 }

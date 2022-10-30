@@ -73,7 +73,7 @@ namespace DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_SunRaise;Integrated Security=true;")
+                //.UseSqlServer(@"Data Source=POST-5;Initial Catalog=TM_Sunday;Integrated Security=true;")
                 .UseSqlServer(ConStr)
                 .UseLoggerFactory(new LoggerFactory())
                 .EnableSensitiveDataLogging();
@@ -167,6 +167,10 @@ namespace DataLayer
 
             new FirstTimeArticlesMap(modelBuilder.Entity<FirstTimeArticles>());
 
+            new TaxAccountMap(modelBuilder.Entity<TaxAccount>());
+
+            new DetailedTaxCodeMap(modelBuilder.Entity<DetailedTaxCode>());
+
             //new LastTimeArticlesMap(modelBuilder.Entity<LastTimeArticles>());
             #region Branches
             modelBuilder.Entity<Branch>().HasData(new Branch { Id = 1, Name = "جميع الفروع" });
@@ -229,6 +233,7 @@ namespace DataLayer
             Database.ExecuteSqlRaw(GetArticleForCompanyScript.Create());
             Database.ExecuteSqlRaw(EntryReportScript.Create());
             Database.ExecuteSqlRaw(GetArticleInStore.Create());
+            Database.ExecuteSqlRaw(TaxReportScript.Create());
         }
         public void DropStoredProcedure()
         {
@@ -246,6 +251,7 @@ namespace DataLayer
             Database.ExecuteSqlRaw(GetArticleForCompanyScript.Drop());
             Database.ExecuteSqlRaw(EntryReportScript.Drop());
             Database.ExecuteSqlRaw(GetArticleInStore.Drop());
+            Database.ExecuteSqlRaw(TaxReportScript.Drop());
         }
         public static void CheckVersion()
         {

@@ -127,6 +127,7 @@ namespace ShefaaPharmacy.Accounting
             dgMaster.ColumnHeadersDefaultCellStyle.Font = new Font("AD-STOOR", 12);
             dgMaster.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(66, 172, 186);
 
+
             dgMaster.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dgMaster.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             try

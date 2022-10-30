@@ -1540,7 +1540,22 @@ namespace ShefaaPharmacy
 
         private void miTaxAccountReport_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Auth.IsDataEntry())
+                {
+                    AccountTaxReportForm AccountTaxReport = new AccountTaxReportForm();
+                    AccountTaxReport.ShowDialog();
+                }
+                else
+                {
+                    _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
+            }
         }
     }
 }

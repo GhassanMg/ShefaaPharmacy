@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace ShefaaPharmacy.Setting
 {
@@ -130,9 +131,13 @@ namespace ShefaaPharmacy.Setting
                 }
                 else
                 {
-                    SetTaxAccountCredentials Credentials = new SetTaxAccountCredentials();
-                    var CurrentAccount = context.TaxAccount.ToList().FirstOrDefault();
-                    Credentials.LoginToRefreshToken(CurrentAccount);
+                    var thread = new Thread(() =>
+                    { 
+                        SetTaxAccountCredentials Credentials = new SetTaxAccountCredentials();
+                        var CurrentAccount = context.TaxAccount.ToList().FirstOrDefault();
+                        Credentials.LoginToRefreshToken(CurrentAccount);
+                    });
+                    thread.Start();
                 }
             }
             else

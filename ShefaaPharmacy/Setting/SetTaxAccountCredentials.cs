@@ -29,7 +29,7 @@ namespace ShefaaPharmacy.Setting
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             NewAccount.password = DecodePasswordFromBase64(NewAccount.password);
-            bool token = LoginExternal(NewAccount);
+            bool token = LoginExternal(NewAccount, false);
             if (!token) return;
             var Current = context.TaxAccount.ToList().FirstOrDefault();
             Current.Token = Token;
@@ -61,7 +61,7 @@ namespace ShefaaPharmacy.Setting
                             password = tbPassword.Text,
                             taxNumber = tbTaxNumber.Text
                         };
-                        bool token = LoginExternal(NewAccount);
+                        bool token = LoginExternal(NewAccount, true);
                         if (!token) return;
                         NewAccount.password = EncodePasswordToBase64(NewAccount.password);
                         NewAccount.Token = Token;
@@ -87,7 +87,7 @@ namespace ShefaaPharmacy.Setting
         {
             base.btCancel_Click(sender, e);
         }
-        private bool LoginExternal(TaxAccount NewAccount)
+        private bool LoginExternal(TaxAccount NewAccount, bool NewLogin)
         {
             try
             {
@@ -130,13 +130,17 @@ namespace ShefaaPharmacy.Setting
             }
             catch (Exception ex)
             {
-                if (ex.Message == "The operation has timed out")
+                if (NewLogin)
                 {
-                    _MessageBoxDialog.Show("هناك مشكلة في المخدم يرجى المحاولة لاحقاً ", MessageBoxState.Error);
-                    Close();
+                    if (ex.Message == "The operation has timed out")
+                    {
+                        _MessageBoxDialog.Show("هناك مشكلة في المخدم يرجى المحاولة لاحقاً ", MessageBoxState.Error);
+                        Close();
+                        return false;
+                    }
+                    _MessageBoxDialog.Show("يرجى التأكد من اتصالك بالإنترنت واعادة المحاولة", MessageBoxState.Error);
                     return false;
                 }
-                _MessageBoxDialog.Show("يرجى التأكد من اتصالك بالإنترنت واعادة المحاولة", MessageBoxState.Error);
                 return false;
             }
         }

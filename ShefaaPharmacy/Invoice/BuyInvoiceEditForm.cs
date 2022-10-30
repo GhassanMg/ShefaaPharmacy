@@ -668,18 +668,21 @@ namespace ShefaaPharmacy.Invoice
                     Guid GCode = Guid.NewGuid();
                     string GUIDCode = GCode.ToString();
                     var CurrentTaxAccount = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault();
-                    var thread = new Thread(() =>
+                    if (CurrentTaxAccount != null)
                     {
-                        if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
+                        var thread = new Thread(() =>
                         {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, true);
-                        }
-                        else
-                        {
-                            SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, false);
-                        }
-                    });
-                    thread.Start();
+                            if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
+                            {
+                                SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, true);
+                            }
+                            else
+                            {
+                                SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, false);
+                            }
+                        });
+                        thread.Start();
+                    }
                 }
             }
             else if (FormOperation == FormOperation.Edit || FormOperation == FormOperation.EditFromPicker)
@@ -784,7 +787,8 @@ namespace ShefaaPharmacy.Invoice
                 RandomCode = randomNumber,
                 DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt"),
                 IsTransfeered = Istransfered,
-                InvoiceKind = InvoiceKind.Buy
+                InvoiceKind = InvoiceKind.Buy,
+                YearId = YearService.GetAvailableYear(),
             };
             context.DetailedTaxCode.Add(NewTaxInvoice);
             context.SaveChanges();
