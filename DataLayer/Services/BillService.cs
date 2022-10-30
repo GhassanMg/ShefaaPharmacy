@@ -3,9 +3,13 @@ using DataLayer.Helper;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 
 namespace DataLayer.Services
 {
@@ -361,7 +365,6 @@ namespace DataLayer.Services
             }
 
         }
-
         public bool BuyBill()
         {
             ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -378,6 +381,51 @@ namespace DataLayer.Services
                 return false;
             }
         }
+        public bool AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
+        {
+            try
+            {
+                string url = String.Format("http://213.178.227.75/Taxapi/api/Bill/AddFullBill");
+                WebRequest requestPost = WebRequest.Create(url);
+                requestPost.Method = "POST";
+                requestPost.ContentType = "application/json";
+                requestPost.Headers.Add("Authorization", "Bearer " + ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.FirstOrDefault().Token);
+                TaxReportViewModel newObj = new TaxReportViewModel
+                {
+                    billValue = billValue,
+                    billNumber = billNumber,
+                    code = GUIDCode,
+                    currency = "SP",
+                    exProgram = "ShefaaPharmacy",
+                    date = DateTime.Now.Date,
+                };
 
+                var postData = JsonConvert.SerializeObject(newObj);
+                using (var streamWriter = new StreamWriter(requestPost.GetRequestStream()))
+                {
+                    streamWriter.Write(postData);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                var httpResponse = (HttpWebResponse)requestPost.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    int code = (int)httpResponse.StatusCode;
+                    var res = streamReader.ReadToEnd();
+                    JObject resultJson = (JObject)JsonConvert.DeserializeObject(res);
+                    IList<string> keys = resultJson.Properties().Select(p => p.Name).ToList();
+                    if (resultJson["data"] != null)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

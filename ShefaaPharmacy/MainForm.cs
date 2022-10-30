@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using DataLayer.Enums;
 using DataLayer.Helper;
+using DataLayer.Services;
 using DataLayer.Tables;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -28,6 +29,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -1555,6 +1557,42 @@ namespace ShefaaPharmacy
             catch (Exception ex)
             {
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
+            }
+        }
+
+        private void miTransfeerToTaxSystem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var thread = new Thread(() =>
+                {
+                    var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                    BillService service = new BillService();
+                    List<DetailedTaxCode> NotTransfeeredBills = context.DetailedTaxCode.Where(x => x.IsTransfeered == false).ToList();
+                    foreach(var Bill in NotTransfeeredBills)
+                    {
+                        var result = service.AddInvoiveToTaxSystem(Bill.BillNumber,Bill.BillValue,Bill.RandomCode);
+                        if (result)
+                        {
+                            Bill.IsTransfeered = true;
+                            Bill.DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt");
+                        }
+                        else
+                        {
+                            _MessageBoxDialog.Show("يرجى التأكد من اتصالك بالإنترنت والمحاولة لاحقاً",MessageBoxState.Error);
+                            continue;
+                        }
+                    }
+                    context.SaveChanges();
+                });
+                thread.Start();
+                _MessageBoxDialog.Show("تم ترحيل الفواتير المعلقة بنجاح", MessageBoxState.Done);
+                return;
+            }
+            catch
+            {
+                _MessageBoxDialog.Show("حصل خطأ يرجى المحاولة مجدداً", MessageBoxState.Error);
+                return;
             }
         }
     }

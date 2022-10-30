@@ -134,15 +134,5 @@ namespace ShefaaPharmacy.Accounting
                 buyInvoiceEditForm.ShowDialog();
             }
         }
-        private void AccountTaxReportForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgMaster_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
     }
 }
