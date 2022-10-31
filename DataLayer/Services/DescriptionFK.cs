@@ -1,13 +1,16 @@
-﻿using DataLayer.Helper;
+﻿using DataLayer.Enums;
+using DataLayer.Helper;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Management;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +19,7 @@ namespace DataLayer.Services
     public static class DescriptionFK
     {
         public static List<Article> articlesForPicker = new List<Article>();
+        public static List<DetailedTaxCode> TaxDetailsForPicker = new List<DetailedTaxCode>();
         public static bool CheckDoubleValue(this double value)
         {
             if (Double.IsNaN(value) || Double.IsInfinity(value) || Double.IsNegativeInfinity(value) || Double.IsPositiveInfinity(value))
@@ -635,6 +639,26 @@ namespace DataLayer.Services
         {
             articlesForPicker = new List<Article>();
             articlesForPicker = ShefaaPharmacyDbContext.GetCurrentContext().Articles.Where(x => x.CompanyId == companyId).ToList();
+        }
+        public static void GetAllReportsForThisInvoiceType(string InvoiceKind)
+        {
+            InvoiceKind value = (InvoiceKind)Enum.Parse(typeof(InvoiceKind), InvoiceKind);
+            TaxDetailsForPicker = new List<DetailedTaxCode>();
+            TaxDetailsForPicker = ShefaaPharmacyDbContext.GetCurrentContext().DetailedTaxCode.Where(x => x.InvoiceKind == value).ToList();
+        }
+        public static T GetValueByShortName<T>(string shortName)
+        {
+            var values = from f in typeof(T).GetFields(BindingFlags.Static | BindingFlags.Public)
+                         let attribute = Attribute.GetCustomAttribute(f, typeof(InvoiceKind)) as DisplayAttribute
+                         where attribute != null && attribute.ShortName == shortName
+                         select (T)f.GetValue(null);
+
+            if (values.Count() > 0)
+            {
+                return (T)(object)values.FirstOrDefault();
+            }
+
+            return default(T);
         }
         public static void GetArticlesForCompany(int companyId)
         {

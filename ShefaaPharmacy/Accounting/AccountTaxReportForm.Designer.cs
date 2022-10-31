@@ -46,14 +46,15 @@ namespace ShefaaPharmacy.Accounting
             this.tsRefresh = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsReset = new System.Windows.Forms.ToolStripButton();
+            this.CBKindFilter = new System.Windows.Forms.ToolStripComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgMaster = new MetroFramework.Controls.MetroGrid();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.miShowBill = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSourceMaster = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgDetail = new System.Windows.Forms.DataGridView();
             this.bindingSourceDetail = new System.Windows.Forms.BindingSource(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.miShowBill = new System.Windows.Forms.ToolStripMenuItem();
-            this.dgMaster = new MetroFramework.Controls.MetroGrid();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizing)).BeginInit();
@@ -61,12 +62,12 @@ namespace ShefaaPharmacy.Accounting
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMaster)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceMaster)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDetail)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgMaster)).BeginInit();
             this.SuspendLayout();
             // 
             // pHelperButton
@@ -91,7 +92,8 @@ namespace ShefaaPharmacy.Accounting
             this.bindingNavigatorMoveLastItem,
             this.tsRefresh,
             this.bindingNavigatorSeparator2,
-            this.tsReset});
+            this.tsReset,
+            this.CBKindFilter});
             this.bindingNavigator1.Location = new System.Drawing.Point(20, 80);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -193,6 +195,14 @@ namespace ShefaaPharmacy.Accounting
             this.tsReset.ToolTipText = "إعادة طلب";
             this.tsReset.Click += new System.EventHandler(this.tsReset_Click);
             // 
+            // CBKindFilter
+            // 
+            this.CBKindFilter.DropDownWidth = 106;
+            this.CBKindFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.CBKindFilter.Name = "CBKindFilter";
+            this.CBKindFilter.Size = new System.Drawing.Size(140, 34);
+            this.CBKindFilter.SelectedIndexChanged += new System.EventHandler(this.CBKindFilter_SelectedIndexChanged);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
@@ -202,57 +212,6 @@ namespace ShefaaPharmacy.Accounting
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(770, 468);
             this.panel1.TabIndex = 2;
-            // 
-            // bindingSourceMaster
-            // 
-            this.bindingSourceMaster.PositionChanged += new System.EventHandler(this.BindingSourceMaster_PositionChanged);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.dgDetail);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(20, 429);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(770, 146);
-            this.panel2.TabIndex = 0;
-            // 
-            // dgDetail
-            // 
-            this.dgDetail.AllowUserToAddRows = false;
-            this.dgDetail.AllowUserToDeleteRows = false;
-            this.dgDetail.AllowUserToResizeRows = false;
-            this.dgDetail.AutoGenerateColumns = false;
-            this.dgDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgDetail.BackgroundColor = System.Drawing.Color.White;
-            this.dgDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgDetail.DataSource = this.bindingSourceDetail;
-            this.dgDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgDetail.Location = new System.Drawing.Point(0, 0);
-            this.dgDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgDetail.Name = "dgDetail";
-            this.dgDetail.RowTemplate.Height = 26;
-            this.dgDetail.Size = new System.Drawing.Size(770, 146);
-            this.dgDetail.TabIndex = 5;
-            this.dgDetail.Visible = false;
-            this.dgDetail.BindingContextChanged += new System.EventHandler(this.dgDetail_BindingContextChanged);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miShowBill});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(168, 26);
-            // 
-            // miShowBill
-            // 
-            this.miShowBill.Name = "miShowBill";
-            this.miShowBill.Size = new System.Drawing.Size(167, 22);
-            this.miShowBill.Text = "إستعراض الفاتورة";
-            this.miShowBill.Click += new System.EventHandler(this.miShowBill_Click);
             // 
             // dgMaster
             // 
@@ -305,6 +264,57 @@ namespace ShefaaPharmacy.Accounting
             this.dgMaster.TabIndex = 0;
             this.dgMaster.BindingContextChanged += new System.EventHandler(this.dgMaster_BindingContextChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miShowBill});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(168, 26);
+            // 
+            // miShowBill
+            // 
+            this.miShowBill.Name = "miShowBill";
+            this.miShowBill.Size = new System.Drawing.Size(167, 22);
+            this.miShowBill.Text = "إستعراض الفاتورة";
+            this.miShowBill.Click += new System.EventHandler(this.miShowBill_Click);
+            // 
+            // bindingSourceMaster
+            // 
+            this.bindingSourceMaster.PositionChanged += new System.EventHandler(this.BindingSourceMaster_PositionChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.dgDetail);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(20, 429);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(770, 146);
+            this.panel2.TabIndex = 0;
+            // 
+            // dgDetail
+            // 
+            this.dgDetail.AllowUserToAddRows = false;
+            this.dgDetail.AllowUserToDeleteRows = false;
+            this.dgDetail.AllowUserToResizeRows = false;
+            this.dgDetail.AutoGenerateColumns = false;
+            this.dgDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgDetail.BackgroundColor = System.Drawing.Color.White;
+            this.dgDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDetail.DataSource = this.bindingSourceDetail;
+            this.dgDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgDetail.Location = new System.Drawing.Point(0, 0);
+            this.dgDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgDetail.Name = "dgDetail";
+            this.dgDetail.RowTemplate.Height = 26;
+            this.dgDetail.Size = new System.Drawing.Size(770, 146);
+            this.dgDetail.TabIndex = 5;
+            this.dgDetail.Visible = false;
+            this.dgDetail.BindingContextChanged += new System.EventHandler(this.dgDetail_BindingContextChanged);
+            // 
             // AccountTaxReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -316,6 +326,7 @@ namespace ShefaaPharmacy.Accounting
             this.Name = "AccountTaxReportForm";
             this.Resizable = false;
             this.Text = "تقرير الحساب الضريبي";
+            this.Load += new System.EventHandler(this.AccountTaxReportForm_Load);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.bindingNavigator1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
@@ -328,12 +339,12 @@ namespace ShefaaPharmacy.Accounting
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgMaster)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceMaster)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDetail)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgMaster)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,5 +372,6 @@ namespace ShefaaPharmacy.Accounting
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem miShowBill;
         private MetroFramework.Controls.MetroGrid dgMaster;
+        private System.Windows.Forms.ToolStripComboBox CBKindFilter;
     }
 }
