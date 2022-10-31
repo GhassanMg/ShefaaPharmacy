@@ -91,7 +91,6 @@ namespace ShefaaPharmacy.Notification
             this.timer1.Interval = 1;
             this.timer1.Start();
         }
-
         private void dgvmaster_BindingContextChanged(object sender, EventArgs e)
         {
             dgvmaster.Refresh();
@@ -101,12 +100,10 @@ namespace ShefaaPharmacy.Notification
             dgvmaster.Columns["RemindMeDate"].Visible = false;
             dgvmaster.Columns["CreationDate"].Visible = false;
         }
-
         private void metroButton2_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void metroButton1_Click(object sender, EventArgs e)
         {
             try
@@ -124,7 +121,6 @@ namespace ShefaaPharmacy.Notification
                 Close();
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -140,7 +136,6 @@ namespace ShefaaPharmacy.Notification
                 Close();
             }
         }
-
         public void showAlert(UserNotifications notificationForm, bool remindMe = false)
         {
             this.StartPosition = FormStartPosition.Manual;

@@ -85,30 +85,6 @@ namespace DataLayer.Tables
         /// </summary>
         [DisplayName("المبلغ المتبقي")]
         public double RemainingAmount { get; set; }
-        //                                                =================================================
-        //public ShefaaPharmacyDbContext context
-        //{
-        //    set
-        //    {
-        //        context = value;
-
-        //    }
-        //}
-        //                                                ================================================
-        //[NotMapped]
-        //[DisplayName("اسم الحساب")]
-        //public string AccountIdDescr
-        //{
-        //    get
-        //    {
-        //        return DescriptionFK.GetAccountName(AccountId);
-        //    }
-        //    set
-        //    {
-        //        AccountId = DescriptionFK.GetAccountId(value);
-        //        onUpdateForm?.Invoke();
-        //    }
-        //}
         [NotMapped]
         [DisplayName("اسم الحساب")]
         public string AccountIdDescr
@@ -198,10 +174,10 @@ namespace DataLayer.Tables
             double discount = 0;
             ((List<BillDetail>)this.BillDetails).ForEach(x => total += x.TotalPrice);
             ((List<BillDetail>)this.BillDetails).ForEach(x => totalItem += x.Quantity);
-            //((List<BillDetail>)this.BillDetails).ForEach(x => discount += x.Discount);
+
             TotalPrice = total;
             TotalItem = totalItem;
-            //Payment = discount;
+
             if (PaymentMethod == PaymentMethod.Cash)
             {
                 if (Payment <= TotalPrice)
@@ -220,7 +196,6 @@ namespace DataLayer.Tables
             }
             if (Discount > 0)
                 if (PaymentMethod == PaymentMethod.Cash) Payment = TotalPrice - Discount;
-            //else Payment = payment - Discount;
 
             onUpdateForm?.Invoke();
         }
@@ -235,8 +210,7 @@ namespace DataLayer.Tables
             ((List<BillDetail>)this.BillDetails).ForEach(x => total += x.TotalPrice);
             ((List<BillDetail>)this.BillDetails).ForEach(x => totalItem += x.Quantity);
             TotalPrice = total;
-            //TotalItem = totalItem-discount;
-            //TotalPrice = total - (total * discount) ;
+
             if (PaymentMethod == PaymentMethod.Cash)
             {
                 Payment = TotalPrice - discount;
@@ -251,7 +225,6 @@ namespace DataLayer.Tables
                 {
                     RemainingAmount = TotalPrice;
                 }
-
             }
         }
         public void CalcTotalForPurches(List<PurchesBillViewModel> purchesBillViewModel)
@@ -322,11 +295,8 @@ namespace DataLayer.Tables
             if (FormOperation == FormOperation.EditFromPicker && PaymentMethod == PaymentMethod.Cash)
             {
                 Payment = TotalPrice;
-                //tbPayment.Text = billMaster.Payment.ToString();
             }
             onUpdateForm?.Invoke();
-
-
         }
         #endregion
     }

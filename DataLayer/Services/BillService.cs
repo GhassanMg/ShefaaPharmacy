@@ -2,14 +2,14 @@
 using DataLayer.Helper;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace DataLayer.Services
 {
@@ -77,7 +77,6 @@ namespace DataLayer.Services
                 context.EntryMasters.Remove(entryMaster);
                 context.SaveChanges();
             }
-
             // Update Bill
             var old = context.BillDetails.Where(x => x.BillMasterId == billMaster.Id).AsNoTracking().ToList();
 
@@ -134,7 +133,6 @@ namespace DataLayer.Services
                     billMaster.BillDetails.FirstOrDefault(x => x.ArticaleId == item.ArticaleId && x.UnitTypeId == item.UnitTypeId).Id = item.Id;
                     billMaster.BillDetails.FirstOrDefault(x => x.ArticaleId == item.ArticaleId && x.UnitTypeId == item.UnitTypeId).BillMasterId = item.BillMasterId;
                     billMaster.BillDetails.FirstOrDefault(x => x.ArticaleId == item.ArticaleId && x.UnitTypeId == item.UnitTypeId).PriceTagId = item.PriceTagId;
-
                 }
             }
             foreach (var item in billMaster.BillDetails)
@@ -160,7 +158,6 @@ namespace DataLayer.Services
                             ExpiryDate = purchesBillViewModel.FirstOrDefault(x => x.ArticleId == item.ArticaleId && x.UnitId == item.UnitTypeId).ExpiryDate,
                             PriceTagDetails = ArticleService.MakeNewPriceTagDetailForArticle(purchesBillViewModel.FirstOrDefault(x => x.ArticleId == item.ArticaleId && x.UnitId == item.UnitTypeId)),
                         };
-
                         var entity = context.PriceTagMasters.Add(PriceTag);
                         context.SaveChanges();
                         item.PriceTagId = entity.Entity.Id;
@@ -188,9 +185,6 @@ namespace DataLayer.Services
             {
                 try
                 {
-                    //billMaster.IsReturned = true;
-                    //billMaster.ReturnedTime = DateTime.Now;
-                    //context.BillMasters.Update(billMaster);
                     var newmasterbill = new BillMaster()
                     {
                         AccountId = billMaster.AccountId,

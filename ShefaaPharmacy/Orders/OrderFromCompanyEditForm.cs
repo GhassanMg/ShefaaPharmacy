@@ -74,9 +74,7 @@ namespace ShefaaPharmacy.Orders
             ddlCompany.DisplayMember = "Name";
             ddlCompany.ValueMember = "Id";
             ddlCompany.SelectedIndex = 0;
-
         }
-
         private void DgvOrderDetail_BindingContextChanged(object sender, EventArgs e)
         {
             try
@@ -155,7 +153,6 @@ namespace ShefaaPharmacy.Orders
         {
             DeleteRow();
         }
-
         private void LbIncreseQuantity_Click(object sender, EventArgs e)
         {
             InecreseQuantity();
@@ -177,7 +174,6 @@ namespace ShefaaPharmacy.Orders
             }
             try
             {
-
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
                 {
@@ -231,7 +227,6 @@ namespace ShefaaPharmacy.Orders
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
-
         private void OrderFromCompanyEditForm_Load(object sender, EventArgs e)
         {
             dgvOrderDetail.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -251,9 +246,7 @@ namespace ShefaaPharmacy.Orders
             dgFinalOrder.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             DdlCompany_SelectedIndexChanged(sender, e);
-
         }
-
         private void TbSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (dgvOrderDetail.DataSource == null)
@@ -270,7 +263,6 @@ namespace ShefaaPharmacy.Orders
             }
             dgvOrderDetail.Refresh();
         }
-
         private void TbSearch_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(tbSearch.Text))
@@ -283,7 +275,6 @@ namespace ShefaaPharmacy.Orders
             }
             dgvOrderDetail.Refresh();
         }
-
         private void DgvOrderDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvOrderDetail.DataSource == null || dgvOrderDetail.CurrentRow == null || (dgvOrderDetail.Rows.Count < 1))
@@ -296,7 +287,6 @@ namespace ShefaaPharmacy.Orders
                 dgFinalOrder.Refresh();
             }
         }
-
         private void DgFinalOrder_BindingContextChanged(object sender, EventArgs e)
         {
             try

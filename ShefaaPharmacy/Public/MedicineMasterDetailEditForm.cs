@@ -63,7 +63,6 @@ namespace ShefaaPharmacy.Public
         {
             BindingEntityToControls();
         }
-
         private void dgDetail_BindingContextChanged(object sender, EventArgs e)
         {
             //if (medicine.Barcodes == null)
@@ -73,7 +72,6 @@ namespace ShefaaPharmacy.Public
             //bsDetail.DataSource = medicine.Barcodes;
             //PickGridView.Refresh();
         }
-
         private void PickGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             var cell = PickGridView[e.ColumnIndex, e.RowIndex];
@@ -89,13 +87,8 @@ namespace ShefaaPharmacy.Public
             else if (cellName == "CompanyIdDesrc")
             {
                 Company result = CompanyPickForm.PickCompany(e.FormattedValue.ToString().Trim(), null, FormOperation.Pick);
-                //if (result != null)
-                //{
-                //    //((Barcode)bsDetail.Current).CompanyId = result.Id;
-                //}
             }
         }
-
         private void PickGridView_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (PickGridView.CurrentRow.DataBoundItem == null)
@@ -122,10 +115,9 @@ namespace ShefaaPharmacy.Public
                 return;
             }
         }
-
         private void bsDetail_AddingNew(object sender, AddingNewEventArgs e)
         {
-            Barcode lastRec=null;
+            Barcode lastRec = null;
             if (((List<Barcode>)bsDetail.DataSource).Count > 0)
             {
                 lastRec = ((List<Barcode>)bsDetail.DataSource).Last();
@@ -135,7 +127,6 @@ namespace ShefaaPharmacy.Public
             //    e.NewObject = new Barcodes() { CompanyId = lastRec.CompanyId };
             //}
         }
-
         private void PickGridView_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -143,7 +134,6 @@ namespace ShefaaPharmacy.Public
                 return;
             }
         }
-
         private void MedicineMasterDetailEditForm_KeyUp(object sender, KeyEventArgs e)
         {
             //if (e.KeyCode==Keys.D6)

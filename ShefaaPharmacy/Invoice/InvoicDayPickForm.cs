@@ -84,7 +84,6 @@ namespace ShefaaPharmacy.Invoice
         {
             return;
         }
-
         protected override void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             base.bindingNavigatorAddNewItem_Click(sender, e);
@@ -141,14 +140,11 @@ namespace ShefaaPharmacy.Invoice
                 else if ((PickBindingSource.Current as BillMaster).InvoiceKind == InvoiceKind.Buy)
                 {
                     BuyInvoiceEditForm buyInvoiceEditForm = new BuyInvoiceEditForm((PickBindingSource.Current as BillMaster), FormOperation.EditFromPicker);
-                    //buyInvoiceEditForm.MyValidate();
-                    //buyInvoiceEditForm.MySecondValidate();
                     buyInvoiceEditForm.ShowDialog();
                 }
                 Rebinding();
             }
         }
-
         private void InvoicDayPickForm_Load(object sender, EventArgs e)
         {
             if (FormOperation == FormOperation.Pick)
@@ -159,20 +155,6 @@ namespace ShefaaPharmacy.Invoice
             {
                 Text = "إستعراض فواتير اليوم";
             }
-            //tsddlSearch.Visible = true;
-            //tsddlSearch.ComboBox.DataSource = MonthViewModel.GetAllMonth();
-            //tsddlSearch.ComboBox.ValueMember = "Id";
-            //tsddlSearch.ComboBox.DisplayMember = "Name";
-            //tsddlSearch.ComboBox.SelectedValue = DateTime.Now.Month;
-
-            //tsddlSearch2.Visible = true;
-            //tsddlSearch2.ComboBox.DataSource = DayViewModel.GetAllDayInMont(Convert.ToInt32(YearService.GetYear().Name), 1);
-            //tsddlSearch2.ComboBox.ValueMember = "Id";
-            //tsddlSearch2.ComboBox.DisplayMember = "Name";
-            //tsddlSearch2.ComboBox.SelectedValue = DateTime.Now.Day;
-
-            //tsddlSearch.SelectedIndexChanged += tsddlSearch_SelectedIndexChanged;
-            //tsddlSearch2.SelectedIndexChanged += tsddlSearch2_SelectedIndexChanged;
         }
         protected override void tsddlSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -192,7 +174,6 @@ namespace ShefaaPharmacy.Invoice
             PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().BillMasters.Where(x => x.CreationDate >= firstTime && x.CreationDate <= LastTime).ToList();
             base.Rebinding();
         }
-
         private void dtCreationDate_ValueChanged(object sender, EventArgs e)
         {
             var firstTime = new DateTime(Convert.ToInt32(dtCreationDate.Value.Year), Convert.ToInt32(dtCreationDate.Value.Month), Convert.ToInt32(dtCreationDate.Value.Day), 0, 0, 0);

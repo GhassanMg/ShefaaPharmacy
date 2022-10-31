@@ -90,14 +90,6 @@ namespace ShefaaPharmacy.Public
                     e.Cancel = true;
                 }
             }
-            //else if (cellName == "CompanyIdDesrc")
-            //{
-            //    Company result = CompanyPickForm.PickCompany(e.FormattedValue.ToString().Trim(), null, true);
-            //    if (result != null)
-            //    {
-            //        ((Barcodes)PickBindingSource.Current).CompanyId = result.Id;
-            //    }
-            //}
         }
         protected override void PickGridView_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {

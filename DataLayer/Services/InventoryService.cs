@@ -80,7 +80,6 @@ namespace DataLayer.Services
                                 context.SaveChanges();
                                 break;
                             }
-
                         }
                     }
                 }
@@ -138,10 +137,8 @@ namespace DataLayer.Services
                                 context.SaveChanges();
                                 break;
                             }
-
                         }
                     }
-
                 }
                 else
                 {
@@ -238,7 +235,6 @@ namespace DataLayer.Services
         }
         public static string GetQuantityOfArticleAllPriceTagMobile(ShefaaPharmacyDbContext context, int artId, int unitId = 0)
         {
-
             var priceTags = context.PriceTagMasters
                 .Where(x => x.ArticleId == artId && (x.CountAllItem + x.CountGiftItem) - (x.CountSoldItem) > 0)
                 .Include(x => x.PriceTagDetails).ToList();
@@ -429,10 +425,8 @@ namespace DataLayer.Services
                                 context.SaveChanges();
                                 break;
                             }
-
                         }
                     }
-
                 }
                 else
                 {
@@ -488,10 +482,8 @@ namespace DataLayer.Services
                                 context.SaveChanges();
                                 break;
                             }
-
                         }
                     }
-
                 }
                 else
                 {
@@ -538,7 +530,7 @@ namespace DataLayer.Services
                 context.PriceTagMasters.Update(priceTag);
                 context.SaveChanges();
             }
-            else if(invoiceKind == InvoiceKind.ReturnBuyArticles)
+            else if (invoiceKind == InvoiceKind.ReturnBuyArticles)
             {
                 PriceTagMaster price = new PriceTagMaster()
                 {
@@ -718,7 +710,6 @@ namespace DataLayer.Services
         public static string GetQuantityOfArticleAllPriceTag(int artId, int unitId = 0)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-
             var priceTags = context.PriceTagMasters
                 .Where(x => x.ArticleId == artId && (x.CountAllItem + x.CountGiftItem) - (x.CountSoldItem) != 0)
                 .Include(x => x.PriceTagDetails).ToList();
@@ -775,22 +766,6 @@ namespace DataLayer.Services
             }
             else
             {
-                //foreach (var item in priceTags)
-                //{
-                //    if (item.UnitId == smallestUnit.UnitTypeId)
-                //    {
-                //        smallUnitQuantity += (item.CountAllItem + item.CountGiftItem) - (item.CountSoldItem);
-                //    }
-                //    else if (item.UnitId == primaryUnit.UnitTypeId)
-                //    {
-                //        smallUnitQuantity += ((item.CountAllItem + item.CountGiftItem) - (item.CountSoldItem)) * smallestUnit.QuantityForPrimary;
-                //    }
-                //    else
-                //    {
-                //        var quantity = smallestUnit.QuantityForPrimary / unitDestionation.QuantityForPrimary;
-                //        smallUnitQuantity += ((item.CountAllItem + item.CountGiftItem) - (item.CountSoldItem)) * quantity;
-                //    }
-                //}
                 priceTags.ForEach(x => smallUnitQuantity += (x.CountAllItem + x.CountGiftItem) - (x.CountSoldItem));
 
                 if (smallestUnit.UnitTypeId == unitDestionation.UnitTypeId)
@@ -814,7 +789,6 @@ namespace DataLayer.Services
             }
         }
         static int fortry = 0;
-
         public static double GetQuantityOfArticleAllPriceTagInt(int artId, int unitId)
         {
             unitId = 0;
@@ -842,8 +816,6 @@ namespace DataLayer.Services
                 context.ArticleUnits.AddRange(primaryUnit);
                 context.SaveChanges();
             }
-
-
 
             if (unitId == 0 || unitId == 1)
                 unitId = primaryUnit.UnitTypeId;
@@ -1004,7 +976,6 @@ namespace DataLayer.Services
                 context.SaveChanges();
             }
         }
-
         public static List<ArticleRemaningAmount> GetArticleAmountRemaning(int artId)
         {
             List<ArticleRemaningAmount> articleRemaningAmounts = new List<ArticleRemaningAmount>();

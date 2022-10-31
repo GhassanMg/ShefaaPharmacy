@@ -66,6 +66,5 @@ namespace DataLayer.Tables
         public InvoiceKind InvoiceKind { get; set; }
         public int InvoiceId { get; set; }
         #endregion
-
     }
 }

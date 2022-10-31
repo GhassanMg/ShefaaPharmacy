@@ -12,6 +12,5 @@
         public string BuyPrice { get; set; }
         public string SellPrice { get; set; }
         public string barcode { get; set; }
-
     }
 }

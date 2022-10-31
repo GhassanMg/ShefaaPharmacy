@@ -24,7 +24,6 @@ namespace ShefaaPharmacy.Setting
             InitializeComponent();
             InitializeMyControl();
         }
-        
         public void LoginToRefreshToken(TaxAccount NewAccount)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -45,7 +44,6 @@ namespace ShefaaPharmacy.Setting
             // The control will allow no more than 14 characters.
             tbPassword.MaxLength = 14;
         }
-
         protected override void btOK_Click(object sender, EventArgs e)
         {
             if (ValidateChildren(ValidationConstraints.Enabled))
@@ -158,7 +156,6 @@ namespace ShefaaPharmacy.Setting
                 throw new Exception("Error in base64Encode" + ex.Message);
             }
         }
-        //this function Convert to Decord your Password
         public string DecodePasswordFromBase64(string encodedData)
         {
             System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
@@ -190,7 +187,6 @@ namespace ShefaaPharmacy.Setting
                 errorProviderApp.SetError(tbPassword, "");
             }
         }
-
         private void tbUserName_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbUserName.Text))
@@ -205,7 +201,6 @@ namespace ShefaaPharmacy.Setting
                 errorProviderApp.SetError(tbUserName, "");
             }
         }
-
         private void tbTaxNumber_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbTaxNumber.Text))

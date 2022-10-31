@@ -61,7 +61,6 @@ namespace ShefaaPharmacy.Invoice
                 _MessageBoxDialog.Show("فاتورة غير موجودة", MessageBoxState.Error);
             }
         }
-
         private void pbNo_Click(object sender, EventArgs e)
         {
             Close();
@@ -74,12 +73,10 @@ namespace ShefaaPharmacy.Invoice
                 btnReturn_Click(sender, e);
             }
         }
-
         private void InvoiceReturningForm_Load(object sender, EventArgs e)
         {
             this.Text = FormName;
         }
-
         private void LbBillNumber_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (Auth.IsReportReader())

@@ -79,7 +79,6 @@ namespace ShefaaPharmacy.Setting
             }
 
         }
-
         private void DBConfigEditForm_Load(object sender, EventArgs e)
         {
             tbVersion.Text = "A" + Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." + Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString();

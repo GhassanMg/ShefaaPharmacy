@@ -27,7 +27,6 @@ namespace ShefaaPharmacy.Api
             this.socket = s;
             this.srv = srv;
         }
-
         private string streamReadLine(Stream inputStream)
         {
             int next_char;

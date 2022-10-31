@@ -13,7 +13,7 @@ namespace DataLayer.Services
         {
             try
             {
-                PriceTagMaster priceTag = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagMasters.Where(x => x.ArticleId == articleId).Include(e=>e.PriceTagDetails).OrderByDescending(x => x.CreationDate).First();
+                PriceTagMaster priceTag = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagMasters.Where(x => x.ArticleId == articleId).Include(e => e.PriceTagDetails).OrderByDescending(x => x.CreationDate).First();
                 if (priceTag == null)
                     return 0;
                 else
@@ -23,7 +23,6 @@ namespace DataLayer.Services
             {
                 return 0;
             }
-           
         }
         public static double GetLastSellPrice(int articleId, int unitTypeId)
         {
@@ -39,7 +38,6 @@ namespace DataLayer.Services
             {
                 return 0;
             }
-            
         }
         public static PriceTagMaster GetLastPriceTagForArticle(int articleId)
         {

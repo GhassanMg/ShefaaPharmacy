@@ -26,7 +26,6 @@ namespace ShefaaPharmacy.Notification
             _NotificationType = notificationType;
             InitializeComponent();
             ChangeStyleOfGrid(dgvNotification);
-
         }
         void ChangeStyleOfGrid(DataGridView dataGridView)
         {
@@ -38,7 +37,6 @@ namespace ShefaaPharmacy.Notification
 
             dataGridView.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
         }
         private void GeneralNotification_Load(object sender, EventArgs e)
         {
@@ -70,8 +68,6 @@ namespace ShefaaPharmacy.Notification
         int count = 0;
         private void QuantityArticle()
         {
-
-            //GeneralInvoiceEditForm gi = new GeneralInvoiceEditForm();
             List<QuantityLeftArticleViewModel> quantities = new List<QuantityLeftArticleViewModel>();
             List<QuantityLeftArticleViewModel> finalquents = new List<QuantityLeftArticleViewModel>();
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -125,7 +121,6 @@ namespace ShefaaPharmacy.Notification
                 _MessageBoxDialog.Show("لا يوجد منتجات تخطت حدها الأعلى أو الأدنى للكمية", MessageBoxState.Warning);
                 this.Close();
             }
-
         }
         private void ExpiryDateArticle()
         {
@@ -316,9 +311,7 @@ namespace ShefaaPharmacy.Notification
             {
                 return false;
             }
-
         }
-
         public bool UpdatePricesNotification()
         {
             //var context = ShefaaPharmacyDbContext.GetCurrentContext();

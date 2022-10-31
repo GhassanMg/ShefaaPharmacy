@@ -7,8 +7,7 @@ namespace DataLayer.Services
 {
     public class NatureTypeConverter : TypeConverter
     {
-        public override bool CanConvertTo(ITypeDescriptorContext
-                context, Type destinationType)
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
             if (ReferenceEquals(destinationType, typeof(string)))
             {
@@ -17,8 +16,7 @@ namespace DataLayer.Services
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context,
-                CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (ReferenceEquals(destinationType, typeof(string)))
             {
@@ -33,7 +31,6 @@ namespace DataLayer.Services
                     return value.ToString();
                 }
             }
-
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }

@@ -4,7 +4,6 @@ namespace DataLayer.Tables
 {
     public class Medicines 
     {
-        //[name][nvarchar](600) NULL,[company][nvarchar](600) NULL,[scientific_name][nvarchar](600) NULL,[caliber][nvarchar](600) NULL,[format_id_descr][nvarchar](600) NULL,[size][nvarchar](600) NULL,[BuyPrice][nvarchar](600) NULL,[SellPrice][nvarchar](600) NULL,[barcode][nvarchar](600) NULL) ON[PRIMARY];";
         [DisplayName("الرقم")]
         public string Id { get; set; }
         [DisplayName("اسم الصنف")]

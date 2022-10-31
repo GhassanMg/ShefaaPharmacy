@@ -14,7 +14,6 @@ namespace ShefaaPharmacy.Setting
             InitializeComponent();
             FillComponents();
         }
-
         private void btRefrash_Click(object sender, EventArgs e)
         {
             try
@@ -41,7 +40,6 @@ namespace ShefaaPharmacy.Setting
             rbwindows.Checked = !ConnectionManager.ServerAuth;
             rbServer.Checked = ConnectionManager.ServerAuth;
         }
-
         private void btTestConn_Click(object sender, EventArgs e)
         {
             SqlConnection sqlTestConn = new SqlConnection();
@@ -63,18 +61,15 @@ namespace ShefaaPharmacy.Setting
             }
             catch (Exception ex)
             {
-                _MessageBoxDialog.Show("لم ينجح الاتصال يرجى التأكد من اسم المخدم واعادة المحاولة" , MessageBoxState.Error);
-                //_MessageBoxDialog.Show("فشل الاتصال" + " .. " + ex.Message, MessageBoxState.Error);
+                _MessageBoxDialog.Show("لم ينجح الاتصال يرجى التأكد من اسم المخدم واعادة المحاولة", MessageBoxState.Error);
                 sqlTestConn.Close();
             }
         }
-
         private void rbwindows_CheckedChanged(object sender, EventArgs e)
         {
             tbUserName.Enabled = !rbwindows.Checked;
             tbPassword.Enabled = !rbwindows.Checked;
         }
-
         private void rbServer_CheckedChanged(object sender, EventArgs e)
         {
             tbUserName.Enabled = rbServer.Checked;
@@ -88,7 +83,7 @@ namespace ShefaaPharmacy.Setting
             ConnectionManager.ServerAuth = rbServer.Checked;
             if (!ConnectionManager.CanConnec())
             {
-                if (_MessageBoxDialog.Show("لم يتمكن من الاتصال هل تريد المتابعة ؟",MessageBoxState.Answering)==MessageBoxAnswer.Yes)
+                if (_MessageBoxDialog.Show("لم يتمكن من الاتصال هل تريد المتابعة ؟", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
                 {
                     base.btOK_Click(sender, e);
                 }
@@ -110,12 +105,10 @@ namespace ShefaaPharmacy.Setting
         {
             base.btCancel_Click(sender, e);
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
         }
-
         private void ServerSettingsForm_Load(object sender, EventArgs e)
         {
 

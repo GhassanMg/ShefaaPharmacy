@@ -15,7 +15,6 @@ namespace ShefaaPharmacy.Notification
         {
             InitializeComponent();
         }
-
         private void NotificationsSettingsForm_Load(object sender, EventArgs e)
         {
             settingNotifications = ShefaaPharmacyDbContext.GetCurrentContext().SettingNotifications.ToList().FirstOrDefault();
@@ -25,7 +24,6 @@ namespace ShefaaPharmacy.Notification
             tbRmindAfterDay.DataBindings.Add("text", bsNotification, "DayCountForRemind");
             tbDeleteAfterDay.DataBindings.Add("text", bsNotification, "DeleteAfterDay");
         }
-
         private void btnOk_Click(object sender, EventArgs e)
         {
             try
@@ -46,7 +44,6 @@ namespace ShefaaPharmacy.Notification
             {
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
-
         }
     }
 }

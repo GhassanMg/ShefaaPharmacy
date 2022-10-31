@@ -87,7 +87,6 @@ namespace ShefaaPharmacy.Invoice
                 return;
             LoadDetail(bindingSourceMaster.Current as BillMaster);
         }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (bindingSourceMaster.Current == null)
@@ -109,7 +108,6 @@ namespace ShefaaPharmacy.Invoice
             }
             LoadMaster();
         }
-
         private void tsRefresh_Click(object sender, EventArgs e)
         {
             LoadMaster();
@@ -126,7 +124,6 @@ namespace ShefaaPharmacy.Invoice
             }
             dgDetail.Refresh();
         }
-
         private void InvoiceMasterDetailReportForm_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;

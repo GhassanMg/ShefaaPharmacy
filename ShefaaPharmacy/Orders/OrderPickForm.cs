@@ -58,7 +58,6 @@ namespace ShefaaPharmacy.Orders
                 fmPick.Dispose();
             }
         }
-
         protected override void AdjustmentGridColumns()
         {
             HiddenColumn = new string[] { "Company", "CompanyId" };
@@ -83,7 +82,6 @@ namespace ShefaaPharmacy.Orders
         {
             base.DeleteCurrentItem(shefaaPharmacyDbContext);
         }
-
         protected override void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             base.bindingNavigatorAddNewItem_Click(sender, e);

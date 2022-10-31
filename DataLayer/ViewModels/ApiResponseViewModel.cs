@@ -8,6 +8,5 @@ namespace DataLayer.ViewModels
         public bool success { get; set; }
         public int status_code { get; set; }
         public List<T> data { get; set; }
-
     }
 }

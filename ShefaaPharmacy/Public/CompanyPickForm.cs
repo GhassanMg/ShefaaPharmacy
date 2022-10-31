@@ -80,7 +80,6 @@ namespace ShefaaPharmacy.Public
             base.DeleteCurrentItem(shefaaPharmacyDbContext);
             shefaaPharmacyDbContext.Companys.Remove(CurrentEntity as Company);
         }
-
         protected override void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             base.bindingNavigatorAddNewItem_Click(sender, e);
@@ -121,7 +120,6 @@ namespace ShefaaPharmacy.Public
             {
                 PickBindingSource.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().Companys.Where(x => x.Name.Contains(tsFilterdText.Text)).ToList();
             }
-
             base.Rebinding();
         }
         private void CompanyPickForm_Load(object sender, EventArgs e)

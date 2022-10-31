@@ -1,8 +1,8 @@
 ﻿using DataLayer.Tables;
 using DataLayer.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace DataLayer.Services
 {
@@ -69,7 +69,6 @@ namespace DataLayer.Services
         }
         public static PriceTagDetail ConvertToPrimaryUnit(int articleId, double sell, double buy, int unitId, int quantity)
         {
-
             ArticleUnits primaryUnit = ShefaaPharmacyDbContext
                 .GetCurrentContext()
                 .ArticleUnits
@@ -84,8 +83,6 @@ namespace DataLayer.Services
                     priceTagDetail.SellPrice = sell;
                     priceTagDetail.BuyPrice = buy;
                     return priceTagDetail;
-
-
                 }
                 else
                 {
@@ -102,7 +99,6 @@ namespace DataLayer.Services
             }
             catch
             {
-
                 ArticleUnits sourceUnit = ShefaaPharmacyDbContext
                 .GetCurrentContext()
                 .ArticleUnits
@@ -114,7 +110,6 @@ namespace DataLayer.Services
                 priceTagDetail.BuyPrice = buy * sourceUnit.QuantityForPrimary;
 
                 return priceTagDetail;
-
             }
         }
         public static List<PriceTagDetail> MakeNewPriceTagDetailForArticle(BillDetail ForSellInMinus)
@@ -221,24 +216,12 @@ namespace DataLayer.Services
                     {
                         return;
                     }
-
                     priceTagMaster.PriceTagDetails.Add(newpriceTagDetail);
                     context.PriceTagMasters.Update(priceTagMaster);
                     context.SaveChanges();
                 }
             }
         }
-        //public static void MakeNewPriceTagDetailForArticle(int articleId, int unitId, double purchasePrice)
-        //{
-        //    var context = ShefaaPharmacyDbContext.GetCurrentContext();
-        //    PriceTagDetail priceTagDetail = new PriceTagDetail
-        //    {
-        //        UnitId = unitId,
-        //        BuyPrice = priceTagDetailPrimary.BuyPrice / item.QuantityForPrimary,
-        //        SellPrice = priceTagDetailPrimary.SellPrice / item.QuantityForPrimary
-        //    };
-        //    priceTagDetails.Add(priceTagDetail);
-        //}
         public static List<PriceTagDetail> MakeNewPriceTagDetailForArticle(int articleId, int unitId, double purchasePrice)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();

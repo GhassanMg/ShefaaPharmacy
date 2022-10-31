@@ -1,10 +1,10 @@
 ﻿using DataLayer.Enums;
 using DataLayer.Tables;
 using System;
+using System.Linq;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace DataLayer.Helper
 {

@@ -11,6 +11,5 @@ namespace DataLayer.Tables
         [ForeignKey("ArticaleId")]
         public Article Articale { set; get; }
         #endregion
-
     }
 }

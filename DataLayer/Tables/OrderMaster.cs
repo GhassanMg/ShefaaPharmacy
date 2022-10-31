@@ -25,7 +25,6 @@ namespace DataLayer.Tables
                 return DescriptionFK.GetCompanyName(CompanyId);
             }
         }
-        //------------------------------------
         public List<OrderDetail> Details { set; get; }
     }
 }

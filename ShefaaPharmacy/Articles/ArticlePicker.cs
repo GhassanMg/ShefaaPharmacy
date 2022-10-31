@@ -1,20 +1,20 @@
-﻿using DataLayer.Enums;
-using DataLayer;
-using DataLayer.Services;
+﻿using DataLayer;
+using DataLayer.Enums;
 using DataLayer.Tables;
-using Microsoft.EntityFrameworkCore;
+using DataLayer.Services;
+using ShefaaPharmacy.Helper;
 using ShefaaPharmacy.Articale;
 using ShefaaPharmacy.GeneralUI;
-using ShefaaPharmacy.Helper;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShefaaPharmacy.Articles
 {
-    public partial class ArticlePicker : ShefaaPharmacy.GeneralUI.AbstractForm
+    public partial class ArticlePicker : AbstractForm
     {
         List<Article> Articles { set; get; }
         public string TextFilter { get; set; } = "";

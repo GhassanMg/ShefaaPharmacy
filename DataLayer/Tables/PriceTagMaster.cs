@@ -13,11 +13,9 @@ namespace DataLayer.Tables
         [NotMapped]
         [DisplayName("الصنف")]
         public string ArticleIdDescr { get { return DescriptionFK.GetArticaleName(ArticleId); } set {; } }
-
         public int BranchId { get; set; }
         [NotMapped]
         public string BranchIdDescr { get { return DescriptionFK.GetBranchName(BranchId); } set {; } }
-
         public int UnitId { get; set; }
         [NotMapped]
         [DisplayName("الواحدة")]

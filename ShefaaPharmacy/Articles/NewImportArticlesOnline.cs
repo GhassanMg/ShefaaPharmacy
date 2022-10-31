@@ -1,22 +1,22 @@
 ﻿using DataLayer;
 using DataLayer.Helper;
-using DataLayer.Services;
 using DataLayer.Tables;
+using DataLayer.Services;
 using DataLayer.ViewModels;
-using Microsoft.EntityFrameworkCore;
-using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
+using ShefaaPharmacy.GeneralUI;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShefaaPharmacy.Articles
 {
-    public partial class NewImportArticlesOnline : ShefaaPharmacy.GeneralUI.AbstractForm
+    public partial class NewImportArticlesOnline : AbstractForm
     {
         public NewImportArticlesOnline()
         {
@@ -29,35 +29,35 @@ namespace ShefaaPharmacy.Articles
             status = "online";
             InitializeComponent();
             dataGridView2.DataSource = x.OrderBy(r => r.name).ToList();
-            dataGridView2.Columns["Description"].Visible = false;
-            dataGridView2.Columns["Description2"].Visible = false;
-            dataGridView2.Columns["dosage"].Visible = false;
-            dataGridView2.Columns["english_name"].Visible = false;
-            dataGridView2.Columns["interactions"].Visible = false;
             dataGridView2.Columns["note"].Visible = false;
             dataGridView2.Columns["note2"].Visible = false;
-            dataGridView2.Columns["precautions"].Visible = false;
-            dataGridView2.Columns["side_effects"].Visible = false;
-            dataGridView2.Columns["scientific_name"].Visible = false;
+            dataGridView2.Columns["dosage"].Visible = false;
             dataGridView2.Columns["barcode"].Visible = false;
+            dataGridView2.Columns["Description"].Visible = false;
+            dataGridView2.Columns["precautions"].Visible = false;
+            dataGridView2.Columns["interactions"].Visible = false;
+            dataGridView2.Columns["side_effects"].Visible = false;
+            dataGridView2.Columns["Description2"].Visible = false;
+            dataGridView2.Columns["english_name"].Visible = false;
+            dataGridView2.Columns["scientific_name"].Visible = false;
 
             dataGridView2.Columns["name"].ReadOnly = true;
             dataGridView2.Columns["size"].ReadOnly = true;
-            dataGridView2.Columns["active_ingredients"].ReadOnly = true;
+            dataGridView2.Columns["barcode"].ReadOnly = true;
             dataGridView2.Columns["caliber"].ReadOnly = true;
             dataGridView2.Columns["BuyPrice"].ReadOnly = true;
             dataGridView2.Columns["SellPrice"].ReadOnly = true;
-            dataGridView2.Columns["company_id_descr"].ReadOnly = true;
             dataGridView2.Columns["format_id_descr"].ReadOnly = true;
-            dataGridView2.Columns["barcode"].ReadOnly = true;
+            dataGridView2.Columns["company_id_descr"].ReadOnly = true;
+            dataGridView2.Columns["active_ingredients"].ReadOnly = true;
 
-            dataGridView2.Columns["barcode"].DisplayIndex = dataGridView2.ColumnCount - 2;
-            dataGridView2.Columns["company_id_descr"].DisplayIndex = 1;
             dataGridView2.Columns["format_id_descr"].DisplayIndex = 4;
+            dataGridView2.Columns["company_id_descr"].DisplayIndex = 1;
+            dataGridView2.Columns["barcode"].DisplayIndex = dataGridView2.ColumnCount - 2;
 
+            tbSearch.Enabled = true;
             btnImport.Enabled = true;
             CheckArticles.Enabled = true;
-            tbSearch.Enabled = true;
             dataGridView2.Refresh();
         }
         public NewImportArticlesOnline(List<string> Comparray)
@@ -88,7 +88,7 @@ namespace ShefaaPharmacy.Articles
             {
                 DisplayData();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _MessageBoxDialog.Show("حدث خطأ يرجى المحاولة مجدداً", MessageBoxState.Error);
             }
@@ -205,7 +205,7 @@ namespace ShefaaPharmacy.Articles
                 }
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 _MessageBoxDialog.Show("حدث خطأ يرجى المحاولة مجدداً", MessageBoxState.Error);
                 btnImport.Enabled = button3.Enabled = CheckArticles.Enabled = tbSearch.Enabled = btnClose.Enabled = btnMaximaizing.Enabled = btnMinimizing.Enabled = dataGridView2.Enabled = true;

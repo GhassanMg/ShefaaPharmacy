@@ -18,10 +18,6 @@ namespace DataLayer.Tables
         public int BuyAccountId { get; set; }
         [Required]
         public int SellAccountId { get; set; }
-        //[Required]
-        //public int ReturnBuyAccountId { get; set; }
-        //[Required]
-        //public int ReturnSellAccountId { get; set; }
         [Required]
         public int CustomerAccountId { get; set; }
         public bool CanSellBill { get; set; }
@@ -69,26 +65,6 @@ namespace DataLayer.Tables
             }
             set {; }
         }
-        //[DisplayName("حساب مردودات المشتريات")]
-        //[NotMapped]
-        //public string ReturnBuyAccountIdDescr
-        //{
-        //    get
-        //    {
-        //        return DescriptionFK.GetAccountName(ReturnBuyAccountId);
-        //    }
-        //    set {; }
-        //}
-        //[DisplayName("حساب مردودات المبيعات")]
-        //[NotMapped]
-        //public string ReturnSellAccountIdDescr
-        //{
-        //    get
-        //    {
-        //        return DescriptionFK.GetAccountName(ReturnSellAccountId);
-        //    }
-        //    set {; }
-        //}
         [DisplayName("حساب الزبائن")]
         [NotMapped]
         public string CustomerAccountIdDescr

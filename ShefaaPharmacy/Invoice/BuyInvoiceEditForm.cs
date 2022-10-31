@@ -217,7 +217,6 @@ namespace ShefaaPharmacy.Invoice
             tbAccountIdDescr.AutoCompleteMode = AutoCompleteMode.Suggest;
             tbAccountIdDescr.AutoCompleteSource = AutoCompleteSource.CustomSource;
             tbAccountIdDescr.AutoCompleteCustomSource = autoCompleteStringCollection;
-
         }
         private void EditBindingSource_DataSourceChanged(object sender, EventArgs e)
         {
@@ -255,7 +254,6 @@ namespace ShefaaPharmacy.Invoice
             DetailBindingSource.DataSource = purchesBillViewModels;
             dgDetail.DataSource = DetailBindingSource;
         }
-
         private bool SaveNewBill()
         {
             List<BillDetail> _billDetails = new List<BillDetail>();
@@ -306,7 +304,6 @@ namespace ShefaaPharmacy.Invoice
             }
             return result;
         }
-
         private bool DeleteBill()
         {
             BillService billService = new BillService(billMaster);
@@ -316,7 +313,6 @@ namespace ShefaaPharmacy.Invoice
             }
             return billService.DeleteBill(InvoiceKind.DeleteBuy);
         }
-
         private bool ReturnBill()
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -423,7 +419,6 @@ namespace ShefaaPharmacy.Invoice
             BillService billService = new BillService(billMaster);
             return billService.EditBill(DetailBindingSource.DataSource as List<PurchesBillViewModel>);
         }
-
         private void CbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             billMaster.PaymentMethod = (PaymentMethod)cbPaymentMethod.SelectedValue;
@@ -829,7 +824,6 @@ namespace ShefaaPharmacy.Invoice
                     FillRow(articleBarcode);
                     count++;
                 }
-
             }
             else
             {
@@ -1022,12 +1016,10 @@ namespace ShefaaPharmacy.Invoice
         {
             InecreseQuantity();
         }
-
         private void PbDecresedQuantity_Click(object sender, EventArgs e)
         {
             DecreseQuantity();
         }
-
         private void DgDetail_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (ActiveControl == null || !ActiveControl.Name.Contains("dgDetail"))

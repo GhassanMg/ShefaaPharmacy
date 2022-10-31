@@ -49,7 +49,6 @@ namespace DataLayer.Tables
             }
             set {; }
         }
-        //                    ======================================
         [Browsable(false)]
         [NotMapped]
         public string UnitTypeIdDescrMobile
@@ -60,7 +59,6 @@ namespace DataLayer.Tables
             }
             set {; }
         }
-        //                    =======================================
         [DisplayName("نوع الكمية")]
         [NotMapped]
         public string UnitTypeIdDescr
@@ -87,7 +85,6 @@ namespace DataLayer.Tables
                 if (discount != 0)
                     TotalPrice -= discount;
                 onUpdateForm?.Invoke();
-                //BillMaster.CalcTotal();
             }
         }
         [DisplayName("كمية الهدايا")]
@@ -103,8 +100,8 @@ namespace DataLayer.Tables
                     if (ArticaleId != 0)
                     {
                         string x = context != null ? String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTagMobile(context, artId: ArticaleId, unitId: UnitTypeId))) : String.Format("{0:0.##}", Convert.ToDouble(InventoryService.GetQuantityOfArticleAllPriceTag(artId: ArticaleId, unitId: UnitTypeId)));
-                        double dres =double.Parse(x);
-                        
+                        double dres = double.Parse(x);
+
                         return x;
                     }
                     else
@@ -114,7 +111,6 @@ namespace DataLayer.Tables
                 {
                     return "";
                 }
-
             }
             set
             {
@@ -150,7 +146,6 @@ namespace DataLayer.Tables
                 discount = value;
                 TotalPrice = Quantity * price;
                 TotalPrice -= value;
-                //BillMaster.CalcTotal();
                 onUpdateForm?.Invoke();
             }
         }
@@ -169,7 +164,6 @@ namespace DataLayer.Tables
             {
                 return null;
             }
-
         }
         #region Relation
         [Browsable(false)]

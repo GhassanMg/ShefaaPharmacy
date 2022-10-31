@@ -16,8 +16,6 @@ namespace ShefaaPharmacy.Setting
             tbNumber.Text = RDSFECXA__WEWDSA.GetString(RDSFECXA__WEWDSA.getMotherBoardID());
             tbNumber.ForeColor = Color.DimGray;
         }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (tbCorporateNumber.Text != "" && tbNextNumber.Text != "")
@@ -31,7 +29,6 @@ namespace ShefaaPharmacy.Setting
                     _MessageBoxDialog.Show("تم تسجيل النسخة بنجاح يجب إعادة تشغيل التطبيق لتسجيل المعلومات", MessageBoxState.Done);
                 }
             }
-
         }
     }
 }

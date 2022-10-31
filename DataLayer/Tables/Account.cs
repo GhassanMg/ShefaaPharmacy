@@ -33,9 +33,6 @@ namespace DataLayer.Tables
         public string CategoryIdDescr { get { return DescriptionFK.GetAccountBaseCategoryName(CategoryId); } set {; } }
         public int CategoryId { get; set; }
         public int? AccountGeneralId { get; set; }
-        //[DisplayName("نوع الحساب")]
-        //[NotMapped]
-        //public string AccountCategoryIdDescr { set {; } get { return DescriptionFK.GetAccountCategoryName(this.AccountCategoryId); } }
         [DisplayName("طبيعة الحساب")]
         public AccountState AccountState { get; set; } = AccountState.Both;
         #region Relation
@@ -45,11 +42,6 @@ namespace DataLayer.Tables
         [Browsable(false)]
         [ForeignKey("AccountGeneralId")]
         public Account AccountGeneral { get; set; }
-        //[Browsable(false)]
-        //public int AccountCategoryId { set; get; }
-        //[ForeignKey("AccountCategoryId")]
-        //[Browsable(false)]
-        //public AccountCategory AccountCategory { set; get; }
         [Browsable(false)]
         public IList<EntryMaster> EntryMasters { set; get; }
         [Browsable(false)]

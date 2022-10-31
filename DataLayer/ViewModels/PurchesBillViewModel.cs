@@ -9,7 +9,6 @@ namespace DataLayer.ViewModels
         [DisplayName("الباركود")]
         public string BarcodeDescr { get { return Barcode; } set {; } }
 
-
         [Browsable(false)]
         public int ArticleId { get; set; }
         [DisplayName("الصنف")]
@@ -37,10 +36,8 @@ namespace DataLayer.ViewModels
         [DisplayName("الكمية")]
         public int Quantity { get; set; }
 
-
         [Browsable(false)]
         public string Barcode { get; set; }
-
 
         [DisplayName("سعر الشراء")]
         public double PurchasePrice { get; set; }

@@ -132,7 +132,7 @@ namespace ShefaaPharmacy.Setting
                 else
                 {
                     var thread = new Thread(() =>
-                    { 
+                    {
                         SetTaxAccountCredentials Credentials = new SetTaxAccountCredentials();
                         var CurrentAccount = context.TaxAccount.ToList().FirstOrDefault();
                         Credentials.LoginToRefreshToken(CurrentAccount);

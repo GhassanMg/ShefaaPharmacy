@@ -189,7 +189,6 @@ namespace ShefaaPharmacy.Orders
                 ;
             }
         }
-
         private void pbAddRow_Click(object sender, EventArgs e)
         {
             if (ddlArticle.Items == null || ddlArticle.Items.Count < 1)
@@ -207,7 +206,6 @@ namespace ShefaaPharmacy.Orders
                 DetailBindingSource.AddNew();
             }
         }
-
         private void DetailBindingSource_AddingNew(object sender, AddingNewEventArgs e)
         {
             OrderDetail orderDetail = new OrderDetail();
@@ -219,7 +217,6 @@ namespace ShefaaPharmacy.Orders
             }
             dgvOrderDetail.Refresh();
         }
-
         private void dgvOrderDetail_BindingContextChanged(object sender, EventArgs e)
         {
             try
@@ -246,7 +243,6 @@ namespace ShefaaPharmacy.Orders
 
             ddlCompany_SelectedIndexChanged(sender, e);
         }
-
         private void pbDeleteRow_Click(object sender, EventArgs e)
         {
             DeleteRow();
@@ -286,12 +282,10 @@ namespace ShefaaPharmacy.Orders
                 dgvOrderDetail.Refresh();
             }
         }
-
         private void pbDecresQuantity_Click(object sender, EventArgs e)
         {
             DecreseQuantity();
         }
-
         private void pbIncreseQuantity_Click(object sender, EventArgs e)
         {
             InecreseQuantity();

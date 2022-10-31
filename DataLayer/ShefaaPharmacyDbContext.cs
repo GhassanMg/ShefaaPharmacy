@@ -1,12 +1,12 @@
 ﻿using DataLayer.Enums;
 using DataLayer.Helper;
+using DataLayer.Tables;
 using DataLayer.MapTables;
 using DataLayer.Script.Procedures;
-using DataLayer.Tables;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer
 {

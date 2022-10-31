@@ -1,6 +1,6 @@
-﻿using DataLayer.Tables;
+﻿using System.Linq;
+using DataLayer.Tables;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DataLayer.Helper
 {

@@ -6,17 +6,12 @@ namespace DataLayer.ViewModels
 {
     public class ArticleDetail
     {
-        //[DisplayName("الكمية المباعة")]
-        //public int CountSell { get; set; }
-        //[DisplayName("الكمية المشتراه")]
-        //public int CountBuy { get; set; }
         [DisplayName("الكمية المتبقية")]
         public string CountLeft { get; set; }
         [DisplayName("آخر سعر شراء")]
         public double LastBuyPrimary { get; set; }
         [DisplayName("آخر سعر مبيع")]
         public double LastSellPrimary { get; set; }
-        
     }
     public class ArticleExpiryDay
     {

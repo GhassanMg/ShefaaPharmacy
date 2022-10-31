@@ -1,6 +1,6 @@
 ﻿namespace DataLayer.Tables
 {
-    public class LastTimeArticles 
+    public class LastTimeArticles
     {
         //[Browsable(false)]
         //public int ArticleId { get; set; }

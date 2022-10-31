@@ -14,7 +14,7 @@ namespace DataLayer.ViewModels
         {
             get
             {
-               return DescriptionFK.GetArticaleName(ArticleId);
+                return DescriptionFK.GetArticaleName(ArticleId);
             }
             set {; }
         }
@@ -46,12 +46,6 @@ namespace DataLayer.ViewModels
         }
         [Browsable(false)]
         private int quantity;
-        //[DisplayName("الكمية الموجودة")]
-        //public int LeftQuantity
-        //{
-        //     get; set; 
-
-        //}
         [DisplayName("العدد")]
         public int Quantity
         {

@@ -143,7 +143,6 @@ namespace DataLayer.Tables
         public Format Format { set; get; }
         [ForeignKey("ArticleCategoryId")]
         [Browsable(false)]
-
         public ArticleCategory ArticleCategory { set; get; }
         [Browsable(false)]
         public List<BillDetail> BillDetails { get; set; }

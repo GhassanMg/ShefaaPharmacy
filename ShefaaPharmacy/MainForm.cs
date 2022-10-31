@@ -1,47 +1,47 @@
 ﻿using DataLayer;
 using DataLayer.Enums;
 using DataLayer.Helper;
-using DataLayer.Services;
 using DataLayer.Tables;
+using DataLayer.Services;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using ShefaaPharmacy.Accounting;
-using ShefaaPharmacy.AccountingReport;
+using ShefaaPharmacy.Orders;
+using ShefaaPharmacy.Helper;
+using ShefaaPharmacy.Public;
+using ShefaaPharmacy.Desktop;
+using ShefaaPharmacy.Invoice;
+using ShefaaPharmacy.Setting;
 using ShefaaPharmacy.Articale;
 using ShefaaPharmacy.Articles;
-using ShefaaPharmacy.DataBaseSetting;
-using ShefaaPharmacy.Definition;
-using ShefaaPharmacy.Desktop;
 using ShefaaPharmacy.GeneralUI;
-using ShefaaPharmacy.Helper;
-using ShefaaPharmacy.Invoice;
-using ShefaaPharmacy.Notification;
-using ShefaaPharmacy.Orders;
-using ShefaaPharmacy.Public;
-using ShefaaPharmacy.Setting;
-using ShefaaPharmacy.UserSetting;
-using System;
+using ShefaaPharmacy.Definition;
+using ShefaaPharmacy.Accounting;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
+using ShefaaPharmacy.UserSetting;
+using ShefaaPharmacy.Notification;
+using ShefaaPharmacy.DataBaseSetting;
+using ShefaaPharmacy.AccountingReport;
+using System;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
 using System.Net;
-using System.Reflection;
+using System.Linq;
+using System.Drawing;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Diagnostics;
 using System.Windows.Forms;
+using System.IO.Compression;
+using System.Threading.Tasks;
 
 namespace ShefaaPharmacy
 {
     public partial class MainForm : AbstractForm
     {
-        AccountingDesktop accountingDesktop;
+        string DownloadPath;
+        SellFormTabs sellFormTabs;
         BasicDesktop basicDesktop;
         WarningDesktop warningDesktop;
-        SellFormTabs sellFormTabs;
-        string DownloadPath;
+        AccountingDesktop accountingDesktop;
         public class Data
         {
             public int id { get; set; }

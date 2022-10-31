@@ -1,16 +1,16 @@
 ﻿using DataLayer;
 using DataLayer.Enums;
 using DataLayer.Tables;
-using ShefaaPharmacy.Accounting;
-using ShefaaPharmacy.Definition;
-using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
+using ShefaaPharmacy.GeneralUI;
+using ShefaaPharmacy.Definition;
+using ShefaaPharmacy.Accounting;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace ShefaaPharmacy.UserSetting
 {
@@ -57,7 +57,6 @@ namespace ShefaaPharmacy.UserSetting
                 _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
             }
         }
-
         private void tbUserIdDescr_Validating(object sender, CancelEventArgs e)
         {
             User result = UserPickForm.PickUser((sender as TextBox).Text.Trim(), null, FormOperation.Pick);
@@ -159,12 +158,10 @@ namespace ShefaaPharmacy.UserSetting
                 rbTabs.Checked = true;
             }
         }
-
         private void rbTabs_CheckedChanged(object sender, EventArgs e)
         {
 
         }
-
         private void UserPermissionEditForm_Load(object sender, EventArgs e)
         {
 

@@ -23,13 +23,11 @@ namespace ShefaaPharmacy.Articles
         {
             InitializeComponent();
             ChangeStyleOfGrid(dgMaster);
-
         }
         private void ExpireArticlesReport_Load(object sender, EventArgs e)
         {
             pHelperButton.Location = new Point(this.Size.Width - pHelperButton.Width, 7);
             GetExpiredArticle();
-
         }
         void ChangeStyleOfGrid(DataGridView dataGridView)
         {
@@ -143,7 +141,6 @@ namespace ShefaaPharmacy.Articles
                 dgMaster.DataSource = bindingList;
 
                 EditGridStyle();
-
                 dgMaster.Refresh();
                 CheckLeftDays();
             }
@@ -272,20 +269,6 @@ namespace ShefaaPharmacy.Articles
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             context.ExpiryTransfeerDetails.AddRange(list);
             context.SaveChanges();
-            //using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
-            //{
-            //    DataTable dt = new DataTable();
-            //    copy.DestinationTableName = "dbo.ExpiryTransfeerDetail";
-            //    // Add mappings so that the column order doesn't matter
-            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.ArticleIdDescr), "ArticleIdDescr");
-            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.UnitIdDescr), "UnitIdDescr");
-            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.LeftQuantity), "LeftQuantity");
-            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.ExpiryDate), "ExpiryDate");
-            //    copy.ColumnMappings.Add(nameof(ExpiryTransfeerDetail.TransQuantity), "TransQuantity");
-
-            //    dt = ToDataTable(list);
-            //    copy.WriteToServer(dt);
-            //}
         }
         public DataTable ToDataTable<T>(List<T> items)
         {
@@ -307,13 +290,11 @@ namespace ShefaaPharmacy.Articles
                 }
                 dataTable.Rows.Add(values);
             }
-
             return dataTable;
         }
         void UpdateInventoryForExpiryArticles()
         {
             List<ExpiryArticlesPriceTag> MyNewList = ConvertToList();
-
             foreach (var item in MyNewList)
             {
                 item.MyPriceTag.PriceTagDetails = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagDetails.Where(x => x.PriceTagId == item.MyPriceTag.Id).ToList();
@@ -323,7 +304,6 @@ namespace ShefaaPharmacy.Articles
                 SetExpiryEntry(article.Name, item.MyPriceTag.PriceTagDetails.FirstOrDefault().BuyPrice, item.Quantity);
             }
         }
-
         public static void UpdateInventoryExpiry(int artId, int unitId, int priceTagId, int quantity, InvoiceKind invoiceKind, DateTime expiryDate, double purchasePrice)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
@@ -370,13 +350,11 @@ namespace ShefaaPharmacy.Articles
                 }
             }
         }
-
         private void btCancel_Click(object sender, EventArgs e)
         {
             if (_MessageBoxDialog.Show("هل تريد فعلا إلغاء كل ما أجري من تعديلات ؟", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
                 Close();
         }
-
         private void dgMaster_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dgMaster.CurrentRow.DataBoundItem == null)

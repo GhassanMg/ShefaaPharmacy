@@ -36,12 +36,9 @@ namespace DataLayer.Tables
         }
         [DisplayName("الكمية المطلوبة")]
         public int Quantity { get; set; }
-        //-----------------------------------
-
         // Order Master
         public int OrderMasterId { get; set; }
         [ForeignKey("OrderMasterId")]
         public OrderMaster OrderMaster { get; set; }
-        //-----------------------------------
     }
 }

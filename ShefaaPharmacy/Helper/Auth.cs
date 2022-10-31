@@ -53,7 +53,6 @@ namespace ShefaaPharmacy.Helper
                 {
                     if (RDSFECXA__WEWDSA.Ree())
                     {
-                        
                         return true;
                     }
                     else
@@ -64,10 +63,8 @@ namespace ShefaaPharmacy.Helper
                 }
                 else
                 {
-                    
                     return false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -92,7 +89,6 @@ namespace ShefaaPharmacy.Helper
                     }
                     return false;
                 }
-
             }
             catch (Exception ex)
             {

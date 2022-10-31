@@ -33,15 +33,16 @@ namespace DataLayer.ViewModels
         [DisplayName("مجاميع دائن")]
         public double Credit { get; set; }
         [DisplayName("الفرق")]
-        public double Total {
+        public double Total
+        {
             get
             {
                 return Debit - Credit;
             }
-            set 
+            set
             {
-                ; 
-            } 
+                ;
+            }
         }
     }
 }

@@ -10,12 +10,10 @@ namespace ShefaaPharmacy.Setting
         {
             InitializeComponent();
         }
-
         private void ActivationTest_Load(object sender, EventArgs e)
         {
             tbNumber.Text = RDSFECXA__WEWDSA.GetString(RDSFECXA__WEWDSA.getMotherBoardID());
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             if (tbNumber.Text != "" && tbNextNumber.Text != "")

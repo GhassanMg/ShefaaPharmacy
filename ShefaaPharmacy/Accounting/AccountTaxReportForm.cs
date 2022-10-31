@@ -1,20 +1,20 @@
 ﻿using DataLayer;
-using DataLayer.Tables;
 using DataLayer.Enums;
-using Microsoft.EntityFrameworkCore;
-using ShefaaPharmacy.GeneralUI;
-using ShefaaPharmacy.Helper;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using ShefaaPharmacy.Invoice;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection;
+using DataLayer.Tables;
 using DataLayer.Services;
+using ShefaaPharmacy.Helper;
+using ShefaaPharmacy.Invoice;
+using ShefaaPharmacy.GeneralUI;
+using System;
+using System.Data;
+using System.Linq;
+using System.Drawing;
+using System.Reflection;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShefaaPharmacy.Accounting
 {
@@ -174,7 +174,7 @@ namespace ShefaaPharmacy.Accounting
                 }
                 dgMaster.DataSource = DescriptionFK.TaxDetailsForPicker.ToList();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ;
             }

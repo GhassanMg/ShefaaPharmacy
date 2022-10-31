@@ -1,18 +1,18 @@
-﻿using DataLayer.Enums;
+﻿using Newtonsoft.Json;
+using DataLayer.Enums;
 using DataLayer.Helper;
 using DataLayer.Tables;
 using DataLayer.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
+using System.Linq;
+using System.Text;
+using System.Net.Http;
+using System.Management;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Management;
-using System.Net.Http;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Services
 {
@@ -90,10 +90,8 @@ namespace DataLayer.Services
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-            return "No Images";
         }
         public static string GetUnitName(int unitTypeId)
         {
@@ -212,7 +210,6 @@ namespace DataLayer.Services
         }
         public static int GetCompanyId(string name)
         {
-
             Company company = ShefaaPharmacyDbContext.GetCurrentContext().Companys.FirstOrDefault(x => x.Name == name);
             if (company != null)
             {
@@ -436,7 +433,7 @@ namespace DataLayer.Services
                 else
                     return null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -451,7 +448,7 @@ namespace DataLayer.Services
                 else
                     return null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -606,13 +603,11 @@ namespace DataLayer.Services
                     context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Formats ON;");
                     context.Formats.Add(mine);
 
-
                     context.SaveChanges();
 
                     context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Formats OFF;");
                     transaction.Commit();
                 }
-
                 return mine.Id;
             }
         }
@@ -657,7 +652,6 @@ namespace DataLayer.Services
             {
                 return (T)(object)values.FirstOrDefault();
             }
-
             return default(T);
         }
         public static void GetArticlesForCompany(int companyId)

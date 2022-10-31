@@ -97,12 +97,10 @@ namespace ShefaaPharmacy
                     }
                 }
             }
-
             catch (Exception)
             {
                 ;
             }
-
         }
 
         private static void RegisterFont(string contentFontName)
@@ -130,8 +128,6 @@ namespace ShefaaPharmacy
                     Registry.SetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts",
                     actualFontName, contentFontName, RegistryValueKind.String);
                 }
-
-
             }
             catch (Exception)
             {
@@ -174,7 +170,6 @@ namespace ShefaaPharmacy
             Marshal.Copy(fontdata, 0, data2, fontLength);
             modernFont.AddMemoryFont(data2, fontLength);
         }
-
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             //_MessageBoxDialog.Show("عذراً لقد حدث خطأ تأكد من صحة العملية",MessageBoxState.Error);

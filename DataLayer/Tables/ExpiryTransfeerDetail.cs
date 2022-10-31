@@ -16,7 +16,5 @@ namespace DataLayer.Tables
         public DateTime ExpiryDate { set; get; }
         [DisplayName("الكمية المحولة")]
         public int TransQuantity { set; get; }
-        //[DisplayName("تحويل")]
-        //public bool Checked { set; get; }
     }
 }

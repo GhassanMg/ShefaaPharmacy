@@ -99,13 +99,11 @@ namespace ShefaaPharmacy.Public
                 _MessageBoxDialog.Show("حصل خطأ أثناء التخزين" + "...." + ex.Message, MessageBoxState.Error);
             }
         }
-
         private void EditBindingSource_AddingNew(object sender, AddingNewEventArgs e)
         {
             company = new Company();
             e.NewObject = company;
         }
-
         private void CompanyEditForm_Load(object sender, EventArgs e)
         {
             btnMaximaizing.Enabled = false;

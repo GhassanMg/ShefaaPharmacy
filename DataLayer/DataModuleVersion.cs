@@ -38,6 +38,5 @@ namespace DataLayer
             return @"IF NOT EXISTS ( SELECT *  FROM  sys.columns 
                       WHERE  object_id = OBJECT_ID(N'[dbo].[" + tableName + "]') AND name = '" + colName + "') ALTER TABLE " + tableName + " ADD[" + colName + "] " + dataType + " NOT NULL DEFAULT " + defaultValue + "";
         }
-
     }
 }

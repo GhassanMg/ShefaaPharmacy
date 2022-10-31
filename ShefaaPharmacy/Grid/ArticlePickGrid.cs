@@ -27,7 +27,6 @@ namespace ShefaaPharmacy.Grid
             pHelperButton.Visible = false;
             DisplayHeader = false;
         }
-
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
             BindingSource bs = new BindingSource();
@@ -62,7 +61,6 @@ namespace ShefaaPharmacy.Grid
             articlePickGrid.dgArticle.AllowUserToDeleteRows = false;
             articlePickGrid.dgArticle.ReadOnly = true;
             articlePickGrid.ShowHideColumn();
-            //articlePickGrid.tbSearch.Text = name;
             articlePickGrid.StartPosition = FormStartPosition.Manual;
             articlePickGrid.Location = point;
             articlePickGrid.ShowDialog();
@@ -76,7 +74,6 @@ namespace ShefaaPharmacy.Grid
             bsArtcles.DataSource = arts;
             dgArticle.DataSource = bsArtcles;
             ShowHideColumn();
-
         }
         private void dgAccount_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -87,7 +84,6 @@ namespace ShefaaPharmacy.Grid
             SetCurrentEntity();
             Close();
         }
-
         private void dgAccount_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
