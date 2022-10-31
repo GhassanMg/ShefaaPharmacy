@@ -1539,7 +1539,6 @@ namespace ShefaaPharmacy
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
         private void miTaxAccountReport_Click(object sender, EventArgs e)
         {
             try
@@ -1585,8 +1584,11 @@ namespace ShefaaPharmacy
                     }
                     context.SaveChanges();
                 });
+                thread.IsBackground = true;
                 thread.Start();
-                _MessageBoxDialog.Show("تم ترحيل الفواتير المعلقة بنجاح", MessageBoxState.Done);
+                thread.Join();
+                if (!thread.IsAlive)
+                 _MessageBoxDialog.Show("تم ترحيل الفواتير المعلقة بنجاح", MessageBoxState.Done);
                 return;
             }
             catch
