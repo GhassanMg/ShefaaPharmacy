@@ -1380,7 +1380,7 @@
             this.lbUserNameDataBaseName.AutoSize = true;
             this.lbUserNameDataBaseName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.lbUserNameDataBaseName.ForeColor = System.Drawing.Color.White;
-            this.lbUserNameDataBaseName.Location = new System.Drawing.Point(245, 6);
+            this.lbUserNameDataBaseName.Location = new System.Drawing.Point(245, 5);
             this.lbUserNameDataBaseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbUserNameDataBaseName.Name = "lbUserNameDataBaseName";
             this.lbUserNameDataBaseName.Size = new System.Drawing.Size(122, 29);
@@ -1487,7 +1487,7 @@
             this.lblclock.AutoSize = true;
             this.lblclock.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.lblclock.ForeColor = System.Drawing.Color.White;
-            this.lblclock.Location = new System.Drawing.Point(13, 1);
+            this.lblclock.Location = new System.Drawing.Point(13, 5);
             this.lblclock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblclock.Name = "lblclock";
             this.lblclock.RightToLeft = System.Windows.Forms.RightToLeft.No;

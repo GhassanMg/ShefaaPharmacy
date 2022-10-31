@@ -171,7 +171,6 @@ namespace ShefaaPharmacy.Accounting
                 else if (CBitem == "بيع")
                 {
                     DescriptionFK.GetAllReportsForThisInvoiceType("Sell");
-
                 }
                 dgMaster.DataSource = DescriptionFK.TaxDetailsForPicker.ToList();
             }
