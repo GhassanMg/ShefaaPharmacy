@@ -440,9 +440,9 @@ namespace ShefaaPharmacy.Api
                 else // it's mean that the request is to make sell invoice
                 {
                     string resp = p.invoice;
-                    List<Dictionary<String, String>> list = new List<Dictionary<string, string>>();
+                    List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
                     billMaster.InvoiceKind = invoiceKind;
-                    list = JsonConvert.DeserializeObject<List<Dictionary<String, String>>>(resp);
+                    list = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(resp);
                     List<BillDetail> mybilld = new List<BillDetail>();
                     billMaster.IsReturned = false;
                     billMaster.YearId = YearService.GetAvailableYearMobile(context);
