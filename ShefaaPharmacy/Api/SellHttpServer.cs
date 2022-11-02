@@ -451,9 +451,11 @@ namespace ShefaaPharmacy.Api
 
                     foreach (var item in list)
                     {
-                        BillDetail detail = new BillDetail(billMaster);
-                        detail.context = context;
-                        detail.Barcode = item["barcode"];
+                        BillDetail detail = new BillDetail(billMaster)
+                        {
+                            context = context,
+                            Barcode = item["barcode"]
+                        };
                         billMaster.PaymentMethod = item["method"] == "Cash" ? PaymentMethod.Cash : PaymentMethod.Debit;
                         billMaster.StoreId = Convert.ToInt32(item["storeId"]);
                         billMaster.BranchId = Convert.ToInt32(item["branchId"]);
