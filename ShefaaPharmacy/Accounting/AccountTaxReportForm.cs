@@ -1,7 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Enums;
 using DataLayer.Tables;
-using DataLayer.Services;
 using ShefaaPharmacy.Helper;
 using ShefaaPharmacy.Invoice;
 using ShefaaPharmacy.GeneralUI;
@@ -21,6 +20,8 @@ namespace ShefaaPharmacy.Accounting
     public partial class AccountTaxReportForm : AbstractForm
     {
         UserParameters userParameters;
+        List<DetailedTaxCode> resultReport = new List<DetailedTaxCode>();
+
         public AccountTaxReportForm()
         {
             InitializeComponent();
@@ -54,7 +55,7 @@ namespace ShefaaPharmacy.Accounting
             DataTable result = DataBaseService.ExecStoredProcedure(ShefaaPharmacyDbContext.GetCurrentContext().Database.GetDbConnection(),
                                                 "TaxReport",
                                                 parameters.ToArray());
-            List<DetailedTaxCode> resultReport = DataBaseService.ConvertDataTable<DetailedTaxCode>(result);
+            resultReport = DataBaseService.ConvertDataTable<DetailedTaxCode>(result);
             bindingSourceMaster.DataSource = resultReport;
             bindingNavigator1.BindingSource = bindingSourceMaster;
         }
@@ -146,38 +147,56 @@ namespace ShefaaPharmacy.Accounting
         }
         private void AccountTaxReportForm_Load(object sender, EventArgs e)
         {
-            CBKindFilter.Visible = true;
-            List<string> MyList = new List<string> { GetEnumDisplayName(InvoiceKind.All), GetEnumDisplayName(InvoiceKind.Buy), GetEnumDisplayName(InvoiceKind.Sell) };
+            //CBKindFilter.Visible = true;
+            //List<string> MyList = new List<string> { GetEnumDisplayName(InvoiceKind.All), GetEnumDisplayName(InvoiceKind.Buy), GetEnumDisplayName(InvoiceKind.Sell) };
 
-            CBKindFilter.ComboBox.DataSource = MyList;
-            CBKindFilter.ComboBox.DisplayMember = "Name";
+            //CBKindFilter.ComboBox.DataSource = MyList;
+            //CBKindFilter.ComboBox.DisplayMember = "Name";
 
-            CBKindFilter.SelectedIndexChanged += CBKindFilter_SelectedIndexChanged;
+            //CBKindFilter.SelectedIndexChanged += CBKindFilter_SelectedIndexChanged;
         }
-
         private void CBKindFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            //    var Invoicekind = EnumHelper<InvoiceKind>.GetValueFromName((string)CBKindFilter.ComboBox.SelectedValue);
+            //    if(Invoicekind != InvoiceKind.All)
+            //    bindingSourceMaster.DataSource = resultReport.Where(x => x.InvoiceKind == Invoicekind).ToList();
+            //    else bindingSourceMaster.DataSource = resultReport;
+            //    dgMaster.Refresh();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    ;
+            //}
+        }
+    }
+    // Helper Class To Get InvoiceKind Item Name
+    public static class EnumHelper<T>
+    {
+        public static T GetValueFromName(string name)
+        {
+            var type = typeof(T);
+            if (!type.IsEnum) throw new InvalidOperationException();
+
+            foreach (var field in type.GetFields())
             {
-                string CBitem = (string)CBKindFilter.ComboBox.SelectedValue;
-                if (CBitem == "جميع الفواتير")
+                if (Attribute.GetCustomAttribute(field,
+                    typeof(DisplayAttribute)) is DisplayAttribute attribute)
                 {
-                    DescriptionFK.TaxDetailsForPicker = ShefaaPharmacyDbContext.GetCurrentContext().DetailedTaxCode.ToList();
+                    if (attribute.Name == name)
+                    {
+                        return (T)field.GetValue(null);
+                    }
                 }
-                else if (CBitem == "شراء")
+                else
                 {
-                    DescriptionFK.GetAllReportsForThisInvoiceType("Buy");
+                    if (field.Name == name)
+                        return (T)field.GetValue(null);
                 }
-                else if (CBitem == "بيع")
-                {
-                    DescriptionFK.GetAllReportsForThisInvoiceType("Sell");
-                }
-                dgMaster.DataSource = DescriptionFK.TaxDetailsForPicker.ToList();
             }
-            catch (Exception)
-            {
-                ;
-            }
+            throw new ArgumentOutOfRangeException("name");
         }
     }
 }
