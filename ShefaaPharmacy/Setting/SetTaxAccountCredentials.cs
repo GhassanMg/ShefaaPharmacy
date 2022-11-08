@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace ShefaaPharmacy.Setting
 {
@@ -23,6 +24,7 @@ namespace ShefaaPharmacy.Setting
         {
             InitializeComponent();
             InitializeMyControl();
+            btnMinimizing.Enabled = btnMaximaizing.Enabled = false;
         }
         public void LoginToRefreshToken(TaxAccount NewAccount)
         {
@@ -83,7 +85,11 @@ namespace ShefaaPharmacy.Setting
         }
         protected override void btCancel_Click(object sender, EventArgs e)
         {
-            base.btCancel_Click(sender, e);
+            if(_MessageBoxDialog.Show("هل تريد حقا الخروج من البرنامج وعدم المتابعة !؟", MessageBoxState.Answering) == MessageBoxAnswer.Yes)
+            {
+                Close();
+                Process.GetCurrentProcess().Kill();
+            }
         }
         private bool LoginExternal(TaxAccount NewAccount, bool NewLogin)
         {
