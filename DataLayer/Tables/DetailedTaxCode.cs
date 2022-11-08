@@ -28,7 +28,7 @@ namespace DataLayer.Tables
         [DisplayName("اسم التطبيق")]
         public string BillExporterApp { set; get; } = "ShefaaPharmacy";
         /// <summary>
-        /// نوع الفاتورة {Buy , Sell }
+        /// نوع الفاتورة {All, Buy , Sell }
         /// </summary>
         [DisplayName("نوع الفاتورة ")]
         public InvoiceKind InvoiceKind { set; get; }

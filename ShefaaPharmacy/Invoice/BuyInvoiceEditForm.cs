@@ -660,24 +660,6 @@ namespace ShefaaPharmacy.Invoice
                     _MessageBoxDialog.Show("تم حفظ الفاتورة", MessageBoxState.Done);
                     MasterBindingSource.AddNew();
                     cbPaymentMethod.SelectedIndex = 0;
-                    Guid GCode = Guid.NewGuid();
-                    string GUIDCode = GCode.ToString();
-                    var CurrentTaxAccount = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault();
-                    if (CurrentTaxAccount != null)
-                    {
-                        var thread = new Thread(() =>
-                        {
-                            if (AddInvoiveToTaxSystem(billNumber, billValue, GUIDCode))
-                            {
-                                SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, true);
-                            }
-                            else
-                            {
-                                SaveNewTaxReportForInvoice(billNumber, billValue, GUIDCode, CurrentTaxAccount.taxNumber, CurrentTaxAccount.facilityName, false);
-                            }
-                        });
-                        thread.Start();
-                    }
                 }
             }
             else if (FormOperation == FormOperation.Edit || FormOperation == FormOperation.EditFromPicker)
