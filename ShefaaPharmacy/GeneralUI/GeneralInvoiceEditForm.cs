@@ -1887,10 +1887,8 @@ namespace ShefaaPharmacy.GeneralUI
         {
             if (Auth.IsReportReader())
             {
-
                 InvoicDayPickForm invoicDayPickForm = new InvoicDayPickForm(null);
                 invoicDayPickForm.ShowDialog();
-
             }
             else
             {
@@ -1955,11 +1953,9 @@ namespace ShefaaPharmacy.GeneralUI
             CheckLastRow();
             if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
             {
-
                 EditBindingSource.AddNew();
                 LastThreeOperation();
                 SetFocus();
-
             }
             else
             {
@@ -1976,9 +1972,7 @@ namespace ShefaaPharmacy.GeneralUI
                     LastThreeOperation();
                 }
             }
-
         }
-
         public void AddArticle(Article article)
         {
             BillDetail currentBillDetail;

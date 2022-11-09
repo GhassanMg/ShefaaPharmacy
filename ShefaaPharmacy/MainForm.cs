@@ -1566,30 +1566,34 @@ namespace ShefaaPharmacy
                 var thread = new Thread(() =>
                 {
                     var context = ShefaaPharmacyDbContext.GetCurrentContext();
-                    BillService service = new BillService();
+                    BillService service = new BillService(); bool Done = false;
                     List<DetailedTaxCode> NotTransfeeredBills = context.DetailedTaxCode.Where(x => x.IsTransfeered == false).ToList();
                     foreach(var Bill in NotTransfeeredBills)
                     {
-                        var result = service.AddInvoiveToTaxSystem(Bill.BillNumber,Bill.BillValue,Bill.RandomCode);
-                        if (result)
+                        string result = service.AddInvoiveToTaxSystem(Bill.BillNumber,Bill.BillValue,Bill.RandomCode);
+                        if (result == "Done")
                         {
                             Bill.IsTransfeered = true;
                             Bill.DateTime = DateTime.Now.ToString("yyyy/MM/dd hh:mm tt");
+                            Done = true;
                         }
                         else
                         {
-                            _MessageBoxDialog.Show("يرجى التأكد من اتصالك بالإنترنت والمحاولة لاحقاً",MessageBoxState.Error);
-                            continue;
+                            _MessageBoxDialog.Show(result,MessageBoxState.Error);
+                            return;
                         }
                     }
-                    context.SaveChanges();
+                    if (Done)
+                    {
+                        context.SaveChanges();
+                        _MessageBoxDialog.Show("تم ترحيل الفواتير المعلقة بنجاح", MessageBoxState.Done);
+                    }
                 });
                 thread.IsBackground = true;
                 thread.Start();
-                thread.Join();
-                if (!thread.IsAlive)
-                 _MessageBoxDialog.Show("تم ترحيل الفواتير المعلقة بنجاح", MessageBoxState.Done);
-                return;
+                //thread.Join();
+                //if (!thread.IsAlive)
+                //return;
             }
             catch
             {

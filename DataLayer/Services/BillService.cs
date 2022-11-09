@@ -375,7 +375,7 @@ namespace DataLayer.Services
                 return false;
             }
         }
-        public bool AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
+        public string AddInvoiveToTaxSystem(string billNumber, double billValue, string GUIDCode)
         {
             try
             {
@@ -411,14 +411,22 @@ namespace DataLayer.Services
                     IList<string> keys = resultJson.Properties().Select(p => p.Name).ToList();
                     if (resultJson["data"] != null)
                     {
-                        return true;
+                        return "Done";
                     }
-                    return false;
+                    return "حصل خطأ يرجى المحاولة مجدداً";
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                if(ex.Message == "The remote server returned an error: (401) Unauthorized.")
+                {
+                     return"هناك خطأ في معلومات الحساب الضريبي المسجلة .. يرجى الاتصال بالإنترنت وتسجيل الدخول من جديد";
+                }
+                else if(ex.Message == "Unable to connect to the remote server")
+                {
+                     return"يرجى التأكد من اتصالك بالإنترنت والمحاولة مجدداً";
+                }
+                return "حصل خطأ يرجى المحاولة مجدداً";
             }
         }
     }
