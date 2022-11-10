@@ -80,7 +80,6 @@ namespace ShefaaPharmacy.Articale
             base.DeleteCurrentItem(shefaaPharmacyDbContext);
             shefaaPharmacyDbContext.ArticleCategorys.Remove(articaleCategory);
         }
-
         protected override void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             base.bindingNavigatorAddNewItem_Click(sender, e);
@@ -110,7 +109,6 @@ namespace ShefaaPharmacy.Articale
                 PickBindingSource.ResetBindings(false);
             }
         }
-
         private void ArticaleCategoryPickForm_Load(object sender, EventArgs e)
         {
             if (FormOperation == FormOperation.Pick)

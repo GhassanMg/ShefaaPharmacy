@@ -51,14 +51,12 @@ namespace ShefaaPharmacy.Articale
             }
             catch (Exception)
             {
-
                 throw;
             }
             try
             {
                 ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
-                if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New
-)
+                if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
                 {
                     context.ArticleCategorys.Add(articaleCategory);
                     context.SaveChanges();
@@ -85,13 +83,11 @@ namespace ShefaaPharmacy.Articale
                 _MessageBoxDialog.Show("حصل خطأ أثناء التخزين" + "...." + ex.Message, MessageBoxState.Error);
             }
         }
-
         private void EditBindingSource_AddingNew(object sender, AddingNewEventArgs e)
         {
             articaleCategory = new ArticleCategory();
             e.NewObject = articaleCategory;
         }
-
         private void ArticaleCategoryEditForm_Load(object sender, EventArgs e)
         {
             btnMaximaizing.Enabled = false;

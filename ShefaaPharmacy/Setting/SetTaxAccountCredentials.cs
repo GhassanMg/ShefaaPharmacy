@@ -36,7 +36,6 @@ namespace ShefaaPharmacy.Setting
             Current.Token = Token;
             context.SaveChanges();
         }
-
         private void InitializeMyControl()
         {
             // Set to no text.
@@ -71,7 +70,7 @@ namespace ShefaaPharmacy.Setting
                         _MessageBoxDialog.Show("تمت الإضافة بنجاح", MessageBoxState.Done);
                         Close();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         _MessageBoxDialog.Show("هناك خطأ في المعلومات المدخلة", MessageBoxState.Error);
                         return;
@@ -96,7 +95,7 @@ namespace ShefaaPharmacy.Setting
             try
             {
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
-                string url = String.Format("http://213.178.227.75/Taxapi/api/account/AccountingSoftwarelogin");
+                string url = string.Format("http://213.178.227.75/Taxapi/api/account/AccountingSoftwarelogin");
                 WebRequest requestPost = WebRequest.Create(url);
                 requestPost.Method = "POST";
                 requestPost.ContentType = "application/json";
@@ -170,7 +169,7 @@ namespace ShefaaPharmacy.Setting
             int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
             char[] decoded_char = new char[charCount];
             utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
-            string result = new String(decoded_char);
+            string result = new string(decoded_char);
             return result;
         }
         private void tbPassword_Validating(object sender, CancelEventArgs e)
