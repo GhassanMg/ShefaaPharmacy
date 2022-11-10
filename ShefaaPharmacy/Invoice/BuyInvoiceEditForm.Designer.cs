@@ -697,7 +697,6 @@ namespace ShefaaPharmacy.Invoice
             this.dgDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgDetail_CellValidating);
             this.dgDetail.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DgDetail_EditingControlShowing);
             this.dgDetail.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.DgDetail_RowPrePaint);
-            this.dgDetail.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDetail_RowValidated);
             this.dgDetail.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DgDetail_RowValidating);
             this.dgDetail.BindingContextChanged += new System.EventHandler(this.dgDetail_BindingContextChanged);
             this.dgDetail.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DgDetail_MouseDown);
