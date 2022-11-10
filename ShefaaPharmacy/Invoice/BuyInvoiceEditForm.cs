@@ -120,6 +120,14 @@ namespace ShefaaPharmacy.Invoice
             {
                 pbDeleteRow.Enabled = false;
             }
+            if (this.FormOperation == FormOperation.Show)
+            {
+                dgDetail.ReadOnly = true;
+                tbCountItem.Enabled = tbCountPresent.Enabled = cbUnitName.Enabled = dtExpiryDate.Enabled = tbAccountIdDescr.Enabled =
+                    cbPaymentMethod.Enabled = cbStore.Enabled = tbCreatedBy.Enabled = tbPayment.Enabled = tbDiscount.Enabled = tbId.Enabled =
+                    dtCreationDate.Enabled = false;
+                pbDeleteRow.Enabled = false;
+            }
         }
         public void DeleteRow()
         {
@@ -651,6 +659,11 @@ namespace ShefaaPharmacy.Invoice
                 return;
             }
             bool res;
+            if(FormOperation == FormOperation.Show)
+            {
+                Close();
+                return;
+            }
             if (FormOperation == FormOperation.New || FormOperation == FormOperation.NewFromPicker)
             {
                 double billValue = billMaster.TotalPrice;
@@ -1401,6 +1414,12 @@ namespace ShefaaPharmacy.Invoice
         {
 
         }
+
+        private void dgDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void MiAddArticleUnit_Click(object sender, EventArgs e)
         {
             var currentRow = (DetailBindingSource.Current as PurchesBillViewModel);

@@ -587,11 +587,11 @@
             // dtCreationDate
             // 
             this.dtCreationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtCreationDate.Location = new System.Drawing.Point(76, 22);
+            this.dtCreationDate.Location = new System.Drawing.Point(17, 22);
             this.dtCreationDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dtCreationDate.MinimumSize = new System.Drawing.Size(4, 29);
             this.dtCreationDate.Name = "dtCreationDate";
-            this.dtCreationDate.Size = new System.Drawing.Size(196, 29);
+            this.dtCreationDate.Size = new System.Drawing.Size(255, 29);
             this.dtCreationDate.TabIndex = 16;
             this.dtCreationDate.ValueChanged += new System.EventHandler(this.dtCreationDate_ValueChanged);
             // 

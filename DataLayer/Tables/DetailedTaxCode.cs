@@ -32,7 +32,7 @@ namespace DataLayer.Tables
         /// </summary>
         [DisplayName("نوع الفاتورة ")]
         public InvoiceKind InvoiceKind { set; get; }
-        [DisplayName("رمز عشوائي مميز للفاتورة")]
+        [DisplayName("رمز الفاتورة")]
         public string RandomCode { set; get; }
         [DisplayName("تم ترحيلها")]
         public bool IsTransfeered { set; get; }

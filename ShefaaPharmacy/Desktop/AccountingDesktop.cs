@@ -3,6 +3,7 @@ using DataLayer.Helper;
 using DataLayer.Tables;
 using ShefaaPharmacy.Accounting;
 using ShefaaPharmacy.Articale;
+using ShefaaPharmacy.Articles;
 using ShefaaPharmacy.GeneralUI;
 using ShefaaPharmacy.Helper;
 using ShefaaPharmacy.Invoice;
@@ -310,8 +311,10 @@ namespace ShefaaPharmacy.Desktop
         {
             if (Auth.IsDataEntry())
             {
-                InvoiceReturningForm invoiceReturningForm = new InvoiceReturningForm("تعديل فاتورة", FormOperation.EditFromPicker);
-                invoiceReturningForm.ShowDialog();
+                //InvoiceReturningForm invoiceReturningForm = new InvoiceReturningForm("تعديل فاتورة", FormOperation.EditFromPicker);
+                //invoiceReturningForm.ShowDialog();
+                LastTimeDurationReportForm frm = new LastTimeDurationReportForm();
+                frm.ShowDialog();
             }
             else
             {

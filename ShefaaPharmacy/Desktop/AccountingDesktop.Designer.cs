@@ -168,7 +168,7 @@ namespace ShefaaPharmacy.Desktop
             // 
             this.pbEditBill.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pbEditBill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbEditBill.Image = ((System.Drawing.Image)(resources.GetObject("pbEditBill.Image")));
+            this.pbEditBill.Image = global::ShefaaPharmacy.Properties.Resources.Card_Rep_Cash;
             this.pbEditBill.Location = new System.Drawing.Point(426, 196);
             this.pbEditBill.Name = "pbEditBill";
             this.pbEditBill.Size = new System.Drawing.Size(379, 131);

@@ -263,12 +263,12 @@ namespace ShefaaPharmacy.Accounting
             this.miShowBill});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(168, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
             // 
             // miShowBill
             // 
             this.miShowBill.Name = "miShowBill";
-            this.miShowBill.Size = new System.Drawing.Size(167, 22);
+            this.miShowBill.Size = new System.Drawing.Size(180, 22);
             this.miShowBill.Text = "إستعراض الفاتورة";
             this.miShowBill.Click += new System.EventHandler(this.miShowBill_Click);
             // 

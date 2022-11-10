@@ -14,7 +14,7 @@
                     @FromDate Date,
                     @ToDate Date 
                     As
-	                    Declare @sumsells float= 0; 
+	                    Declare @sumsells float= 0;
 	                    declare @sumpurches float ; 
 	                    declare @allexpense float;
 	                    declare @allprofit float;

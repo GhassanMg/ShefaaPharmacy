@@ -212,6 +212,18 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 this.Text = "حذف فاتورة مبيع";
             }
+            if (formOperation == FormOperation.Show)
+            {
+                //prevent user from edit anything on the invoice
+                lbDeleteBill.Visible = lbReturnBill.Visible = false;
+
+                tbAccountIdDescr.Enabled = lbAccount.Enabled = false;
+                tbId.Enabled = dtCreationDate.Enabled = false;
+                cbPaymentMethod.Enabled = false;
+                tbPayment.Enabled = tbDiscount.Enabled = false;
+
+                dgDetail.ReadOnly = true;
+            }
             if (formOperation == FormOperation.Delete || formOperation == FormOperation.Edit || formOperation == FormOperation.EditFromPicker)
             {
                 lbDeleteBill.Visible = lbReturnBill.Visible = false;
@@ -1199,7 +1211,7 @@ namespace ShefaaPharmacy.GeneralUI
         /// <param name="e"></param>
         private void pLastOp_Click(object sender, EventArgs e)
         {
-            GeneralInvoiceEditForm generalInvoiceEditFormEdit = new GeneralInvoiceEditForm(lastOp, lastOp.InvoiceKind, FormOperation.EditFromPicker);
+            GeneralInvoiceEditForm generalInvoiceEditFormEdit = new GeneralInvoiceEditForm(lastOp, lastOp.InvoiceKind, FormOperation.Show);
             generalInvoiceEditFormEdit.Show();
             LastThreeOperation();
         }
@@ -1225,7 +1237,7 @@ namespace ShefaaPharmacy.GeneralUI
         /// <param name="e"></param>
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(prevLastOp, prevLastOp.InvoiceKind, FormOperation.EditFromPicker);
+            GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(prevLastOp, prevLastOp.InvoiceKind, FormOperation.Show);
             generalInvoiceEditForm.Show();
             LastThreeOperation();
         }
@@ -1291,6 +1303,11 @@ namespace ShefaaPharmacy.GeneralUI
                     return;
                 }
             bool res;
+            if (FormOperation == FormOperation.Show)
+            {
+                Close();
+                return;
+            }
             if (FormOperation == FormOperation.NewFromPicker || FormOperation == FormOperation.New)
             {
                 double billValue = billMaster.TotalPrice;
@@ -1557,7 +1574,7 @@ namespace ShefaaPharmacy.GeneralUI
         /// <param name="e"></param>
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(prevPrevLastOp, prevPrevLastOp.InvoiceKind, FormOperation.EditFromPicker);
+            GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(prevPrevLastOp, prevPrevLastOp.InvoiceKind, FormOperation.Show);
             generalInvoiceEditForm.Show();
             LastThreeOperation();
         }

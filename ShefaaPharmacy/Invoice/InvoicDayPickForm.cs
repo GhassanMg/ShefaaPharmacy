@@ -134,7 +134,7 @@ namespace ShefaaPharmacy.Invoice
                 }
                 else if ((PickBindingSource.Current as BillMaster).InvoiceKind == InvoiceKind.Sell)
                 {
-                    GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm((PickBindingSource.Current as BillMaster), (PickBindingSource.Current as BillMaster).InvoiceKind, FormOperation.EditFromPicker);
+                    GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm((PickBindingSource.Current as BillMaster), (PickBindingSource.Current as BillMaster).InvoiceKind, FormOperation.Show);
                     generalInvoiceEditForm.ShowDialog();
                 }
                 else if ((PickBindingSource.Current as BillMaster).InvoiceKind == InvoiceKind.Buy)

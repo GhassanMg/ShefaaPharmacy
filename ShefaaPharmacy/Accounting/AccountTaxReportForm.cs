@@ -80,12 +80,13 @@ namespace ShefaaPharmacy.Accounting
             dgMaster.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
             dgMaster.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgMaster.Columns["Id"].Visible = false;
-            dgMaster.Columns["RandomCode"].Visible = false;
             dgMaster.Columns["CreationByDescr"].Visible = false;
+            dgMaster.Columns["CreationDate"].Visible = false;
+            dgMaster.Columns["InvoiceKind"].Visible = false;
             dgMaster.Columns["DateTime"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgMaster.Columns["BillExporterApp"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgMaster.Columns["CreationDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgMaster.Columns["Currency"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dgMaster.Columns["RandomCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgMaster.Refresh();
         }
         private void dgDetail_BindingContextChanged(object sender, EventArgs e)
@@ -128,14 +129,12 @@ namespace ShefaaPharmacy.Accounting
             if ((bindingSourceMaster.Current as DetailedTaxCode).InvoiceKind == InvoiceKind.Sell)
             {
                 var BillMaster = context.BillMasters.Where(x=>x.Id==Convert.ToInt32((bindingSourceMaster.Current as DetailedTaxCode).BillNumber)).FirstOrDefault();
-                GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(BillMaster, InvoiceKind.Sell, FormOperation.EditFromPicker);
+                GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(BillMaster, InvoiceKind.Sell, FormOperation.Show);
                 generalInvoiceEditForm.ShowDialog();
             }
-            else if ((bindingSourceMaster.Current as DetailedTaxCode).InvoiceKind == InvoiceKind.Buy)
+            else
             {
-                var BillMaster = context.BillMasters.Where(x => x.Id == Convert.ToInt32((bindingSourceMaster.Current as DetailedTaxCode).BillNumber)).FirstOrDefault();
-                BuyInvoiceEditForm buyInvoiceEditForm = new BuyInvoiceEditForm(BillMaster, FormOperation.EditFromPicker);
-                buyInvoiceEditForm.ShowDialog();
+                return;
             }
         }
         public string GetEnumDisplayName(Enum enumType)
