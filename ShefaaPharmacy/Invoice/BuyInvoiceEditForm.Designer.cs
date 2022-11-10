@@ -326,7 +326,6 @@ namespace ShefaaPharmacy.Invoice
             this.tbPayment.Name = "tbPayment";
             this.tbPayment.Size = new System.Drawing.Size(134, 24);
             this.tbPayment.TabIndex = 33;
-            this.tbPayment.TextChanged += new System.EventHandler(this.TbPayment_TextChanged);
             // 
             // panel1
             // 
@@ -694,7 +693,6 @@ namespace ShefaaPharmacy.Invoice
             this.dgDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDetail.Size = new System.Drawing.Size(1220, 346);
             this.dgDetail.TabIndex = 7;
-            this.dgDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDetail_CellContentClick);
             this.dgDetail.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDetail_CellValidated);
             this.dgDetail.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgDetail_CellValidating);
             this.dgDetail.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DgDetail_EditingControlShowing);

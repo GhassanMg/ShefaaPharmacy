@@ -659,7 +659,7 @@ namespace ShefaaPharmacy.Invoice
                 return;
             }
             bool res;
-            if(FormOperation == FormOperation.Show)
+            if (FormOperation == FormOperation.Show)
             {
                 Close();
                 return;
@@ -735,7 +735,6 @@ namespace ShefaaPharmacy.Invoice
                     exProgram = "ShefaaPharmacy",
                     date = DateTime.Now.Date,
                 };
-
                 var postData = JsonConvert.SerializeObject(newObj);
                 using (var streamWriter = new StreamWriter(requestPost.GetRequestStream()))
                 {
@@ -743,7 +742,6 @@ namespace ShefaaPharmacy.Invoice
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
-
                 var httpResponse = (HttpWebResponse)requestPost.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
@@ -900,7 +898,6 @@ namespace ShefaaPharmacy.Invoice
                 _MessageBoxDialog.Show("اختيار واحدة غير معرفة لهذه المادة", MessageBoxState.Error);
             }
         }
-
         double buy, sell;
         private void FillRow(Article articale)
         {
@@ -1063,7 +1060,7 @@ namespace ShefaaPharmacy.Invoice
                     SetFocus("PurchasePrice");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _MessageBoxDialog.Show("هناك خطأ في الإدخال يرجى اعادة العملية", MessageBoxState.Error);
             }
@@ -1401,25 +1398,11 @@ namespace ShefaaPharmacy.Invoice
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-        private void DgDetail_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private void DtCreationDate_ValueChanged(object sender, EventArgs e)
         {
             DateTime date = this.dtCreationDate.Value;
             billMaster.CreationDate = date;
         }
-        private void TbPayment_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void MiAddArticleUnit_Click(object sender, EventArgs e)
         {
             var currentRow = (DetailBindingSource.Current as PurchesBillViewModel);

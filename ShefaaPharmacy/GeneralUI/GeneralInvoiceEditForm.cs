@@ -283,7 +283,6 @@ namespace ShefaaPharmacy.GeneralUI
                 billMaster.BillDetails = ShefaaPharmacyDbContext.GetCurrentContext().BillDetails.Where(x => x.BillMasterId == billMaster.Id).ToList();
             }
             DetailBindingSource.DataSource = billMaster.BillDetails;
-            //((BillMaster)EditBindingSource.DataSource).onUpdateForm += InitEntity_onUpdateForm;
             ((BillMaster)EditBindingSource.DataSource).onUpdateForm += InitEntity_onUpdateForm;
             #endregion
             #region Data Grid View Detail
@@ -364,7 +363,7 @@ namespace ShefaaPharmacy.GeneralUI
                     dgDetail.Refresh();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ;
             }
@@ -425,10 +424,6 @@ namespace ShefaaPharmacy.GeneralUI
 
             cbPaymentMethod.DataSource = Enum.GetValues(typeof(PaymentMethod));
             cbPaymentMethod.SelectedIndex = (int)((BillMaster)EditBindingSource.Current).PaymentMethod;
-            //cbStore.DataSource = ShefaaPharmacyDbContext.GetCurrentContext().Stores.ToList();
-            //cbStore.ValueMember = "Id";
-            //cbStore.DisplayMember = "Name";
-            //cbStore.SelectedValue = UserLoggedIn.User.StoreId;
 
             List<string> data = ShefaaPharmacyDbContext.GetCurrentContext().Accounts.ToList().Select(x => x.Name).ToList();
             AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
@@ -467,15 +462,12 @@ namespace ShefaaPharmacy.GeneralUI
             }
             billMaster.BillDetails = new List<BillDetail>();
             e.NewObject = billMaster;
-            //dgDetail.DataBindings.Clear();
-            //DetailBindingSource.Clear();
             DetailBindingSource.DataSource = billMaster.BillDetails;
             dgDetail.DataSource = DetailBindingSource;
             dgDetail.Refresh();
             dgItemLeft.DataSource = new List<ArticleRemaningAmount>();
             dgItemLeft.Refresh();
             CancelEventArgs ee = new CancelEventArgs();
-            //object sender = new object();
             tbDiscount_Validating(sender, ee);
             tbPayment_Validating(sender, ee);
         }
@@ -777,41 +769,6 @@ namespace ShefaaPharmacy.GeneralUI
                 {
                     var context = ShefaaPharmacyDbContext.GetCurrentContext();
                     var lastPriceTage = DescriptionFK.GetLastPriceTagForArt((DetailBindingSource.Current as BillDetail).ArticaleId);
-                    //var lastSellPrice = UnitTypeService.GetLastSellPrice((DetailBindingSource.Current as BillDetail).ArticaleId, (DetailBindingSource.Current as BillDetail).UnitTypeId, lastPriceTage.Id);
-                    //if (Convert.ToDouble(e.FormattedValue) != lastSellPrice)
-                    //{
-                    //    string message = "سعر الصنف في هذه البطاقة " + lastSellPrice + "\n هل تريد إضافة سعر جديد";
-                    //    MessageBoxAnswer dialogResult;
-                    //    dialogResult = _MessageBoxDialog.Show(message, MessageBoxState.Answering);
-                    //    if (dialogResult == MessageBoxAnswer.Yes)
-                    //    {
-                    //        context.PriceTags.Add(
-                    //            new PriceTag()
-                    //            {
-                    //                ExpiryDate = lastPriceTage.ExpiryDate,
-                    //                ArticaleId = lastPriceTage.ArticaleId,
-                    //                UnitTypeId = lastPriceTage.UnitTypeId,
-                    //                Unit2TypeId = lastPriceTage.Unit2TypeId,
-                    //                Unit3TypeId = lastPriceTage.Unit3TypeId,
-                    //                SellPrimary = lastPriceTage.UnitTypeId == (DetailBindingSource.Current as BillDetail).UnitTypeId ? Convert.ToDouble(e.FormattedValue) : lastPriceTage.SellPrimary,
-                    //                SellSecondary = lastPriceTage.Unit2TypeId == (DetailBindingSource.Current as BillDetail).UnitTypeId ? Convert.ToDouble(e.FormattedValue) : lastPriceTage.SellSecondary,
-                    //                SellTertiary = lastPriceTage.Unit3TypeId == (DetailBindingSource.Current as BillDetail).UnitTypeId ? Convert.ToDouble(e.FormattedValue) : lastPriceTage.SellTertiary,
-                    //                BuyPrimary = lastPriceTage.BuyPrimary,
-                    //                BuySecondary = lastPriceTage.BuySecondary,
-                    //                BuyTertiary = lastPriceTage.BuyTertiary,
-                    //                CreationBy = UserLoggedIn.User.Id,
-                    //                CreationDate = DateTime.Now,
-                    //                Every = lastPriceTage.Every,
-                    //                Present = lastPriceTage.Present,
-                    //                CountItem = lastPriceTage.CountItem,
-                    //                CountPresent = lastPriceTage.CountPresent,
-                    //                Discount = lastPriceTage.Discount,
-                    //                PharmacyOperator1 = lastPriceTage.PharmacyOperator1 ?? "",
-                    //                PharmacyOperator2 = lastPriceTage.PharmacyOperator2 ?? ""
-                    //            });
-                    //        context.SaveChanges();
-                    //    }
-                    //}
                 }
                 else if (cellName == "ArticaleIdDescr" && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as BillDetail).ArticaleIdDescr != e.FormattedValue.ToString())
                 {
@@ -824,7 +781,6 @@ namespace ShefaaPharmacy.GeneralUI
                             {
                                 if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[2].Value.ToString() == result.Name)
                                 {
-                                    //(DetailBindingSource.DataSource as BillDetail).BarcodeDescr = "";
                                     if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                     {
                                         int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
@@ -955,11 +911,9 @@ namespace ShefaaPharmacy.GeneralUI
                     }
                 }
                 CancelEventArgs ee = new CancelEventArgs();
-                //object sender = new object();
                 tbDiscount_Validating(sender, ee);
                 tbPayment_Validating(sender, ee);
                 billMaster.CalcTotalMobile();
-                //InitEntity_onUpdateForm();
             }
             catch (Exception ex)
             {
@@ -973,7 +927,7 @@ namespace ShefaaPharmacy.GeneralUI
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 var dbConfig = context.DataBaseConfigurations.FirstOrDefault();
                 List<PriceTagMaster> PriceTagsForArticleInStore = context.PriceTagMasters.Include(x => x.Article.Id == articale.Id).ToList();
-                List<PriceTagMaster> expired = PriceTagsForArticleInStore.Where(x => (DateTime.Now/*.AddDays(dbConfig.DayForExpiry)*/ >= x.ExpiryDate)).ToList();
+                List<PriceTagMaster> expired = PriceTagsForArticleInStore.Where(x => (DateTime.Now>= x.ExpiryDate)).ToList();
                 List<PriceTagMaster> mylist = new List<PriceTagMaster>();
                 List<PriceTagMaster> NewList = new List<PriceTagMaster>();
 
@@ -1518,7 +1472,6 @@ namespace ShefaaPharmacy.GeneralUI
                 }
             }
         }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Account result = AccountPickForm.PickAccount("", null, FormOperation.Pick);
@@ -1542,8 +1495,6 @@ namespace ShefaaPharmacy.GeneralUI
         }
         private void GeneralInvoiceEditForm_Load(object sender, EventArgs e)
         {
-            //dgvQueryArticle.CellDoubleClick += DgvQueryArticle_CellDoubleClick;
-            //dgvQueryArticle.KeyDown += DgvQueryArticle_KeyDown;
             customeAutoCompleteGrid = new CustomeAutoCompleteGrid();
             EazyForms = new GeneralInvoiceEditForm[6];
             SetFocus();
@@ -1624,75 +1575,7 @@ namespace ShefaaPharmacy.GeneralUI
             tbPayment.Text = tbPayment.Text == "" ? "0" : tbPayment.Text;
             bill.payment = Convert.ToInt32(tbPayment.Text == "" ? 0 : double.Parse(tbPayment.Text));
             bill.RemainingAmount = bill.TotalPrice - bill.payment - bill.discount;
-            //if (bill.Discount == 0.0)
-            //{
-            //    if ((int)cbPaymentMethod.SelectedValue == (int)PaymentMethod.Cash)
-            //    {
-            //        //tbPayment.Enabled = false;
-            //        if (Convert.ToDouble((bill.TotalPrice - (Convert.ToDouble(tbPayment.Text))) / bill.TotalPrice * 100) / 100 > ShefaaPharmacyDbContext.GetCurrentContext().DataBaseConfigurations.FirstOrDefault().DiscountPercentage
-            //       && Auth.DataEntryAndDown())
-            //        {
-            //            _MessageBoxDialog.Show("ليس من صلاحياتك الخصم بهذه القيمة", MessageBoxState.Warning);
-            //            if (bill.PaymentMethod == PaymentMethod.Cash)
-            //            {
-            //                bill.Payment = bill.TotalPrice;
-            //                bill.Discount = 0;
-            //                bill.RemainingAmount = 0;
-            //            }
-            //            else
-            //            {
-            //                bill.RemainingAmount = bill.TotalPrice;
-            //                bill.Discount = 0;
-            //                bill.Payment = 0;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            bill.Discount = ((bill.TotalPrice - (Convert.ToDouble(tbPayment.Text))) / bill.TotalPrice * 100);
-            //            //bill.discount = 0.0;
-            //            bill.RemainingAmount = 0;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        bill.RemainingAmount = bill.TotalPrice - (Convert.ToDouble(tbPayment.Text));
-            //    }
-            //}
-            //else// discount !=0
-            //{
-            //    if ((int)cbPaymentMethod.SelectedValue == (int)PaymentMethod.Cash)
-            //    {
-            //        if (((bill.TotalPrice - (Convert.ToDouble(tbPayment.Text))) / bill.TotalPrice * 100) / 100 > ShefaaPharmacyDbContext.GetCurrentContext().DataBaseConfigurations.FirstOrDefault().DiscountPercentage
-            //       && Auth.DataEntryAndDown())
-            //        {
-            //            _MessageBoxDialog.Show("ليس من صلاحياتك الخصم بهذه القيمة", MessageBoxState.Warning);
-            //            if (bill.PaymentMethod == PaymentMethod.Cash)
-            //            {
-            //                bill.Payment = bill.TotalPrice;
-            //                tbPayment.Text = bill.Payment + "";
-            //                bill.Discount = 0;
-            //                bill.RemainingAmount = 0;
-            //            }
-            //            else
-            //            {
-            //                bill.RemainingAmount = bill.TotalPrice;
-            //                bill.Discount = 0;
-            //                bill.Payment = 0;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            // bill.Discount = 0;
-            //            //bill.Discount = ((bill.TotalPrice - (Convert.ToDouble(tbPayment.Text))) / bill.TotalPrice * 100);
-            //            bill.payment = bill.TotalPrice;
-            //            bill.RemainingAmount = bill.TotalPrice - bill.payment;
-            //        }
-            //    }
-            //    else//debit
-            //    {
-            //        bill.RemainingAmount = bill.TotalPrice - (Convert.ToDouble(tbPayment.Text));
-            //    }
-            //}
+            
             tbPayment.Text = bill.Payment + "";
             tbDiscount.Text = bill.Discount + "";
             tbRemainingAmount.Text = bill.RemainingAmount + "";
@@ -1707,33 +1590,8 @@ namespace ShefaaPharmacy.GeneralUI
                     RemainingAmoungIfBigger = Convert.ToDouble(tbPayment.Text);
                 }
             }
-            //double sum = calcSum();
-            //billMaster.TotalPrice = sum;
-            ////var bill = (EditBindingSource.Current as BillMaster);
-            ////billMaster.TotalPrice = 
-            //billMaster.payment= billMaster.TotalPrice - double.Parse(tbDiscount.Text);
-            //billMaster.Discount = double.Parse(tbDiscount.Text);
-            //if (this.cbPaymentMethod.SelectedIndex == 0)
-            //{
-            //    billMaster.payment = billMaster.TotalPrice-billMaster.Discount;
-            //    billMaster.RemainingAmount = 0;
-            //}
-            //else
-            //{
-            //    //billMaster.payment = 0.0;
-            //    billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.payment;
-            //}
-            //tbPayment.Text = billMaster.Payment + "";
-            //tbRemainingAmount.Text ="0";
-
-            //double tot = calcSum();
-            //double dis = tbDiscount.Text == "" ? 0.0 : double.Parse(tbDiscount.Text);
-            //double per = (dis / tot) * 100;
-            //tbDiscount.Text = per.ToString();
-
             double sum = calcSum();
             billMaster.TotalPrice = sum;
-
             var bill = (EditBindingSource.Current as BillMaster);
             if (billMaster.paymentMethod == PaymentMethod.Cash)
             {
@@ -1758,7 +1616,7 @@ namespace ShefaaPharmacy.GeneralUI
         }
         private void tbDiscount_MouseDown(object sender, MouseEventArgs e)
         {
-            if (!String.IsNullOrEmpty(tbDiscount.Text))
+            if (!string.IsNullOrEmpty(tbDiscount.Text))
             {
                 tbDiscount.SelectionStart = 0;
                 tbDiscount.SelectionLength = tbDiscount.Text.Length;
@@ -1776,7 +1634,6 @@ namespace ShefaaPharmacy.GeneralUI
                 tbRemainingAmount.Text = billMaster.RemainingAmount + "";
             }
         }
-
         private void miEditArticleInfo_Click(object sender, EventArgs e)
         {
             var currentRow = (DetailBindingSource.Current as BillDetail);
@@ -1826,7 +1683,7 @@ namespace ShefaaPharmacy.GeneralUI
                     SetFocus();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _MessageBoxDialog.Show("حصل خطأ في الادخال يرجى اعادة المحاولة", MessageBoxState.Error);
             }
@@ -1851,7 +1708,6 @@ namespace ShefaaPharmacy.GeneralUI
             if (dgDetail.CurrentRow.DataBoundItem == null)
                 return;
             CancelEventArgs ee = new CancelEventArgs();
-            //object sender = new object();
             tbDiscount_Validating(sender, ee);
             tbPayment_Validating(sender, ee);
             billMaster.CalcTotalMobile();
@@ -1869,13 +1725,11 @@ namespace ShefaaPharmacy.GeneralUI
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
         private void LbReturnBill_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(new BillMaster(), InvoiceKind.Sell, FormOperation.ReturnEmpty);
             generalInvoiceEditForm.Show();
         }
-
         private void MiChoosePriceTag_Click(object sender, EventArgs e)
         {
             var currentRow = (DetailBindingSource.Current as BillDetail);
@@ -1893,13 +1747,11 @@ namespace ShefaaPharmacy.GeneralUI
                 _MessageBoxDialog.Show("يوجد خطأ في تحديد السطر", MessageBoxState.Error);
             }
         }
-
         private void tbPayment_TextChanged(object sender, EventArgs e)
         {
             billMaster.payment = tbPayment.Text == "" ? 0 : double.Parse(tbPayment.Text);
             billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.payment - billMaster.discount;
         }
-
         private void AllBills_linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (Auth.IsReportReader())
@@ -1912,49 +1764,17 @@ namespace ShefaaPharmacy.GeneralUI
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
         }
-
         private void dtCreationDate_ValueChanged(object sender, EventArgs e)
         {
-            DateTime date = this.dtCreationDate.Value;
+            DateTime date = dtCreationDate.Value;
             billMaster.CreationDate = date;
         }
-
-
         private void tbDiscount_TextChanged(object sender, EventArgs e)
         {
             if (billMaster.paymentMethod == PaymentMethod.Debit)
             {
                 billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.Payment - (tbDiscount.Text == "" ? 0 : double.Parse(tbDiscount.Text));
-                //tbRemainingAmount.Text = billMaster.RemainingAmount.ToString();
             }
-
-            //double tot = calcSum();
-            //double dis = tbDiscount.Text == "" ? 0.0 : double.Parse(tbDiscount.Text);
-            ////double per = (dis / tot) * 100;
-            //tbDiscount.Text = billMaster.discount.ToString();
-
-            ////}
-            //double sum = calcSum();
-            //billMaster.TotalPrice = sum;
-            //if (tbDiscount.Text == "")
-            //{
-            //    return;
-            //}
-            //var bill = (EditBindingSource.Current as BillMaster);
-            //billMaster.TotalPrice = billMaster.TotalPrice - double.Parse(tbDiscount.Text);
-            //if (this.cbPaymentMethod.SelectedIndex == 0)
-            //{
-            //    billMaster.payment = billMaster.TotalPrice;
-            //    billMaster.RemainingAmount = 0;
-            //}
-            //else
-            //{
-            //    // billMaster.payment = 0.0;
-            //    billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.payment;
-            //}
-            //tbPayment.Text = bill.Payment + "";
-            //tbDiscount.Text = bill.Discount + "";
-            //tbRemainingAmount.Text = bill.RemainingAmount + "";
         }
 
         /// <summary>
