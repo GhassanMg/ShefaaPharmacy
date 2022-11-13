@@ -24,6 +24,7 @@ using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using System.Threading;
+using System.Drawing.Printing;
 
 namespace ShefaaPharmacy.GeneralUI
 {
@@ -715,7 +716,7 @@ namespace ShefaaPharmacy.GeneralUI
                                     {
                                         if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[0].Value.ToString() == result.Barcode)
                                         {
-                                            if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
+                                            if (FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                             {
                                                 int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
                                                 string msg = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + quant + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -755,7 +756,7 @@ namespace ShefaaPharmacy.GeneralUI
                     {
                         Article Articale = ShefaaPharmacyDbContext.GetCurrentContext().Articles.FirstOrDefault(x => x.Id == (DetailBindingSource.Current as BillDetail).ArticaleId);
                         int remainingamount = InventoryService.GetAllArticleAmountRemaningInAllPrices(Articale.Id, (DetailBindingSource.Current as BillDetail).UnitTypeId);
-                        if (this.FormOperation != FormOperation.ReturnArticles && remainingamount < Articale.LimitDown)
+                        if (FormOperation != FormOperation.ReturnArticles && remainingamount < Articale.LimitDown)
                         {
                             _MessageBoxDialog.Show("المادة قد تجاوزت الحد الأدنى للكمية" + "\n" + "الحد الأدنى : " + Articale.LimitDown + "", MessageBoxState.Warning);
                         }
@@ -781,7 +782,7 @@ namespace ShefaaPharmacy.GeneralUI
                             {
                                 if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[2].Value.ToString() == result.Name)
                                 {
-                                    if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
+                                    if (FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                     {
                                         int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
                                         string msg = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + quant + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -826,7 +827,7 @@ namespace ShefaaPharmacy.GeneralUI
                                 {
                                     if (dgDetail.Rows.Count > 2 && item.Index != dgDetail.Rows.Count - 1 && item.Cells[2].Value.ToString() == result.Name)
                                     {
-                                        if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
+                                        if (FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(item.Cells["quantity"].Value) + 1 > Convert.ToInt32(item.Cells["CountLeft"].Value))
                                         {
                                             int quant = Convert.ToInt32(item.Cells["CountLeft"].Value);
                                             string msg = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + quant + "\n" + "سوف يتم بيع النقص بالسالب";
@@ -894,13 +895,13 @@ namespace ShefaaPharmacy.GeneralUI
                             _MessageBoxDialog.Show("يجب إدخال رقم أكبر من الصفر", MessageBoxState.Error);
                             return;
                         }
-                        else if (this.FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(e.FormattedValue.ToString()) > qu && (FormOperation != FormOperation.ReturnEmpty && FormOperation != FormOperation.Return))
+                        else if (FormOperation != FormOperation.ReturnArticles && Convert.ToInt32(e.FormattedValue.ToString()) > qu && (FormOperation != FormOperation.ReturnEmpty && FormOperation != FormOperation.Return))
                         {
                             string message = " الكمية المطلوبة أكبر من الكمية الموجودة" + "\n" + "علماً أن الكمية الإجمالية المتبقية هي " + qu + "\n" + "سوف يتم بيع النقص بالسالب";
                             IsInMinus = true;
                             _MessageBoxDialog.Show(message, MessageBoxState.Warning);
                         }
-                        else if (this.FormOperation != FormOperation.ReturnArticles && remainingamount - int.Parse(e.FormattedValue.ToString()) < Articale.LimitDown)
+                        else if (FormOperation != FormOperation.ReturnArticles && remainingamount - int.Parse(e.FormattedValue.ToString()) < Articale.LimitDown)
                         {
                             _MessageBoxDialog.Show("ببيعك هذه الكمية ستتجاوز الحد الأدنى للمادة" + "\n" + "الحد الأدنى : " + Articale.LimitDown + "", MessageBoxState.Warning);
                         }
@@ -915,7 +916,7 @@ namespace ShefaaPharmacy.GeneralUI
                 tbPayment_Validating(sender, ee);
                 billMaster.CalcTotalMobile();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _MessageBoxDialog.Show("حصل خطأ في الادخال يرجى اعادة المحاولة", MessageBoxState.Error);
             }
@@ -971,7 +972,7 @@ namespace ShefaaPharmacy.GeneralUI
             var CheckRemainingAmount = InventoryService.GetQuantityOfArticleAllPriceTag(articale.Id);
             if (Convert.ToDouble(CheckRemainingAmount) <= 0)
             {
-                if (this.FormOperation != FormOperation.ReturnArticles && FormOperation == FormOperation.ReturnEmpty)
+                if (FormOperation != FormOperation.ReturnArticles && FormOperation == FormOperation.ReturnEmpty)
                 {
                     _MessageBoxDialog.Show("لا يوجد أي قطعة من هذا الصنف", MessageBoxState.Warning);
                     currentRow.ArticaleId = articale.Id;
@@ -1007,7 +1008,7 @@ namespace ShefaaPharmacy.GeneralUI
                     dgItemLeft.DataSource = InventoryService.GetArticleAmountRemaning(articale.Id);
                     return true;
                 }
-                if (this.FormOperation == FormOperation.ReturnArticles)
+                if (FormOperation == FormOperation.ReturnArticles)
                 {
                     currentRow.ArticaleId = articale.Id;
                     currentRow.ArticaleIdDescr = articale.Name;
@@ -1250,7 +1251,7 @@ namespace ShefaaPharmacy.GeneralUI
                 _MessageBoxDialog.Show("يجب وضع حساب لإتمام العملية", MessageBoxState.Error);
                 return;
             }
-            if (this.cbPaymentMethod.SelectedIndex == 0)
+            if (cbPaymentMethod.SelectedIndex == 0)
                 if (tbPayment.Text == "0" || tbPayment.Text == "0.00")
                 {
                     _MessageBoxDialog.Show("لايمكن أن تكون قيمة الفاتورة صفر", MessageBoxState.Error);
@@ -1391,7 +1392,6 @@ namespace ShefaaPharmacy.GeneralUI
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
-
                 var httpResponse = (HttpWebResponse)requestPost.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
@@ -1406,7 +1406,7 @@ namespace ShefaaPharmacy.GeneralUI
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -1516,6 +1516,7 @@ namespace ShefaaPharmacy.GeneralUI
             }
             dgItemLeft.AutoGenerateColumns = true;
             WindowState = FormWindowState.Maximized;
+            //this.Load += new EventHandler(SizeFix);
         }
 
         /// <summary>
@@ -1534,13 +1535,11 @@ namespace ShefaaPharmacy.GeneralUI
             AccountFainancialReportForm accountFainancialReportForm = new AccountFainancialReportForm(new UserParameters() { Acc_AccountId = (EditBindingSource.Current as BillMaster).AccountId });
             accountFainancialReportForm.ShowDialog();
         }
-
         private void ToolStripMenuItem_ClickArtDetailReport(object sender, EventArgs e)
         {
             ArticleDetailReportForm articleDetailReportForm = new ArticleDetailReportForm(new UserParameters() { ArticleId = (DetailBindingSource.Current as BillDetail).ArticaleId });
             articleDetailReportForm.ShowDialog();
         }
-
         private void dgDetail_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -1775,6 +1774,43 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.Payment - (tbDiscount.Text == "" ? 0 : double.Parse(tbDiscount.Text));
             }
+        }
+        public void SizeFix(object o, EventArgs e)
+        {
+            int widthMax = Width;
+            foreach (var item in Controls)
+            {
+                int tempWitdh = (item as Control).Location.X + (item as Control).Width;
+                if (tempWitdh > widthMax)
+                {
+                    widthMax = tempWitdh;
+                }
+            }
+
+            Width = widthMax;  // You can add 10 width more
+        }
+        private void CaptureScreen()
+        {
+            Graphics myGraphics = CreateGraphics();
+            Size s = Size;
+            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
+            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
+            memoryGraphics.CopyFromScreen(Location.X, Location.Y, 0, 0, s);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CaptureScreen();
+            memoryImage.Save(@"D:\Temp\aaaPix.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+            PrintPreviewDialog ppd = new PrintPreviewDialog();
+            ppd.Document = printDocument1;
+            ppd.ShowDialog();
+        }
+        Bitmap memoryImage;
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(memoryImage, 0, 0);
         }
 
         /// <summary>

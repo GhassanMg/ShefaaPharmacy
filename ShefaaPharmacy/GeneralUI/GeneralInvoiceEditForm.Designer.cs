@@ -71,6 +71,7 @@
             this.lbDate = new System.Windows.Forms.Label();
             this.dtCreationDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tbDiscount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbRemainingAmount = new System.Windows.Forms.Label();
@@ -81,6 +82,8 @@
             this.tbPayment = new System.Windows.Forms.TextBox();
             this.pBottomMaster = new System.Windows.Forms.Panel();
             this.pFillDetail = new System.Windows.Forms.Panel();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizing)).BeginInit();
@@ -597,6 +600,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.tbDiscount);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.lbRemainingAmount);
@@ -615,6 +619,16 @@
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "تفاصيل نهائية";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(17, 27);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tbDiscount
             // 
@@ -734,6 +748,14 @@
             this.pFillDetail.Size = new System.Drawing.Size(1211, 420);
             this.pFillDetail.TabIndex = 3;
             // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // GeneralInvoiceEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -838,5 +860,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel AllBills_linkLabel;
         private System.Windows.Forms.Panel pFillDetail;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

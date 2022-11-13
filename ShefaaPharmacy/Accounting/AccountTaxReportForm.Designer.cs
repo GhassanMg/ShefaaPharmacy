@@ -55,6 +55,7 @@ namespace ShefaaPharmacy.Accounting
             this.dgDetail = new System.Windows.Forms.DataGridView();
             this.bindingSourceDetail = new System.Windows.Forms.BindingSource(this.components);
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizing)).BeginInit();
@@ -263,12 +264,12 @@ namespace ShefaaPharmacy.Accounting
             this.miShowBill});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(168, 26);
             // 
             // miShowBill
             // 
             this.miShowBill.Name = "miShowBill";
-            this.miShowBill.Size = new System.Drawing.Size(180, 22);
+            this.miShowBill.Size = new System.Drawing.Size(167, 22);
             this.miShowBill.Text = "إستعراض الفاتورة";
             this.miShowBill.Click += new System.EventHandler(this.miShowBill_Click);
             // 
@@ -306,11 +307,22 @@ namespace ShefaaPharmacy.Accounting
             this.dgDetail.Visible = false;
             this.dgDetail.BindingContextChanged += new System.EventHandler(this.dgDetail_BindingContextChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(364, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "print";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AccountTaxReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 585);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bindingNavigator1);
@@ -322,6 +334,7 @@ namespace ShefaaPharmacy.Accounting
             this.Controls.SetChildIndex(this.bindingNavigator1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizing)).EndInit();
@@ -364,5 +377,6 @@ namespace ShefaaPharmacy.Accounting
         private System.Windows.Forms.ToolStripMenuItem miShowBill;
         private MetroFramework.Controls.MetroGrid dgMaster;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -170,6 +170,11 @@ namespace ShefaaPharmacy.Accounting
             //    ;
             //}
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            printDocument1.Print();
+        }
     }
     // Helper Class To Get InvoiceKind Item Name
     public static class EnumHelper<T>
