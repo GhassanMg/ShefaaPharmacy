@@ -1014,6 +1014,12 @@
     <Compile Include="Invoice\InvoiceMasterDetailReportForm.Designer.cs">
       <DependentUpon>InvoiceMasterDetailReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoice\InvoicePrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoice\InvoicePrintForm.Designer.cs">
+      <DependentUpon>InvoicePrintForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Invoice\InvoiceReturningForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1413,6 +1419,9 @@
     <EmbeddedResource Include="Invoice\InvoiceMasterDetailReportForm.resx">
       <DependentUpon>InvoiceMasterDetailReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\InvoicePrintForm.resx">
+      <DependentUpon>InvoicePrintForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Invoice\InvoiceReturningForm.resx">
       <DependentUpon>InvoiceReturningForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1566,6 +1575,7 @@
   <ItemGroup>
     <Content Include="128-128.ico" />
     <Content Include="hnet.com-image.ico" />
+    <None Include="Resources\download.png" />
     <None Include="Resources\icons8-transaction-approved-48.png" />
     <None Include="Resources\icons8-tax-48 %281%29.png" />
     <None Include="Resources\icons8-tax-48.png" />

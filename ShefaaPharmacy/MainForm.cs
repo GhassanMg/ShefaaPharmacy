@@ -1601,6 +1601,12 @@ namespace ShefaaPharmacy
                 return;
             }
         }
+
+        private void تجريبالطباعةToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvoicePrintForm frm = new InvoicePrintForm();
+            frm.ShowDialog();
+        }
     }
 }
 
