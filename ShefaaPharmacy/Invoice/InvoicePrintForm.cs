@@ -19,12 +19,20 @@ namespace ShefaaPharmacy.Invoice
         public InvoicePrintForm()
         {
             InitializeComponent();
-
+            LoadMaster();
             printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Custom", 500, 1500);
             printDocument1.DefaultPageSettings.PaperSize.RawKind = 50;
             printDocument1.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 50;
             printDocument1.DefaultPageSettings.Landscape = true;
 
+        }
+        private void LoadMaster()
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            List<BillDetail> lastBill = context.BillDetails.ToList();
+            bindingMaster.DataSource = lastBill;
+            dgMaster.DataSource = bindingMaster;
+            dgMaster.Refresh();
         }
         private void ShowColumn(DataGridViewColumnCollection dataGridViewColumnCollection)
         {
@@ -33,6 +41,11 @@ namespace ShefaaPharmacy.Invoice
                 if (HiddenColumn == null || !HiddenColumn.Contains(item.Name))
                 {
                     item.Visible = true;
+
+                    if(item.HeaderText == "السعر")
+                    dgMaster.Columns[item.DisplayIndex].HeaderText = "الإفرادي" ;
+                    if(item.HeaderText == "اجمالي السعر")
+                    dgMaster.Columns[item.DisplayIndex].HeaderText = "الإجمالي" ;
                 }
                 else
                 {
@@ -52,7 +65,7 @@ namespace ShefaaPharmacy.Invoice
         }
         private void Rebinding()
         {
-            HiddenColumn = new string[] { "barcode" };
+            HiddenColumn = new string[] { "Id", "BarcodeDescr", "InvoiceKind", "QuantityGift", "CountLeft", "Discount", "CreationByDescr", "CreationDate" };
             if (dgMaster.Columns != null)
             {
                 ShowColumn(dgMaster.Columns);
@@ -79,12 +92,6 @@ namespace ShefaaPharmacy.Invoice
         private void InvoicePrintForm_Load(object sender, EventArgs e)
         {
             AdjustmentGridColumns();
-            var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            List<BillDetail> lastBill = context.BillDetails.ToList();
-            bindingMaster.DataSource = lastBill;
-            dgMaster.DataSource = bindingMaster;
-            dgMaster.Refresh();
-
         }
 
         private void button1_Click(object sender, EventArgs e)

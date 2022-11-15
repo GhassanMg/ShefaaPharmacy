@@ -1607,6 +1607,12 @@ namespace ShefaaPharmacy
             InvoicePrintForm frm = new InvoicePrintForm();
             frm.ShowDialog();
         }
+
+        private void تجريبالطباعة2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvoicePrintForm_2_ frm2 = new InvoicePrintForm_2_();
+            frm2.ShowDialog();
+        }
     }
 }
 

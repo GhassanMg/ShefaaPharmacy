@@ -1014,6 +1014,12 @@
     <Compile Include="Invoice\InvoiceMasterDetailReportForm.Designer.cs">
       <DependentUpon>InvoiceMasterDetailReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoice\InvoicePrintForm%282%29.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoice\InvoicePrintForm%282%29.Designer.cs">
+      <DependentUpon>InvoicePrintForm%282%29.cs</DependentUpon>
+    </Compile>
     <Compile Include="Invoice\InvoicePrintForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1418,6 +1424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Invoice\InvoiceMasterDetailReportForm.resx">
       <DependentUpon>InvoiceMasterDetailReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\InvoicePrintForm%282%29.resx">
+      <DependentUpon>InvoicePrintForm%282%29.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Invoice\InvoicePrintForm.resx">
       <DependentUpon>InvoicePrintForm.cs</DependentUpon>
