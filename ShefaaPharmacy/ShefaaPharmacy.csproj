@@ -133,6 +133,9 @@
     <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
+    <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.5.0\lib\net461\FastMember.dll</HintPath>
+    </Reference>
     <Reference Include="IronBarCode, Version=2022.10.9871.0, Culture=neutral, PublicKeyToken=b971bb3971bdf306, processorArchitecture=MSIL">
       <HintPath>..\packages\BarCode.2022.10.9871\lib\net462\IronBarCode.dll</HintPath>
     </Reference>
@@ -457,6 +460,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
+    </Reference>
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
     </Reference>
     <Reference Include="zxing, Version=0.16.8.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.0.16.8\lib\net47\zxing.dll</HintPath>
@@ -1020,6 +1026,12 @@
     <Compile Include="Invoice\InvoicePrintForm%282%29.Designer.cs">
       <DependentUpon>InvoicePrintForm%282%29.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoice\InvoicePrintForm%283%29.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoice\InvoicePrintForm%283%29.Designer.cs">
+      <DependentUpon>InvoicePrintForm%283%29.cs</DependentUpon>
+    </Compile>
     <Compile Include="Invoice\InvoicePrintForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1427,6 +1439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Invoice\InvoicePrintForm%282%29.resx">
       <DependentUpon>InvoicePrintForm%282%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice\InvoicePrintForm%283%29.resx">
+      <DependentUpon>InvoicePrintForm%283%29.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Invoice\InvoicePrintForm.resx">
       <DependentUpon>InvoicePrintForm.cs</DependentUpon>

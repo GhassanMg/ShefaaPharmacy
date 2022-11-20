@@ -261,12 +261,12 @@ namespace ShefaaPharmacy.Invoice
 
         private void dgMaster_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            //var height = 60;
-            //foreach (DataGridViewRow dr in dgMaster.Rows)
-            //{
-            //    height += dr.Height;
-            //}
-            //dgMaster.Height = height;
+            var height = 60;
+            foreach (DataGridViewRow dr in dgMaster.Rows)
+            {
+                height += dr.Height;
+            }
+            dgMaster.Height = height;
         }
 
         private void pTop_Paint(object sender, PaintEventArgs e)
