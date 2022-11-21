@@ -1020,18 +1020,6 @@
     <Compile Include="Invoice\InvoiceMasterDetailReportForm.Designer.cs">
       <DependentUpon>InvoiceMasterDetailReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Invoice\InvoicePrintForm%282%29.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Invoice\InvoicePrintForm%282%29.Designer.cs">
-      <DependentUpon>InvoicePrintForm%282%29.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Invoice\InvoicePrintForm%283%29.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Invoice\InvoicePrintForm%283%29.Designer.cs">
-      <DependentUpon>InvoicePrintForm%283%29.cs</DependentUpon>
-    </Compile>
     <Compile Include="Invoice\InvoicePrintForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1160,6 +1148,12 @@
     </Compile>
     <Compile Include="Setting\LogInShefaa.Designer.cs">
       <DependentUpon>LogInShefaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\PharmacyInformationEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\PharmacyInformationEditForm.Designer.cs">
+      <DependentUpon>PharmacyInformationEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Setting\ServerSettingsForm.cs">
       <SubType>Form</SubType>
@@ -1437,12 +1431,6 @@
     <EmbeddedResource Include="Invoice\InvoiceMasterDetailReportForm.resx">
       <DependentUpon>InvoiceMasterDetailReportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Invoice\InvoicePrintForm%282%29.resx">
-      <DependentUpon>InvoicePrintForm%282%29.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Invoice\InvoicePrintForm%283%29.resx">
-      <DependentUpon>InvoicePrintForm%283%29.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Invoice\InvoicePrintForm.resx">
       <DependentUpon>InvoicePrintForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1501,6 +1489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setting\LogInShefaa.resx">
       <DependentUpon>LogInShefaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\PharmacyInformationEditForm.resx">
+      <DependentUpon>PharmacyInformationEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setting\ServerSettingsForm.resx">
       <DependentUpon>ServerSettingsForm.cs</DependentUpon>

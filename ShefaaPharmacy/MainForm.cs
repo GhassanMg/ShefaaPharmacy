@@ -32,6 +32,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO.Compression;
 using System.Threading.Tasks;
+using ShefaaPharmacy.setting;
 
 namespace ShefaaPharmacy
 {
@@ -1591,9 +1592,6 @@ namespace ShefaaPharmacy
                 });
                 thread.IsBackground = true;
                 thread.Start();
-                //thread.Join();
-                //if (!thread.IsAlive)
-                //return;
             }
             catch
             {
@@ -1602,22 +1600,28 @@ namespace ShefaaPharmacy
             }
         }
 
-        private void تجريبالطباعةToolStripMenuItem_Click(object sender, EventArgs e)
+        private void miPharmacyInformation_Click(object sender, EventArgs e)
         {
-            InvoicePrintForm frm = new InvoicePrintForm();
-            frm.ShowDialog();
-        }
+            try
+            {
+                var Info = ShefaaPharmacyDbContext.GetCurrentContext().PharmacyInformation.ToList().FirstOrDefault();
+                if (Info == null)
+                {
+                    PharmacyInformationEditForm frm = new PharmacyInformationEditForm(new PharmacyInformation());
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    PharmacyInformationEditForm frm = new PharmacyInformationEditForm(Info);
+                    frm.ShowDialog();
+                }
 
-        private void تجريبالطباعة2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InvoicePrintForm_2_ frm2 = new InvoicePrintForm_2_();
-            frm2.ShowDialog();
-        }
-
-        private void تجريبالطباعة3ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InvoicePrintForm_3_ frm3 = new InvoicePrintForm_3_();
-            frm3.ShowDialog();
+            }
+            catch
+            {
+                PharmacyInformationEditForm frm = new PharmacyInformationEditForm(new PharmacyInformation());
+                frm.ShowDialog();
+            }
         }
     }
 }

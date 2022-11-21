@@ -137,43 +137,9 @@ namespace ShefaaPharmacy.Accounting
                 return;
             }
         }
-        public string GetEnumDisplayName(Enum enumType)
-        {
-            return enumType.GetType().GetMember(enumType.ToString())
-                           .First()
-                           .GetCustomAttribute<DisplayAttribute>()
-                           .Name;
-        }
         private void AccountTaxReportForm_Load(object sender, EventArgs e)
         {
-            //CBKindFilter.Visible = true;
-            //List<string> MyList = new List<string> { GetEnumDisplayName(InvoiceKind.All), GetEnumDisplayName(InvoiceKind.Buy), GetEnumDisplayName(InvoiceKind.Sell) };
 
-            //CBKindFilter.ComboBox.DataSource = MyList;
-            //CBKindFilter.ComboBox.DisplayMember = "Name";
-
-            //CBKindFilter.SelectedIndexChanged += CBKindFilter_SelectedIndexChanged;
-        }
-        private void CBKindFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    var Invoicekind = EnumHelper<InvoiceKind>.GetValueFromName((string)CBKindFilter.ComboBox.SelectedValue);
-            //    if(Invoicekind != InvoiceKind.All)
-            //    bindingSourceMaster.DataSource = resultReport.Where(x => x.InvoiceKind == Invoicekind).ToList();
-            //    else bindingSourceMaster.DataSource = resultReport;
-            //    dgMaster.Refresh();
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    ;
-            //}
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            printDocument1.Print();
         }
     }
     // Helper Class To Get InvoiceKind Item Name

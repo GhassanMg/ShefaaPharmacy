@@ -1789,28 +1789,10 @@ namespace ShefaaPharmacy.GeneralUI
 
             Width = widthMax;  // You can add 10 width more
         }
-        private void CaptureScreen()
-        {
-            Graphics myGraphics = CreateGraphics();
-            Size s = Size;
-            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
-            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            memoryGraphics.CopyFromScreen(Location.X, Location.Y, 0, 0, s);
-        }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnPrintInvoice_Click(object sender, EventArgs e)
         {
-            CaptureScreen();
-            memoryImage.Save(@"D:\Temp\aaaPix.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            PrintPreviewDialog ppd = new PrintPreviewDialog();
-            ppd.Document = printDocument1;
-            ppd.ShowDialog();
-        }
-        Bitmap memoryImage;
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(memoryImage, 0, 0);
+            InvoicePrintForm frm = new InvoicePrintForm(billMaster);
         }
 
         /// <summary>

@@ -167,6 +167,30 @@
         5n9CS8t/uxlDH2IxqKkAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="miPharmacyInformation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAABD1JREFUaEPt
+        mElPVEEUhVkrggOjAgIKziN/QuK/MPo7mEGgm0EEBdk5RF25VvcuFBAnhO4Ge0CGRsSFKxfXurfqva73
+        uupVNbCApE9yQtJJJ989OXXSoSCvvPLKK6+8ZP2ZbLq59agptTXZBFuT1+H3I/Q17omrsEm+Qv41fjnj
+        h5dgg3wRNh6gL0CafB7SY+dhfewc9+hZ8troGVi7j24kr95vgNUR9GlYQd87JVwPP4fRdcmVkZPNAlMv
+        Bp4keALPwHNwAT8uwcvgBO8FT6vACT4bnOBlcIKvE66F5aHahMDUKzB1GXz8koA3gI9x8HUXnMOvogk8
+        MHUyAxc+CQJTLxd+wjL13a5LduoEjk4N1tgcEABumfoag14MN8K33tPkWAjroajLiAncC291gAvOHAQe
+        lHokzP5+eAL//m6S198/hoXQGRc+sC6K1LmrITVQbXPAzh5pargRlt90gl/Lr9shMeRAB6WuAGdODlSR
+        BaZeQanbPNL4YANsTD0T2Bmlp57CUrie4Dm4lLqmLhw8A58Mn7A8QE49x0eaGm6ApZe3BXZGiy9uQWIQ
+        ge3r4oIPnIAEg0+Ej5sP2I1Nj/TXM+A7kJ59RY49vwXzfbUuuLku3tQd+ETI6gD7ugRtenygHuZ765hr
+        4UfYAc+tLi44wVdCnFlg6pVLXeTUt7Pp3tQFuFQXGTweqiALTL10qevqotr0aKgOvnTXCFfD565qiPRx
+        8FxS5+ACvr8CfvSXWxxgSJ3qEpQ6e6QI7hce4Uld80izUhfg3GXmA7LANakH1QVh/ZrtqOLgvrrw1P3g
+        Cvi+MlhiFph6cXg9uLcu6k3/1Kk6gMFaPFIVOIcvJQtMveS6GFPXbLrqgI/tx93Ug8DjDjiriwy+1FtC
+        Fph6aVOXwaW6qNYF6+IXHSCnzjY9qC4ufC+HXyQfMx+w3d/p8rpgXfyaaavUpq6ri5M6gi/eRR+1OMAC
+        3LTpmLZfM20VXnCCF+BZdfGm7sDH7A5AeAlcWRc1vPNIVQdMt5Zbp64Cj/UcIQtMvbR1CUrdt+lYF7+m
+        W8u84JpHmgV+l4PHeg5DlFlg6mXzSF1wSj0D7mw61sWv6RYGLKWOm26qi5M6gke70cXmA2weqVwXsrwu
+        eACri19TLaU518VJHcHRke4imwNyq4tq02faygR2RtOtrCLGuqhTJ/iuIrLA1MuuLr7UfZs+11VOiXOX
+        kL92InRudXFS5/CHyAJTLxX8bvwE0KYuwFV1kcEXugphobPQfIAndYu67GTTbVJfQDNw7oNWByRNqct1
+        2cmmG1OXwOfRHQfM/1pMDlY1M+ikMfVd2HQHPOqCq1Of7+Dw3zsO3hCYO5ecesCmz7HPK8RX9pYs6rJ3
+        4VEyuKIuexseFbAuex8epUgdH+j+gEfta3iUBL7/4FGZTS/ef/Aolv7baE/xu0h3Yan4KK/cVVDwHw5i
+        9IJTApW9AAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>141, 10</value>
   </metadata>

@@ -1,210 +1,217 @@
 ﻿using DataLayer;
+using DataLayer.Enums;
 using DataLayer.Tables;
-using ShefaaPharmacy.Helper;
+using FastMember;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Invoice
 {
     public partial class InvoicePrintForm : Form
     {
-        protected GridStyle[] StyledColumn;
-        protected string[] HiddenColumn;
+        PrintDocument pdoc = null;
+        DataTable wStock;
+        Image Image, Logo;
+        BillMaster billmaster;
+        List<BillDetail> billdetails;
+        Point point;
         public InvoicePrintForm()
         {
             InitializeComponent();
-            LoadMaster();
-            PaperSize pagesize = new PaperSize();
-            pagesize.PaperName = "Custom";
-            pagesize.Width = 500;
-            printDocument1.DefaultPageSettings.PaperSize = pagesize;
-            printDocument1.DefaultPageSettings.PaperSize.RawKind = 50;
-            printDocument1.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 50;
-            printDocument1.DefaultPageSettings.Landscape = true;
-
         }
-        private void LoadMaster()
+        public InvoicePrintForm(BillMaster Master)
         {
+            billmaster = Master;
+            billdetails = new List<BillDetail>(Master.BillDetails);
+            PrintInvoice();
+        }
+        private void PrintInvoice()
+        {
+            Zen.Barcode.CodeQrBarcodeDraw qrcode = Zen.Barcode.BarcodeDrawFactory.CodeQr;
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            List<BillDetail> lastBill = context.BillDetails.ToList();
-            bindingMaster.DataSource = lastBill;
-            dgMaster.DataSource = bindingMaster;
-            dgMaster.Refresh();
-        }
-        private void ShowColumn(DataGridViewColumnCollection dataGridViewColumnCollection)
-        {
-            foreach (DataGridViewColumn item in dataGridViewColumnCollection)
+
+            IEnumerable<BillDetail> data = billdetails;
+            DataTable table = new DataTable();
+            using (var reader = ObjectReader.Create(data))
             {
-                if (HiddenColumn == null || !HiddenColumn.Contains(item.Name))
+                table.Load(reader);
+            }
+            wStock = table;
+            // QR Image Create
+            Image = qrcode.Draw(context.TaxAccount.FirstOrDefault().taxNumber ?? "No Number", 10);
+
+            // Print Settings
+            PrintDialog pd = new PrintDialog();
+            pdoc = new PrintDocument();
+            PrinterSettings ps = new PrinterSettings();
+            Font font = new Font("calibri", 15);
+            PaperSize psize = new PaperSize("Custom", 0, 30000);
+            pd.Document = pdoc;
+            pd.Document.DefaultPageSettings.PaperSize = psize;
+            pdoc.DefaultPageSettings.PaperSize.Height = 30000;
+            pdoc.DefaultPageSettings.PaperSize.Width = 120;
+            pdoc.PrinterSettings.PrinterName = ps.PrinterName;
+            pdoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+            pdoc.PrintPage += new PrintPageEventHandler(dailyDep);
+            pdoc.Print();
+            pdoc.PrintPage -= new PrintPageEventHandler(dailyDep);
+        }
+
+        void dailyDep(object sender, PrintPageEventArgs e)
+        {
+            try
+            {
+                var context = ShefaaPharmacyDbContext.GetCurrentContext();
+
+                // General Settings
+                Graphics graphics = e.Graphics;
+                Font font = new Font("Calibri", 11);
+                float fontHeight = font.GetHeight();
+                string underLine = "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+                int startX = 10;
+                int startY = 10;
+                int Offset = 10;
+                Offset += 0;
+                Offset += 15;
+
+                // Qr Code
+                Logo = Properties.Resources.logo;
+                Point p = new Point(startX, startY + 10);
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.DrawImage(Logo, p);
+                Offset += 20;
+
+                // Header
+                var Info = context.PharmacyInformation.ToList().FirstOrDefault() ?? null;
+                if(Info ==null) graphics.DrawString("PharmacyName / Location", new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Black), startX + 280, startY + Offset);
+                else graphics.DrawString(Info.PharmacyName?? Info.PharmacyName + " / " + Info.Address??Info.Address , new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Black), startX + 280, startY + Offset);
+                Offset += 40;
+                graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset += 15;
+
+                if (Info == null) graphics.DrawString("Tax Number : " + context.TaxAccount.FirstOrDefault().taxNumber +
+                    "                          Phone : ----- " +
+                    "                          Commercial Register Number : ----- " 
+                    , new Font("Calibri", 11), new SolidBrush(Color.Black), startX + 15, startY + Offset);
+
+                else graphics.DrawString("Tax Number : " + context.TaxAccount.FirstOrDefault().taxNumber +
+                    "                          Phone : " + Info.Tel  +
+                    "                          Commercial Register Number : " + Info.CommercialRegisterNumber 
+                    , new Font("Calibri", 11), new SolidBrush(Color.Black), startX + 15, startY + Offset);
+                Offset += 15;
+                graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
+                string xParent = "*";
+                Offset += 20;
+
+                // BillMaster Info
+                string parent = wStock.Rows[0]["BillMasterId"].ToString();
+
+                Offset += 20;
+                graphics.DrawString("Bill Number " + parent.ToUpper(), new Font("Calibri", 11, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 15;
+                graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset += 12;
+                graphics.DrawString("InvoiceKind                               Currency           PaymentType           TotalPrice           Date", new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 12;
+                graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset += 20;
+                xParent = parent;
+                
+                string InvoiceKind = (0 + 1) + " - " + Enum.GetName(typeof(InvoiceKind),wStock.Rows[0]["InvoiceKind"]);
+                string CreationDate = wStock.Rows[0]["CreationDate"].ToString();
+                string PaymentMethod = wStock.Rows[0]["Id"].ToString();
+                string Currency = "SP";
+                string TotalBill = wStock.Rows[0]["TotalPrice"].ToString();
+                graphics.DrawString(InvoiceKind, new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString(Currency, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 195, startY + Offset);
+                graphics.DrawString(PaymentMethod, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 305, startY + Offset);
+                graphics.DrawString(TotalBill, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 405, startY + Offset);
+                graphics.DrawString(CreationDate, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 500, startY + Offset);
+                Offset += 20;
+                string nextParent1;
+                nextParent1 = wStock.Rows[0]["quantity"].ToString();
+
+                // BillDetails Info
+                Offset += 20;
+                graphics.DrawString("Bill Details ", new Font("Calibri", 11, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 15;
+                graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset += 12;
+                graphics.DrawString("Item                                             Unit           quantity           Price           Total", new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 12;
+                graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset += 20;
+                xParent = parent;
+
+                for (int i = 0; i < wStock.Rows.Count; i++)
                 {
-                    item.Visible = true;
-
-                    if(item.HeaderText == "السعر")
-                    dgMaster.Columns[item.DisplayIndex].HeaderText = "الإفرادي" ;
-                    if(item.HeaderText == "اجمالي السعر")
-                    dgMaster.Columns[item.DisplayIndex].HeaderText = "الإجمالي" ;
+                    string item = (i + 1) + " - " + wStock.Rows[i]["ArticaleIdDescr"].ToString();
+                    string quantity = wStock.Rows[i]["quantity"].ToString();
+                    string UnitName = wStock.Rows[i]["UnitTypeIdDescr"].ToString();
+                    string Price = wStock.Rows[i]["Price"].ToString();
+                    string Total = wStock.Rows[i]["TotalPrice"].ToString();
+                    graphics.DrawString(item, new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
+                    graphics.DrawString(UnitName, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 190, startY + Offset);
+                    graphics.DrawString(quantity, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 270, startY + Offset);
+                    graphics.DrawString(Price, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 342, startY + Offset);
+                    graphics.DrawString(Total, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 407, startY + Offset);
+                    Offset += 20;
+                    string nextParent;
+                    if (i < wStock.Rows.Count - 1)
+                        nextParent = wStock.Rows[i]["quantity"].ToString();
+                    else
+                        nextParent = "*";
                 }
-                else
-                {
-                    item.Visible = false;
-                }
-            }
-        }
-        private void ColumnWidth(DataGridViewColumnCollection dataGridViewColumnCollection)
-        {
-            foreach (DataGridViewColumn item in dataGridViewColumnCollection)
-            {
-                if (StyledColumn != null && StyledColumn.Any(x => x.ColName == item.Name))
-                {
-                    item.Width = StyledColumn.FirstOrDefault(x => x.ColName == item.Name).Width;
-                }
-            }
-        }
-        private void Rebinding()
-        {
-            HiddenColumn = new string[] { "Id", "BarcodeDescr", "InvoiceKind", "QuantityGift", "CountLeft", "Discount", "CreationByDescr", "CreationDate" };
-            if (dgMaster.Columns != null)
-            {
-                ShowColumn(dgMaster.Columns);
-            }
-            if (StyledColumn != null)
-            {
-                ColumnWidth(dgMaster.Columns);
-            }
-            dgMaster.Refresh();
-        }
-        private void AdjustmentGridColumns()
-        {
-            dgMaster.AutoGenerateColumns = true;
-            dgMaster.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgMaster.ColumnHeadersDefaultCellStyle.Font = new Font("AD-STOOR", 12);
-            dgMaster.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(66, 172, 186);
 
-            dgMaster.DefaultCellStyle.Font = new Font("AD-STOOR", 10);
-            dgMaster.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                // Total Info
+                graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset += 20;
+                graphics.DrawString("Sub Total :  " + billmaster.TotalPrice.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 22;
+                
+                // Qr Code
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                point = new Point(800, startY + Offset);
+                graphics.DrawImage(Image, 680, startY + Offset, 80, 80);
 
-            Rebinding();
-        }
+                double ConsumerSpendingTax = ((billmaster.TotalPrice * 6) / 100); // 0.6
+                double ReconstructionTax = ((billmaster.TotalPrice * 6) / 1000); // 0.06
+                double localAdministrationTax = ((billmaster.TotalPrice * 3) / 1000); // 0.03
+                graphics.DrawString("Consumer Spending Tax : " + ConsumerSpendingTax.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 22;
+                graphics.DrawString("Reconstruction Tax : " + ReconstructionTax.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 22;
+                graphics.DrawString("local Administration Tax : " + localAdministrationTax.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 22;
+                graphics.DrawString("Discount :" + billmaster.discount.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 22;
+                graphics.DrawString("Final Total :" + (billmaster.TotalPrice + ConsumerSpendingTax + ReconstructionTax + localAdministrationTax).ToString(), new Font("Calibri", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset += 50;
 
-        private void InvoicePrintForm_Load(object sender, EventArgs e)
-        {
-            AdjustmentGridColumns();
+                // Footer
+                graphics.DrawString("Thanks For Your Visit", new Font("Calibri", 11, FontStyle.Bold), new SolidBrush(Color.Black), startX + 335, startY + Offset);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            printDocument1.Print();
-            //PrintScreen();
-            printPreviewDialog1.ShowDialog();
-        }
-
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        public static extern long BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, int dwRop);
-        private Bitmap memoryImage;
-
-        private void PrintScreen()
-        {
-            Graphics mygraphics = CreateGraphics();
-            Size s = Size;
-            memoryImage = new Bitmap(s.Width, s.Height, mygraphics);
-            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            IntPtr dc1 = mygraphics.GetHdc();
-            IntPtr dc2 = memoryGraphics.GetHdc();
-            BitBlt(dc2, 0, 0, ClientRectangle.Width, ClientRectangle.Height, dc1, 0, 0, 13369376);
-            mygraphics.ReleaseHdc(dc1);
-            memoryGraphics.ReleaseHdc(dc2);
-        }
-
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            DateTime date = DateTime.Now.AddDays(9);
-            //e.Graphics.DrawImage(memoryImage, 0, 0);
-
-            Graphics graphics = e.Graphics;
-            Font font = new Font("Arial", 10);
-            var brush = new SolidBrush(Color.Black);
-            float fontHeight = font.GetHeight();
-            int startX = 5;
-            int startY = 35;
-            int Offset = 40;
-            graphics.DrawString("             DIGITAL STORE               ", font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            graphics.DrawString("           ITEMS TO DELIVER             ", font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea3 = string.Format("{0} Ticket#: {1}", DateTime.Now.ToString(), date);
-            graphics.DrawString(linea3, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea4 = string.Format("NB#: {0}", "ghassan");
-            graphics.DrawString(linea4, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            graphics.DrawString("Item ID      Weigth     Price     Type", font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            graphics.DrawString("----------------------------------------", font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-
-            var cant = (22 - 12) / 6;
-
-            var pos = 12;
-            for (var i = 0; i < cant; i++)
-            {
-                var linea7 = string.Format("{0} {1} {2} {3}", "Mohammad", "ghassan", "Al-Moghrabe", "S.V.B");
-                graphics.DrawString(linea7, font, brush, startX, startY + Offset);
-                Offset = Offset + 20;
-                graphics.DrawString("Mohammad", font, brush, startX, startY + Offset);
-                Offset = Offset + 20;
-                graphics.DrawString("Al-Moghrabe", font, brush, startX, startY + Offset);
-                Offset = Offset + 20;
-                if (i != cant - 1)
-                    Offset = Offset + 20;
-            }
-
-            Offset = Offset + 20;
-            string linea5 = string.Format("{0}: {1}", "Stock".PadRight(15), "data4");
-            graphics.DrawString(linea5, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea6 = string.Format("{0}: {1}", "Total peso".PadRight(15), "data5");
-            graphics.DrawString(linea6, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea71 = string.Format("{0}: {1}", "Total TAR1".PadRight(15), "data6");
-            graphics.DrawString(linea71, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea8 = string.Format("{0}: {1}", "Total TAR2".PadRight(15), "data7");
-            graphics.DrawString(linea8, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea9 = string.Format("{0}: {1} = {2}", "Total Vol".PadRight(15), "data8", "data9");
-            graphics.DrawString(linea9, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea10 = string.Format("Items retirados: {0}", "data10");
-            graphics.DrawString(linea10, font, brush, startX, startY + Offset);
-            Offset = Offset + 20;
-            string linea11 = string.Format("Usuario: {0}", "data11");
-            graphics.DrawString(linea11, font, brush, startX, startY + Offset);
-            Offset = Offset + 60;
-            graphics.DrawString("----------------------------------------", font, brush, startX, startY + Offset);
-            Offset = Offset + 40;
-            string linea12 = string.Format("{0}", "data3");
-            graphics.DrawString(linea12, font, brush, startX, startY + Offset);
-            Offset = Offset + 40;
-            graphics.DrawString("            SIGNATUE           ", font, brush, startX, startY + Offset);
-            Offset = Offset + 40;
-            graphics.DrawString("*******THANKS FOR WORK WITH US********", font, brush, startX, startY + Offset);
-            Offset = Offset + 10;
-            if ("R" == "R")
-                graphics.DrawString("**********************************", font, brush, startX, startY + Offset);
-            graphics.DrawString("a", font, brush, startX, startY + Offset);
-            e.HasMorePages = false;
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
+            
         }
     }
 }

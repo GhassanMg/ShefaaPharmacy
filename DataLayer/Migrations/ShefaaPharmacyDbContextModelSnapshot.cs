@@ -54,7 +54,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 257, DateTimeKind.Local).AddTicks(1862));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 675, DateTimeKind.Local).AddTicks(4925));
 
                     b.Property<string>("Description")
                         .ValueGeneratedOnAdd()
@@ -103,7 +103,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "الحساب العام"
                         },
@@ -114,7 +114,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "الزبائن"
                         },
@@ -125,7 +125,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "الصناديق"
                         },
@@ -136,7 +136,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "المبيعات"
                         },
@@ -147,7 +147,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "المشتريات"
                         },
@@ -158,7 +158,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "المندوبين"
                         },
@@ -169,7 +169,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 9,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "الضرائب"
                         },
@@ -180,7 +180,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 8,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "المصاريف"
                         },
@@ -191,7 +191,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "رأس المال"
                         },
@@ -202,7 +202,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 11,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "الموجودات"
                         },
@@ -213,7 +213,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = true,
                             Name = "الإيرادات"
                         },
@@ -224,7 +224,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "زبائن الصيدلية"
                         },
@@ -235,7 +235,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "صندوق الصيدلية"
                         },
@@ -246,7 +246,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مبيعات الصيدلية"
                         },
@@ -257,7 +257,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مشتريات الصيدلية"
                         },
@@ -268,7 +268,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 9,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "ضريبة الصيدلية"
                         },
@@ -279,7 +279,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مندوب عام"
                         },
@@ -290,7 +290,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 8,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مصروف الصيدلية"
                         },
@@ -301,7 +301,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "رأس مال الصيدلية"
                         },
@@ -312,7 +312,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 11,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مخزن الأدوية"
                         },
@@ -323,7 +323,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مخزن المواد منتهية الصلاحية"
                         },
@@ -334,7 +334,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 11,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "الأصول الثابتة"
                         },
@@ -345,7 +345,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "الحسم"
                         },
@@ -356,7 +356,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مردودات المشتريات"
                         },
@@ -367,7 +367,7 @@ namespace DataLayer.Migrations
                             AccountState = 2,
                             CategoryId = 8,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 309, DateTimeKind.Local).AddTicks(1822),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946),
                             General = false,
                             Name = "مردودات المبيعات"
                         });
@@ -461,7 +461,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 259, DateTimeKind.Local).AddTicks(1859));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 680, DateTimeKind.Local).AddTicks(4931));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -634,14 +634,14 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "أدوية"
                         },
                         new
                         {
                             Id = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "اكسسوارات"
                         });
                 });
@@ -699,7 +699,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 275, DateTimeKind.Local).AddTicks(1821));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 726, DateTimeKind.Local).AddTicks(4931));
 
                     b.HasKey("Id");
 
@@ -732,7 +732,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 265, DateTimeKind.Local).AddTicks(1814));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 694, DateTimeKind.Local).AddTicks(4934));
 
                     b.Property<double>("Discount")
                         .HasColumnType("float");
@@ -798,7 +798,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 265, DateTimeKind.Local).AddTicks(1814));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 693, DateTimeKind.Local).AddTicks(4928));
 
                     b.Property<double>("Discount")
                         .HasColumnType("float");
@@ -861,7 +861,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 272, DateTimeKind.Local).AddTicks(1806));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 719, DateTimeKind.Local).AddTicks(4934));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -900,7 +900,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 277, DateTimeKind.Local).AddTicks(1820));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 729, DateTimeKind.Local).AddTicks(4937));
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -921,7 +921,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ابن الهيثم"
                         },
@@ -929,7 +929,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ابن حيان"
                         },
@@ -937,7 +937,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ابن رشد"
                         },
@@ -945,7 +945,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ابن زهر"
                         },
@@ -953,7 +953,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ابن سينا"
                         },
@@ -961,7 +961,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "افاميا"
                         },
@@ -969,7 +969,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 7,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الأفق"
                         },
@@ -977,7 +977,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 8,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "البلسم"
                         },
@@ -985,7 +985,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 9,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "التراميديكا"
                         },
@@ -993,7 +993,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 10,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الدولية"
                         },
@@ -1001,7 +1001,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 11,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الرازي"
                         },
@@ -1009,7 +1009,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 12,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الرائد"
                         },
@@ -1017,7 +1017,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 13,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "السعد"
                         },
@@ -1025,7 +1025,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 14,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "السلام"
                         },
@@ -1033,7 +1033,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 15,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الشهباء"
                         },
@@ -1041,7 +1041,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 16,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الفا"
                         },
@@ -1049,7 +1049,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 17,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الفارس"
                         },
@@ -1057,7 +1057,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 18,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "القنواتي"
                         },
@@ -1065,7 +1065,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 20,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الما"
                         },
@@ -1073,7 +1073,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 22,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "المتحدة "
                         },
@@ -1081,7 +1081,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 23,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "المتوسط"
                         },
@@ -1089,7 +1089,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 24,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "النورس"
                         },
@@ -1097,7 +1097,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 25,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الهلال"
                         },
@@ -1105,7 +1105,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 26,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "الوطنية"
                         },
@@ -1113,7 +1113,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 27,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "اليوسف"
                         },
@@ -1121,7 +1121,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 28,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "إميسا"
                         },
@@ -1129,7 +1129,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 29,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "أدامكو"
                         },
@@ -1137,7 +1137,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 30,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "أسيا"
                         },
@@ -1145,7 +1145,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 31,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "أوبري"
                         },
@@ -1153,7 +1153,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 32,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 302, DateTimeKind.Local).AddTicks(1812),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "أوشر"
                         },
@@ -1161,7 +1161,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 33,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "أوغاريت"
                         },
@@ -1169,7 +1169,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 34,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "آسكو فارما"
                         },
@@ -1177,7 +1177,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 35,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "بحري"
                         },
@@ -1185,7 +1185,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 36,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "بركات"
                         },
@@ -1193,7 +1193,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 38,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "برولاين"
                         },
@@ -1201,7 +1201,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 39,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "بيوميد"
                         },
@@ -1209,7 +1209,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 40,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ترياق"
                         },
@@ -1217,7 +1217,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 41,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "حماة فارما"
                         },
@@ -1225,7 +1225,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 42,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "حياة فارما"
                         },
@@ -1233,7 +1233,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 43,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "دلتا"
                         },
@@ -1241,7 +1241,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 44,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "دومنا"
                         },
@@ -1249,7 +1249,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 45,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "دياموند"
                         },
@@ -1257,7 +1257,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 46,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "راما فارما"
                         },
@@ -1265,7 +1265,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 48,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "رشا"
                         },
@@ -1273,7 +1273,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 49,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "زين فارما"
                         },
@@ -1281,7 +1281,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 50,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "سرّاج"
                         },
@@ -1289,7 +1289,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 51,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "سلامة كير"
                         },
@@ -1297,7 +1297,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 52,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "سيتي فارما"
                         },
@@ -1305,7 +1305,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 53,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "سيردا فارما"
                         },
@@ -1313,7 +1313,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 54,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "سيفارما"
                         },
@@ -1321,7 +1321,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 55,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "شرق المتوسط(ليم)"
                         },
@@ -1329,7 +1329,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 57,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "شفا"
                         },
@@ -1337,7 +1337,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 58,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "عبد الوهّاب القنواتي"
                         },
@@ -1345,7 +1345,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 59,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "غولدن ميد فارما ( الذهبية ) "
                         },
@@ -1353,7 +1353,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 60,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "فارماسير"
                         },
@@ -1361,7 +1361,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 61,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "فكتوريا"
                         },
@@ -1369,7 +1369,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 62,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "فيتا"
                         },
@@ -1377,7 +1377,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 63,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "كسبار و شعباني"
                         },
@@ -1385,7 +1385,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 64,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "كندة فارما"
                         },
@@ -1393,7 +1393,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 65,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "كيمي"
                         },
@@ -1401,7 +1401,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 66,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "لاما فارما"
                         },
@@ -1409,7 +1409,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 67,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ماجيكو"
                         },
@@ -1417,7 +1417,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 68,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "مسعود فارما"
                         },
@@ -1425,7 +1425,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 69,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "مسعود للمحاليل الطبية"
                         },
@@ -1433,7 +1433,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 70,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "معتوق فارما"
                         },
@@ -1441,7 +1441,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 71,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "مياميد"
                         },
@@ -1449,7 +1449,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 72,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ميديفارم"
                         },
@@ -1457,7 +1457,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 73,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ميديكو"
                         },
@@ -1465,7 +1465,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 74,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ميديوتيك"
                         },
@@ -1473,7 +1473,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 75,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ميرسي فارما"
                         },
@@ -1481,7 +1481,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 76,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "ميغا فارما"
                         },
@@ -1489,7 +1489,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 77,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "هيومن"
                         },
@@ -1497,7 +1497,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 78,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "يونايتد"
                         },
@@ -1505,7 +1505,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 79,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "يونيشيما"
                         },
@@ -1513,7 +1513,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 80,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 303, DateTimeKind.Local).AddTicks(1811),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939),
                             Location = "Damascus",
                             Name = "يونيفارما"
                         });
@@ -1678,7 +1678,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 268, DateTimeKind.Local).AddTicks(1808));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 699, DateTimeKind.Local).AddTicks(4931));
 
                     b.Property<double>("Credit")
                         .HasColumnType("float");
@@ -1725,7 +1725,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 267, DateTimeKind.Local).AddTicks(1807));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 696, DateTimeKind.Local).AddTicks(4930));
 
                     b.Property<int>("KindOperation")
                         .HasColumnType("int");
@@ -1773,7 +1773,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 278, DateTimeKind.Local).AddTicks(1813));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 730, DateTimeKind.Local).AddTicks(4937));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -1807,7 +1807,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 278, DateTimeKind.Local).AddTicks(1813));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 731, DateTimeKind.Local).AddTicks(4937));
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
@@ -1844,7 +1844,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 279, DateTimeKind.Local).AddTicks(1812));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 735, DateTimeKind.Local).AddTicks(4948));
 
                     b.Property<DateTime>("Expirydate")
                         .HasColumnType("datetime2");
@@ -3120,6 +3120,44 @@ namespace DataLayer.Migrations
                     b.ToTable("OrderMasters");
                 });
 
+            modelBuilder.Entity("DataLayer.Tables.PharmacyInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CommercialRegisterNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CreationBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OwnerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PharmacyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreationBy");
+
+                    b.ToTable("PharmacyInformation");
+                });
+
             modelBuilder.Entity("DataLayer.Tables.PriceTagDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -3138,7 +3176,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 271, DateTimeKind.Local).AddTicks(1807));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 714, DateTimeKind.Local).AddTicks(4938));
 
                     b.Property<int>("PriceTagId")
                         .HasColumnType("int");
@@ -3190,7 +3228,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 268, DateTimeKind.Local).AddTicks(1808));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 703, DateTimeKind.Local).AddTicks(4939));
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
@@ -3317,7 +3355,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 274, DateTimeKind.Local).AddTicks(1806));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 725, DateTimeKind.Local).AddTicks(4934));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -3335,42 +3373,42 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "لا يوجد"
                         },
                         new
                         {
                             Id = 2,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "طرد"
                         },
                         new
                         {
                             Id = 3,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "علبة"
                         },
                         new
                         {
                             Id = 4,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "ظرف"
                         },
                         new
                         {
                             Id = 5,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "حبة"
                         },
                         new
                         {
                             Id = 6,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 284, DateTimeKind.Local).AddTicks(1804),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "إبرة"
                         });
                 });
@@ -3622,7 +3660,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 10, 30, 10, 54, 2, 273, DateTimeKind.Local).AddTicks(1806));
+                        .HasDefaultValue(new DateTime(2022, 11, 21, 13, 45, 10, 722, DateTimeKind.Local).AddTicks(4933));
 
                     b.Property<string>("Name")
                         .ValueGeneratedOnAdd()
@@ -3640,7 +3678,7 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             CreationBy = 2,
-                            CreationDate = new DateTime(2022, 10, 30, 10, 54, 2, 283, DateTimeKind.Local).AddTicks(1805),
+                            CreationDate = new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941),
                             Name = "2022"
                         });
                 });
@@ -4003,6 +4041,15 @@ namespace DataLayer.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("DataLayer.Tables.User", "User")
+                        .WithMany()
+                        .HasForeignKey("CreationBy")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.PharmacyInformation", b =>
+                {
                     b.HasOne("DataLayer.Tables.User", "User")
                         .WithMany()
                         .HasForeignKey("CreationBy")
