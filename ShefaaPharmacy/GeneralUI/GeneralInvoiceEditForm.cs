@@ -1795,6 +1795,11 @@ namespace ShefaaPharmacy.GeneralUI
             InvoicePrintForm frm = new InvoicePrintForm(billMaster);
         }
 
+        private void pbPrint_Click(object sender, EventArgs e)
+        {
+            InvoicePrintForm frm = new InvoicePrintForm(billMaster);
+        }
+
         /// <summary>
         /// تعديل فاتورة أو تحديث الصفحة
         /// </summary>

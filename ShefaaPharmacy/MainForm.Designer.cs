@@ -991,11 +991,11 @@
             this.miSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miCreateDB,
             this.miConnectionSetting,
+            this.miPharmacyInformation,
             this.miActivationMethod,
             this.miTestingTimer,
             this.miTaxAccount,
-            this.miLogIn,
-            this.miPharmacyInformation});
+            this.miLogIn});
             this.miSetting.ForeColor = System.Drawing.Color.Black;
             this.miSetting.Name = "miSetting";
             this.miSetting.Size = new System.Drawing.Size(75, 29);

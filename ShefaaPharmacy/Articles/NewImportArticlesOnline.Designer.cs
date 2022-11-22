@@ -138,8 +138,8 @@ namespace ShefaaPharmacy.Articles
             // 
             // picLoader
             // 
-            this.picLoader.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.picLoader, "picLoader");
+            this.picLoader.BackColor = System.Drawing.Color.Transparent;
             this.picLoader.Name = "picLoader";
             this.picLoader.TabStop = false;
             // 

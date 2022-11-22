@@ -387,6 +387,9 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="lblWait.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="lblWait.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -446,6 +449,9 @@
   </data>
   <data name="&gt;&gt;dataGridView2.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="picLoader.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
   </data>
   <data name="picLoader.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

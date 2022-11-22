@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralInvoiceEditForm));
             this.pTopMaster = new System.Windows.Forms.Panel();
             this.panelEx3 = new ShefaaPharmacy.CustomeControls.PanelEx();
@@ -71,7 +71,6 @@
             this.lbDate = new System.Windows.Forms.Label();
             this.dtCreationDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnPrintInvoice = new System.Windows.Forms.Button();
             this.tbDiscount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbRemainingAmount = new System.Windows.Forms.Label();
@@ -81,6 +80,9 @@
             this.tbRemainingAmount = new System.Windows.Forms.TextBox();
             this.tbPayment = new System.Windows.Forms.TextBox();
             this.pBottomMaster = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbPrint = new System.Windows.Forms.Label();
+            this.pbPrint = new System.Windows.Forms.PictureBox();
             this.pFillDetail = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximaizing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -106,6 +108,8 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pBottomMaster.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrint)).BeginInit();
             this.pFillDetail.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -226,25 +230,25 @@
             this.dgDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgDetail.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgDetail.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDetail.ContextMenuStrip = this.contextMenuStrip1;
             this.dgDetail.DataSource = this.DetailBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgDetail.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgDetail.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgDetail.EnableHeadersVisualStyles = false;
             this.dgDetail.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -253,14 +257,14 @@
             this.dgDetail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgDetail.Name = "dgDetail";
             this.dgDetail.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgDetail.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDetail.Size = new System.Drawing.Size(1203, 412);
@@ -617,16 +621,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "تفاصيل نهائية";
             // 
-            // btnPrintInvoice
-            // 
-            this.btnPrintInvoice.Location = new System.Drawing.Point(897, 93);
-            this.btnPrintInvoice.Name = "btnPrintInvoice";
-            this.btnPrintInvoice.Size = new System.Drawing.Size(75, 23);
-            this.btnPrintInvoice.TabIndex = 16;
-            this.btnPrintInvoice.Text = "Print";
-            this.btnPrintInvoice.UseVisualStyleBackColor = true;
-            this.btnPrintInvoice.Click += new System.EventHandler(this.btnPrintInvoice_Click);
-            // 
             // tbDiscount
             // 
             this.tbDiscount.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -653,7 +647,7 @@
             // 
             // lbRemainingAmount
             // 
-            this.lbRemainingAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbRemainingAmount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbRemainingAmount.AutoSize = true;
             this.lbRemainingAmount.Location = new System.Drawing.Point(243, 50);
             this.lbRemainingAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -697,7 +691,7 @@
             // 
             // tbRemainingAmount
             // 
-            this.tbRemainingAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRemainingAmount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbRemainingAmount.Enabled = false;
             this.tbRemainingAmount.Location = new System.Drawing.Point(126, 46);
             this.tbRemainingAmount.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -720,12 +714,12 @@
             // pBottomMaster
             // 
             this.pBottomMaster.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pBottomMaster.Controls.Add(this.btnPrintInvoice);
             this.pBottomMaster.Controls.Add(this.AllBills_linkLabel);
             this.pBottomMaster.Controls.Add(this.lbReturnBill);
             this.pBottomMaster.Controls.Add(this.lbDeleteBill);
             this.pBottomMaster.Controls.Add(this.tableLayoutPanel1);
             this.pBottomMaster.Controls.Add(this.pbOk);
+            this.pBottomMaster.Controls.Add(this.panel1);
             this.pBottomMaster.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pBottomMaster.Location = new System.Drawing.Point(24, 424);
             this.pBottomMaster.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -733,6 +727,45 @@
             this.pBottomMaster.Padding = new System.Windows.Forms.Padding(3);
             this.pBottomMaster.Size = new System.Drawing.Size(1211, 123);
             this.pBottomMaster.TabIndex = 15;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.lbPrint);
+            this.panel1.Controls.Add(this.pbPrint);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel1.Location = new System.Drawing.Point(856, 89);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(100, 30);
+            this.panel1.TabIndex = 158;
+            this.panel1.Click += new System.EventHandler(this.pbPrint_Click);
+            // 
+            // lbPrint
+            // 
+            this.lbPrint.AutoSize = true;
+            this.lbPrint.BackColor = System.Drawing.Color.Transparent;
+            this.lbPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbPrint.Font = new System.Drawing.Font("Dubai", 10F, System.Drawing.FontStyle.Bold);
+            this.lbPrint.ForeColor = System.Drawing.Color.Maroon;
+            this.lbPrint.Location = new System.Drawing.Point(12, 4);
+            this.lbPrint.Name = "lbPrint";
+            this.lbPrint.Size = new System.Drawing.Size(41, 24);
+            this.lbPrint.TabIndex = 157;
+            this.lbPrint.Text = "طباعة";
+            this.lbPrint.Click += new System.EventHandler(this.pbPrint_Click);
+            // 
+            // pbPrint
+            // 
+            this.pbPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbPrint.Image = ((System.Drawing.Image)(resources.GetObject("pbPrint.Image")));
+            this.pbPrint.Location = new System.Drawing.Point(56, 0);
+            this.pbPrint.Name = "pbPrint";
+            this.pbPrint.Size = new System.Drawing.Size(33, 30);
+            this.pbPrint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPrint.TabIndex = 156;
+            this.pbPrint.TabStop = false;
+            this.pbPrint.Click += new System.EventHandler(this.pbPrint_Click);
             // 
             // pFillDetail
             // 
@@ -795,6 +828,9 @@
             this.groupBox2.PerformLayout();
             this.pBottomMaster.ResumeLayout(false);
             this.pBottomMaster.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrint)).EndInit();
             this.pFillDetail.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -850,6 +886,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel AllBills_linkLabel;
         private System.Windows.Forms.Panel pFillDetail;
-        private System.Windows.Forms.Button btnPrintInvoice;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbPrint;
+        private System.Windows.Forms.PictureBox pbPrint;
     }
 }

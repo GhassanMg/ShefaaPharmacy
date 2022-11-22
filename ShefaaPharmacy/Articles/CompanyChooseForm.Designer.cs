@@ -123,9 +123,10 @@ namespace ShefaaPharmacy.Articles
             // 
             // radioButton2
             // 
+            this.radioButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.radioButton2.Location = new System.Drawing.Point(505, 48);
+            this.radioButton2.Location = new System.Drawing.Point(503, 48);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton2.Size = new System.Drawing.Size(73, 20);
@@ -149,6 +150,7 @@ namespace ShefaaPharmacy.Articles
             // 
             // radioButton1
             // 
+            this.radioButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.radioButton1.Location = new System.Drawing.Point(497, 22);
@@ -187,6 +189,7 @@ namespace ShefaaPharmacy.Articles
             // 
             // lblLoading
             // 
+            this.lblLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblLoading.AutoSize = true;
             this.lblLoading.Font = new System.Drawing.Font("Gabriola", 9.25F);
             this.lblLoading.Location = new System.Drawing.Point(357, 172);
@@ -198,6 +201,7 @@ namespace ShefaaPharmacy.Articles
             // 
             // pcloader
             // 
+            this.pcloader.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pcloader.BackColor = System.Drawing.Color.Transparent;
             this.pcloader.Image = ((System.Drawing.Image)(resources.GetObject("pcloader.Image")));
             this.pcloader.Location = new System.Drawing.Point(399, 198);

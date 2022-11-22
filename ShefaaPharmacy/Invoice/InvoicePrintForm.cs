@@ -34,7 +34,7 @@ namespace ShefaaPharmacy.Invoice
         public InvoicePrintForm(BillMaster Master)
         {
             billmaster = Master;
-            billdetails = new List<BillDetail>(Master.BillDetails);
+            billdetails = new List<BillDetail>(Master.BillDetails.Where(s => s.Quantity != 0));
             PrintInvoice();
         }
         private void PrintInvoice()
