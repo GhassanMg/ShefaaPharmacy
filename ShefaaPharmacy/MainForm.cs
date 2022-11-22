@@ -1564,8 +1564,8 @@ namespace ShefaaPharmacy
         {
             try
             {
-                var thread = new Thread(() =>
-                {
+                //var thread = new Thread(() =>
+                //{
                     var context = ShefaaPharmacyDbContext.GetCurrentContext();
                     BillService service = new BillService(); bool Done = false;
                     List<DetailedTaxCode> NotTransfeeredBills = context.DetailedTaxCode.Where(x => x.IsTransfeered == false).ToList();
@@ -1589,9 +1589,9 @@ namespace ShefaaPharmacy
                         context.SaveChanges();
                         _MessageBoxDialog.Show("تم ترحيل الفواتير المعلقة بنجاح", MessageBoxState.Done);
                     }
-                });
-                thread.IsBackground = true;
-                thread.Start();
+                //});
+                //thread.IsBackground = true;
+                //thread.Start();
             }
             catch
             {

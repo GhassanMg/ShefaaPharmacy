@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace ShefaaPharmacy.Invoice
 {
@@ -54,9 +55,13 @@ namespace ShefaaPharmacy.Invoice
             string RandomNmuber = TaxAccount.taxNumber +
                 "_" + TaxAccount.facilityName + "_" + "001" + "#" +
                 billmaster.CreationDate + "_" + billmaster.TotalPrice + "_" + "SP" + "ShefaaPharmacy";
-            string GuidCode = string.Format(RandomNmuber, Guid.NewGuid());
-            string StringQr = (RandomNmuber + GuidCode).ToString();
-            Image = qrcode.Draw(GuidCode, 10);
+
+            MD5 md5Hasher = MD5.Create();
+            byte[] sipher = md5Hasher.ComputeHash(Encoding.Default.GetBytes(RandomNmuber));
+            string GUIDCode = new Guid(sipher).ToString();
+
+            string QrString = RandomNmuber + "#" + GUIDCode + "#";
+            Image = qrcode.Draw(QrString, 10);
 
             // Print Settings
             PrintDialog pd = new PrintDialog();

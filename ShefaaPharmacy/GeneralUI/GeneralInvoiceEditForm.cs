@@ -25,6 +25,8 @@ using System.Net;
 using System.Windows.Forms;
 using System.Threading;
 using System.Drawing.Printing;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ShefaaPharmacy.GeneralUI
 {
@@ -1275,8 +1277,15 @@ namespace ShefaaPharmacy.GeneralUI
                     tbPayment.Text = "0";
                     tbDiscount.Text = "0";
                     SetFocus();
-                    Guid GCode = Guid.NewGuid();
-                    string GUIDCode = GCode.ToString();
+                    // QR Image Create
+                    var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                    var TaxAccount = context.TaxAccount.ToList().FirstOrDefault();
+                    string RandomNmuber = TaxAccount.taxNumber +
+                        "_" + TaxAccount.facilityName + "_" + "001" + "#" +
+                        billMaster.CreationDate + "_" + billMaster.TotalPrice + "_" + "SP" + "ShefaaPharmacy";
+                    MD5 md5Hasher = MD5.Create();
+                    byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(RandomNmuber));
+                    string GUIDCode = new Guid(data).ToString();
                     var CurrentTaxAccount = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault();
                     if (CurrentTaxAccount != null)
                     {
