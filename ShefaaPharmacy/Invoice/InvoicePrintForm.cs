@@ -50,7 +50,13 @@ namespace ShefaaPharmacy.Invoice
             }
             wStock = table;
             // QR Image Create
-            Image = qrcode.Draw(context.TaxAccount.FirstOrDefault().taxNumber ?? "No Number", 10);
+            var TaxAccount = context.TaxAccount.ToList().FirstOrDefault();
+            string RandomNmuber = TaxAccount.taxNumber +
+                "_" + TaxAccount.facilityName + "_" + "001" + "#" +
+                billmaster.CreationDate + "_" + billmaster.TotalPrice + "_" + "SP" + "ShefaaPharmacy";
+            string GuidCode = string.Format(RandomNmuber, Guid.NewGuid());
+            string StringQr = (RandomNmuber + GuidCode).ToString();
+            Image = qrcode.Draw(GuidCode, 10);
 
             // Print Settings
             PrintDialog pd = new PrintDialog();
@@ -131,7 +137,7 @@ namespace ShefaaPharmacy.Invoice
                 
                 string InvoiceKind = (0 + 1) + " - " + Enum.GetName(typeof(InvoiceKind),wStock.Rows[0]["InvoiceKind"]);
                 string CreationDate = wStock.Rows[0]["CreationDate"].ToString();
-                string PaymentMethod = wStock.Rows[0]["Id"].ToString();
+                string PaymentMethod = Enum.GetName(typeof(PaymentMethod), billmaster.paymentMethod);
                 string Currency = "SP";
                 string TotalBill = wStock.Rows[0]["TotalPrice"].ToString();
                 graphics.DrawString(InvoiceKind, new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
