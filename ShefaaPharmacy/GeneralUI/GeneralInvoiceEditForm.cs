@@ -1799,14 +1799,9 @@ namespace ShefaaPharmacy.GeneralUI
             Width = widthMax;  // You can add 10 width more
         }
 
-        private void btnPrintInvoice_Click(object sender, EventArgs e)
-        {
-            InvoicePrintForm frm = new InvoicePrintForm(billMaster);
-        }
-
         private void pbPrint_Click(object sender, EventArgs e)
         {
-            InvoicePrintForm frm = new InvoicePrintForm(billMaster);
+            new InvoicePrintForm(billMaster);
         }
 
         /// <summary>

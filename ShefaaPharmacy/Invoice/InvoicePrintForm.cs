@@ -163,7 +163,7 @@ namespace ShefaaPharmacy.Invoice
                 Offset += 15;
                 graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
                 Offset += 12;
-                graphics.DrawString("Item                                             Unit           quantity           Price           Total", new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString("Item                                                                                          Unit           quantity           Price           Total", new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset += 12;
                 graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
                 Offset += 20;
@@ -177,10 +177,10 @@ namespace ShefaaPharmacy.Invoice
                     string Price = wStock.Rows[i]["Price"].ToString();
                     string Total = wStock.Rows[i]["TotalPrice"].ToString();
                     graphics.DrawString(item, new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
-                    graphics.DrawString(UnitName, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 190, startY + Offset);
-                    graphics.DrawString(quantity, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 270, startY + Offset);
-                    graphics.DrawString(Price, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 342, startY + Offset);
-                    graphics.DrawString(Total, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 407, startY + Offset);
+                    graphics.DrawString(UnitName, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 347, startY + Offset);
+                    graphics.DrawString(quantity, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 430, startY + Offset);
+                    graphics.DrawString(Price, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 502, startY + Offset);
+                    graphics.DrawString(Total, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 571, startY + Offset);
                     Offset += 20;
                     string nextParent;
                     if (i < wStock.Rows.Count - 1)
@@ -209,9 +209,9 @@ namespace ShefaaPharmacy.Invoice
                 Offset += 22;
                 graphics.DrawString("local Administration Tax : " + localAdministrationTax.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset += 22;
-                graphics.DrawString("Discount :" + billmaster.discount.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString("Discount : " + billmaster.discount.ToString(), new Font("Calibri", 11), new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset += 22;
-                graphics.DrawString("Final Total :" + (billmaster.TotalPrice + ConsumerSpendingTax + ReconstructionTax + localAdministrationTax).ToString(), new Font("Calibri", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString("Final Total : " + (billmaster.TotalPrice + ConsumerSpendingTax + ReconstructionTax + localAdministrationTax).ToString(), new Font("Calibri", 12, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset += 50;
 
                 // Footer
