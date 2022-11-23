@@ -544,7 +544,7 @@
     <Compile Include="Accounting\AccountTaxReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accounting\AccountTaxReportForm.Designer.cs">
+    <Compile Include="Accounting\AccountTaxReportForm.designer.cs">
       <DependentUpon>AccountTaxReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Accounting\AccountYearProfitReportForm.cs">

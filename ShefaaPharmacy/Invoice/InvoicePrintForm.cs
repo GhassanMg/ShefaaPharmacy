@@ -64,7 +64,7 @@ namespace ShefaaPharmacy.Invoice
             byte[] sipher = md5Hasher.ComputeHash(Encoding.Default.GetBytes(RandomNmuber));
             string GUIDCode = new Guid(sipher).ToString();
 
-            string QrString = RandomNmuber + "#" + GUIDCode + "#";
+            string QrString = "#" + RandomNmuber + "#" + GUIDCode + "#";
 
             Image = qrcode.Draw(QrString, 10);
 
@@ -156,8 +156,6 @@ namespace ShefaaPharmacy.Invoice
                 graphics.DrawString(TotalBill, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 405, startY + Offset);
                 graphics.DrawString(CreationDate, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 500, startY + Offset);
                 Offset += 20;
-                //string nextParent1;
-                //nextParent1 = wStock.Rows[0]["quantity"].ToString();
 
                 // BillDetails Info
                 Offset += 20;
