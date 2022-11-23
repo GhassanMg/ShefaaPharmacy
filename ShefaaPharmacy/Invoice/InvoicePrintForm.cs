@@ -17,6 +17,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Globalization;
 
 namespace ShefaaPharmacy.Invoice
 {
@@ -50,7 +52,9 @@ namespace ShefaaPharmacy.Invoice
                 table.Load(reader);
             }
             wStock = table;
+
             // QR Image Create
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-UK");
             var TaxAccount = context.TaxAccount.ToList().FirstOrDefault();
             string RandomNmuber = TaxAccount.taxNumber +
                 "_" + TaxAccount.facilityName + "_" + "001" + "#" +
@@ -61,6 +65,7 @@ namespace ShefaaPharmacy.Invoice
             string GUIDCode = new Guid(sipher).ToString();
 
             string QrString = RandomNmuber + "#" + GUIDCode + "#";
+
             Image = qrcode.Draw(QrString, 10);
 
             // Print Settings
@@ -107,7 +112,7 @@ namespace ShefaaPharmacy.Invoice
                 // Header
                 var Info = context.PharmacyInformation.ToList().FirstOrDefault() ?? null;
                 if(Info ==null) graphics.DrawString("PharmacyName / Location", new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Black), startX + 280, startY + Offset);
-                else graphics.DrawString(Info.PharmacyName?? Info.PharmacyName + " / " + Info.Address??Info.Address , new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Black), startX + 280, startY + Offset);
+                else graphics.DrawString(Info.PharmacyName+ " / " + Info.Address , new Font("Calibri", 13, FontStyle.Bold), new SolidBrush(Color.Black), startX + 280, startY + Offset);
                 Offset += 40;
                 graphics.DrawString(underLine, new Font("Calibri", 11), new SolidBrush(Color.Black), 0, startY + Offset);
                 Offset += 15;
@@ -151,8 +156,8 @@ namespace ShefaaPharmacy.Invoice
                 graphics.DrawString(TotalBill, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 405, startY + Offset);
                 graphics.DrawString(CreationDate, new Font("Calibri", 10), new SolidBrush(Color.Black), startX + 500, startY + Offset);
                 Offset += 20;
-                string nextParent1;
-                nextParent1 = wStock.Rows[0]["quantity"].ToString();
+                //string nextParent1;
+                //nextParent1 = wStock.Rows[0]["quantity"].ToString();
 
                 // BillDetails Info
                 Offset += 20;
