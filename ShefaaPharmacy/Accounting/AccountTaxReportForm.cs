@@ -128,7 +128,7 @@ namespace ShefaaPharmacy.Accounting
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             if ((bindingSourceMaster.Current as DetailedTaxCode).InvoiceKind == InvoiceKind.Sell)
             {
-                var BillMaster = context.BillMasters.Where(x=>x.Id==Convert.ToInt32((bindingSourceMaster.Current as DetailedTaxCode).BillNumber)).FirstOrDefault();
+                var BillMaster = context.BillMasters.Where(x => x.Id == Convert.ToInt32((bindingSourceMaster.Current as DetailedTaxCode).BillNumber)).FirstOrDefault();
                 GeneralInvoiceEditForm generalInvoiceEditForm = new GeneralInvoiceEditForm(BillMaster, InvoiceKind.Sell, FormOperation.Show);
                 generalInvoiceEditForm.ShowDialog();
             }

@@ -26,7 +26,7 @@ namespace DataLayer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 719, DateTimeKind.Local).AddTicks(4934)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 287, DateTimeKind.Local).AddTicks(4652)),
                     Name = table.Column<string>(nullable: true, defaultValueSql: "('')")
                 },
                 constraints: table =>
@@ -174,7 +174,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 680, DateTimeKind.Local).AddTicks(4931)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 269, DateTimeKind.Local).AddTicks(4653)),
                     Name = table.Column<string>(nullable: true, defaultValueSql: "('')"),
                     AccountBaseCategoryId = table.Column<int>(nullable: false)
                 },
@@ -223,7 +223,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 729, DateTimeKind.Local).AddTicks(4937)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 293, DateTimeKind.Local).AddTicks(4659)),
                     Name = table.Column<string>(nullable: true, defaultValueSql: "('')"),
                     Location = table.Column<string>(nullable: true)
                 },
@@ -265,7 +265,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 730, DateTimeKind.Local).AddTicks(4937)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 294, DateTimeKind.Local).AddTicks(4654)),
                     Name = table.Column<string>(nullable: true),
                     Count = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
@@ -289,7 +289,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 731, DateTimeKind.Local).AddTicks(4937)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 295, DateTimeKind.Local).AddTicks(4651)),
                     ArticleIdDescr = table.Column<string>(nullable: true),
                     UnitIdDescr = table.Column<string>(nullable: true),
                     LeftQuantity = table.Column<int>(nullable: false),
@@ -314,7 +314,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 735, DateTimeKind.Local).AddTicks(4948)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 297, DateTimeKind.Local).AddTicks(4651)),
                     ArticleId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     InvoiceKind = table.Column<string>(nullable: true),
@@ -330,6 +330,32 @@ namespace DataLayer.Migrations
                     table.PrimaryKey("PK_FirstTimeArticles", x => x.Id);
                     table.ForeignKey(
                         name: "FK_FirstTimeArticles_User_CreationBy",
+                        column: x => x.CreationBy,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LastTimeArticles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreationBy = table.Column<int>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    ArticleId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    UnitId = table.Column<int>(nullable: false),
+                    UnitIdDescr = table.Column<string>(nullable: true),
+                    QuantityLeft = table.Column<double>(nullable: false),
+                    TotalPrice = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LastTimeArticles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LastTimeArticles_User_CreationBy",
                         column: x => x.CreationBy,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -369,7 +395,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 725, DateTimeKind.Local).AddTicks(4934)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 290, DateTimeKind.Local).AddTicks(4655)),
                     Name = table.Column<string>(nullable: true, defaultValueSql: "('')")
                 },
                 constraints: table =>
@@ -390,7 +416,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 722, DateTimeKind.Local).AddTicks(4933)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 289, DateTimeKind.Local).AddTicks(4651)),
                     Name = table.Column<string>(nullable: true, defaultValueSql: "('')")
                 },
                 constraints: table =>
@@ -411,7 +437,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 675, DateTimeKind.Local).AddTicks(4925)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 266, DateTimeKind.Local).AddTicks(4646)),
                     Name = table.Column<string>(nullable: true, defaultValueSql: "('')"),
                     LastName = table.Column<string>(nullable: true, defaultValueSql: "('')"),
                     Description = table.Column<string>(nullable: true, defaultValueSql: "('')"),
@@ -597,7 +623,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 693, DateTimeKind.Local).AddTicks(4928)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 277, DateTimeKind.Local).AddTicks(4656)),
                     InvoiceKind = table.Column<int>(nullable: false),
                     PaymentMethod = table.Column<int>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
@@ -685,7 +711,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 696, DateTimeKind.Local).AddTicks(4930)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 279, DateTimeKind.Local).AddTicks(4656)),
                     KindOperation = table.Column<int>(nullable: false),
                     RelatedDocument = table.Column<int>(nullable: false, defaultValue: 0),
                     TotalDebit = table.Column<double>(nullable: false),
@@ -818,7 +844,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 726, DateTimeKind.Local).AddTicks(4931)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 292, DateTimeKind.Local).AddTicks(4652)),
                     Code = table.Column<string>(nullable: true, defaultValueSql: "('')"),
                     ArticaleId = table.Column<int>(nullable: false)
                 },
@@ -846,7 +872,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 703, DateTimeKind.Local).AddTicks(4939)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 282, DateTimeKind.Local).AddTicks(4654)),
                     ArticleId = table.Column<int>(nullable: false),
                     BranchId = table.Column<int>(nullable: false),
                     UnitId = table.Column<int>(nullable: false),
@@ -935,7 +961,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 699, DateTimeKind.Local).AddTicks(4931)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 281, DateTimeKind.Local).AddTicks(4654)),
                     KindOperation = table.Column<int>(nullable: false),
                     Debit = table.Column<double>(nullable: false),
                     Credit = table.Column<double>(nullable: false),
@@ -973,7 +999,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 694, DateTimeKind.Local).AddTicks(4934)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 278, DateTimeKind.Local).AddTicks(4654)),
                     Barcode = table.Column<string>(nullable: true),
                     InvoiceKind = table.Column<int>(nullable: false),
                     UnitTypeIdBasic = table.Column<int>(nullable: false),
@@ -1075,7 +1101,7 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreationBy = table.Column<int>(nullable: false),
-                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 21, 13, 45, 10, 714, DateTimeKind.Local).AddTicks(4938)),
+                    CreationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 11, 23, 14, 15, 11, 286, DateTimeKind.Local).AddTicks(4650)),
                     PriceTagId = table.Column<int>(nullable: false),
                     UnitId = table.Column<int>(nullable: false),
                     SellPrice = table.Column<double>(nullable: false, defaultValue: 0.0),
@@ -1382,15 +1408,15 @@ namespace DataLayer.Migrations
             migrationBuilder.InsertData(
                 table: "Account",
                 columns: new[] { "Id", "AccountCategoryId", "AccountGeneralId", "AccountState", "CategoryId", "CreationBy", "CreationDate", "General", "Name" },
-                values: new object[] { 1, null, null, 2, 1, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "الحساب العام" });
+                values: new object[] { 1, null, null, 2, 1, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "الحساب العام" });
 
             migrationBuilder.InsertData(
                 table: "ArticaleCategory",
                 columns: new[] { "Id", "CreationBy", "CreationDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "أدوية" },
-                    { 2, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "اكسسوارات" }
+                    { 1, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "أدوية" },
+                    { 2, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "اكسسوارات" }
                 });
 
             migrationBuilder.InsertData(
@@ -1398,81 +1424,81 @@ namespace DataLayer.Migrations
                 columns: new[] { "Id", "CreationBy", "CreationDate", "Location", "Name" },
                 values: new object[,]
                 {
-                    { 60, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "فارماسير" },
-                    { 59, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "غولدن ميد فارما ( الذهبية ) " },
-                    { 58, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "عبد الوهّاب القنواتي" },
-                    { 57, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "شفا" },
-                    { 55, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "شرق المتوسط(ليم)" },
-                    { 54, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "سيفارما" },
-                    { 53, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "سيردا فارما" },
-                    { 51, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "سلامة كير" },
-                    { 61, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "فكتوريا" },
-                    { 50, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "سرّاج" },
-                    { 49, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "زين فارما" },
-                    { 48, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "رشا" },
-                    { 46, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "راما فارما" },
-                    { 45, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "دياموند" },
-                    { 44, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "دومنا" },
-                    { 52, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "سيتي فارما" },
-                    { 62, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "فيتا" },
-                    { 64, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "كندة فارما" },
-                    { 42, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "حياة فارما" },
-                    { 80, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "يونيفارما" },
-                    { 79, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "يونيشيما" },
-                    { 78, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "يونايتد" },
-                    { 77, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "هيومن" },
-                    { 76, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ميغا فارما" },
-                    { 75, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ميرسي فارما" },
-                    { 74, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ميديوتيك" },
-                    { 63, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "كسبار و شعباني" },
-                    { 73, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ميديكو" },
-                    { 71, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "مياميد" },
-                    { 70, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "معتوق فارما" },
-                    { 69, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "مسعود للمحاليل الطبية" },
-                    { 68, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "مسعود فارما" },
-                    { 67, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ماجيكو" },
-                    { 66, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "لاما فارما" },
-                    { 65, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "كيمي" },
-                    { 72, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ميديفارم" },
-                    { 41, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "حماة فارما" },
-                    { 43, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "دلتا" },
-                    { 39, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "بيوميد" },
-                    { 40, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ترياق" },
-                    { 15, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الشهباء" },
-                    { 14, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "السلام" },
-                    { 13, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "السعد" },
-                    { 12, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الرائد" },
-                    { 11, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الرازي" },
-                    { 10, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الدولية" },
-                    { 17, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الفارس" },
-                    { 9, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "التراميديكا" },
-                    { 7, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الأفق" },
-                    { 6, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "افاميا" },
-                    { 5, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ابن سينا" },
-                    { 4, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ابن زهر" },
-                    { 3, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ابن رشد" },
-                    { 2, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ابن حيان" },
-                    { 1, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "ابن الهيثم" },
-                    { 8, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "البلسم" },
-                    { 18, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "القنواتي" },
-                    { 16, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الفا" },
-                    { 22, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "المتحدة " },
-                    { 38, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "برولاين" },
-                    { 36, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "بركات" },
-                    { 35, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "بحري" },
-                    { 34, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "آسكو فارما" },
-                    { 20, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الما" },
-                    { 32, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "أوشر" },
-                    { 31, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "أوبري" },
-                    { 33, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "أوغاريت" },
-                    { 29, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "أدامكو" },
-                    { 28, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "إميسا" },
-                    { 27, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "اليوسف" },
-                    { 26, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الوطنية" },
-                    { 25, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "الهلال" },
-                    { 24, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "النورس" },
-                    { 23, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "المتوسط" },
-                    { 30, 2, new DateTime(2022, 11, 21, 13, 45, 10, 772, DateTimeKind.Local).AddTicks(4939), "Damascus", "أسيا" }
+                    { 60, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "فارماسير" },
+                    { 59, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "غولدن ميد فارما ( الذهبية ) " },
+                    { 58, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "عبد الوهّاب القنواتي" },
+                    { 57, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "شفا" },
+                    { 55, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "شرق المتوسط(ليم)" },
+                    { 54, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "سيفارما" },
+                    { 53, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "سيردا فارما" },
+                    { 51, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "سلامة كير" },
+                    { 61, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "فكتوريا" },
+                    { 50, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "سرّاج" },
+                    { 49, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "زين فارما" },
+                    { 48, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "رشا" },
+                    { 46, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "راما فارما" },
+                    { 45, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "دياموند" },
+                    { 44, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "دومنا" },
+                    { 52, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "سيتي فارما" },
+                    { 62, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "فيتا" },
+                    { 64, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "كندة فارما" },
+                    { 42, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "حياة فارما" },
+                    { 80, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "يونيفارما" },
+                    { 79, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "يونيشيما" },
+                    { 78, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "يونايتد" },
+                    { 77, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "هيومن" },
+                    { 76, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ميغا فارما" },
+                    { 75, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ميرسي فارما" },
+                    { 74, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ميديوتيك" },
+                    { 63, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "كسبار و شعباني" },
+                    { 73, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ميديكو" },
+                    { 71, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "مياميد" },
+                    { 70, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "معتوق فارما" },
+                    { 69, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "مسعود للمحاليل الطبية" },
+                    { 68, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "مسعود فارما" },
+                    { 67, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ماجيكو" },
+                    { 66, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "لاما فارما" },
+                    { 65, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "كيمي" },
+                    { 72, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ميديفارم" },
+                    { 41, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "حماة فارما" },
+                    { 43, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "دلتا" },
+                    { 39, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "بيوميد" },
+                    { 40, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ترياق" },
+                    { 15, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الشهباء" },
+                    { 14, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "السلام" },
+                    { 13, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "السعد" },
+                    { 12, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الرائد" },
+                    { 11, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الرازي" },
+                    { 10, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الدولية" },
+                    { 17, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الفارس" },
+                    { 9, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "التراميديكا" },
+                    { 7, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الأفق" },
+                    { 6, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "افاميا" },
+                    { 5, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ابن سينا" },
+                    { 4, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ابن زهر" },
+                    { 3, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ابن رشد" },
+                    { 2, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ابن حيان" },
+                    { 1, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "ابن الهيثم" },
+                    { 8, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "البلسم" },
+                    { 18, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "القنواتي" },
+                    { 16, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الفا" },
+                    { 22, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "المتحدة " },
+                    { 38, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "برولاين" },
+                    { 36, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "بركات" },
+                    { 35, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "بحري" },
+                    { 34, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "آسكو فارما" },
+                    { 20, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الما" },
+                    { 32, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "أوشر" },
+                    { 31, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "أوبري" },
+                    { 33, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "أوغاريت" },
+                    { 29, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "أدامكو" },
+                    { 28, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "إميسا" },
+                    { 27, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "اليوسف" },
+                    { 26, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الوطنية" },
+                    { 25, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "الهلال" },
+                    { 24, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "النورس" },
+                    { 23, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "المتوسط" },
+                    { 30, 2, new DateTime(2022, 11, 23, 14, 15, 11, 325, DateTimeKind.Local).AddTicks(4654), "Damascus", "أسيا" }
                 });
 
             migrationBuilder.InsertData(
@@ -1480,34 +1506,34 @@ namespace DataLayer.Migrations
                 columns: new[] { "Id", "CreationBy", "CreationDate", "Name" },
                 values: new object[,]
                 {
-                    { 6, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "إبرة" },
-                    { 1, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "لا يوجد" },
-                    { 2, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "طرد" },
-                    { 3, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "علبة" },
-                    { 4, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "ظرف" },
-                    { 5, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "حبة" }
+                    { 6, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "إبرة" },
+                    { 1, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "لا يوجد" },
+                    { 2, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "طرد" },
+                    { 3, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "علبة" },
+                    { 4, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "ظرف" },
+                    { 5, 2, new DateTime(2022, 11, 23, 14, 15, 11, 300, DateTimeKind.Local).AddTicks(4677), "حبة" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Year",
                 columns: new[] { "Id", "CreationBy", "CreationDate", "Name" },
-                values: new object[] { 1, 2, new DateTime(2022, 11, 21, 13, 45, 10, 742, DateTimeKind.Local).AddTicks(4941), "2022" });
+                values: new object[] { 1, 2, new DateTime(2022, 11, 23, 14, 15, 11, 299, DateTimeKind.Local).AddTicks(4654), "2022" });
 
             migrationBuilder.InsertData(
                 table: "Account",
                 columns: new[] { "Id", "AccountCategoryId", "AccountGeneralId", "AccountState", "CategoryId", "CreationBy", "CreationDate", "General", "Name" },
                 values: new object[,]
                 {
-                    { 2, null, 1, 2, 2, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "الزبائن" },
-                    { 3, null, 1, 2, 3, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "الصناديق" },
-                    { 4, null, 1, 2, 4, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "المبيعات" },
-                    { 5, null, 1, 2, 5, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "المشتريات" },
-                    { 6, null, 1, 2, 6, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "المندوبين" },
-                    { 7, null, 1, 2, 9, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "الضرائب" },
-                    { 8, null, 1, 2, 8, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "المصاريف" },
-                    { 9, null, 1, 2, 10, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "رأس المال" },
-                    { 10, null, 1, 2, 11, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "الموجودات" },
-                    { 23, null, 1, 2, 3, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), true, "الإيرادات" }
+                    { 2, null, 1, 2, 2, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "الزبائن" },
+                    { 3, null, 1, 2, 3, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "الصناديق" },
+                    { 4, null, 1, 2, 4, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "المبيعات" },
+                    { 5, null, 1, 2, 5, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "المشتريات" },
+                    { 6, null, 1, 2, 6, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "المندوبين" },
+                    { 7, null, 1, 2, 9, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "الضرائب" },
+                    { 8, null, 1, 2, 8, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "المصاريف" },
+                    { 9, null, 1, 2, 10, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "رأس المال" },
+                    { 10, null, 1, 2, 11, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "الموجودات" },
+                    { 23, null, 1, 2, 3, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), true, "الإيرادات" }
                 });
 
             migrationBuilder.InsertData(
@@ -1515,20 +1541,20 @@ namespace DataLayer.Migrations
                 columns: new[] { "Id", "AccountCategoryId", "AccountGeneralId", "AccountState", "CategoryId", "CreationBy", "CreationDate", "General", "Name" },
                 values: new object[,]
                 {
-                    { 11, null, 2, 2, 2, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "زبائن الصيدلية" },
-                    { 12, null, 3, 2, 3, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "صندوق الصيدلية" },
-                    { 13, null, 4, 2, 4, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مبيعات الصيدلية" },
-                    { 14, null, 5, 2, 5, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مشتريات الصيدلية" },
-                    { 16, null, 6, 2, 6, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مندوب عام" },
-                    { 15, null, 7, 2, 9, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "ضريبة الصيدلية" },
-                    { 17, null, 8, 2, 8, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مصروف الصيدلية" },
-                    { 20, null, 8, 2, 10, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مخزن المواد منتهية الصلاحية" },
-                    { 22, null, 8, 2, 10, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "الحسم" },
-                    { 25, null, 8, 2, 8, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مردودات المبيعات" },
-                    { 18, null, 9, 2, 10, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "رأس مال الصيدلية" },
-                    { 19, null, 10, 2, 11, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مخزن الأدوية" },
-                    { 21, null, 10, 2, 11, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "الأصول الثابتة" },
-                    { 24, null, 23, 2, 10, 2, new DateTime(2022, 11, 21, 13, 45, 10, 784, DateTimeKind.Local).AddTicks(4946), false, "مردودات المشتريات" }
+                    { 11, null, 2, 2, 2, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "زبائن الصيدلية" },
+                    { 12, null, 3, 2, 3, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "صندوق الصيدلية" },
+                    { 13, null, 4, 2, 4, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مبيعات الصيدلية" },
+                    { 14, null, 5, 2, 5, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مشتريات الصيدلية" },
+                    { 16, null, 6, 2, 6, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مندوب عام" },
+                    { 15, null, 7, 2, 9, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "ضريبة الصيدلية" },
+                    { 17, null, 8, 2, 8, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مصروف الصيدلية" },
+                    { 20, null, 8, 2, 10, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مخزن المواد منتهية الصلاحية" },
+                    { 22, null, 8, 2, 10, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "الحسم" },
+                    { 25, null, 8, 2, 8, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مردودات المبيعات" },
+                    { 18, null, 9, 2, 10, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "رأس مال الصيدلية" },
+                    { 19, null, 10, 2, 11, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مخزن الأدوية" },
+                    { 21, null, 10, 2, 11, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "الأصول الثابتة" },
+                    { 24, null, 23, 2, 10, 2, new DateTime(2022, 11, 23, 14, 15, 11, 337, DateTimeKind.Local).AddTicks(4654), false, "مردودات المشتريات" }
                 });
 
             migrationBuilder.InsertData(
@@ -1773,6 +1799,11 @@ namespace DataLayer.Migrations
                 column: "UnitTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_LastTimeArticles_CreationBy",
+                table: "LastTimeArticles",
+                column: "CreationBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_ArticleId",
                 table: "OrderDetails",
                 column: "ArticleId");
@@ -1928,6 +1959,9 @@ namespace DataLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Inventories");
+
+            migrationBuilder.DropTable(
+                name: "LastTimeArticles");
 
             migrationBuilder.DropTable(
                 name: "Medicines");

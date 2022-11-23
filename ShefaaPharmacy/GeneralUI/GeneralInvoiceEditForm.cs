@@ -930,7 +930,7 @@ namespace ShefaaPharmacy.GeneralUI
                 var context = ShefaaPharmacyDbContext.GetCurrentContext();
                 var dbConfig = context.DataBaseConfigurations.FirstOrDefault();
                 List<PriceTagMaster> PriceTagsForArticleInStore = context.PriceTagMasters.Include(x => x.Article.Id == articale.Id).ToList();
-                List<PriceTagMaster> expired = PriceTagsForArticleInStore.Where(x => (DateTime.Now>= x.ExpiryDate)).ToList();
+                List<PriceTagMaster> expired = PriceTagsForArticleInStore.Where(x => (DateTime.Now >= x.ExpiryDate)).ToList();
                 List<PriceTagMaster> mylist = new List<PriceTagMaster>();
                 List<PriceTagMaster> NewList = new List<PriceTagMaster>();
 
@@ -1583,7 +1583,7 @@ namespace ShefaaPharmacy.GeneralUI
             tbPayment.Text = tbPayment.Text == "" ? "0" : tbPayment.Text;
             bill.payment = Convert.ToInt32(tbPayment.Text == "" ? 0 : double.Parse(tbPayment.Text));
             bill.RemainingAmount = bill.TotalPrice - bill.payment - bill.discount;
-            
+
             tbPayment.Text = bill.Payment + "";
             tbDiscount.Text = bill.Discount + "";
             tbRemainingAmount.Text = bill.RemainingAmount + "";
