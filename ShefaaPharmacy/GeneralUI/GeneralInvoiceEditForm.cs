@@ -1284,6 +1284,8 @@ namespace ShefaaPharmacy.GeneralUI
                     MD5 md5Hasher = MD5.Create();
                     byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(RandomNmuber));
                     string GUIDCode = new Guid(data).ToString();
+
+                    // Transfeer Bill To Tax Account System
                     var CurrentTaxAccount = ShefaaPharmacyDbContext.GetCurrentContext().TaxAccount.ToList().FirstOrDefault();
                     if (CurrentTaxAccount != null)
                     {
@@ -1314,7 +1316,7 @@ namespace ShefaaPharmacy.GeneralUI
                         Close();
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }
@@ -1782,21 +1784,6 @@ namespace ShefaaPharmacy.GeneralUI
                 billMaster.RemainingAmount = billMaster.TotalPrice - billMaster.Payment - (tbDiscount.Text == "" ? 0 : double.Parse(tbDiscount.Text));
             }
         }
-        public void SizeFix(object o, EventArgs e)
-        {
-            int widthMax = Width;
-            foreach (var item in Controls)
-            {
-                int tempWitdh = (item as Control).Location.X + (item as Control).Width;
-                if (tempWitdh > widthMax)
-                {
-                    widthMax = tempWitdh;
-                }
-            }
-
-            Width = widthMax;  // You can add 10 width more
-        }
-
         private void pbPrint_Click(object sender, EventArgs e)
         {
             new InvoicePrintForm(billMaster);
