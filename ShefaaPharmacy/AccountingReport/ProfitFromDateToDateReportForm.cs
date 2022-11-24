@@ -1,17 +1,17 @@
-﻿using DataLayer;
-using DataLayer.Services;
-using DataLayer.Tables;
-using DataLayer.ViewModels;
-using Microsoft.EntityFrameworkCore;
-using ShefaaPharmacy.GeneralUI;
-using ShefaaPharmacy.Helper;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
+﻿using System;
 using System.Linq;
+using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using DataLayer;
+using DataLayer.Tables;
+using DataLayer.Services;
+using DataLayer.ViewModels;
+using ShefaaPharmacy.Helper;
+using ShefaaPharmacy.GeneralUI;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShefaaPharmacy.AccountingReport
 {
@@ -75,12 +75,12 @@ namespace ShefaaPharmacy.AccountingReport
             bindingNavigator1.BindingSource = bindingSourceMaster;
         }
 
-        private void ProfitFromDateToDateReportForm_Load(object sender, System.EventArgs e)
+        private void ProfitFromDateToDateReportForm_Load(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
         }
 
-        private void DgMaster_BindingContextChanged(object sender, System.EventArgs e)
+        private void DgMaster_BindingContextChanged(object sender, EventArgs e)
         {
             dgMaster.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgMaster.ColumnHeadersDefaultCellStyle.Font = new Font("AD-STOOR", 12);
@@ -90,11 +90,11 @@ namespace ShefaaPharmacy.AccountingReport
             dgMaster.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgMaster.Refresh();
         }
-        private void TsRefresh_Click(object sender, System.EventArgs e)
+        private void TsRefresh_Click(object sender, EventArgs e)
         {
             LoadMaster();
         }
-        private void TsReset_Click(object sender, System.EventArgs e)
+        private void TsReset_Click(object sender, EventArgs e)
         {
             var oldUserParameter = userParameters;
             userParameters = ReportParametersForm.ReportParameterProfitFromDateToDate(new UserParameters());

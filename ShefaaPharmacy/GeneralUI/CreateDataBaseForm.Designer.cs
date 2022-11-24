@@ -161,7 +161,6 @@
             this.Padding = new System.Windows.Forms.Padding(12, 63, 12, 8);
             this.Resizable = false;
             this.Text = "إنشاء قاعدة بيانات";
-            this.Load += new System.EventHandler(this.CreateDataBaseForm_Load);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.panel2, 0);

@@ -931,7 +931,6 @@ namespace ShefaaPharmacy.GeneralUI
                 List<PriceTagMaster> PriceTagsForArticleInStore = context.PriceTagMasters.Include(x => x.Article.Id == articale.Id).ToList();
                 List<PriceTagMaster> expired = PriceTagsForArticleInStore.Where(x => (DateTime.Now >= x.ExpiryDate)).ToList();
                 List<PriceTagMaster> mylist = new List<PriceTagMaster>();
-                List<PriceTagMaster> NewList = new List<PriceTagMaster>();
 
                 for (int i = 0; i < expired.Count; i++)
                 {
@@ -1225,7 +1224,7 @@ namespace ShefaaPharmacy.GeneralUI
                     return;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return;
             }

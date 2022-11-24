@@ -25,10 +25,6 @@ namespace ShefaaPharmacy.GeneralUI
                 try
                 {
                     string DBname = tbName.Text;
-                    //DBname = DBname.Substring(DBname.LastIndexOf('\\') + 1);
-                    //SqlConnection con = new SqlConnection(ShefaaPharmacyDbContext.ConStr);
-
-                    //DBname = DBname.Remove(DBname.ToUpper().LastIndexOf("_"));
                     if (CheckDatabaseExists(DBname))
                     {
                         tbName.Clear();
@@ -54,11 +50,6 @@ namespace ShefaaPharmacy.GeneralUI
 
                         ShefaaPharmacyDbContext context = ShefaaPharmacyDbContext.GetCurrentContext();
                         context.CreateStoredProcedure();
-                        //SqlConnection sqcon = new SqlConnection(ShefaaPharmacyDbContext.ConStr); sqcon.Open();
-                        //string query = "CREATE TABLE [dbo].[LastTimeArticles]([id] [int] identity(1,1) NOT NULL,[ArticleId] [int] NOT NULL,[Name] [nvarchar] (600) NOT NULL,[UnitId] [int] NOT NULL,[QuantityLeft] [float] NULL,[TotalPrice] [decimal] NULL,[CreationDate] [datetime2](7) NOT NULL)ON [PRIMARY];";
-                        //SqlCommand cmd = new SqlCommand(query, sqcon);
-                        //cmd.ExecuteNonQuery();
-                        //sqcon.Close();
                         context.SaveChanges();
                         _MessageBoxDialog.Show("تم إنشاء قاعدة البيانات بنجاح", MessageBoxState.Done);
                         if (lbDots.InvokeRequired)
@@ -78,7 +69,7 @@ namespace ShefaaPharmacy.GeneralUI
 
                     thread.Start();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _MessageBoxDialog.Show("حدث خطأ, يرجى اعادة العملية", MessageBoxState.Error);
                 }
@@ -99,12 +90,7 @@ namespace ShefaaPharmacy.GeneralUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void CreateDataBaseForm_Load(object sender, EventArgs e)
-        {
-
+            Close();
         }
 
         private void tbName_KeyDown(object sender, KeyEventArgs e)
@@ -113,11 +99,6 @@ namespace ShefaaPharmacy.GeneralUI
             {
                 btnOk_Click(sender, e);
             }
-        }
-
-        private void tbName_Validating(object sender, CancelEventArgs e)
-        {
-
         }
 
         public static bool CheckDatabaseExists(string dataBase)
