@@ -56,7 +56,6 @@
 						--بضاعة آخر المدة
 						select 8 as Id,'بضاعة آخر المدة' as Account,0 as Debit,0 as Credit,Sum(TotalPrice) as Total INTO #tempLastArticles From dbo.LastTimeArticles
 				                    WHERE CreationDate >= @FromDate AND CreationDate <=@ToDate
-									AND TotalPrice > 0
 
 						-- تكلفة المبيعات
 						Select 9 as Id , 'تكلفة المبيعات' as Account ,0 as Credit , 0 as Debit ,

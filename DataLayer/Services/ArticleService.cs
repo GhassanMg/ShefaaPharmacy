@@ -3,6 +3,7 @@ using DataLayer.ViewModels;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Services
 {
@@ -47,6 +48,48 @@ namespace DataLayer.Services
             }
             return 0;
         }
+        public static void BindLastTimeArticlesToToDB()
+        {
+            var context = ShefaaPharmacyDbContext.GetCurrentContext();
+            List<Article> resultReport = context.Articles.Where(x => !x.ItsGeneral).ToList();
+            List<LastTimeArticles> allarticles = new List<LastTimeArticles>();
+            foreach (var item in resultReport)
+            {
+                var lastPriceTage = ShefaaPharmacyDbContext.GetCurrentContext().PriceTagMasters
+                .Where(x => x.ArticleId == item.Id)
+                .Include(x => x.PriceTagDetails)
+                .OrderByDescending(x => x.CreationDate)
+                .LastOrDefault();
+
+                double Fullquantity = InventoryService.GetAllArticleAmountRemaningInAllPricesDouble(item.Id, context.ArticleUnits.FirstOrDefault(x => x.ArticleId == item.Id && x.IsPrimary).UnitTypeId);
+
+                if (Fullquantity == 0) continue;
+
+                LastTimeArticles mynew = new LastTimeArticles
+                {
+                    ArticleId = item.Id,
+                    QuantityLeft = Math.Round(Fullquantity, 2),
+                    UnitId = context.ArticleUnits.FirstOrDefault(x => x.IsPrimary && x.ArticleId == item.Id).UnitTypeId,
+                    TotalPrice = lastPriceTage.PriceTagDetails.FirstOrDefault().BuyPrice * Math.Round(Fullquantity, 2)
+                };
+                allarticles.Add(mynew);
+            }
+            using (var db = context)
+            {
+                if (!db.LastTimeArticles.Any())
+                {
+                    context.LastTimeArticles.AddRange(allarticles);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    db.Database.ExecuteSqlCommand("Truncate table LastTimeArticles");
+                    context.LastTimeArticles.AddRange(allarticles);
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public static int LeftFromBaseUnit(int articleId)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();

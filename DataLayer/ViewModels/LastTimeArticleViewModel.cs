@@ -1,15 +1,21 @@
-﻿using DataLayer.Services;
+﻿using DataLayer.Helper;
+using DataLayer.Services;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer.ViewModels
 {
-    public class LastTimeArticleViewModel
+    public class LastTimeArticleViewModel : BaseModel
     {
+        public delegate void UpdateForm();
+        public event UpdateForm onUpdateForm;
+
         [Browsable(false)]
         public int ArticleId { get; set; }
+        [NotMapped]
         [DisplayName("الدواء")]
-        public string Name
+        public string ArticleIdDescr
         {
             get
             {
@@ -19,6 +25,7 @@ namespace DataLayer.ViewModels
         }
         [Browsable(false)]
         public int UnitId { get; set; }
+        [NotMapped]
         [DisplayName("الواحدة")]
         public string UnitIdDescr
         {
@@ -29,14 +36,20 @@ namespace DataLayer.ViewModels
             set {; }
         }
         [DisplayName("الكمية المتبقية")]
-        public string QuantityLeft { get; set; }
+        public double QuantityLeft { get; set; }
+        [NotMapped]
+        [Browsable(false)]
+        double totalprice;
+
         [DisplayName("إجمالي السعر")]
-        public int TotalPrice { get; set; }
-        [Browsable(false)]
-        [DisplayName("تاريخ الإنشاء")]
-        public DateTime CreationDate { get; set; }
-        [Browsable(false)]
-        [DisplayName("تاريخ الصلاحية")]
-        public DateTime ExpiryDate { get; set; }
+        public double TotalPrice 
+        {
+            get { return totalprice; }
+            set
+            {
+                totalprice = value * QuantityLeft;
+                onUpdateForm?.Invoke();
+            }
+        }
     }
 }

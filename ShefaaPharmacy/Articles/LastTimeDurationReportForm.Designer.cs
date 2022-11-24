@@ -237,6 +237,7 @@ namespace ShefaaPharmacy.Articles
             this.dgMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMaster.Size = new System.Drawing.Size(853, 380);
             this.dgMaster.TabIndex = 2;
+            this.dgMaster.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgMaster_DataBindingComplete);
             this.dgMaster.BindingContextChanged += new System.EventHandler(this.dgMaster_BindingContextChanged);
             // 
             // dgDetail
@@ -302,7 +303,6 @@ namespace ShefaaPharmacy.Articles
             this.Name = "LastTimeDurationReportForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "تقرير بضاعة آخر المدة";
-            this.Load += new System.EventHandler(this.LastTimeDurationReportForm_Load);
             this.Controls.SetChildIndex(this.pHelperButton, 0);
             this.Controls.SetChildIndex(this.bindingNavigator1, 0);
             this.Controls.SetChildIndex(this.dgMaster, 0);
