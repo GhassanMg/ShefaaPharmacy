@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataLayer.Script.Procedures
+﻿namespace DataLayer.Script.Procedures
 {
     class TaxReportScript
     {

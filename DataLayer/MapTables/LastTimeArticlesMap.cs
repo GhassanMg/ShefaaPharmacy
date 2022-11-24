@@ -1,7 +1,6 @@
 ﻿using DataLayer.Tables;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace DataLayer.MapTables
 {

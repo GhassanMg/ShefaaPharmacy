@@ -20,7 +20,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Invoice
