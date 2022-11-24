@@ -1,11 +1,11 @@
-﻿using ShefaaPharmacy.GeneralUI;
-using ShefaaPharmacy.Helper;
-using System;
+﻿using System;
 using System.Drawing;
+using ShefaaPharmacy.Helper;
+using ShefaaPharmacy.GeneralUI;
 
 namespace ShefaaPharmacy.Setting
 {
-    public partial class ActivationProgram : ShefaaPharmacy.GeneralUI.AbstractForm
+    public partial class ActivationProgram : AbstractForm
     {
         public ActivationProgram()
         {
