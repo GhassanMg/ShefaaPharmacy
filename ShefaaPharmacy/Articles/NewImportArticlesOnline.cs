@@ -66,8 +66,10 @@ namespace ShefaaPharmacy.Articles
             InitializeComponent();
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             var Medicines = context.Medicines.Where(x => Comparray.Contains(x.Company))
-                .OrderBy(x => x.Company)
+                .OrderBy(x => x.Name)
                 .ToList();
+
+
 
             dataGridView2.DataSource = Medicines;
             dataGridView2.Columns["Barcode"].Visible = dataGridView2.Columns["Id"].Visible = false;

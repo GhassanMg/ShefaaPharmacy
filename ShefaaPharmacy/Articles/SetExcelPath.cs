@@ -56,8 +56,6 @@ namespace ShefaaPharmacy
                 copy.ColumnMappings.Add(nameof(Medicines.BuyPrice), "BuyPrice");
                 copy.ColumnMappings.Add(nameof(Medicines.SellPrice), "SellPrice");
                 copy.ColumnMappings.Add(nameof(Medicines.Barcode), "Barcode");
-                //copy.ColumnMappings.Add(nameof(Medicines.Barcode), "CreationBy");
-                //copy.ColumnMappings.Add(nameof(Medicines.Barcode), "CreationDate");
 
                 dt = ToDataTable(list);
                 copy.WriteToServer(dt);
@@ -76,7 +74,6 @@ namespace ShefaaPharmacy
                 var values = new object[Props.Length];
                 for (int i = 0; i < Props.Length; i++)
                 {
-
                     values[i] = Props[i].GetValue(item, null);
                 }
                 dataTable.Rows.Add(values);

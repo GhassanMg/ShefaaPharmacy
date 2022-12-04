@@ -192,7 +192,7 @@ namespace ShefaaPharmacy.Articles
             this.lblLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblLoading.AutoSize = true;
             this.lblLoading.Font = new System.Drawing.Font("Gabriola", 9.25F);
-            this.lblLoading.Location = new System.Drawing.Point(357, 172);
+            this.lblLoading.Location = new System.Drawing.Point(366, 172);
             this.lblLoading.Name = "lblLoading";
             this.lblLoading.Size = new System.Drawing.Size(168, 23);
             this.lblLoading.TabIndex = 57;
@@ -204,7 +204,7 @@ namespace ShefaaPharmacy.Articles
             this.pcloader.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pcloader.BackColor = System.Drawing.Color.Transparent;
             this.pcloader.Image = ((System.Drawing.Image)(resources.GetObject("pcloader.Image")));
-            this.pcloader.Location = new System.Drawing.Point(399, 198);
+            this.pcloader.Location = new System.Drawing.Point(408, 198);
             this.pcloader.Name = "pcloader";
             this.pcloader.Size = new System.Drawing.Size(79, 73);
             this.pcloader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
