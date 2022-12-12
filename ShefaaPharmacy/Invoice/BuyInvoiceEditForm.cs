@@ -456,6 +456,11 @@ namespace ShefaaPharmacy.Invoice
                 {
                     FillWithBarcode(e.FormattedValue.ToString());
                     CheckEditPrice = true;
+                    if ((DetailBindingSource.Current as PurchesBillViewModel).Barcode == null)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
                 }
                 else if (cellName == "PurchasePrice" && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as PurchesBillViewModel).PurchasePrice != Convert.ToDouble(e.FormattedValue))
                 {
@@ -1028,6 +1033,11 @@ namespace ShefaaPharmacy.Invoice
             }
             try
             {
+                if ((DetailBindingSource.Current as PurchesBillViewModel).Barcode == null)
+                {
+                    _MessageBoxDialog.Show("يرجى عدم ترك حقول فارغة ضمن الفاتورة !!", MessageBoxState.Error);
+                    return;
+                }
                 string artVal = dgDetail.Rows[e.RowIndex].Cells["ArticleIdDescr"].Value.ToString().Trim();
                 Article result = DescriptionFK.ArticaleExists(artVal);
                 if (result == null)
