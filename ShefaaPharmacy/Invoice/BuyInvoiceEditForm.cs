@@ -1052,6 +1052,7 @@ namespace ShefaaPharmacy.Invoice
                     dgDetail.Rows[e.RowIndex].Cells["SellPrice"].Value = sell;
                     dgDetail.Rows[e.RowIndex].Cells["PurchasePrice"].Value = buy;
                     SetFocus();
+                    buy = sell = 0;
                 }
                 if (Convert.ToDouble(dgDetail.Rows[e.RowIndex].Cells["SellPrice"].Value.ToString()) <= 0 && dgDetail.Rows[e.RowIndex].Cells[0].Value != null)
                 {

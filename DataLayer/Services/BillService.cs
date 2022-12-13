@@ -235,12 +235,12 @@ namespace DataLayer.Services
                         EntryService.InsertEntryReturnBillBuy(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnSellArticles);
                     }
-                    else if (billMaster.InvoiceKind == InvoiceKind.Buy)
+                    else if (billMaster.InvoiceKind == InvoiceKind.ReturnBuy)
                     {
                         EntryService.InsertEntryReturnBillSell(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnBuy);
                     }
-                    else if (billMaster.InvoiceKind == Enums.InvoiceKind.Sell)
+                    else if (billMaster.InvoiceKind == Enums.InvoiceKind.ReturnSell)
                     {
                         EntryService.InsertEntryReturnBillBuy(billMaster);
                         InventoryService.UpdateInventory(billMaster.BillDetails.ToList(), billMaster.BranchId, billMaster.StoreId, invoiceKind: InvoiceKind.ReturnSell);
