@@ -582,7 +582,7 @@ namespace ShefaaPharmacy.Invoice
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             if (headerText.Equals("UnitIdDescr") && (DetailBindingSource.Current as PurchesBillViewModel).ArticleId != 0)
             {
-                TextBox tb = e.Control as TextBox;
+                TextBox tb = e.Control as TextBox; 
                 if (tb != null)
                 {
                     var d = UnitTypeService.GetAllUnitForArticle((DetailBindingSource.Current as PurchesBillViewModel).ArticleId);
@@ -799,7 +799,15 @@ namespace ShefaaPharmacy.Invoice
         private void FillWithBarcode(string value)
         {
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
-            var articleBarcode = context.Articles.Include(x => x.PriceTagMasters).Where(x => x.Barcode == value).FirstOrDefault();
+            var articleBarcodes = context.Articles.Include(x => x.PriceTagMasters).Where(x => x.Barcode == value).ToList();
+            //TextBox tb = e.Control as TextBox;
+            //var dataRow = (DetailBindingSource.Current as PurchesBillViewModel);
+            Article articleBarcode = null;
+            if (articleBarcodes.Count() > 1)
+            {
+                articleBarcode = ArticlePicker.PickArticale(articleBarcodes.FirstOrDefault().Name, 0, FormOperation.Pick);
+            }else
+            articleBarcode = articleBarcodes.FirstOrDefault();
             if (articleBarcode != null)
             {
                 try
@@ -861,6 +869,14 @@ namespace ShefaaPharmacy.Invoice
             }
             else
             {
+                var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                var articleNames = context.Articles.Include(x => x.PriceTagMasters).Where(x => x.Name == value).ToList();
+                if (articleNames.Count() > 1)
+                {
+                    result = ArticlePicker.PickArticale(value, 0, FormOperation.Pick);
+                }
+                else
+                    result = articleNames.FirstOrDefault();
                 FillRow(result);
             }
         }
@@ -936,8 +952,8 @@ namespace ShefaaPharmacy.Invoice
                             int quantityOfPrimary = context.ArticleUnits.FirstOrDefault(x => x.ArticleId == articale.Id && x.UnitTypeId == dataRow.UnitId).QuantityForPrimary;
                             if (dataRow.UnitId < baseunit)
                             {
-                                buy = buy * quantityOfPrimary;
-                                sell = sell * quantityOfPrimary;
+                                buy *= quantityOfPrimary;
+                                sell *= quantityOfPrimary;
                             }
                             else if (dataRow.UnitId > baseunit)
                             {

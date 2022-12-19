@@ -633,7 +633,14 @@ namespace ShefaaPharmacy.GeneralUI
                 if ((cellName == "BarcodeDescr") && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as BillDetail).Barcode != e.FormattedValue.ToString())
                 {
                     var context = ShefaaPharmacyDbContext.GetCurrentContext();
-                    var articleBarcode = context.Articles.Where(x => x.Barcode == e.FormattedValue.ToString()).FirstOrDefault();
+                    var articleBarcodes = context.Articles.Where(x => x.Barcode == e.FormattedValue.ToString()).ToList();
+                    Article articleBarcode = null;
+                    if (articleBarcodes.Count() > 1)
+                    {
+                        articleBarcode = ArticlePicker.PickArticale(articleBarcodes.FirstOrDefault().Name, 0, FormOperation.Pick);
+                    }
+                    else
+                        articleBarcode = articleBarcodes.FirstOrDefault();
                     if (articleBarcode != null)
                     {
                         foreach (DataGridViewRow item in dgDetail.Rows)
@@ -752,6 +759,10 @@ namespace ShefaaPharmacy.GeneralUI
                                 }
                             }
                         }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
                     }
                     try
                     {
@@ -775,8 +786,17 @@ namespace ShefaaPharmacy.GeneralUI
                 else if (cellName == "ArticaleIdDescr" && (e.FormattedValue.ToString() != "") && (DetailBindingSource.Current as BillDetail).ArticaleIdDescr != e.FormattedValue.ToString())
                 {
                     Article result = DescriptionFK.ArticaleExists(true, e.FormattedValue.ToString(), 0);
+
                     if (result != null)
                     {
+                        var context = ShefaaPharmacyDbContext.GetCurrentContext();
+                        var articleNames = context.Articles.Where(x => x.Name == e.FormattedValue.ToString()).ToList();
+                        if (articleNames.Count() > 1)
+                        {
+                            result = ArticlePicker.PickArticale(e.FormattedValue.ToString(), 0, FormOperation.Pick);
+                        }
+                        else
+                            result = articleNames.FirstOrDefault();
                         foreach (DataGridViewRow item in dgDetail.Rows)
                         {
                             try

@@ -20,7 +20,7 @@ namespace ShefaaPharmacy.Articles
         public string TextFilter { get; set; } = "";
         public int GeneralId { get; set; } = 0;
         public Article SelectedArticle { get; set; }
-        public static string[] ShowColumn = new string[] { "EnglishName", "Name", "ArticleCategoryIdDescr", "ArticleIdGeneralDescr", "FormatIdDescr", "Barcode", "CompanyIdDescr" };
+        public static string[] ShowColumn = new string[] { "Size", "Name", "ArticleCategoryIdDescr", "ArticleIdGeneralDescr", "FormatIdDescr", "Barcode", "CompanyIdDescr" };
         public ArticlePicker()
         {
             InitializeComponent();
@@ -52,7 +52,7 @@ namespace ShefaaPharmacy.Articles
                         {
                             Id = x.Id,
                             Name = x.Name,
-                            EnglishName = x.EnglishName,
+                            Size = x.Size,
                             ArticleCategoryId = x.ArticleCategoryId,
                             ArticleIdGeneral = x.ArticleIdGeneral,
                             FormatId = x.FormatId,
@@ -68,13 +68,13 @@ namespace ShefaaPharmacy.Articles
                     if (tsddlSearch2.Text == "جميع المستودعات")
                     {
                         Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
-                        .Where(x => x.Name.Contains(TextFilter) || x.EnglishName.Contains(TextFilter))
+                        .Where(x => x.Name.Contains(TextFilter) || x.Size.Contains(TextFilter))
                         .Select(x =>
                             new Article()
                             {
                                 Id = x.Id,
                                 Name = x.Name,
-                                EnglishName = x.EnglishName,
+                                Size = x.Size,
                                 ArticleCategoryId = x.ArticleCategoryId,
                                 ArticleIdGeneral = x.ArticleIdGeneral,
                                 FormatId = x.FormatId,
@@ -86,14 +86,14 @@ namespace ShefaaPharmacy.Articles
                     else
                     {
                         Articles = ShefaaPharmacyDbContext.GetCurrentContext().Articles
-                        .Where(x => x.Name.Contains(TextFilter) || x.EnglishName.Contains(TextFilter))
+                        .Where(x => x.Name.Contains(TextFilter) || x.Size.Contains(TextFilter))
                         .Where(x => x.Company == tsddlSearch2.SelectedItem)
                         .Select(x =>
                             new Article()
                             {
                                 Id = x.Id,
                                 Name = x.Name,
-                                EnglishName = x.EnglishName,
+                                Size = x.Size,
                                 ArticleCategoryId = x.ArticleCategoryId,
                                 ArticleIdGeneral = x.ArticleIdGeneral,
                                 FormatId = x.FormatId,
@@ -114,7 +114,7 @@ namespace ShefaaPharmacy.Articles
                             {
                                 Id = x.Id,
                                 Name = x.Name,
-                                EnglishName = x.EnglishName,
+                                Size = x.Size,
                                 ArticleCategoryId = x.ArticleCategoryId,
                                 ArticleIdGeneral = x.ArticleIdGeneral,
                                 FormatId = x.FormatId,
@@ -133,7 +133,7 @@ namespace ShefaaPharmacy.Articles
                             {
                                 Id = x.Id,
                                 Name = x.Name,
-                                EnglishName = x.EnglishName,
+                                Size = x.Size,
                                 ArticleCategoryId = x.ArticleCategoryId,
                                 ArticleIdGeneral = x.ArticleIdGeneral,
                                 FormatId = x.FormatId,
