@@ -33,6 +33,8 @@ namespace ShefaaPharmacy.Desktop
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountingDesktop));
             this.panel4 = new ShefaaPharmacy.CustomeControls.PanelEx();
+            this.lblLoading = new System.Windows.Forms.Label();
+            this.pcloader = new System.Windows.Forms.PictureBox();
             this.pbBillPick = new System.Windows.Forms.PictureBox();
             this.pbAccountReport = new System.Windows.Forms.PictureBox();
             this.pbPaymentAccount = new System.Windows.Forms.PictureBox();
@@ -45,6 +47,7 @@ namespace ShefaaPharmacy.Desktop
             this.panel3 = new ShefaaPharmacy.CustomeControls.PanelEx();
             this.panel2 = new ShefaaPharmacy.CustomeControls.PanelEx();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcloader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBillPick)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAccountReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentAccount)).BeginInit();
@@ -60,6 +63,8 @@ namespace ShefaaPharmacy.Desktop
             // 
             this.panel4.AutoSize = true;
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.lblLoading);
+            this.panel4.Controls.Add(this.pcloader);
             this.panel4.Controls.Add(this.pbBillPick);
             this.panel4.Controls.Add(this.pbAccountReport);
             this.panel4.Controls.Add(this.pbPaymentAccount);
@@ -74,6 +79,31 @@ namespace ShefaaPharmacy.Desktop
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1244, 744);
             this.panel4.TabIndex = 49;
+            // 
+            // lblLoading
+            // 
+            this.lblLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLoading.AutoSize = true;
+            this.lblLoading.Font = new System.Drawing.Font("Gabriola", 9.25F);
+            this.lblLoading.Location = new System.Drawing.Point(532, 301);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(168, 23);
+            this.lblLoading.TabIndex = 61;
+            this.lblLoading.Text = "يتم التحميل الان, يرجى الانتظار";
+            this.lblLoading.Visible = false;
+            // 
+            // pcloader
+            // 
+            this.pcloader.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pcloader.BackColor = System.Drawing.Color.Transparent;
+            this.pcloader.Image = ((System.Drawing.Image)(resources.GetObject("pcloader.Image")));
+            this.pcloader.Location = new System.Drawing.Point(574, 327);
+            this.pcloader.Name = "pcloader";
+            this.pcloader.Size = new System.Drawing.Size(79, 73);
+            this.pcloader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcloader.TabIndex = 60;
+            this.pcloader.TabStop = false;
+            this.pcloader.Visible = false;
             // 
             // pbBillPick
             // 
@@ -229,6 +259,8 @@ namespace ShefaaPharmacy.Desktop
             this.Size = new System.Drawing.Size(1244, 744);
             this.Load += new System.EventHandler(this.AccountingDesktop_Load);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcloader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBillPick)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAccountReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentAccount)).EndInit();
@@ -256,5 +288,7 @@ namespace ShefaaPharmacy.Desktop
         private System.Windows.Forms.PictureBox pbArticleDetail;
         private System.Windows.Forms.PictureBox pbBillPick;
         private System.Windows.Forms.PictureBox pbAccountReport;
+        private System.Windows.Forms.Label lblLoading;
+        private System.Windows.Forms.PictureBox pcloader;
     }
 }

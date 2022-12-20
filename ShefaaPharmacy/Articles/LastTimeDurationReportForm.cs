@@ -94,5 +94,11 @@ namespace ShefaaPharmacy.Articles
             dgMaster.Columns["ID"].Visible = false;
             dgMaster.Columns["CreationByDescr"].Visible = false;
         }
+
+        private void tsRefresh_Click(object sender, EventArgs e)
+        {
+            dgMaster.Refresh();
+            dgDetail.Refresh();
+        }
     }
 }

@@ -64,6 +64,7 @@ namespace ShefaaPharmacy.Invoice
             else if (FormOperation == FormOperation.Edit || FormOperation == FormOperation.EditFromPicker)
             {
                 pbOk.Image = Properties.Resources.EditButton;
+                cbPaymentMethod.Enabled = false;
             }
         }
         private void InitEntity_onUpdateForm()

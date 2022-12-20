@@ -9,6 +9,8 @@ using ShefaaPharmacy.Helper;
 using ShefaaPharmacy.Invoice;
 using ShefaaPharmacy.Public;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShefaaPharmacy.Desktop
@@ -313,31 +315,31 @@ namespace ShefaaPharmacy.Desktop
             {
                 //InvoiceReturningForm invoiceReturningForm = new InvoiceReturningForm("تعديل فاتورة", FormOperation.EditFromPicker);
                 //invoiceReturningForm.ShowDialog();
-                LastTimeDurationReportForm frm = new LastTimeDurationReportForm();
-                frm.ShowDialog();
+
+                pcloader.Visible = true;
+                lblLoading.Visible = true;
+                Thread thread = new Thread(()=>
+                {
+                    LastTimeDurationReportForm frm = new LastTimeDurationReportForm();
+                    frm.ShowDialog();
+                });
+                //thread.IsBackground = true;
+                thread.Start();
+                thread.Join();
+                work();
+
+                //lblLoading.Visible = pcloader.Visible = false;
             }
             else
             {
                 _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
             }
-            //try
-            //{
-            //    if (Auth.IsManager())
-            //    {
-            //        ArticleGeneralEditForm articaleSubCategory = new ArticleGeneralEditForm(new Article());
-            //        articaleSubCategory.ShowDialog();
-            //    }
-            //    else
-            //    {
-            //        _MessageBoxDialog.Show("ليس لديك صلاحية لاستخدام هذه الواجهة", MessageBoxState.Error);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    _MessageBoxDialog.Show(ex.Message, MessageBoxState.Error);
-            //}
         }
-
+        private void work()
+        {
+            pcloader.Visible = false;
+            lblLoading.Visible = false;
+        }
         private void pbBillPick_Click_1(object sender, EventArgs e)
         {
             InvoicDayPickForm invoicDayPickForm = new InvoicDayPickForm(null);

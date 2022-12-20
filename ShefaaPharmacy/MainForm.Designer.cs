@@ -114,11 +114,11 @@
             this.miSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.miCreateDB = new System.Windows.Forms.ToolStripMenuItem();
             this.miConnectionSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPharmacyInformation = new System.Windows.Forms.ToolStripMenuItem();
             this.miActivationMethod = new System.Windows.Forms.ToolStripMenuItem();
             this.miTestingTimer = new System.Windows.Forms.ToolStripMenuItem();
             this.miTaxAccount = new System.Windows.Forms.ToolStripMenuItem();
             this.miLogIn = new System.Windows.Forms.ToolStripMenuItem();
-            this.miPharmacyInformation = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tTracking = new System.Windows.Forms.Timer(this.components);
@@ -1019,6 +1019,14 @@
             this.miConnectionSetting.Text = "إعدادات الإتصال";
             this.miConnectionSetting.Click += new System.EventHandler(this.miConnectionSetting_Click);
             // 
+            // miPharmacyInformation
+            // 
+            this.miPharmacyInformation.Image = ((System.Drawing.Image)(resources.GetObject("miPharmacyInformation.Image")));
+            this.miPharmacyInformation.Name = "miPharmacyInformation";
+            this.miPharmacyInformation.Size = new System.Drawing.Size(259, 30);
+            this.miPharmacyInformation.Text = "معلومات الصيدلية";
+            this.miPharmacyInformation.Click += new System.EventHandler(this.miPharmacyInformation_Click);
+            // 
             // miActivationMethod
             // 
             this.miActivationMethod.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1052,14 +1060,6 @@
             this.miLogIn.Size = new System.Drawing.Size(259, 30);
             this.miLogIn.Text = "تسجيل دخول";
             this.miLogIn.Click += new System.EventHandler(this.miLogIn_Click);
-            // 
-            // miPharmacyInformation
-            // 
-            this.miPharmacyInformation.Image = ((System.Drawing.Image)(resources.GetObject("miPharmacyInformation.Image")));
-            this.miPharmacyInformation.Name = "miPharmacyInformation";
-            this.miPharmacyInformation.Size = new System.Drawing.Size(259, 30);
-            this.miPharmacyInformation.Text = "معلومات الصيدلية";
-            this.miPharmacyInformation.Click += new System.EventHandler(this.miPharmacyInformation_Click);
             // 
             // timer1
             // 

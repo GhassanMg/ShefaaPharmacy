@@ -825,19 +825,6 @@ namespace ShefaaPharmacy
             var context = ShefaaPharmacyDbContext.GetCurrentContext();
             context.ExistStuffs.AddRange(mylist);
             context.SaveChanges();
-            //using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
-            //{
-            //    DataTable dt = new DataTable();
-            //    copy.DestinationTableName = "dbo.ExistStuff";
-            //    // Add mappings so that the column order doesn't matter
-            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Name), "name");
-            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Count), "count");
-            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Price), "price");
-            //    copy.ColumnMappings.Add(nameof(ExistStuffViewModel.Description), "description");
-
-            //    dt = ToDataTable(mylist);
-            //    copy.WriteToServer(dt);
-            //}
         }
         SqlDateTime sqltime;
         private void SaveNewFirstTimeArticale(List<BalanceFirstDurationViewModel> mybalance)
@@ -871,25 +858,6 @@ namespace ShefaaPharmacy
 
             context.FirstTimeArticles.AddRange(list);
             context.SaveChanges();
-
-
-            //using (var copy = new SqlBulkCopy(ShefaaPharmacyDbContext.ConStr))
-            //{
-            //    DataTable dt = new DataTable();
-            //    copy.DestinationTableName = "dbo.FirstTimeArticles";
-            //    // Add mappings so that the column order doesn't matter
-            //    //copy.ColumnMappings.Add(nameof(FirstTimeArticles.id), "id");
-            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Name), "name");
-            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.InvoiceKind), "InvoiceKind");
-            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.UnitIdDescr), "UnitIdDescr");
-            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Price), "Price");
-            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Quantity), "Quantity");
-            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Total), "Total");
-            //    copy.ColumnMappings.Add(nameof(FirstTimeArticles.Expirydate), "ExpiryDate");
-
-            //    dt = ToDataTable(list);
-            //    copy.WriteToServer(dt);
-            //}
         }
         BillMaster billMaster = new BillMaster();
         private bool SaveNewFirstTimeBill()
@@ -1031,6 +999,11 @@ namespace ShefaaPharmacy
             }
             else
             {
+                var matchedArticles = ShefaaPharmacyDbContext.GetCurrentContext().Articles.Include(x => x.PriceTagMasters).Where(x => x.Name == value || x.EnglishName == value || x.Barcode == value).ToList();
+                if (matchedArticles.Count() > 1)
+                {
+                    result = ArticlePicker.PickArticale(matchedArticles.FirstOrDefault().Name, 0, FormOperation.Pick);
+                }
                 FillRow(result);
             }
         }
