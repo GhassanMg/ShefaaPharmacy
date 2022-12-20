@@ -255,10 +255,6 @@ namespace ShefaaPharmacy.GeneralUI
             for (int i = 0; i < dgDetail.Rows.Count - 1; i++)
             {
                 sum += double.Parse(dgDetail.Rows[i].Cells[9].Value.ToString());
-                //SendKeys.SendWait("{ENTER}");
-                // sum += Convert.ToInt32(dgDetail.CurrentRow.Cells[7].Value) * Convert.ToInt32(dgDetail.CurrentRow.Cells[4].Value);
-                // if (tbDiscount.Text != "") sum -= Convert.ToInt32(tbDiscount.Text);
-                //else  sum -= double.Parse(tbDiscount.Text);
             }
             return Convert.ToInt32(sum);
         }
@@ -601,20 +597,6 @@ namespace ShefaaPharmacy.GeneralUI
                 tbPayment.Enabled = true;
                 tbPayment.Text = "0";
             }
-            //(EditBindingSource.Current as BillMaster).PaymentMethod = (PaymentMethod)cbPaymentMethod.SelectedValue;
-            //if ((PaymentMethod)cbPaymentMethod.SelectedValue == PaymentMethod.Debit)
-            //{
-            //    (EditBindingSource.Current as BillMaster).RemainingAmount = (EditBindingSource.Current as BillMaster).TotalPrice;
-            //    (EditBindingSource.Current as BillMaster).Payment = 0;
-            //    (EditBindingSource.Current as BillMaster).Discount = 0;
-            //}
-            //else if ((PaymentMethod)cbPaymentMethod.SelectedValue == PaymentMethod.Cash)
-            //{
-            //    (EditBindingSource.Current as BillMaster).RemainingAmount = 0;
-            //    (EditBindingSource.Current as BillMaster).Payment = (EditBindingSource.Current as BillMaster).TotalPrice;
-            //    (EditBindingSource.Current as BillMaster).Discount = 0;
-            //}
-            //EditBindingSource.ResetCurrentItem();
         }
 
         private void dgDetail_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)

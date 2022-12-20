@@ -49,7 +49,14 @@ namespace ShefaaPharmacy.Invoice
             wStock = table;
 
             // QR Image Create
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-UK");
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-UK");
+            }
+            catch
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            }
             var TaxAccount = context.TaxAccount.ToList().FirstOrDefault();
             string RandomNmuber = TaxAccount.taxNumber +
                 "_" + TaxAccount.facilityName + "_" + "001" + "#" +
@@ -68,7 +75,7 @@ namespace ShefaaPharmacy.Invoice
             pdoc = new PrintDocument();
             PrinterSettings ps = new PrinterSettings();
             Font font = new Font("calibri", 15);
-            PaperSize psize = new PaperSize("Custom", 0, 30000);
+            PaperSize psize = new PaperSize("Custom", 5000, 30000);
             pd.Document = pdoc;
             pd.Document.DefaultPageSettings.PaperSize = psize;
             pdoc.DefaultPageSettings.PaperSize.Height = 30000;
